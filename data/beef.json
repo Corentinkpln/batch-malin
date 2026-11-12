@@ -1,0 +1,111 @@
+[
+  {
+    "id": 101,
+    "name": "Chili express de bœuf, haricots rouges & riz",
+    "category": "beef",
+    "price": 2.50,
+    "prepTime": 10,
+    "cookTime": 20,
+    "calories": 590,
+    "protein": 36,
+    "carbs": 62,
+    "fat": 19,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Plaques induction"],
+    "ingredients": [
+      { "name": "Bœuf haché", "quantity": 130, "unit": "g" },
+      { "name": "Haricots rouges", "quantity": 80, "unit": "g" },
+      { "name": "Coulis de tomate", "quantity": 120, "unit": "ml" },
+      { "name": "Oignon", "quantity": 45, "unit": "g" },
+      { "name": "Riz basmati", "quantity": 70, "unit": "g" },
+      { "name": "Cumin", "quantity": 4, "unit": "g" }
+    ],
+    "steps": [
+      "Lancer la cuisson du riz basmati dans une casserole d'eau salée.",
+      "Faire revenir l'oignon émincé et le bœuf haché avec le cumin pendant 6 min, puis verser le coulis de tomate et les haricots rouges.",
+      "Laisser mijoter 12 min à feu doux et mettre en boîtes avec le riz."
+    ]
+  },
+  {
+    "id": 102,
+    "name": "Boulettes de bœuf rôties, courgettes & sauce tomate",
+    "category": "beef",
+    "price": 2.75,
+    "prepTime": 15,
+    "cookTime": 22,
+    "calories": 530,
+    "protein": 35,
+    "carbs": 45,
+    "fat": 22,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Four"],
+    "ingredients": [
+      { "name": "Bœuf haché", "quantity": 140, "unit": "g" },
+      { "name": "Courgettes", "quantity": 120, "unit": "g" },
+      { "name": "Coulis de tomate", "quantity": 110, "unit": "ml" },
+      { "name": "Oignon", "quantity": 40, "unit": "g" },
+      { "name": "Pâtes penne", "quantity": 75, "unit": "g" }
+    ],
+    "steps": [
+      "Façonner des boulettes avec le bœuf haché et l'oignon ciselé, les déposer sur plaque avec les courgettes en dés.",
+      "Enfourner 20 min à 200°C.",
+      "Napper de coulis de tomate chaud et accompagner des pâtes penne."
+    ]
+  },
+  {
+    "id": 103,
+    "name": "Bœuf sauté aux carottes, oignons & sauce soja",
+    "category": "beef",
+    "price": 2.60,
+    "prepTime": 10,
+    "cookTime": 15,
+    "calories": 545,
+    "protein": 34,
+    "carbs": 56,
+    "fat": 19,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Plaques induction"],
+    "ingredients": [
+      { "name": "Bœuf haché", "quantity": 135, "unit": "g" },
+      { "name": "Carottes", "quantity": 110, "unit": "g" },
+      { "name": "Oignon", "quantity": 50, "unit": "g" },
+      { "name": "Riz basmati", "quantity": 80, "unit": "g" },
+      { "name": "Sauce soja", "quantity": 15, "unit": "ml" }
+    ],
+    "steps": [
+      "Cuire le riz basmati à l'eau bouillante pendant 11 min.",
+      "Saisir à feu vif le bœuf, les carottes en fines lamelles et l'oignon pendant 10 min, déglacer à la sauce soja.",
+      "Assembler le riz et le sauté de bœuf."
+    ]
+  },
+  {
+    "id": 104,
+    "name": "Hachis parmentier de patates douces & carottes",
+    "category": "beef",
+    "price": 2.80,
+    "prepTime": 15,
+    "cookTime": 25,
+    "calories": 550,
+    "protein": 33,
+    "carbs": 52,
+    "fat": 21,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Four", "Plaques induction"],
+    "ingredients": [
+      { "name": "Bœuf haché", "quantity": 135, "unit": "g" },
+      { "name": "Patate douce", "quantity": 180, "unit": "g" },
+      { "name": "Carottes", "quantity": 80, "unit": "g" },
+      { "name": "Oignon", "quantity": 40, "unit": "g" },
+      { "name": "Fromage râpé", "quantity": 25, "unit": "g" }
+    ],
+    "steps": [
+      "Cuire les patates douces en dés à l'eau bouillante 15 min puis les écraser en purée.",
+      "Faire revenir le bœuf haché avec les carottes en petits dés et l'oignon.",
+      "Monter dans un plat à gratin, parsemer de fromage râpé et gratiner 15 min au four à 200°C."
+    ]
+  }
+]
