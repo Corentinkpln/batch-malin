@@ -1,0 +1,110 @@
+[
+  {
+    "id": 201,
+    "name": "Pavé de saumon Air Fryer, riz & brocoli",
+    "category": "fish",
+    "price": 3.45,
+    "prepTime": 8,
+    "cookTime": 14,
+    "calories": 580,
+    "protein": 36,
+    "carbs": 50,
+    "fat": 25,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": ["Air Fryer", "Plaques induction"],
+    "ingredients": [
+      { "name": "Saumon", "quantity": 140, "unit": "g" },
+      { "name": "Riz basmati", "quantity": 75, "unit": "g" },
+      { "name": "Brocoli", "quantity": 120, "unit": "g" },
+      { "name": "Citron", "quantity": 0.25, "unit": "pièce" },
+      { "name": "Huile d'olive", "quantity": 8, "unit": "ml" }
+    ],
+    "steps": [
+      "Cuire le riz basmati et les fleurettes de brocoli à l'eau bouillante sur les plaques induction.",
+      "Assaisonner le pavé de saumon d'huile d'olive et citron, cuire 11 min à 185°C dans le Air Fryer.",
+      "Répartir en boîtes hermétiques."
+    ]
+  },
+  {
+    "id": 202,
+    "name": "Curry doux de cabillaud coco & épinards",
+    "category": "fish",
+    "price": 3.15,
+    "prepTime": 10,
+    "cookTime": 15,
+    "calories": 495,
+    "protein": 34,
+    "carbs": 51,
+    "fat": 16,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Plaques induction"],
+    "ingredients": [
+      { "name": "Cabillaud", "quantity": 140, "unit": "g" },
+      { "name": "Riz basmati", "quantity": 75, "unit": "g" },
+      { "name": "Épinards frais", "quantity": 100, "unit": "g" },
+      { "name": "Lait de coco", "quantity": 90, "unit": "ml" },
+      { "name": "Épices curry", "quantity": 5, "unit": "g" }
+    ],
+    "steps": [
+      "Lancer la cuisson du riz basmati.",
+      "Chauffer le lait de coco avec les épices curry, pocher les morceaux de cabillaud 8 min et ajouter les épinards en fin de cuisson.",
+      "Assembler avec le riz."
+    ]
+  },
+  {
+    "id": 203,
+    "name": "Galettes protéinées de thon, carottes & avoine",
+    "category": "fish",
+    "price": 1.95,
+    "prepTime": 10,
+    "cookTime": 16,
+    "calories": 440,
+    "protein": 35,
+    "carbs": 38,
+    "fat": 14,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Four"],
+    "ingredients": [
+      { "name": "Thon en boîte", "quantity": 120, "unit": "g" },
+      { "name": "Carottes", "quantity": 100, "unit": "g" },
+      { "name": "Œufs", "quantity": 1, "unit": "pièce" },
+      { "name": "Flocons d'avoine", "quantity": 45, "unit": "g" },
+      { "name": "Oignon", "quantity": 30, "unit": "g" }
+    ],
+    "steps": [
+      "Mélanger le thon égoutté, les carottes râpées, l'œuf, les flocons d'avoine et l'oignon ciselé.",
+      "Former 3 galettes par portion sur une plaque sulfurisée et enfourner 16 min à 195°C.",
+      "Laisser refroidir avant mise en boîte."
+    ]
+  },
+  {
+    "id": 204,
+    "name": "Filet de colin rôti aux courgettes & herbes",
+    "category": "fish",
+    "price": 2.55,
+    "prepTime": 8,
+    "cookTime": 20,
+    "calories": 430,
+    "protein": 32,
+    "carbs": 44,
+    "fat": 12,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": ["Four"],
+    "ingredients": [
+      { "name": "Colin", "quantity": 150, "unit": "g" },
+      { "name": "Courgettes", "quantity": 140, "unit": "g" },
+      { "name": "Patate douce", "quantity": 140, "unit": "g" },
+      { "name": "Huile d'olive", "quantity": 10, "unit": "ml" },
+      { "name": "Herbes de Provence", "quantity": 3, "unit": "g" }
+    ],
+    "steps": [
+      "Disposer les cubes de patate douce et de courgette huilés sur la plaque et enfourner 10 min à 200°C.",
+      "Ajouter les filets de colin parsemés d'herbes de Provence et poursuivre la cuisson 10 min.",
+      "Répartir dans les contenants."
+    ]
+  }
+]
