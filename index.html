@@ -1,91 +1,360 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Batch Malin</title>
-
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Batch Malin — Générateur intelligent de batch cooking économique, anti-gaspi et sur-mesure." />
+  <title>Batch Malin — Batch Cooking Intelligent &amp; Économique</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230071e3'/%3E%3Cpath d='M22 18v28M22 18c-4 0-6 3-6 7s2 7 6 7M42 18v12a6 6 0 0 1-6 6h0a6 6 0 0 1-6-6V18M36 36v10' stroke='white' stroke-width='4' stroke-linecap='round' fill='none'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body>
+  <!-- Alerte environnement local (file://) -->
+  <div id="cors-banner" class="cors-banner hidden" role="alert">
+    <div class="container cors-banner__inner">
+      <span class="cors-banner__badge">Mode Hors-Serveur Détecté</span>
+      <p>Les navigateurs bloquent <code>fetch()</code> sur <code>file://</code>. Lancez un serveur local (<code>python3 -m http.server 8080</code> ou VS Code Live Server) ou déployez sur GitHub Pages.</p>
+    </div>
+  </div>
 
-    <div class="background-blur"></div>
+  <!-- Navigation supérieure -->
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <div class="brand__mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="16" rx="4"></rect>
+            <path d="M3 10h18"></path>
+            <path d="M9 15h6"></path>
+          </svg>
+        </div>
+        <div>
+          <span class="brand__name">Batch Malin</span>
+          <span class="brand__tag">Studio Culinaire</span>
+        </div>
+      </div>
 
-    <main class="app">
+      <div class="topbar__actions">
+        <div class="status-pill" id="header-status-pill" title="Synthèse rapide">
+          <span class="status-dot"></span>
+          <span id="header-recipe-count">Chargement...</span>
+        </div>
+        <button type="button" class="btn btn--ghost" id="btn-open-favorites" aria-label="Voir les favoris">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span>Favoris</span>
+          <span class="badge-count" id="favorites-count">0</span>
+        </button>
+        <button type="button" class="btn btn--primary" id="btn-generate-top">
+          Générer mon plan
+        </button>
+      </div>
+    </div>
+  </header>
 
-        <section class="hero">
+  <main class="container main-content">
+    <!-- Hero épuré -->
+    <section class="hero">
+      <div class="hero__eyebrow">Optimisation budgétaire &amp; anti-gaspillage</div>
+      <h1 class="hero__title">Une session en cuisine.<br />Toute votre semaine prête.</h1>
+      <p class="hero__subtitle">
+        Configurez votre budget, votre matériel et votre temps. L’algorithme sélectionne des recettes partageant un maximum d’ingrédients frais et orchestre vos cuissons en parallèle.
+      </p>
+    </section>
 
-            <div class="badge">
-                Batch Cooking Intelligent
-            </div>
+    <!-- Configuration Studio -->
+    <section class="card card--studio" aria-labelledby="config-heading">
+      <div class="section-header">
+        <div>
+          <h2 id="config-heading" class="section-title">Paramètres de la session</h2>
+          <p class="section-subtitle">Ajustez vos contraintes ; vos préférences sont sauvegardées automatiquement.</p>
+        </div>
+        <button type="button" class="btn btn--subtle" id="btn-reset-prefs">Réinitialiser</button>
+      </div>
 
-            <h1>
-                Batch Malin
-            </h1>
+      <div class="config-grid">
+        <!-- Budget -->
+        <div class="control-box">
+          <div class="control-box__head">
+            <label for="input-budget">Budget maximum</label>
+            <span class="control-value"><strong id="display-budget">35</strong> €</span>
+          </div>
+          <input type="range" id="input-budget" min="10" max="150" step="1" value="35" />
+          <div class="control-box__hint">
+            <span>10 €</span>
+            <span id="hint-per-meal">Soit ~3,50 € / repas</span>
+            <span>150 €</span>
+          </div>
+        </div>
 
-            <p>
-                Optimise ton budget alimentaire,
-                réduis ton temps de préparation
-                et génère automatiquement tes repas.
-            </p>
+        <!-- Nombre de jours -->
+        <div class="control-box">
+          <div class="control-box__head">
+            <label for="input-days">Nombre de jours</label>
+            <span class="control-value"><strong id="display-days">5</strong> jours</span>
+          </div>
+          <input type="range" id="input-days" min="1" max="7" step="1" value="5" />
+          <div class="control-box__hint">
+            <span>1 jour</span>
+            <span id="hint-total-meals">10 repas à préparer</span>
+            <span>7 jours</span>
+          </div>
+        </div>
 
-        </section>
+        <!-- Nombre de repas par jour -->
+        <div class="control-box">
+          <div class="control-box__head">
+            <label for="input-meals-per-day">Repas par jour</label>
+            <span class="control-value"><strong id="display-meals-per-day">2</strong> / jour</span>
+          </div>
+          <div class="segmented-control" role="group" aria-label="Repas par jour">
+            <button type="button" class="segmented-btn" data-meals="1">1 repas (Midi ou Soir)</button>
+            <button type="button" class="segmented-btn is-active" data-meals="2">2 repas (Midi + Soir)</button>
+          </div>
+          <input type="hidden" id="input-meals-per-day" value="2" />
+        </div>
 
-        <section class="glass-card config-card">
+        <!-- Nombre de personnes -->
+        <div class="control-box">
+          <div class="control-box__head">
+            <label for="input-servings">Nombre de personnes</label>
+            <span class="control-value"><strong id="display-servings">1</strong> pers.</span>
+          </div>
+          <input type="range" id="input-servings" min="1" max="6" step="1" value="1" />
+          <div class="control-box__hint">
+            <span>1 pers.</span>
+            <span id="hint-total-portions">10 portions totales</span>
+            <span>6 pers.</span>
+          </div>
+        </div>
 
-            <h2>Configuration</h2>
+        <!-- Temps maximum disponible -->
+        <div class="control-box">
+          <div class="control-box__head">
+            <label for="input-max-time">Temps max en cuisine</label>
+            <span class="control-value"><strong id="display-max-time">90</strong> min</span>
+          </div>
+          <input type="range" id="input-max-time" min="45" max="240" step="15" value="90" />
+          <div class="control-box__hint">
+            <span>45 min</span>
+            <span>Cuissons parallélisées</span>
+            <span>4 h</span>
+          </div>
+        </div>
 
-            <div class="grid">
+        <!-- Régime alimentaire -->
+        <div class="control-box">
+          <div class="control-box__head">
+            <label for="input-diet">Régime alimentaire</label>
+          </div>
+          <select id="input-diet" class="select-input">
+            <option value="all">Omnivore (Tout)</option>
+            <option value="high_protein">Hyperprotéiné (&ge; 30g prot./repas)</option>
+            <option value="no_pork">Sans porc</option>
+            <option value="pescatarian">Pescétarien (Poisson &amp; Végé)</option>
+            <option value="vegetarian">Végétarien</option>
+          </select>
+        </div>
 
-                <div class="input-group">
-                    <label>Budget (€)</label>
-                    <input
-                        type="number"
-                        id="budget"
-                        value="60">
-                </div>
+        <!-- Niveau cuisine -->
+        <div class="control-box">
+          <div class="control-box__head">
+            <label for="input-skill">Niveau en cuisine</label>
+          </div>
+          <select id="input-skill" class="select-input">
+            <option value="beginner">Débutant (Recettes simples &amp; rapides)</option>
+            <option value="intermediate" selected>Intermédiaire (Équilibré)</option>
+            <option value="advanced">Avancé (Toutes techniques)</option>
+          </select>
+        </div>
 
-                <div class="input-group">
-                    <label>Repas</label>
-                    <select id="meals">
-                        <option>7</option>
-                        <option selected>14</option>
-                        <option>21</option>
-                        <option>28</option>
-                    </select>
-                </div>
+        <!-- Heure de début du batch cooking -->
+        <div class="control-box">
+          <div class="control-box__head">
+            <label for="input-start-time">Début de session</label>
+          </div>
+          <input type="time" id="input-start-time" class="select-input" value="18:00" />
+        </div>
+      </div>
 
-                <div class="input-group">
-                    <label>Personnes</label>
-                    <input
-                        type="number"
-                        id="people"
-                        value="1">
-                </div>
+      <!-- Gestion du matériel -->
+      <div class="equipment-section">
+        <div class="equipment-section__head">
+          <div>
+            <h3 class="subsection-title">Matériel de cuisine disponible</h3>
+            <p class="section-subtitle">Sélectionnez vos appareils pour débloquer les recettes compatibles et paralléliser le planning.</p>
+          </div>
+          <div class="equipment-actions">
+            <button type="button" class="btn btn--subtle btn--sm" id="btn-equip-essentials">Essentiels</button>
+            <button type="button" class="btn btn--subtle btn--sm" id="btn-equip-all">Tout cocher</button>
+          </div>
+        </div>
+        <div id="equipment-grid" class="equipment-grid" role="group" aria-label="Matériel disponible"></div>
+      </div>
 
-            </div>
+      <div class="studio-footer">
+        <button type="button" class="btn btn--primary btn--lg" id="btn-generate-main">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+          <span>Générer le plan optimisé</span>
+        </button>
+      </div>
+    </section>
 
-            <h3>Matériel disponible</h3>
+    <!-- Zone de résultats -->
+    <section id="results-section" class="results-section" aria-live="polite">
+      <!-- Bandeau d'alerte si contraintes serrées -->
+      <div id="plan-notice" class="notice-banner hidden"></div>
 
-            <div id="equipmentContainer">
+      <!-- KPI Cards (Inspiration Apple Wallet / Fitness) -->
+      <div class="kpi-grid">
+        <article class="kpi-card">
+          <div class="kpi-card__top">
+            <span class="kpi-card__label">Coût total estimé</span>
+            <span class="kpi-pill kpi-pill--green" id="kpi-budget-status">Dans le budget</span>
+          </div>
+          <div class="kpi-card__value" id="kpi-total-cost">0,00 €</div>
+          <div class="kpi-card__meta" id="kpi-cost-detail">0,00 € / portion · Économie estimée</div>
+          <div class="progress-track">
+            <div class="progress-fill progress-fill--blue" id="kpi-budget-bar" style="width: 0%"></div>
+          </div>
+        </article>
 
-            </div>
+        <article class="kpi-card">
+          <div class="kpi-card__top">
+            <span class="kpi-card__label">Score anti-gaspillage</span>
+            <span class="kpi-pill kpi-pill--blue" id="kpi-synergy-badge">Optimisé</span>
+          </div>
+          <div class="kpi-card__value" id="kpi-synergy-score">0 %</div>
+          <div class="kpi-card__meta" id="kpi-synergy-detail">0 ingrédients partagés entre recettes</div>
+          <div class="progress-track">
+            <div class="progress-fill progress-fill--green" id="kpi-synergy-bar" style="width: 0%"></div>
+          </div>
+        </article>
 
-            <button id="generateBtn">
-                Générer mon menu
-            </button>
+        <article class="kpi-card">
+          <div class="kpi-card__top">
+            <span class="kpi-card__label">Temps batch cooking</span>
+            <span class="kpi-pill kpi-pill--orange" id="kpi-time-saved">-0 min</span>
+          </div>
+          <div class="kpi-card__value" id="kpi-total-time">0 min</div>
+          <div class="kpi-card__meta" id="kpi-time-detail">Fin prévue à --h--</div>
+          <div class="progress-track">
+            <div class="progress-fill progress-fill--orange" id="kpi-time-bar" style="width: 0%"></div>
+          </div>
+        </article>
 
-        </section>
+        <article class="kpi-card">
+          <div class="kpi-card__top">
+            <span class="kpi-card__label">Nutrition moyenne / repas</span>
+            <span class="kpi-pill" id="kpi-weekly-kcal">0 kcal / sem.</span>
+          </div>
+          <div class="kpi-card__value" id="kpi-avg-calories">0 kcal</div>
+          <div class="macro-mini-bars">
+            <span class="macro-tag macro-tag--p">P <strong id="kpi-avg-protein">0g</strong></span>
+            <span class="macro-tag macro-tag--c">G <strong id="kpi-avg-carbs">0g</strong></span>
+            <span class="macro-tag macro-tag--f">L <strong id="kpi-avg-fat">0g</strong></span>
+          </div>
+        </article>
+      </div>
 
-        <section class="glass-card">
+      <!-- Barre d'onglets -->
+      <div class="tabs-bar" role="tablist" aria-label="Vues du plan généré">
+        <button type="button" class="tab-btn is-active" role="tab" aria-selected="true" data-tab="menu">
+          Menu optimisé
+        </button>
+        <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="shopping">
+          Liste de courses <span class="tab-badge" id="tab-shopping-count">0</span>
+        </button>
+        <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="batch">
+          Planning batch cooking
+        </button>
+        <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="favorites">
+          Mes favoris <span class="tab-badge" id="tab-fav-count">0</span>
+        </button>
+      </div>
 
-            <h2>Menu généré</h2>
+      <!-- Vue 1 : Menu optimisé -->
+      <div id="panel-menu" class="tab-panel is-active" role="tabpanel">
+        <div class="panel-toolbar">
+          <div>
+            <h2 class="section-title">Recettes sélectionnées</h2>
+            <p class="section-subtitle" id="menu-summary-text">Sélection optimisée pour réutiliser vos ingrédients clés.</p>
+          </div>
+          <button type="button" class="btn btn--subtle" id="btn-regenerate-variant">
+            Nouvelle variante
+          </button>
+        </div>
+        <div id="menu-grid" class="menu-grid"></div>
+      </div>
 
-            <div id="results">
+      <!-- Vue 2 : Liste de courses -->
+      <div id="panel-shopping" class="tab-panel" role="tabpanel">
+        <div class="panel-toolbar">
+          <div>
+            <h2 class="section-title">Liste de courses consolidée</h2>
+            <p class="section-subtitle">Quantités fusionnées automatiquement et classées par rayon.</p>
+          </div>
+          <div class="toolbar-actions">
+            <button type="button" class="btn btn--subtle" id="btn-copy-shopping">Copier la liste</button>
+            <button type="button" class="btn btn--subtle" id="btn-print-plan">Imprimer / PDF</button>
+          </div>
+        </div>
+        <div id="shopping-container" class="shopping-layout"></div>
+      </div>
 
-                Aucun menu généré.
+      <!-- Vue 3 : Planning Batch Cooking -->
+      <div id="panel-batch" class="tab-panel" role="tabpanel">
+        <div class="panel-toolbar">
+          <div>
+            <h2 class="section-title">Chronologie d’exécution optimisée</h2>
+            <p class="section-subtitle">Les préparations similaires sont groupées et les cuissons lancées en parallèle.</p>
+          </div>
+          <div class="batch-legend">
+            <span class="legend-item"><i class="dot dot--prep"></i> Préparation active</span>
+            <span class="legend-item"><i class="dot dot--cook"></i> Cuisson appareil</span>
+            <span class="legend-item"><i class="dot dot--pack"></i> Assemblage &amp; boîtes</span>
+          </div>
+        </div>
+        <div id="batch-timeline" class="timeline"></div>
+      </div>
 
-   
+      <!-- Vue 4 : Favoris -->
+      <div id="panel-favorites" class="tab-panel" role="tabpanel">
+        <div class="panel-toolbar">
+          <div>
+            <h2 class="section-title">Vos recettes favorites</h2>
+            <p class="section-subtitle">Sauvegardées localement dans votre navigateur.</p>
+          </div>
+        </div>
+        <div id="favorites-grid" class="menu-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modale Détail Recette -->
+  <div id="recipe-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-recipe-title">
+    <div class="modal__backdrop" data-close-modal="true"></div>
+    <div class="modal__dialog">
+      <button type="button" class="modal__close" data-close-modal="true" aria-label="Fermer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div id="modal-recipe-body"></div>
+    </div>
+  </div>
+
+  <!-- Toast de notification -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- Scripts modulaires sans serveur -->
+  <script src="js/planner.js"></script>
+  <script src="js/shopping.js"></script>
+  <script src="js/batch.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
