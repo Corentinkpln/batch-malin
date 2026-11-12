@@ -1,1 +1,91 @@
-<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Batch Malin V2</title><link rel="stylesheet" href="css/style.css"></head><body><div class="wrap"><h1>Batch Malin V2</h1><p>Planification de batch cooking intelligente.</p><div class="card"><label>Budget (€)</label><input id="budget" type="number" value="60"><label>Repas</label><select id="meals"><option>7</option><option selected>14</option><option>21</option></select><label>Personnes</label><input id="people" type="number" value="1"><h3>Matériel</h3><div id="equipment"></div><button id="generateBtn">Générer</button></div><div class="card"><h2>Menu</h2><div id="results"></div></div><div class="card"><h2>Liste de courses</h2><div id="shopping"></div></div></div><script src="js/app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Batch Malin</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="background-blur"></div>
+
+    <main class="app">
+
+        <section class="hero">
+
+            <div class="badge">
+                Batch Cooking Intelligent
+            </div>
+
+            <h1>
+                Batch Malin
+            </h1>
+
+            <p>
+                Optimise ton budget alimentaire,
+                réduis ton temps de préparation
+                et génère automatiquement tes repas.
+            </p>
+
+        </section>
+
+        <section class="glass-card config-card">
+
+            <h2>Configuration</h2>
+
+            <div class="grid">
+
+                <div class="input-group">
+                    <label>Budget (€)</label>
+                    <input
+                        type="number"
+                        id="budget"
+                        value="60">
+                </div>
+
+                <div class="input-group">
+                    <label>Repas</label>
+                    <select id="meals">
+                        <option>7</option>
+                        <option selected>14</option>
+                        <option>21</option>
+                        <option>28</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Personnes</label>
+                    <input
+                        type="number"
+                        id="people"
+                        value="1">
+                </div>
+
+            </div>
+
+            <h3>Matériel disponible</h3>
+
+            <div id="equipmentContainer">
+
+            </div>
+
+            <button id="generateBtn">
+                Générer mon menu
+            </button>
+
+        </section>
+
+        <section class="glass-card">
+
+            <h2>Menu généré</h2>
+
+            <div id="results">
+
+                Aucun menu généré.
+
+   
