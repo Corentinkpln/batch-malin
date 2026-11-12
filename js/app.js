@@ -16,15 +16,13 @@ async function loadEquipments() {
 
         displayEquipments();
 
-    } catch(error) {
+    } catch (error) {
 
         console.error(error);
 
         equipmentContainer.innerHTML =
             "Impossible de charger les équipements.";
-
     }
-
 }
 
 function displayEquipments() {
@@ -34,20 +32,13 @@ function displayEquipments() {
     equipments.forEach(equipment => {
 
         equipmentContainer.innerHTML += `
-
             <label class="equipment-card">
-
                 <input
                     type="checkbox"
-                    value="${equipment}"
-                >
-
+                    value="${equipment}">
                 ${equipment}
-
             </label>
-
         `;
-
     });
 
 }
@@ -65,14 +56,12 @@ function generateMenu() {
 
     const selectedEquipments =
         [...document.querySelectorAll(
-            '#equipmentContainer input:checked'
-        )]
-        .map(
+            "#equipmentContainer input:checked"
+        )].map(
             item => item.value
         );
 
     results.innerHTML = `
-
         <div class="result-card">
 
             <h3>✅ Menu généré</h3>
@@ -85,17 +74,13 @@ function generateMenu() {
 
             <p>
                 <strong>Matériel :</strong>
-                ${
-                    selectedEquipments.length
+                ${selectedEquipments.length
                     ? selectedEquipments.join(", ")
-                    : "Aucun sélectionné"
-                }
+                    : "Aucun sélectionné"}
             </p>
 
         </div>
-
     `;
-
 }
 
 generateBtn.addEventListener(
