@@ -1,0 +1,112 @@
+[
+  {
+    "id": 501,
+    "name": "Riz cantonais complet aux œufs, petits pois & dinde",
+    "category": "rice",
+    "price": 2.10,
+    "prepTime": 10,
+    "cookTime": 18,
+    "calories": 545,
+    "protein": 31,
+    "carbs": 64,
+    "fat": 17,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Plaques induction"],
+    "ingredients": [
+      { "name": "Riz basmati", "quantity": 85, "unit": "g" },
+      { "name": "Œufs", "quantity": 2, "unit": "pièce" },
+      { "name": "Jambon de dinde", "quantity": 80, "unit": "g" },
+      { "name": "Petits pois", "quantity": 70, "unit": "g" },
+      { "name": "Carottes", "quantity": 60, "unit": "g" },
+      { "name": "Sauce soja", "quantity": 10, "unit": "ml" }
+    ],
+    "steps": [
+      "Cuire le riz basmati, les petits pois et les petits dés de carotte 11 min à l'eau bouillante.",
+      "Brouiller les œufs à la poêle, ajouter le jambon de dinde en dés puis le riz et les légumes égouttés.",
+      "Assaisonner de sauce soja et faire sauter 3 min à feu vif."
+    ]
+  },
+  {
+    "id": 502,
+    "name": "Risotto crémeux aux champignons & parmesan au Cookeo",
+    "category": "rice",
+    "price": 2.25,
+    "prepTime": 10,
+    "cookTime": 15,
+    "calories": 530,
+    "protein": 18,
+    "carbs": 70,
+    "fat": 19,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": ["Cookeo"],
+    "ingredients": [
+      { "name": "Riz arborio", "quantity": 85, "unit": "g" },
+      { "name": "Champignons", "quantity": 110, "unit": "g" },
+      { "name": "Oignon", "quantity": 40, "unit": "g" },
+      { "name": "Parmesan", "quantity": 25, "unit": "g" },
+      { "name": "Huile d'olive", "quantity": 10, "unit": "ml" }
+    ],
+    "steps": [
+      "Faire dorer l'oignon émincé, les champignons et le riz arborio dans l'huile d'olive en mode dorer.",
+      "Mouiller avec 220 ml d'eau par portion et lancer 9 min de cuisson sous pression.",
+      "Incorporer le parmesan en fin de cuisson avant de mettre en boîtes."
+    ]
+  },
+  {
+    "id": 503,
+    "name": "Riz sauté aux légumes croquants, œufs & soja",
+    "category": "rice",
+    "price": 1.70,
+    "prepTime": 10,
+    "cookTime": 16,
+    "calories": 490,
+    "protein": 19,
+    "carbs": 66,
+    "fat": 16,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Plaques induction"],
+    "ingredients": [
+      { "name": "Riz basmati", "quantity": 85, "unit": "g" },
+      { "name": "Œufs", "quantity": 2, "unit": "pièce" },
+      { "name": "Carottes", "quantity": 80, "unit": "g" },
+      { "name": "Poivron rouge", "quantity": 70, "unit": "g" },
+      { "name": "Oignon", "quantity": 40, "unit": "g" },
+      { "name": "Sauce soja", "quantity": 15, "unit": "ml" }
+    ],
+    "steps": [
+      "Cuire le riz basmati à l'eau bouillante et égoutter.",
+      "Saisir à feu vif l'oignon, les carottes et le poivron en brunoise pendant 6 min, pousser sur le côté et brouiller les œufs.",
+      "Ajouter le riz et la sauce soja, mélanger 2 min et conditionner."
+    ]
+  },
+  {
+    "id": 504,
+    "name": "Bowl riz vapeur, poulet épicé & patates douces rôties",
+    "category": "rice",
+    "price": 2.60,
+    "prepTime": 10,
+    "cookTime": 20,
+    "calories": 560,
+    "protein": 38,
+    "carbs": 62,
+    "fat": 16,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Air Fryer", "Rice Cooker"],
+    "ingredients": [
+      { "name": "Riz basmati", "quantity": 75, "unit": "g" },
+      { "name": "Poulet", "quantity": 145, "unit": "g" },
+      { "name": "Patate douce", "quantity": 120, "unit": "g" },
+      { "name": "Paprika", "quantity": 4, "unit": "g" },
+      { "name": "Huile d'olive", "quantity": 10, "unit": "ml" }
+    ],
+    "steps": [
+      "Lancer la cuisson du riz basmati dans le Rice Cooker.",
+      "Enrober les dés de poulet et les cubes de patate douce d'huile d'olive et paprika, cuire 16 min à 190°C au Air Fryer.",
+      "Composer les bowls dans des boîtes hermétiques."
+    ]
+  }
+]
