@@ -1,10 +1,140 @@
 [
   {
-    "name": "Poulet curry riz",
-    "price": 2.5,
+    "id": 1,
+    "name": "Poulet curry coco",
+    "category": "chicken",
+    "price": 2.45,
+    "prepTime": 10,
+    "cookTime": 20,
+    "calories": 540,
+    "protein": 38,
+    "carbs": 52,
+    "fat": 18,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Air Fryer", "Plaques induction"],
     "ingredients": [
-      "Poulet 150g",
-      "Riz 100g"
+      { "name": "Poulet", "quantity": 150, "unit": "g" },
+      { "name": "Riz basmati", "quantity": 75, "unit": "g" },
+      { "name": "Carottes", "quantity": 80, "unit": "g" },
+      { "name": "Oignon", "quantity": 40, "unit": "g" },
+      { "name": "Lait de coco", "quantity": 80, "unit": "ml" },
+      { "name": "Épices curry", "quantity": 5, "unit": "g" }
+    ],
+    "steps": [
+      "Rincer le riz basmati et lancer la cuisson à l'eau bouillante salée sur les plaques induction.",
+      "Couper le poulet en dés, enrober d'épices curry et cuire 14 min à 190°C au Air Fryer.",
+      "Faire revenir les carottes en rondelles et l'oignon émincé, ajouter le lait de coco puis assembler avec le poulet et le riz."
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Poulet rôti citron, carottes & patates douces",
+    "category": "chicken",
+    "price": 2.65,
+    "prepTime": 12,
+    "cookTime": 30,
+    "calories": 520,
+    "protein": 39,
+    "carbs": 48,
+    "fat": 16,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Four"],
+    "ingredients": [
+      { "name": "Poulet", "quantity": 160, "unit": "g" },
+      { "name": "Patate douce", "quantity": 150, "unit": "g" },
+      { "name": "Carottes", "quantity": 100, "unit": "g" },
+      { "name": "Huile d'olive", "quantity": 10, "unit": "ml" },
+      { "name": "Herbes de Provence", "quantity": 3, "unit": "g" }
+    ],
+    "steps": [
+      "Préchauffer le four à 200°C et tailler les patates douces et carottes en cubes réguliers.",
+      "Disposer le poulet et les légumes sur une plaque avec huile d'olive et herbes de Provence, puis enfourner 30 min.",
+      "Laisser tiédir avant de répartir en boîtes hermétiques."
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Poulet teriyaki & brocoli vapeur",
+    "category": "chicken",
+    "price": 2.55,
+    "prepTime": 10,
+    "cookTime": 18,
+    "calories": 510,
+    "protein": 40,
+    "carbs": 54,
+    "fat": 12,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Air Fryer", "Rice Cooker"],
+    "ingredients": [
+      { "name": "Poulet", "quantity": 150, "unit": "g" },
+      { "name": "Riz basmati", "quantity": 80, "unit": "g" },
+      { "name": "Brocoli", "quantity": 120, "unit": "g" },
+      { "name": "Sauce soja", "quantity": 15, "unit": "ml" },
+      { "name": "Miel", "quantity": 8, "unit": "g" }
+    ],
+    "steps": [
+      "Lancer le riz basmati dans le Rice Cooker avec les fleurettes de brocoli dans le panier vapeur.",
+      "Mariner le poulet dans la sauce soja et le miel, puis cuire 15 min à 185°C dans le Air Fryer.",
+      "Assembler le riz, le brocoli et le poulet laqué dans les boîtes."
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Mijoté de poulet tomate, courgettes & poivrons",
+    "category": "chicken",
+    "price": 2.35,
+    "prepTime": 10,
+    "cookTime": 15,
+    "calories": 470,
+    "protein": 37,
+    "carbs": 44,
+    "fat": 14,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Cookeo"],
+    "ingredients": [
+      { "name": "Poulet", "quantity": 150, "unit": "g" },
+      { "name": "Courgettes", "quantity": 100, "unit": "g" },
+      { "name": "Poivron rouge", "quantity": 70, "unit": "g" },
+      { "name": "Oignon", "quantity": 40, "unit": "g" },
+      { "name": "Coulis de tomate", "quantity": 120, "unit": "ml" },
+      { "name": "Riz basmati", "quantity": 70, "unit": "g" }
+    ],
+    "steps": [
+      "Faire dorer le poulet et l'oignon émincé en mode dorer dans le Cookeo.",
+      "Ajouter les courgettes, le poivron, le coulis de tomate et lancer 10 min de cuisson sous pression.",
+      "Servir accompagné du riz basmati cuit."
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Émincé de poulet paprika & poêlée de courgettes",
+    "category": "chicken",
+    "price": 2.30,
+    "prepTime": 8,
+    "cookTime": 16,
+    "calories": 465,
+    "protein": 38,
+    "carbs": 42,
+    "fat": 15,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Plaques induction"],
+    "ingredients": [
+      { "name": "Poulet", "quantity": 150, "unit": "g" },
+      { "name": "Courgettes", "quantity": 130, "unit": "g" },
+      { "name": "Oignon", "quantity": 40, "unit": "g" },
+      { "name": "Pâtes penne", "quantity": 75, "unit": "g" },
+      { "name": "Paprika", "quantity": 4, "unit": "g" },
+      { "name": "Huile d'olive", "quantity": 10, "unit": "ml" }
+    ],
+    "steps": [
+      "Cuire les pâtes penne al dente dans une casserole d'eau bouillante salée.",
+      "Saisir le poulet au paprika avec l'oignon et les courgettes en demi-rondelles à la poêle pendant 12 min.",
+      "Mélanger les pâtes égouttées à la poêlée et répartir."
     ]
   }
 ]
