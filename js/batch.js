@@ -120,7 +120,11 @@
         maxCookingEnd = stepEnd;
       }
 
-      const mainStepHint = (recipe.steps && recipe.steps[1]) || (recipe.steps && recipe.steps[0]) || "Cuisson maîtrisée";
+     const recipeSteps = Array.isArray(recipe.steps) ? recipe.steps.filter(Boolean) : [];
+      const summaryHint =
+        recipeSteps.length > 0
+          ? `${recipe.totalPortions} portions · ${recipeSteps.length} étape${recipeSteps.length > 1 ? "s" : ""} à suivre`
+          : `${recipe.totalPortions} portions · Cuisson maîtrisée`;
 
       timeline.push({
         id: `step-cook-${recipe.id}`,
@@ -128,7 +132,9 @@
         durationMin: cookDur,
         clock: formatMinutesAsClock(earliestStart),
         title: `Lancer ${recipe.name} (${primaryAppliance})`,
-        description: `${recipe.totalPortions} portions · ${mainStepHint}.`,
+        description: summaryHint,
+        subSteps: recipeSteps,
+        isCustom: Boolean(recipe.isCustom),
         type: "cook",
         typeLabel: primaryAppliance,
         appliance: primaryAppliance
