@@ -9,6 +9,146 @@
     "cPerUnit": 0,
     "fPerUnit": 20
   },
+  "Blanc de poulet": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 11.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1150,
+    "pPerUnit": 235,
+    "cPerUnit": 0,
+    "fPerUnit": 18
+  },
+  "Haut de cuisse de poulet": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 8.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1650,
+    "pPerUnit": 195,
+    "cPerUnit": 0,
+    "fPerUnit": 95
+  },
+  "Cuisse de poulet": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 7.8,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1720,
+    "pPerUnit": 190,
+    "cPerUnit": 0,
+    "fPerUnit": 105
+  },
+  "Aiguillettes de poulet": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 12.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1120,
+    "pPerUnit": 235,
+    "cPerUnit": 0,
+    "fPerUnit": 16
+  },
+  "Poulet fermier": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 13.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1350,
+    "pPerUnit": 215,
+    "cPerUnit": 0,
+    "fPerUnit": 52
+  },
+  "Escalope de dinde": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 11.4,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1100,
+    "pPerUnit": 240,
+    "cPerUnit": 0,
+    "fPerUnit": 14
+  },
+  "Filet de dinde": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 11.8,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1110,
+    "pPerUnit": 240,
+    "cPerUnit": 0,
+    "fPerUnit": 15
+  },
+  "Sauté de dinde": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 10.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1250,
+    "pPerUnit": 220,
+    "cPerUnit": 0,
+    "fPerUnit": 38
+  },
+  "Rôti de dinde": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 12.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1180,
+    "pPerUnit": 230,
+    "cPerUnit": 0,
+    "fPerUnit": 25
+  },
+  "Magret de canard": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 19.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2450,
+    "pPerUnit": 190,
+    "cPerUnit": 0,
+    "fPerUnit": 185
+  },
+  "Cuisse de canard confite": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "pièce",
+    "unitPrice": 3.8,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 480,
+    "pPerUnit": 38,
+    "cPerUnit": 0,
+    "fPerUnit": 36
+  },
+  "Aiguillettes de canard": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 18.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1450,
+    "pPerUnit": 215,
+    "cPerUnit": 0,
+    "fPerUnit": 62
+  },
+  "Pintade": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 13.2,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1420,
+    "pPerUnit": 215,
+    "cPerUnit": 0,
+    "fPerUnit": 60
+  },
+  "Lapin": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 12.8,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1380,
+    "pPerUnit": 210,
+    "cPerUnit": 0,
+    "fPerUnit": 55
+  },
   "Bœuf haché": {
     "aisle": "Boucherie & Poissonnerie",
     "unit": "kg",
@@ -18,6 +158,406 @@
     "pPerUnit": 200,
     "cPerUnit": 0,
     "fPerUnit": 100
+  },
+  "Bœuf haché 5%": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 14.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1370,
+    "pPerUnit": 210,
+    "cPerUnit": 0,
+    "fPerUnit": 50
+  },
+  "Bœuf haché 15%": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 11.2,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2150,
+    "pPerUnit": 190,
+    "cPerUnit": 0,
+    "fPerUnit": 150
+  },
+  "Steak haché": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "pièce",
+    "unitPrice": 1.85,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 220,
+    "pPerUnit": 25,
+    "cPerUnit": 0,
+    "fPerUnit": 13
+  },
+  "Bœuf à braiser": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 12.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1620,
+    "pPerUnit": 210,
+    "cPerUnit": 0,
+    "fPerUnit": 85
+  },
+  "Paleron de bœuf": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 13.4,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1580,
+    "pPerUnit": 215,
+    "cPerUnit": 0,
+    "fPerUnit": 80
+  },
+  "Joue de bœuf": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 14.2,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1520,
+    "pPerUnit": 210,
+    "cPerUnit": 0,
+    "fPerUnit": 75
+  },
+  "Bavette de bœuf": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 19.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1550,
+    "pPerUnit": 220,
+    "cPerUnit": 0,
+    "fPerUnit": 72
+  },
+  "Rumsteck de bœuf": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 21,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1480,
+    "pPerUnit": 225,
+    "cPerUnit": 0,
+    "fPerUnit": 62
+  },
+  "Faux-filet de bœuf": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 22.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1680,
+    "pPerUnit": 215,
+    "cPerUnit": 0,
+    "fPerUnit": 90
+  },
+  "Entrecôte de bœuf": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 24,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1950,
+    "pPerUnit": 205,
+    "cPerUnit": 0,
+    "fPerUnit": 125
+  },
+  "Onglet de bœuf": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 18.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1520,
+    "pPerUnit": 220,
+    "cPerUnit": 0,
+    "fPerUnit": 70
+  },
+  "Carpaccio de bœuf": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 23,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1250,
+    "pPerUnit": 220,
+    "cPerUnit": 0,
+    "fPerUnit": 40
+  },
+  "Boulettes de bœuf": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 12.4,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1980,
+    "pPerUnit": 180,
+    "cPerUnit": 50,
+    "fPerUnit": 120
+  },
+  "Veau à blanquette": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 14.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1450,
+    "pPerUnit": 205,
+    "cPerUnit": 0,
+    "fPerUnit": 68
+  },
+  "Escalope de veau": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 19.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1280,
+    "pPerUnit": 220,
+    "cPerUnit": 0,
+    "fPerUnit": 42
+  },
+  "Rôti de veau": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 18.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1380,
+    "pPerUnit": 215,
+    "cPerUnit": 0,
+    "fPerUnit": 55
+  },
+  "Sauté de porc": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 8.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1520,
+    "pPerUnit": 205,
+    "cPerUnit": 0,
+    "fPerUnit": 75
+  },
+  "Filet mignon de porc": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 12.8,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1430,
+    "pPerUnit": 220,
+    "cPerUnit": 0,
+    "fPerUnit": 60
+  },
+  "Côte de porc": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 8.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1920,
+    "pPerUnit": 195,
+    "cPerUnit": 0,
+    "fPerUnit": 125
+  },
+  "Échine de porc": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 8.2,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2250,
+    "pPerUnit": 180,
+    "cPerUnit": 0,
+    "fPerUnit": 168
+  },
+  "Rôti de porc": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 9.6,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1550,
+    "pPerUnit": 210,
+    "cPerUnit": 0,
+    "fPerUnit": 78
+  },
+  "Travers de porc": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 9.4,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2450,
+    "pPerUnit": 175,
+    "cPerUnit": 0,
+    "fPerUnit": 190
+  },
+  "Lardons fumés": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 9.8,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2650,
+    "pPerUnit": 150,
+    "cPerUnit": 5,
+    "fPerUnit": 220
+  },
+  "Lardons nature": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 9.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2580,
+    "pPerUnit": 155,
+    "cPerUnit": 5,
+    "fPerUnit": 210
+  },
+  "Poitrine fumée": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 11.2,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2750,
+    "pPerUnit": 145,
+    "cPerUnit": 5,
+    "fPerUnit": 235
+  },
+  "Bacon en tranches": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 13.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1850,
+    "pPerUnit": 210,
+    "cPerUnit": 10,
+    "fPerUnit": 105
+  },
+  "Jambon blanc": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "tranche",
+    "unitPrice": 0.65,
+    "prepType": "pantry",
+    "kcalPerUnit": 55,
+    "pPerUnit": 9.5,
+    "cPerUnit": 0.5,
+    "fPerUnit": 1.5
+  },
+  "Jambon de dinde": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 11.2,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1050,
+    "pPerUnit": 210,
+    "cPerUnit": 15,
+    "fPerUnit": 15
+  },
+  "Jambon de poulet": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 11.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1080,
+    "pPerUnit": 215,
+    "cPerUnit": 12,
+    "fPerUnit": 18
+  },
+  "Jambon cru": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "tranche",
+    "unitPrice": 0.95,
+    "prepType": "pantry",
+    "kcalPerUnit": 72,
+    "pPerUnit": 8.5,
+    "cPerUnit": 0.2,
+    "fPerUnit": 4.2
+  },
+  "Chorizo doux": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 14.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 3450,
+    "pPerUnit": 210,
+    "cPerUnit": 20,
+    "fPerUnit": 280
+  },
+  "Chorizo fort": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 14.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 3450,
+    "pPerUnit": 210,
+    "cPerUnit": 20,
+    "fPerUnit": 280
+  },
+  "Saucisse de Toulouse": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 10.4,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2750,
+    "pPerUnit": 155,
+    "cPerUnit": 10,
+    "fPerUnit": 230
+  },
+  "Saucisse fumée": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 10.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2850,
+    "pPerUnit": 165,
+    "cPerUnit": 10,
+    "fPerUnit": 238
+  },
+  "Merguez": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 11.8,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2680,
+    "pPerUnit": 160,
+    "cPerUnit": 15,
+    "fPerUnit": 220
+  },
+  "Chipolatas": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 9.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2620,
+    "pPerUnit": 155,
+    "cPerUnit": 12,
+    "fPerUnit": 215
+  },
+  "Boudin noir": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 10.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2950,
+    "pPerUnit": 145,
+    "cPerUnit": 25,
+    "fPerUnit": 250
+  },
+  "Gigot d'agneau": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 18.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1980,
+    "pPerUnit": 195,
+    "cPerUnit": 0,
+    "fPerUnit": 130
+  },
+  "Sauté d'agneau": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 16.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2100,
+    "pPerUnit": 190,
+    "cPerUnit": 0,
+    "fPerUnit": 145
+  },
+  "Côtelettes d'agneau": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 21.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2250,
+    "pPerUnit": 185,
+    "cPerUnit": 0,
+    "fPerUnit": 165
   },
   "Saumon": {
     "aisle": "Boucherie & Poissonnerie",
@@ -29,10 +569,60 @@
     "cPerUnit": 0,
     "fPerUnit": 130
   },
+  "Pavé de saumon": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 19.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2080,
+    "pPerUnit": 200,
+    "cPerUnit": 0,
+    "fPerUnit": 130
+  },
+  "Saumon fumé": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 28,
+    "prepType": "pantry",
+    "kcalPerUnit": 1850,
+    "pPerUnit": 215,
+    "cPerUnit": 5,
+    "fPerUnit": 105
+  },
+  "Truite": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 15.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1480,
+    "pPerUnit": 205,
+    "cPerUnit": 0,
+    "fPerUnit": 68
+  },
+  "Truite fumée": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 24.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 1520,
+    "pPerUnit": 220,
+    "cPerUnit": 5,
+    "fPerUnit": 65
+  },
   "Cabillaud": {
     "aisle": "Boucherie & Poissonnerie",
     "unit": "kg",
     "unitPrice": 16.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 820,
+    "pPerUnit": 180,
+    "cPerUnit": 0,
+    "fPerUnit": 7
+  },
+  "Dos de cabillaud": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 18.9,
     "prepType": "prep_protein",
     "kcalPerUnit": 820,
     "pPerUnit": 180,
@@ -49,6 +639,86 @@
     "cPerUnit": 0,
     "fPerUnit": 9
   },
+  "Lieu noir": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 11.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 840,
+    "pPerUnit": 188,
+    "cPerUnit": 0,
+    "fPerUnit": 8
+  },
+  "Merlu": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 14.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 880,
+    "pPerUnit": 185,
+    "cPerUnit": 0,
+    "fPerUnit": 12
+  },
+  "Dorade": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 15.8,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1150,
+    "pPerUnit": 195,
+    "cPerUnit": 0,
+    "fPerUnit": 38
+  },
+  "Bar": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 19.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1120,
+    "pPerUnit": 200,
+    "cPerUnit": 0,
+    "fPerUnit": 32
+  },
+  "Maquereau": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 9.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2050,
+    "pPerUnit": 190,
+    "cPerUnit": 0,
+    "fPerUnit": 140
+  },
+  "Filet de maquereau": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 12.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2050,
+    "pPerUnit": 190,
+    "cPerUnit": 0,
+    "fPerUnit": 140
+  },
+  "Sardines fraîches": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 8.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1850,
+    "pPerUnit": 200,
+    "cPerUnit": 0,
+    "fPerUnit": 115
+  },
+  "Sardines en boîte": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "boîte",
+    "unitPrice": 1.65,
+    "prepType": "pantry",
+    "kcalPerUnit": 210,
+    "pPerUnit": 22,
+    "cPerUnit": 0,
+    "fPerUnit": 13
+  },
   "Thon en boîte": {
     "aisle": "Boucherie & Poissonnerie",
     "unit": "kg",
@@ -59,15 +729,155 @@
     "cPerUnit": 0,
     "fPerUnit": 12
   },
-  "Jambon de dinde": {
+  "Thon frais": {
     "aisle": "Boucherie & Poissonnerie",
     "unit": "kg",
-    "unitPrice": 11.2,
+    "unitPrice": 22,
     "prepType": "prep_protein",
-    "kcalPerUnit": 1050,
-    "pPerUnit": 210,
-    "cPerUnit": 15,
-    "fPerUnit": 15
+    "kcalPerUnit": 1320,
+    "pPerUnit": 240,
+    "cPerUnit": 0,
+    "fPerUnit": 35
+  },
+  "Espadon": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 21.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1440,
+    "pPerUnit": 200,
+    "cPerUnit": 0,
+    "fPerUnit": 65
+  },
+  "Sole": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 24,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 860,
+    "pPerUnit": 185,
+    "cPerUnit": 0,
+    "fPerUnit": 12
+  },
+  "Limande": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 14.2,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 850,
+    "pPerUnit": 180,
+    "cPerUnit": 0,
+    "fPerUnit": 11
+  },
+  "Églefin": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 15.4,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 870,
+    "pPerUnit": 190,
+    "cPerUnit": 0,
+    "fPerUnit": 8
+  },
+  "Haddock fumé": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 17.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 920,
+    "pPerUnit": 205,
+    "cPerUnit": 0,
+    "fPerUnit": 9
+  },
+  "Crevettes décortiquées": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 17.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 950,
+    "pPerUnit": 200,
+    "cPerUnit": 5,
+    "fPerUnit": 12
+  },
+  "Crevettes entières": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 13.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 920,
+    "pPerUnit": 195,
+    "cPerUnit": 5,
+    "fPerUnit": 10
+  },
+  "Gambas": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 19.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 980,
+    "pPerUnit": 205,
+    "cPerUnit": 5,
+    "fPerUnit": 14
+  },
+  "Moules": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 4.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 860,
+    "pPerUnit": 120,
+    "cPerUnit": 35,
+    "fPerUnit": 22
+  },
+  "Noix de Saint-Jacques": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 32,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 880,
+    "pPerUnit": 175,
+    "cPerUnit": 25,
+    "fPerUnit": 8
+  },
+  "Calamars": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 13.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 920,
+    "pPerUnit": 160,
+    "cPerUnit": 30,
+    "fPerUnit": 14
+  },
+  "Encornets": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 14.2,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 920,
+    "pPerUnit": 160,
+    "cPerUnit": 30,
+    "fPerUnit": 14
+  },
+  "Poulpe": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 16.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 820,
+    "pPerUnit": 150,
+    "cPerUnit": 22,
+    "fPerUnit": 10
+  },
+  "Surimi": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 8.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 980,
+    "pPerUnit": 85,
+    "cPerUnit": 110,
+    "fPerUnit": 18
   },
   "Tofu ferme": {
     "aisle": "Boucherie & Poissonnerie",
@@ -78,6 +888,206 @@
     "pPerUnit": 130,
     "cPerUnit": 20,
     "fPerUnit": 70
+  },
+  "Tofu soyeux": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 7.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 620,
+    "pPerUnit": 65,
+    "cPerUnit": 18,
+    "fPerUnit": 32
+  },
+  "Tofu fumé": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 9.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1450,
+    "pPerUnit": 155,
+    "cPerUnit": 25,
+    "fPerUnit": 80
+  },
+  "Tempeh": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 11.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1920,
+    "pPerUnit": 195,
+    "cPerUnit": 75,
+    "fPerUnit": 105
+  },
+  "Seitan": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 12.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1450,
+    "pPerUnit": 250,
+    "cPerUnit": 65,
+    "fPerUnit": 18
+  },
+  "Protéines de soja texturées": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 8.9,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3350,
+    "pPerUnit": 500,
+    "cPerUnit": 280,
+    "fPerUnit": 15
+  },
+  "Steak végétal": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "pièce",
+    "unitPrice": 1.95,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 190,
+    "pPerUnit": 16,
+    "cPerUnit": 12,
+    "fPerUnit": 8
+  },
+  "Falafels": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 9.8,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2450,
+    "pPerUnit": 110,
+    "cPerUnit": 260,
+    "fPerUnit": 105
+  },
+  "Saucisse végétale": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 11.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1850,
+    "pPerUnit": 170,
+    "cPerUnit": 90,
+    "fPerUnit": 85
+  },
+  "Émincés végétaux": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 12.2,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1420,
+    "pPerUnit": 195,
+    "cPerUnit": 65,
+    "fPerUnit": 38
+  },
+  "Gésiers de volaille confits": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 11.8,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1850,
+    "pPerUnit": 240,
+    "cPerUnit": 5,
+    "fPerUnit": 95
+  },
+  "Foies de volaille": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 6.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 1190,
+    "pPerUnit": 170,
+    "cPerUnit": 8,
+    "fPerUnit": 48
+  },
+  "Andouillette": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "pièce",
+    "unitPrice": 2.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 380,
+    "pPerUnit": 24,
+    "cPerUnit": 2,
+    "fPerUnit": 31
+  },
+  "Chair à saucisse": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 8.4,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2850,
+    "pPerUnit": 145,
+    "cPerUnit": 15,
+    "fPerUnit": 245
+  },
+  "Pancetta": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 16.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 3650,
+    "pPerUnit": 150,
+    "cPerUnit": 5,
+    "fPerUnit": 340
+  },
+  "Coppa": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 22,
+    "prepType": "pantry",
+    "kcalPerUnit": 3150,
+    "pPerUnit": 250,
+    "cPerUnit": 5,
+    "fPerUnit": 235
+  },
+  "Bresaola": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 28.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 1510,
+    "pPerUnit": 320,
+    "cPerUnit": 5,
+    "fPerUnit": 20
+  },
+  "Viande des Grisons": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 31,
+    "prepType": "pantry",
+    "kcalPerUnit": 1550,
+    "pPerUnit": 340,
+    "cPerUnit": 5,
+    "fPerUnit": 18
+  },
+  "Filet de hareng fumé": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 13.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 2150,
+    "pPerUnit": 205,
+    "cPerUnit": 0,
+    "fPerUnit": 145
+  },
+  "Anchois à l'huile": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 18.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 2100,
+    "pPerUnit": 240,
+    "cPerUnit": 0,
+    "fPerUnit": 125
+  },
+  "Chair de crabe": {
+    "aisle": "Boucherie & Poissonnerie",
+    "unit": "kg",
+    "unitPrice": 24,
+    "prepType": "pantry",
+    "kcalPerUnit": 840,
+    "pPerUnit": 180,
+    "cPerUnit": 0,
+    "fPerUnit": 11
   },
   "Carottes": {
     "aisle": "Fruits & Légumes",
@@ -99,6 +1109,46 @@
     "cPerUnit": 93,
     "fPerUnit": 1
   },
+  "Oignon rouge": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.2,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 400,
+    "pPerUnit": 11,
+    "cPerUnit": 93,
+    "fPerUnit": 1
+  },
+  "Oignon nouveau": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 0.35,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 15,
+    "pPerUnit": 0.5,
+    "cPerUnit": 3,
+    "fPerUnit": 0
+  },
+  "Échalote": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 4.5,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 720,
+    "pPerUnit": 25,
+    "cPerUnit": 168,
+    "fPerUnit": 1
+  },
+  "Ail": {
+    "aisle": "Fruits & Légumes",
+    "unit": "gousse",
+    "unitPrice": 0.12,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 5,
+    "pPerUnit": 0,
+    "cPerUnit": 1,
+    "fPerUnit": 0
+  },
   "Courgettes": {
     "aisle": "Fruits & Légumes",
     "unit": "kg",
@@ -119,6 +1169,76 @@
     "cPerUnit": 66,
     "fPerUnit": 4
   },
+  "Chou-fleur": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.8,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 250,
+    "pPerUnit": 19,
+    "cPerUnit": 50,
+    "fPerUnit": 3
+  },
+  "Chou blanc": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 1.9,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 250,
+    "pPerUnit": 13,
+    "cPerUnit": 58,
+    "fPerUnit": 1
+  },
+  "Chou rouge": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.1,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 310,
+    "pPerUnit": 14,
+    "cPerUnit": 74,
+    "fPerUnit": 2
+  },
+  "Chou vert": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 280,
+    "pPerUnit": 15,
+    "cPerUnit": 58,
+    "fPerUnit": 2
+  },
+  "Choux de Bruxelles": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.4,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 430,
+    "pPerUnit": 34,
+    "cPerUnit": 90,
+    "fPerUnit": 3
+  },
+  "Chou kale": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 4.5,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 490,
+    "pPerUnit": 43,
+    "cPerUnit": 88,
+    "fPerUnit": 9
+  },
+  "Pak choï": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.9,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 130,
+    "pPerUnit": 15,
+    "cPerUnit": 22,
+    "fPerUnit": 2
+  },
   "Poivron rouge": {
     "aisle": "Fruits & Légumes",
     "unit": "kg",
@@ -128,6 +1248,86 @@
     "pPerUnit": 10,
     "cPerUnit": 60,
     "fPerUnit": 3
+  },
+  "Poivron jaune": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.4,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 270,
+    "pPerUnit": 10,
+    "cPerUnit": 63,
+    "fPerUnit": 2
+  },
+  "Poivron vert": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.1,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 200,
+    "pPerUnit": 9,
+    "cPerUnit": 46,
+    "fPerUnit": 2
+  },
+  "Aubergine": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.8,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 250,
+    "pPerUnit": 10,
+    "cPerUnit": 59,
+    "fPerUnit": 2
+  },
+  "Tomates": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.9,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 180,
+    "pPerUnit": 9,
+    "cPerUnit": 39,
+    "fPerUnit": 2
+  },
+  "Tomates cerises": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 4.8,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 210,
+    "pPerUnit": 10,
+    "cPerUnit": 42,
+    "fPerUnit": 2
+  },
+  "Tomates grappe": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.2,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 180,
+    "pPerUnit": 9,
+    "cPerUnit": 39,
+    "fPerUnit": 2
+  },
+  "Pommes de terre": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 1.7,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 770,
+    "pPerUnit": 20,
+    "cPerUnit": 175,
+    "fPerUnit": 1
+  },
+  "Pommes de terre grenaille": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.5,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 770,
+    "pPerUnit": 20,
+    "cPerUnit": 175,
+    "fPerUnit": 1
   },
   "Patate douce": {
     "aisle": "Fruits & Légumes",
@@ -149,6 +1349,16 @@
     "cPerUnit": 36,
     "fPerUnit": 4
   },
+  "Épinards surgelés": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 240,
+    "pPerUnit": 30,
+    "cPerUnit": 35,
+    "fPerUnit": 4
+  },
   "Champignons": {
     "aisle": "Fruits & Légumes",
     "unit": "kg",
@@ -158,6 +1368,336 @@
     "pPerUnit": 31,
     "cPerUnit": 33,
     "fPerUnit": 3
+  },
+  "Champignons de Paris": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 4.2,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 220,
+    "pPerUnit": 31,
+    "cPerUnit": 33,
+    "fPerUnit": 3
+  },
+  "Champignons shiitake": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 11.5,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 340,
+    "pPerUnit": 22,
+    "cPerUnit": 68,
+    "fPerUnit": 5
+  },
+  "Pleurotes": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 9.8,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 330,
+    "pPerUnit": 33,
+    "cPerUnit": 61,
+    "fPerUnit": 4
+  },
+  "Haricots verts": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.8,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 310,
+    "pPerUnit": 18,
+    "cPerUnit": 70,
+    "fPerUnit": 2
+  },
+  "Haricots verts surgelés": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.6,
+    "prepType": "pantry",
+    "kcalPerUnit": 310,
+    "pPerUnit": 18,
+    "cPerUnit": 70,
+    "fPerUnit": 2
+  },
+  "Poireaux": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.6,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 310,
+    "pPerUnit": 15,
+    "cPerUnit": 65,
+    "fPerUnit": 3
+  },
+  "Céleri branche": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.5,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 160,
+    "pPerUnit": 7,
+    "cPerUnit": 30,
+    "fPerUnit": 2
+  },
+  "Céleri-rave": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.4,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 420,
+    "pPerUnit": 15,
+    "cPerUnit": 92,
+    "fPerUnit": 3
+  },
+  "Fenouil": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.2,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 310,
+    "pPerUnit": 12,
+    "cPerUnit": 73,
+    "fPerUnit": 2
+  },
+  "Asperges vertes": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 7.9,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 200,
+    "pPerUnit": 22,
+    "cPerUnit": 39,
+    "fPerUnit": 1
+  },
+  "Asperges blanches": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 7.5,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 200,
+    "pPerUnit": 20,
+    "cPerUnit": 38,
+    "fPerUnit": 1
+  },
+  "Artichaut": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 1.4,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 60,
+    "pPerUnit": 4,
+    "cPerUnit": 13,
+    "fPerUnit": 0
+  },
+  "Navet": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.1,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 280,
+    "pPerUnit": 9,
+    "cPerUnit": 64,
+    "fPerUnit": 1
+  },
+  "Panais": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.2,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 750,
+    "pPerUnit": 12,
+    "cPerUnit": 180,
+    "fPerUnit": 3
+  },
+  "Rutabaga": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.3,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 370,
+    "pPerUnit": 11,
+    "cPerUnit": 86,
+    "fPerUnit": 2
+  },
+  "Topinambour": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.8,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 730,
+    "pPerUnit": 20,
+    "cPerUnit": 174,
+    "fPerUnit": 0
+  },
+  "Potimarron": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.4,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 340,
+    "pPerUnit": 12,
+    "cPerUnit": 75,
+    "fPerUnit": 2
+  },
+  "Courge butternut": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.3,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 450,
+    "pPerUnit": 10,
+    "cPerUnit": 117,
+    "fPerUnit": 1
+  },
+  "Citrouille": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 1.9,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 260,
+    "pPerUnit": 10,
+    "cPerUnit": 65,
+    "fPerUnit": 1
+  },
+  "Betterave cuite": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.9,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 430,
+    "pPerUnit": 16,
+    "cPerUnit": 96,
+    "fPerUnit": 2
+  },
+  "Betterave crue": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.2,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 430,
+    "pPerUnit": 16,
+    "cPerUnit": 96,
+    "fPerUnit": 2
+  },
+  "Radis rose": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.5,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 160,
+    "pPerUnit": 7,
+    "cPerUnit": 34,
+    "fPerUnit": 1
+  },
+  "Radis noir": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.8,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 180,
+    "pPerUnit": 8,
+    "cPerUnit": 38,
+    "fPerUnit": 1
+  },
+  "Concombre": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 1.1,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 45,
+    "pPerUnit": 2,
+    "cPerUnit": 10,
+    "fPerUnit": 0
+  },
+  "Salade verte": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 1.2,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 30,
+    "pPerUnit": 2.5,
+    "cPerUnit": 5,
+    "fPerUnit": 0.3
+  },
+  "Laitue romaine": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 1.35,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 35,
+    "pPerUnit": 2.8,
+    "cPerUnit": 6,
+    "fPerUnit": 0.4
+  },
+  "Mâche": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 8.9,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 210,
+    "pPerUnit": 20,
+    "cPerUnit": 36,
+    "fPerUnit": 4
+  },
+  "Roquette": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 9.5,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 250,
+    "pPerUnit": 26,
+    "cPerUnit": 37,
+    "fPerUnit": 7
+  },
+  "Endives": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.9,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 170,
+    "pPerUnit": 9,
+    "cPerUnit": 40,
+    "fPerUnit": 1
+  },
+  "Blettes": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.1,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 190,
+    "pPerUnit": 18,
+    "cPerUnit": 37,
+    "fPerUnit": 2
+  },
+  "Oseille": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 6.5,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 220,
+    "pPerUnit": 20,
+    "cPerUnit": 32,
+    "fPerUnit": 7
+  },
+  "Cresson": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 5.8,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 110,
+    "pPerUnit": 23,
+    "cPerUnit": 13,
+    "fPerUnit": 1
+  },
+  "Avocat": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 1.45,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 240,
+    "pPerUnit": 3,
+    "cPerUnit": 12,
+    "fPerUnit": 22
   },
   "Citron": {
     "aisle": "Fruits & Légumes",
@@ -169,15 +1709,655 @@
     "cPerUnit": 8,
     "fPerUnit": 0
   },
-  "Ail": {
+  "Citron vert": {
     "aisle": "Fruits & Légumes",
-    "unit": "gousse",
-    "unitPrice": 0.12,
+    "unit": "pièce",
+    "unitPrice": 0.5,
     "prepType": "chop_veg",
-    "kcalPerUnit": 5,
-    "pPerUnit": 0,
-    "cPerUnit": 1,
+    "kcalPerUnit": 20,
+    "pPerUnit": 0.5,
+    "cPerUnit": 7,
     "fPerUnit": 0
+  },
+  "Orange": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.4,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 470,
+    "pPerUnit": 9,
+    "cPerUnit": 118,
+    "fPerUnit": 1
+  },
+  "Clémentine": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.9,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 470,
+    "pPerUnit": 8,
+    "cPerUnit": 120,
+    "fPerUnit": 2
+  },
+  "Pamplemousse": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 0.95,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 85,
+    "pPerUnit": 1.5,
+    "cPerUnit": 21,
+    "fPerUnit": 0
+  },
+  "Pomme": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.5,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 520,
+    "pPerUnit": 3,
+    "cPerUnit": 138,
+    "fPerUnit": 2
+  },
+  "Poire": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.8,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 570,
+    "pPerUnit": 4,
+    "cPerUnit": 152,
+    "fPerUnit": 1
+  },
+  "Banane": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 1.95,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 890,
+    "pPerUnit": 11,
+    "cPerUnit": 228,
+    "fPerUnit": 3
+  },
+  "Kiwi": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 0.45,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 45,
+    "pPerUnit": 0.8,
+    "cPerUnit": 11,
+    "fPerUnit": 0.4
+  },
+  "Mangue": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 1.9,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 150,
+    "pPerUnit": 2,
+    "cPerUnit": 38,
+    "fPerUnit": 1
+  },
+  "Ananas": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 2.6,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 450,
+    "pPerUnit": 5,
+    "cPerUnit": 118,
+    "fPerUnit": 1
+  },
+  "Fraise": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 6.9,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 320,
+    "pPerUnit": 7,
+    "cPerUnit": 77,
+    "fPerUnit": 3
+  },
+  "Framboise": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 11.5,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 520,
+    "pPerUnit": 12,
+    "cPerUnit": 119,
+    "fPerUnit": 7
+  },
+  "Myrtille": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 10.9,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 570,
+    "pPerUnit": 7,
+    "cPerUnit": 145,
+    "fPerUnit": 3
+  },
+  "Mûre": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 9.8,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 430,
+    "pPerUnit": 14,
+    "cPerUnit": 96,
+    "fPerUnit": 5
+  },
+  "Raisin": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.6,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 690,
+    "pPerUnit": 7,
+    "cPerUnit": 181,
+    "fPerUnit": 2
+  },
+  "Pêche": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.4,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 390,
+    "pPerUnit": 9,
+    "cPerUnit": 95,
+    "fPerUnit": 3
+  },
+  "Nectarine": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.5,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 440,
+    "pPerUnit": 11,
+    "cPerUnit": 106,
+    "fPerUnit": 3
+  },
+  "Abricot": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.9,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 480,
+    "pPerUnit": 14,
+    "cPerUnit": 111,
+    "fPerUnit": 4
+  },
+  "Prune": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.2,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 460,
+    "pPerUnit": 7,
+    "cPerUnit": 114,
+    "fPerUnit": 3
+  },
+  "Cerise": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 5.9,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 630,
+    "pPerUnit": 11,
+    "cPerUnit": 160,
+    "fPerUnit": 2
+  },
+  "Melon": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 2.4,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 270,
+    "pPerUnit": 6,
+    "cPerUnit": 65,
+    "fPerUnit": 1
+  },
+  "Pastèque": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 1.6,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 300,
+    "pPerUnit": 6,
+    "cPerUnit": 76,
+    "fPerUnit": 2
+  },
+  "Grenade": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 1.5,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 140,
+    "pPerUnit": 3,
+    "cPerUnit": 32,
+    "fPerUnit": 2
+  },
+  "Figue fraîche": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 0.65,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 37,
+    "pPerUnit": 0.4,
+    "cPerUnit": 9.5,
+    "fPerUnit": 0.2
+  },
+  "Rhubarbe": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.4,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 210,
+    "pPerUnit": 9,
+    "cPerUnit": 45,
+    "fPerUnit": 2
+  },
+  "Gingembre frais": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 7.9,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 800,
+    "pPerUnit": 18,
+    "cPerUnit": 178,
+    "fPerUnit": 8
+  },
+  "Curcuma frais": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 12,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 3120,
+    "pPerUnit": 97,
+    "cPerUnit": 670,
+    "fPerUnit": 32
+  },
+  "Piment rouge": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 0.35,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 18,
+    "pPerUnit": 0.8,
+    "cPerUnit": 4,
+    "fPerUnit": 0.2
+  },
+  "Piment jalapeno": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 0.4,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 15,
+    "pPerUnit": 0.6,
+    "cPerUnit": 3.5,
+    "fPerUnit": 0.1
+  },
+  "Persil frais": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 1.1,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 15,
+    "pPerUnit": 1.2,
+    "cPerUnit": 2.5,
+    "fPerUnit": 0.3
+  },
+  "Coriandre fraîche": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 1.1,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 10,
+    "pPerUnit": 0.9,
+    "cPerUnit": 1.8,
+    "fPerUnit": 0.2
+  },
+  "Basilic frais": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 1.3,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 10,
+    "pPerUnit": 1.1,
+    "cPerUnit": 1.5,
+    "fPerUnit": 0.2
+  },
+  "Ciboulette fraîche": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 1.1,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 12,
+    "pPerUnit": 1.1,
+    "cPerUnit": 2,
+    "fPerUnit": 0.2
+  },
+  "Menthe fraîche": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 1.2,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 18,
+    "pPerUnit": 1.4,
+    "cPerUnit": 3.2,
+    "fPerUnit": 0.3
+  },
+  "Aneth frais": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 1.2,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 15,
+    "pPerUnit": 1.2,
+    "cPerUnit": 2.5,
+    "fPerUnit": 0.3
+  },
+  "Estragon frais": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 1.3,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 18,
+    "pPerUnit": 1.5,
+    "cPerUnit": 3,
+    "fPerUnit": 0.4
+  },
+  "Thym frais": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 1.2,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 25,
+    "pPerUnit": 1.5,
+    "cPerUnit": 5,
+    "fPerUnit": 0.4
+  },
+  "Romarin frais": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 1.2,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 30,
+    "pPerUnit": 1,
+    "cPerUnit": 6,
+    "fPerUnit": 1.2
+  },
+  "Sauge fraîche": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 1.3,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 22,
+    "pPerUnit": 1.2,
+    "cPerUnit": 4.5,
+    "fPerUnit": 0.8
+  },
+  "Germes de soja": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.5,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 300,
+    "pPerUnit": 30,
+    "cPerUnit": 59,
+    "fPerUnit": 2
+  },
+  "Maïs doux en épis": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 1.1,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 130,
+    "pPerUnit": 4.5,
+    "cPerUnit": 28,
+    "fPerUnit": 1.8
+  },
+  "Pois gourmands": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 5.9,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 420,
+    "pPerUnit": 28,
+    "cPerUnit": 76,
+    "fPerUnit": 2
+  },
+  "Fèves fraîches": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 4.8,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 880,
+    "pPerUnit": 79,
+    "cPerUnit": 176,
+    "fPerUnit": 7
+  },
+  "Edamame": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 5.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 1210,
+    "pPerUnit": 119,
+    "cPerUnit": 89,
+    "fPerUnit": 52
+  },
+  "Petits pois surgelés": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 810,
+    "pPerUnit": 54,
+    "cPerUnit": 140,
+    "fPerUnit": 4
+  },
+  "Mélange légumes wok": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.2,
+    "prepType": "pantry",
+    "kcalPerUnit": 350,
+    "pPerUnit": 18,
+    "cPerUnit": 65,
+    "fPerUnit": 3
+  },
+  "Ratatouille surgelée": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.1,
+    "prepType": "pantry",
+    "kcalPerUnit": 280,
+    "pPerUnit": 11,
+    "cPerUnit": 52,
+    "fPerUnit": 4
+  },
+  "Poêlée champignons": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 4.4,
+    "prepType": "pantry",
+    "kcalPerUnit": 260,
+    "pPerUnit": 28,
+    "cPerUnit": 36,
+    "fPerUnit": 4
+  },
+  "Purée de potiron": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3,
+    "prepType": "pantry",
+    "kcalPerUnit": 320,
+    "pPerUnit": 10,
+    "cPerUnit": 70,
+    "fPerUnit": 2
+  },
+  "Chou chinois": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.2,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 160,
+    "pPerUnit": 12,
+    "cPerUnit": 32,
+    "fPerUnit": 2
+  },
+  "Céleri boule": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.3,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 420,
+    "pPerUnit": 15,
+    "cPerUnit": 92,
+    "fPerUnit": 3
+  },
+  "Radis blanc daikon": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.9,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 180,
+    "pPerUnit": 6,
+    "cPerUnit": 41,
+    "fPerUnit": 1
+  },
+  "Manioc": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.2,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 1600,
+    "pPerUnit": 14,
+    "cPerUnit": 380,
+    "fPerUnit": 3
+  },
+  "Igname": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.5,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 1180,
+    "pPerUnit": 15,
+    "cPerUnit": 279,
+    "fPerUnit": 2
+  },
+  "Banane plantain": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.8,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 1220,
+    "pPerUnit": 13,
+    "cPerUnit": 319,
+    "fPerUnit": 4
+  },
+  "Citronnelle fraîche": {
+    "aisle": "Fruits & Légumes",
+    "unit": "pièce",
+    "unitPrice": 0.65,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 15,
+    "pPerUnit": 0.3,
+    "cPerUnit": 3.8,
+    "fPerUnit": 0.1
+  },
+  "Kombava feuille": {
+    "aisle": "Fruits & Légumes",
+    "unit": "g",
+    "unitPrice": 0.08,
+    "prepType": "pantry",
+    "kcalPerUnit": 2,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.4,
+    "fPerUnit": 0
+  },
+  "Blette rouge": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.4,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 190,
+    "pPerUnit": 18,
+    "cPerUnit": 37,
+    "fPerUnit": 2
+  },
+  "Mesclun": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 8.5,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 200,
+    "pPerUnit": 18,
+    "cPerUnit": 34,
+    "fPerUnit": 3
+  },
+  "Cœur de palmier": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 6.2,
+    "prepType": "pantry",
+    "kcalPerUnit": 280,
+    "pPerUnit": 25,
+    "cPerUnit": 46,
+    "fPerUnit": 2
+  },
+  "Fonds d'artichaut": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 7.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 470,
+    "pPerUnit": 33,
+    "cPerUnit": 105,
+    "fPerUnit": 1
+  },
+  "Gombo": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 5.4,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 330,
+    "pPerUnit": 19,
+    "cPerUnit": 75,
+    "fPerUnit": 2
+  },
+  "Christophine": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 3.1,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 190,
+    "pPerUnit": 8,
+    "cPerUnit": 45,
+    "fPerUnit": 1
+  },
+  "Pâtisson": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.7,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 190,
+    "pPerUnit": 12,
+    "cPerUnit": 43,
+    "fPerUnit": 2
+  },
+  "Courge spaghetti": {
+    "aisle": "Fruits & Légumes",
+    "unit": "kg",
+    "unitPrice": 2.5,
+    "prepType": "chop_veg",
+    "kcalPerUnit": 310,
+    "pPerUnit": 6,
+    "cPerUnit": 69,
+    "fPerUnit": 6
   },
   "Oeufs": {
     "aisle": "Crèmerie & Oeufs",
@@ -189,6 +2369,46 @@
     "cPerUnit": 0.6,
     "fPerUnit": 5.3
   },
+  "Blancs d'oeufs": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "L",
+    "unitPrice": 4.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 520,
+    "pPerUnit": 110,
+    "cPerUnit": 7,
+    "fPerUnit": 2
+  },
+  "Lait demi-écrémé": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "L",
+    "unitPrice": 1.15,
+    "prepType": "pantry",
+    "kcalPerUnit": 460,
+    "pPerUnit": 32,
+    "cPerUnit": 48,
+    "fPerUnit": 15
+  },
+  "Lait entier": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "L",
+    "unitPrice": 1.25,
+    "prepType": "pantry",
+    "kcalPerUnit": 640,
+    "pPerUnit": 32,
+    "cPerUnit": 48,
+    "fPerUnit": 36
+  },
+  "Lait écrémé": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "L",
+    "unitPrice": 1.1,
+    "prepType": "pantry",
+    "kcalPerUnit": 350,
+    "pPerUnit": 33,
+    "cPerUnit": 49,
+    "fPerUnit": 2
+  },
   "Crème légère": {
     "aisle": "Crèmerie & Oeufs",
     "unit": "L",
@@ -198,6 +2418,56 @@
     "pPerUnit": 25,
     "cPerUnit": 40,
     "fPerUnit": 150
+  },
+  "Crème fraîche épaisse": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "L",
+    "unitPrice": 4.2,
+    "prepType": "pantry",
+    "kcalPerUnit": 2950,
+    "pPerUnit": 22,
+    "cPerUnit": 30,
+    "fPerUnit": 300
+  },
+  "Crème liquide entière": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "L",
+    "unitPrice": 3.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 2920,
+    "pPerUnit": 22,
+    "cPerUnit": 32,
+    "fPerUnit": 300
+  },
+  "Crème fraîche 15%": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "L",
+    "unitPrice": 3.4,
+    "prepType": "pantry",
+    "kcalPerUnit": 1620,
+    "pPerUnit": 26,
+    "cPerUnit": 42,
+    "fPerUnit": 150
+  },
+  "Beurre doux": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 9.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 7170,
+    "pPerUnit": 8,
+    "cPerUnit": 6,
+    "fPerUnit": 810
+  },
+  "Beurre demi-sel": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 9.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 7170,
+    "pPerUnit": 8,
+    "cPerUnit": 6,
+    "fPerUnit": 810
   },
   "Fromage râpé": {
     "aisle": "Crèmerie & Oeufs",
@@ -209,6 +2479,36 @@
     "cPerUnit": 15,
     "fPerUnit": 290
   },
+  "Emmental râpé": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 8.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 3750,
+    "pPerUnit": 270,
+    "cPerUnit": 10,
+    "fPerUnit": 290
+  },
+  "Gruyère râpé": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 10.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 3950,
+    "pPerUnit": 285,
+    "cPerUnit": 5,
+    "fPerUnit": 310
+  },
+  "Comté": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 16.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 4080,
+    "pPerUnit": 275,
+    "cPerUnit": 5,
+    "fPerUnit": 330
+  },
   "Parmesan": {
     "aisle": "Crèmerie & Oeufs",
     "unit": "kg",
@@ -218,6 +2518,486 @@
     "pPerUnit": 350,
     "cPerUnit": 30,
     "fPerUnit": 280
+  },
+  "Grana Padano": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 14.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 3980,
+    "pPerUnit": 330,
+    "cPerUnit": 25,
+    "fPerUnit": 280
+  },
+  "Pecorino": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 17.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 3870,
+    "pPerUnit": 260,
+    "cPerUnit": 10,
+    "fPerUnit": 310
+  },
+  "Mozzarella": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 8.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 2500,
+    "pPerUnit": 180,
+    "cPerUnit": 20,
+    "fPerUnit": 190
+  },
+  "Mozzarella râpée": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 9.2,
+    "prepType": "pantry",
+    "kcalPerUnit": 2850,
+    "pPerUnit": 220,
+    "cPerUnit": 25,
+    "fPerUnit": 210
+  },
+  "Burrata": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "pièce",
+    "unitPrice": 2.4,
+    "prepType": "pantry",
+    "kcalPerUnit": 310,
+    "pPerUnit": 16,
+    "cPerUnit": 2,
+    "fPerUnit": 26
+  },
+  "Ricotta": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 6.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 1550,
+    "pPerUnit": 95,
+    "cPerUnit": 35,
+    "fPerUnit": 115
+  },
+  "Mascarpone": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 8.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 4150,
+    "pPerUnit": 45,
+    "cPerUnit": 35,
+    "fPerUnit": 420
+  },
+  "Feta": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 11.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 2640,
+    "pPerUnit": 142,
+    "cPerUnit": 41,
+    "fPerUnit": 213
+  },
+  "Fromage de chèvre frais": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 11.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 2150,
+    "pPerUnit": 130,
+    "cPerUnit": 25,
+    "fPerUnit": 170
+  },
+  "Bûche de chèvre": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 10.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 2950,
+    "pPerUnit": 190,
+    "cPerUnit": 15,
+    "fPerUnit": 235
+  },
+  "Roquefort": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 17.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 3690,
+    "pPerUnit": 190,
+    "cPerUnit": 15,
+    "fPerUnit": 320
+  },
+  "Gorgonzola": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 14.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 3530,
+    "pPerUnit": 195,
+    "cPerUnit": 10,
+    "fPerUnit": 300
+  },
+  "Bleu d'Auvergne": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 13.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 3500,
+    "pPerUnit": 200,
+    "cPerUnit": 10,
+    "fPerUnit": 295
+  },
+  "Camembert": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "pièce",
+    "unitPrice": 2.2,
+    "prepType": "pantry",
+    "kcalPerUnit": 740,
+    "pPerUnit": 50,
+    "cPerUnit": 2,
+    "fPerUnit": 60
+  },
+  "Brie": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 11.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 3340,
+    "pPerUnit": 208,
+    "cPerUnit": 5,
+    "fPerUnit": 277
+  },
+  "Reblochon": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 14.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 3300,
+    "pPerUnit": 210,
+    "cPerUnit": 5,
+    "fPerUnit": 270
+  },
+  "Raclette": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 11.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 3450,
+    "pPerUnit": 230,
+    "cPerUnit": 5,
+    "fPerUnit": 280
+  },
+  "Cheddar": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 10.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 4020,
+    "pPerUnit": 250,
+    "cPerUnit": 13,
+    "fPerUnit": 330
+  },
+  "Gouda": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 10.2,
+    "prepType": "pantry",
+    "kcalPerUnit": 3560,
+    "pPerUnit": 250,
+    "cPerUnit": 22,
+    "fPerUnit": 274
+  },
+  "Edam": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 9.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 3570,
+    "pPerUnit": 250,
+    "cPerUnit": 14,
+    "fPerUnit": 278
+  },
+  "Cantal": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 13.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 3750,
+    "pPerUnit": 240,
+    "cPerUnit": 5,
+    "fPerUnit": 305
+  },
+  "Saint-Nectaire": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 15.2,
+    "prepType": "pantry",
+    "kcalPerUnit": 3250,
+    "pPerUnit": 210,
+    "cPerUnit": 5,
+    "fPerUnit": 265
+  },
+  "Tomme de Savoie": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 14.4,
+    "prepType": "pantry",
+    "kcalPerUnit": 3150,
+    "pPerUnit": 235,
+    "cPerUnit": 5,
+    "fPerUnit": 245
+  },
+  "Fromage blanc 0%": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 2.6,
+    "prepType": "pantry",
+    "kcalPerUnit": 470,
+    "pPerUnit": 80,
+    "cPerUnit": 38,
+    "fPerUnit": 1
+  },
+  "Fromage blanc 3%": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 2.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 750,
+    "pPerUnit": 75,
+    "cPerUnit": 38,
+    "fPerUnit": 32
+  },
+  "Skyr": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 4.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 600,
+    "pPerUnit": 105,
+    "cPerUnit": 40,
+    "fPerUnit": 2
+  },
+  "Yaourt grec": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 4.2,
+    "prepType": "pantry",
+    "kcalPerUnit": 1150,
+    "pPerUnit": 60,
+    "cPerUnit": 45,
+    "fPerUnit": 85
+  },
+  "Yaourt nature": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "pièce",
+    "unitPrice": 0.35,
+    "prepType": "pantry",
+    "kcalPerUnit": 62,
+    "pPerUnit": 5.2,
+    "cPerUnit": 6,
+    "fPerUnit": 1.8
+  },
+  "Petit-suisse": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "pièce",
+    "unitPrice": 0.3,
+    "prepType": "pantry",
+    "kcalPerUnit": 85,
+    "pPerUnit": 5.8,
+    "cPerUnit": 2.2,
+    "fPerUnit": 5.8
+  },
+  "Fromage frais à tartiner": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 7.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 2450,
+    "pPerUnit": 65,
+    "cPerUnit": 40,
+    "fPerUnit": 225
+  },
+  "Cottage cheese": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 6.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 980,
+    "pPerUnit": 115,
+    "cPerUnit": 34,
+    "fPerUnit": 43
+  },
+  "Faisselle": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 4.1,
+    "prepType": "pantry",
+    "kcalPerUnit": 780,
+    "pPerUnit": 68,
+    "cPerUnit": 36,
+    "fPerUnit": 40
+  },
+  "Lait de soja": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "L",
+    "unitPrice": 1.45,
+    "prepType": "pantry",
+    "kcalPerUnit": 380,
+    "pPerUnit": 33,
+    "cPerUnit": 18,
+    "fPerUnit": 19
+  },
+  "Lait d'amande": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "L",
+    "unitPrice": 1.95,
+    "prepType": "pantry",
+    "kcalPerUnit": 240,
+    "pPerUnit": 6,
+    "cPerUnit": 30,
+    "fPerUnit": 11
+  },
+  "Lait d'avoine": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "L",
+    "unitPrice": 1.85,
+    "prepType": "pantry",
+    "kcalPerUnit": 450,
+    "pPerUnit": 10,
+    "cPerUnit": 68,
+    "fPerUnit": 15
+  },
+  "Crème de soja": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "L",
+    "unitPrice": 3.6,
+    "prepType": "pantry",
+    "kcalPerUnit": 1650,
+    "pPerUnit": 24,
+    "cPerUnit": 35,
+    "fPerUnit": 155
+  },
+  "Crème d'avoine": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "L",
+    "unitPrice": 3.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 1450,
+    "pPerUnit": 12,
+    "cPerUnit": 85,
+    "fPerUnit": 115
+  },
+  "Yaourt au soja": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "pièce",
+    "unitPrice": 0.45,
+    "prepType": "pantry",
+    "kcalPerUnit": 52,
+    "pPerUnit": 4.5,
+    "cPerUnit": 2.5,
+    "fPerUnit": 2.5
+  },
+  "Halloumi": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 15.9,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 3150,
+    "pPerUnit": 220,
+    "cPerUnit": 20,
+    "fPerUnit": 245
+  },
+  "Paneer": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 13.5,
+    "prepType": "prep_protein",
+    "kcalPerUnit": 2950,
+    "pPerUnit": 185,
+    "cPerUnit": 35,
+    "fPerUnit": 230
+  },
+  "Mimolette": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 12.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 3650,
+    "pPerUnit": 265,
+    "cPerUnit": 5,
+    "fPerUnit": 285
+  },
+  "Beaufort": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 18.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 4010,
+    "pPerUnit": 270,
+    "cPerUnit": 5,
+    "fPerUnit": 325
+  },
+  "Abondance": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 16.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 3780,
+    "pPerUnit": 255,
+    "cPerUnit": 5,
+    "fPerUnit": 305
+  },
+  "Fourme d'Ambert": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 14.2,
+    "prepType": "pantry",
+    "kcalPerUnit": 3420,
+    "pPerUnit": 195,
+    "cPerUnit": 10,
+    "fPerUnit": 288
+  },
+  "Scamorza fumée": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 13.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 3340,
+    "pPerUnit": 245,
+    "cPerUnit": 20,
+    "fPerUnit": 255
+  },
+  "Provolone": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "kg",
+    "unitPrice": 13.4,
+    "prepType": "pantry",
+    "kcalPerUnit": 3510,
+    "pPerUnit": 256,
+    "cPerUnit": 21,
+    "fPerUnit": 266
+  },
+  "Lait ribot": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "L",
+    "unitPrice": 1.65,
+    "prepType": "pantry",
+    "kcalPerUnit": 420,
+    "pPerUnit": 33,
+    "cPerUnit": 45,
+    "fPerUnit": 11
+  },
+  "Kéfir de lait": {
+    "aisle": "Crèmerie & Oeufs",
+    "unit": "L",
+    "unitPrice": 2.4,
+    "prepType": "pantry",
+    "kcalPerUnit": 480,
+    "pPerUnit": 34,
+    "cPerUnit": 46,
+    "fPerUnit": 16
   },
   "Riz basmati": {
     "aisle": "Épicerie & Féculents",
@@ -229,6 +3009,26 @@
     "cPerUnit": 770,
     "fPerUnit": 10
   },
+  "Riz thaï": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 2.7,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3520,
+    "pPerUnit": 75,
+    "cPerUnit": 780,
+    "fPerUnit": 9
+  },
+  "Riz complet": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 2.9,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3480,
+    "pPerUnit": 78,
+    "cPerUnit": 730,
+    "fPerUnit": 25
+  },
   "Riz arborio": {
     "aisle": "Épicerie & Féculents",
     "unit": "kg",
@@ -238,6 +3038,36 @@
     "pPerUnit": 70,
     "cPerUnit": 780,
     "fPerUnit": 8
+  },
+  "Riz long blanc": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 2.1,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3500,
+    "pPerUnit": 72,
+    "cPerUnit": 785,
+    "fPerUnit": 7
+  },
+  "Riz sauvage": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 6.8,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3570,
+    "pPerUnit": 147,
+    "cPerUnit": 749,
+    "fPerUnit": 11
+  },
+  "Riz gluant": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 3.6,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3550,
+    "pPerUnit": 68,
+    "cPerUnit": 790,
+    "fPerUnit": 6
   },
   "Pâtes penne": {
     "aisle": "Épicerie & Féculents",
@@ -259,6 +3089,66 @@
     "cPerUnit": 710,
     "fPerUnit": 15
   },
+  "Pâtes spaghetti": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 1.85,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3550,
+    "pPerUnit": 120,
+    "cPerUnit": 710,
+    "fPerUnit": 15
+  },
+  "Pâtes tagliatelles": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 2.4,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3600,
+    "pPerUnit": 125,
+    "cPerUnit": 705,
+    "fPerUnit": 22
+  },
+  "Pâtes rigatoni": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 2.1,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3550,
+    "pPerUnit": 120,
+    "cPerUnit": 710,
+    "fPerUnit": 15
+  },
+  "Pâtes farfalle": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 2,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3550,
+    "pPerUnit": 120,
+    "cPerUnit": 710,
+    "fPerUnit": 15
+  },
+  "Pâtes coquillettes": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 1.8,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3550,
+    "pPerUnit": 120,
+    "cPerUnit": 710,
+    "fPerUnit": 15
+  },
+  "Pâtes macaronis": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 1.85,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3550,
+    "pPerUnit": 120,
+    "cPerUnit": 710,
+    "fPerUnit": 15
+  },
   "Pâtes complètes": {
     "aisle": "Épicerie & Féculents",
     "unit": "kg",
@@ -268,6 +3158,226 @@
     "pPerUnit": 130,
     "cPerUnit": 660,
     "fPerUnit": 22
+  },
+  "Pâtes lentilles corail": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 4.9,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3420,
+    "pPerUnit": 250,
+    "cPerUnit": 520,
+    "fPerUnit": 18
+  },
+  "Pâtes pois chiches": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 5.2,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3480,
+    "pPerUnit": 210,
+    "cPerUnit": 540,
+    "fPerUnit": 35
+  },
+  "Orzo": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 2.8,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3540,
+    "pPerUnit": 120,
+    "cPerUnit": 715,
+    "fPerUnit": 14
+  },
+  "Gnocchis": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 3.6,
+    "prepType": "pantry",
+    "kcalPerUnit": 1650,
+    "pPerUnit": 38,
+    "cPerUnit": 345,
+    "fPerUnit": 8
+  },
+  "Raviolis frais": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 6.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 2150,
+    "pPerUnit": 85,
+    "cPerUnit": 310,
+    "fPerUnit": 62
+  },
+  "Feuilles de lasagne": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 3.2,
+    "prepType": "pantry",
+    "kcalPerUnit": 3550,
+    "pPerUnit": 120,
+    "cPerUnit": 710,
+    "fPerUnit": 15
+  },
+  "Nouilles de blé": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 3.4,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3500,
+    "pPerUnit": 115,
+    "cPerUnit": 715,
+    "fPerUnit": 14
+  },
+  "Nouilles de riz": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 4.2,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3600,
+    "pPerUnit": 35,
+    "cPerUnit": 830,
+    "fPerUnit": 5
+  },
+  "Nouilles soba": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 5.8,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3360,
+    "pPerUnit": 140,
+    "cPerUnit": 690,
+    "fPerUnit": 10
+  },
+  "Nouilles udon": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 4.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 1450,
+    "pPerUnit": 38,
+    "cPerUnit": 300,
+    "fPerUnit": 5
+  },
+  "Vermicelles de riz": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 4.1,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3580,
+    "pPerUnit": 34,
+    "cPerUnit": 825,
+    "fPerUnit": 4
+  },
+  "Quinoa": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 5.4,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3680,
+    "pPerUnit": 141,
+    "cPerUnit": 642,
+    "fPerUnit": 61
+  },
+  "Quinoa rouge": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 5.9,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3680,
+    "pPerUnit": 141,
+    "cPerUnit": 642,
+    "fPerUnit": 61
+  },
+  "Boulgour": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 2.9,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3420,
+    "pPerUnit": 123,
+    "cPerUnit": 759,
+    "fPerUnit": 13
+  },
+  "Semoule de couscous": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 2.2,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3560,
+    "pPerUnit": 127,
+    "cPerUnit": 728,
+    "fPerUnit": 11
+  },
+  "Semoule complète": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 2.5,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3480,
+    "pPerUnit": 132,
+    "cPerUnit": 690,
+    "fPerUnit": 18
+  },
+  "Polenta": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 2.4,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3520,
+    "pPerUnit": 81,
+    "cPerUnit": 769,
+    "fPerUnit": 12
+  },
+  "Épeautre": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 3.8,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3380,
+    "pPerUnit": 146,
+    "cPerUnit": 702,
+    "fPerUnit": 24
+  },
+  "Petit épeautre": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 4.9,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3400,
+    "pPerUnit": 140,
+    "cPerUnit": 710,
+    "fPerUnit": 22
+  },
+  "Orge perlé": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 2.8,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3520,
+    "pPerUnit": 99,
+    "cPerUnit": 777,
+    "fPerUnit": 12
+  },
+  "Sarrasin décortiqué": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 4.2,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3430,
+    "pPerUnit": 133,
+    "cPerUnit": 715,
+    "fPerUnit": 34
+  },
+  "Millet": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 3.9,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3780,
+    "pPerUnit": 110,
+    "cPerUnit": 728,
+    "fPerUnit": 42
   },
   "Lentilles corail": {
     "aisle": "Épicerie & Féculents",
@@ -289,6 +3399,26 @@
     "cPerUnit": 520,
     "fPerUnit": 12
   },
+  "Lentilles blondes": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 3.1,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3300,
+    "pPerUnit": 245,
+    "cPerUnit": 535,
+    "fPerUnit": 13
+  },
+  "Lentilles beluga": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 4.4,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3280,
+    "pPerUnit": 250,
+    "cPerUnit": 525,
+    "fPerUnit": 12
+  },
   "Pois chiches": {
     "aisle": "Épicerie & Féculents",
     "unit": "kg",
@@ -298,6 +3428,16 @@
     "pPerUnit": 75,
     "cPerUnit": 200,
     "fPerUnit": 22
+  },
+  "Pois chiches secs": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 3.4,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3640,
+    "pPerUnit": 193,
+    "cPerUnit": 607,
+    "fPerUnit": 60
   },
   "Haricots rouges": {
     "aisle": "Épicerie & Féculents",
@@ -309,6 +3449,46 @@
     "cPerUnit": 190,
     "fPerUnit": 8
   },
+  "Haricots blancs": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 2.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 1220,
+    "pPerUnit": 78,
+    "cPerUnit": 185,
+    "fPerUnit": 6
+  },
+  "Haricots noirs": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 3.2,
+    "prepType": "pantry",
+    "kcalPerUnit": 1280,
+    "pPerUnit": 82,
+    "cPerUnit": 195,
+    "fPerUnit": 7
+  },
+  "Flageolets": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 2.7,
+    "prepType": "pantry",
+    "kcalPerUnit": 1050,
+    "pPerUnit": 68,
+    "cPerUnit": 165,
+    "fPerUnit": 6
+  },
+  "Pois cassés": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 2.8,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3410,
+    "pPerUnit": 246,
+    "cPerUnit": 604,
+    "fPerUnit": 12
+  },
   "Petits pois": {
     "aisle": "Épicerie & Féculents",
     "unit": "kg",
@@ -318,6 +3498,16 @@
     "pPerUnit": 54,
     "cPerUnit": 140,
     "fPerUnit": 4
+  },
+  "Maïs en boîte": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 3.1,
+    "prepType": "pantry",
+    "kcalPerUnit": 860,
+    "pPerUnit": 29,
+    "cPerUnit": 187,
+    "fPerUnit": 12
   },
   "Flocons d'avoine": {
     "aisle": "Épicerie & Féculents",
@@ -329,6 +3519,426 @@
     "cPerUnit": 600,
     "fPerUnit": 70
   },
+  "Son d'avoine": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 3.2,
+    "prepType": "pantry",
+    "kcalPerUnit": 3450,
+    "pPerUnit": 173,
+    "cPerUnit": 510,
+    "fPerUnit": 70
+  },
+  "Farine de blé": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 1.3,
+    "prepType": "pantry",
+    "kcalPerUnit": 3640,
+    "pPerUnit": 103,
+    "cPerUnit": 763,
+    "fPerUnit": 10
+  },
+  "Farine complète": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 1.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 3400,
+    "pPerUnit": 132,
+    "cPerUnit": 720,
+    "fPerUnit": 25
+  },
+  "Farine de sarrasin": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 3.4,
+    "prepType": "pantry",
+    "kcalPerUnit": 3350,
+    "pPerUnit": 126,
+    "cPerUnit": 706,
+    "fPerUnit": 31
+  },
+  "Farine de pois chiches": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 4.2,
+    "prepType": "pantry",
+    "kcalPerUnit": 3870,
+    "pPerUnit": 224,
+    "cPerUnit": 578,
+    "fPerUnit": 67
+  },
+  "Fécule de maïs": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 3.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 3810,
+    "pPerUnit": 3,
+    "cPerUnit": 913,
+    "fPerUnit": 1
+  },
+  "Chapelure": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 3.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 3950,
+    "pPerUnit": 130,
+    "cPerUnit": 720,
+    "fPerUnit": 50
+  },
+  "Panko": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 5.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 3900,
+    "pPerUnit": 125,
+    "cPerUnit": 740,
+    "fPerUnit": 40
+  },
+  "Pain de mie complet": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "tranche",
+    "unitPrice": 0.18,
+    "prepType": "pantry",
+    "kcalPerUnit": 95,
+    "pPerUnit": 3.8,
+    "cPerUnit": 17.5,
+    "fPerUnit": 1.2
+  },
+  "Pain complet": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 3.6,
+    "prepType": "pantry",
+    "kcalPerUnit": 2470,
+    "pPerUnit": 90,
+    "cPerUnit": 450,
+    "fPerUnit": 22
+  },
+  "Pain pita": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "pièce",
+    "unitPrice": 0.45,
+    "prepType": "pantry",
+    "kcalPerUnit": 165,
+    "pPerUnit": 5.5,
+    "cPerUnit": 33,
+    "fPerUnit": 0.8
+  },
+  "Tortilla de blé": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "pièce",
+    "unitPrice": 0.38,
+    "prepType": "pantry",
+    "kcalPerUnit": 180,
+    "pPerUnit": 4.8,
+    "cPerUnit": 30,
+    "fPerUnit": 4.2
+  },
+  "Tortilla de maïs": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "pièce",
+    "unitPrice": 0.35,
+    "prepType": "pantry",
+    "kcalPerUnit": 140,
+    "pPerUnit": 3.5,
+    "cPerUnit": 28,
+    "fPerUnit": 1.8
+  },
+  "Galette de sarrasin": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "pièce",
+    "unitPrice": 0.55,
+    "prepType": "pantry",
+    "kcalPerUnit": 155,
+    "pPerUnit": 5.8,
+    "cPerUnit": 29,
+    "fPerUnit": 1.4
+  },
+  "Amandes": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 12.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 5790,
+    "pPerUnit": 212,
+    "cPerUnit": 216,
+    "fPerUnit": 499
+  },
+  "Noix": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 13.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 6540,
+    "pPerUnit": 152,
+    "cPerUnit": 137,
+    "fPerUnit": 652
+  },
+  "Noix de cajou": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 13.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 5530,
+    "pPerUnit": 182,
+    "cPerUnit": 302,
+    "fPerUnit": 438
+  },
+  "Cacahuètes": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 6.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 5670,
+    "pPerUnit": 258,
+    "cPerUnit": 161,
+    "fPerUnit": 492
+  },
+  "Noisettes": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 14.2,
+    "prepType": "pantry",
+    "kcalPerUnit": 6280,
+    "pPerUnit": 150,
+    "cPerUnit": 167,
+    "fPerUnit": 608
+  },
+  "Pignons de pin": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 32,
+    "prepType": "pantry",
+    "kcalPerUnit": 6730,
+    "pPerUnit": 137,
+    "cPerUnit": 131,
+    "fPerUnit": 684
+  },
+  "Pistaches": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 18.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 5620,
+    "pPerUnit": 202,
+    "cPerUnit": 272,
+    "fPerUnit": 453
+  },
+  "Graines de sésame": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 7.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 5730,
+    "pPerUnit": 177,
+    "cPerUnit": 234,
+    "fPerUnit": 497
+  },
+  "Graines de tournesol": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 5.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 5840,
+    "pPerUnit": 208,
+    "cPerUnit": 200,
+    "fPerUnit": 515
+  },
+  "Graines de courge": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 8.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 5590,
+    "pPerUnit": 302,
+    "cPerUnit": 107,
+    "fPerUnit": 490
+  },
+  "Graines de chia": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 9.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 4860,
+    "pPerUnit": 165,
+    "cPerUnit": 421,
+    "fPerUnit": 307
+  },
+  "Graines de lin": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 5.4,
+    "prepType": "pantry",
+    "kcalPerUnit": 5340,
+    "pPerUnit": 183,
+    "cPerUnit": 289,
+    "fPerUnit": 422
+  },
+  "Raisins secs": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 6.2,
+    "prepType": "pantry",
+    "kcalPerUnit": 2990,
+    "pPerUnit": 31,
+    "cPerUnit": 792,
+    "fPerUnit": 5
+  },
+  "Abricots secs": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 8.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 2410,
+    "pPerUnit": 34,
+    "cPerUnit": 626,
+    "fPerUnit": 5
+  },
+  "Pruneaux": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 7.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 2400,
+    "pPerUnit": 22,
+    "cPerUnit": 639,
+    "fPerUnit": 4
+  },
+  "Dattes": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 7.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 2820,
+    "pPerUnit": 25,
+    "cPerUnit": 750,
+    "fPerUnit": 4
+  },
+  "Cranberries séchées": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 9.4,
+    "prepType": "pantry",
+    "kcalPerUnit": 3080,
+    "pPerUnit": 2,
+    "cPerUnit": 824,
+    "fPerUnit": 14
+  },
+  "Noix de coco râpée": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 6.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 6600,
+    "pPerUnit": 69,
+    "cPerUnit": 237,
+    "fPerUnit": 645
+  },
+  "Freekeh": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 5.6,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3320,
+    "pPerUnit": 126,
+    "cPerUnit": 720,
+    "fPerUnit": 22
+  },
+  "Riz noir vénéré": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 5.8,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3560,
+    "pPerUnit": 89,
+    "cPerUnit": 756,
+    "fPerUnit": 32
+  },
+  "Riz rouge de Camargue": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 4.9,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3520,
+    "pPerUnit": 78,
+    "cPerUnit": 740,
+    "fPerUnit": 24
+  },
+  "Pâtes cannelloni": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 2.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 3550,
+    "pPerUnit": 120,
+    "cPerUnit": 710,
+    "fPerUnit": 15
+  },
+  "Pâtes orecchiette": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 2.6,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3550,
+    "pPerUnit": 120,
+    "cPerUnit": 710,
+    "fPerUnit": 15
+  },
+  "Pâtes trofie": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 2.8,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3550,
+    "pPerUnit": 120,
+    "cPerUnit": 710,
+    "fPerUnit": 15
+  },
+  "Nouilles ramen": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "kg",
+    "unitPrice": 4.4,
+    "prepType": "rinse_grain",
+    "kcalPerUnit": 3520,
+    "pPerUnit": 110,
+    "cPerUnit": 720,
+    "fPerUnit": 16
+  },
+  "Feuilles de brick": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "pièce",
+    "unitPrice": 0.25,
+    "prepType": "pantry",
+    "kcalPerUnit": 85,
+    "pPerUnit": 2.5,
+    "cPerUnit": 18,
+    "fPerUnit": 0.3
+  },
+  "Pâte feuilletée": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "pièce",
+    "unitPrice": 1.4,
+    "prepType": "pantry",
+    "kcalPerUnit": 890,
+    "pPerUnit": 14,
+    "cPerUnit": 98,
+    "fPerUnit": 48
+  },
+  "Pâte brisée": {
+    "aisle": "Épicerie & Féculents",
+    "unit": "pièce",
+    "unitPrice": 1.3,
+    "prepType": "pantry",
+    "kcalPerUnit": 840,
+    "pPerUnit": 13,
+    "cPerUnit": 102,
+    "fPerUnit": 42
+  },
   "Lait de coco": {
     "aisle": "Condiments & Épices",
     "unit": "L",
@@ -338,6 +3948,16 @@
     "pPerUnit": 16,
     "cPerUnit": 30,
     "fPerUnit": 180
+  },
+  "Crème de coco": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 4.6,
+    "prepType": "pantry",
+    "kcalPerUnit": 2350,
+    "pPerUnit": 22,
+    "cPerUnit": 45,
+    "fPerUnit": 235
   },
   "Coulis de tomate": {
     "aisle": "Condiments & Épices",
@@ -349,6 +3969,106 @@
     "cPerUnit": 55,
     "fPerUnit": 3
   },
+  "Tomates concassées": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 2.3,
+    "prepType": "pantry",
+    "kcalPerUnit": 260,
+    "pPerUnit": 12,
+    "cPerUnit": 45,
+    "fPerUnit": 2
+  },
+  "Tomates pelées": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 2.2,
+    "prepType": "pantry",
+    "kcalPerUnit": 240,
+    "pPerUnit": 11,
+    "cPerUnit": 42,
+    "fPerUnit": 2
+  },
+  "Concentré de tomate": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 4.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 820,
+    "pPerUnit": 43,
+    "cPerUnit": 189,
+    "fPerUnit": 5
+  },
+  "Tomates séchées": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 11.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 2580,
+    "pPerUnit": 141,
+    "cPerUnit": 435,
+    "fPerUnit": 30
+  },
+  "Sauce tomate basilic": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 3.1,
+    "prepType": "pantry",
+    "kcalPerUnit": 480,
+    "pPerUnit": 15,
+    "cPerUnit": 72,
+    "fPerUnit": 14
+  },
+  "Pesto vert": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 11.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 4550,
+    "pPerUnit": 48,
+    "cPerUnit": 65,
+    "fPerUnit": 450
+  },
+  "Pesto rosso": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 11.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 3850,
+    "pPerUnit": 42,
+    "cPerUnit": 115,
+    "fPerUnit": 355
+  },
+  "Tapenade noire": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 13.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 2950,
+    "pPerUnit": 18,
+    "cPerUnit": 45,
+    "fPerUnit": 300
+  },
+  "Houmous": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 7.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 2350,
+    "pPerUnit": 75,
+    "cPerUnit": 145,
+    "fPerUnit": 160
+  },
+  "Guacamole": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 8.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 1550,
+    "pPerUnit": 18,
+    "cPerUnit": 75,
+    "fPerUnit": 135
+  },
   "Huile d'olive": {
     "aisle": "Condiments & Épices",
     "unit": "L",
@@ -358,6 +4078,106 @@
     "pPerUnit": 0,
     "cPerUnit": 0,
     "fPerUnit": 1000
+  },
+  "Huile neutre": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 2.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 8840,
+    "pPerUnit": 0,
+    "cPerUnit": 0,
+    "fPerUnit": 1000
+  },
+  "Huile de tournesol": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 2.7,
+    "prepType": "pantry",
+    "kcalPerUnit": 8840,
+    "pPerUnit": 0,
+    "cPerUnit": 0,
+    "fPerUnit": 1000
+  },
+  "Huile de colza": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 2.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 8840,
+    "pPerUnit": 0,
+    "cPerUnit": 0,
+    "fPerUnit": 1000
+  },
+  "Huile de sésame": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 12.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 8840,
+    "pPerUnit": 0,
+    "cPerUnit": 0,
+    "fPerUnit": 1000
+  },
+  "Huile de coco": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 9.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 8620,
+    "pPerUnit": 0,
+    "cPerUnit": 0,
+    "fPerUnit": 1000
+  },
+  "Huile de noix": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 14.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 8840,
+    "pPerUnit": 0,
+    "cPerUnit": 0,
+    "fPerUnit": 1000
+  },
+  "Vinaigre balsamique": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 4.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 880,
+    "pPerUnit": 5,
+    "cPerUnit": 170,
+    "fPerUnit": 0
+  },
+  "Vinaigre de cidre": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 3.2,
+    "prepType": "pantry",
+    "kcalPerUnit": 210,
+    "pPerUnit": 0,
+    "cPerUnit": 9,
+    "fPerUnit": 0
+  },
+  "Vinaigre de vin rouge": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 2.4,
+    "prepType": "pantry",
+    "kcalPerUnit": 190,
+    "pPerUnit": 0,
+    "cPerUnit": 3,
+    "fPerUnit": 0
+  },
+  "Vinaigre de riz": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 4.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 180,
+    "pPerUnit": 0,
+    "cPerUnit": 4,
+    "fPerUnit": 0
   },
   "Sauce soja": {
     "aisle": "Condiments & Épices",
@@ -369,6 +4189,116 @@
     "cPerUnit": 50,
     "fPerUnit": 0
   },
+  "Sauce soja sucrée": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 5.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 2150,
+    "pPerUnit": 45,
+    "cPerUnit": 480,
+    "fPerUnit": 0
+  },
+  "Sauce teriyaki": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 6.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 1350,
+    "pPerUnit": 35,
+    "cPerUnit": 290,
+    "fPerUnit": 2
+  },
+  "Sauce huître": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 6.2,
+    "prepType": "pantry",
+    "kcalPerUnit": 850,
+    "pPerUnit": 15,
+    "cPerUnit": 195,
+    "fPerUnit": 1
+  },
+  "Sauce nuoc-mâm": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 5.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 420,
+    "pPerUnit": 85,
+    "cPerUnit": 18,
+    "fPerUnit": 0
+  },
+  "Sauce sriracha": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 7.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 930,
+    "pPerUnit": 18,
+    "cPerUnit": 192,
+    "fPerUnit": 9
+  },
+  "Sauce barbecue": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 4.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 1720,
+    "pPerUnit": 8,
+    "cPerUnit": 410,
+    "fPerUnit": 5
+  },
+  "Sauce worcestershire": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 8.2,
+    "prepType": "pantry",
+    "kcalPerUnit": 780,
+    "pPerUnit": 0,
+    "cPerUnit": 195,
+    "fPerUnit": 0
+  },
+  "Ketchup": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 3.4,
+    "prepType": "pantry",
+    "kcalPerUnit": 1120,
+    "pPerUnit": 12,
+    "cPerUnit": 258,
+    "fPerUnit": 1
+  },
+  "Mayonnaise": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 4.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 6800,
+    "pPerUnit": 11,
+    "cPerUnit": 20,
+    "fPerUnit": 745
+  },
+  "Moutarde de Dijon": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 3.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 1520,
+    "pPerUnit": 70,
+    "cPerUnit": 55,
+    "fPerUnit": 110
+  },
+  "Moutarde à l'ancienne": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 4.4,
+    "prepType": "pantry",
+    "kcalPerUnit": 1650,
+    "pPerUnit": 75,
+    "cPerUnit": 70,
+    "fPerUnit": 115
+  },
   "Miel": {
     "aisle": "Condiments & Épices",
     "unit": "kg",
@@ -377,6 +4307,206 @@
     "kcalPerUnit": 3040,
     "pPerUnit": 3,
     "cPerUnit": 820,
+    "fPerUnit": 0
+  },
+  "Sirop d'érable": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 16.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 2600,
+    "pPerUnit": 0,
+    "cPerUnit": 670,
+    "fPerUnit": 0
+  },
+  "Sirop d'agave": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 8.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 3100,
+    "pPerUnit": 0,
+    "cPerUnit": 760,
+    "fPerUnit": 0
+  },
+  "Beurre de cacahuète": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 7.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 5880,
+    "pPerUnit": 250,
+    "cPerUnit": 200,
+    "fPerUnit": 500
+  },
+  "Purée d'amande": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 18.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 6140,
+    "pPerUnit": 210,
+    "cPerUnit": 188,
+    "fPerUnit": 555
+  },
+  "Tahini": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 11.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 5950,
+    "pPerUnit": 170,
+    "cPerUnit": 212,
+    "fPerUnit": 538
+  },
+  "Pâte de curry rouge": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 12.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 1150,
+    "pPerUnit": 35,
+    "cPerUnit": 140,
+    "fPerUnit": 48
+  },
+  "Pâte de curry vert": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 12.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 1100,
+    "pPerUnit": 32,
+    "cPerUnit": 135,
+    "fPerUnit": 45
+  },
+  "Pâte de curry jaune": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 12.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 1200,
+    "pPerUnit": 34,
+    "cPerUnit": 145,
+    "fPerUnit": 50
+  },
+  "Harissa": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 8.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 950,
+    "pPerUnit": 25,
+    "cPerUnit": 110,
+    "fPerUnit": 45
+  },
+  "Miso blanc": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 13.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 1980,
+    "pPerUnit": 117,
+    "cPerUnit": 254,
+    "fPerUnit": 60
+  },
+  "Olives noires": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 6.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 1450,
+    "pPerUnit": 8,
+    "cPerUnit": 38,
+    "fPerUnit": 140
+  },
+  "Olives vertes": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 6.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 1350,
+    "pPerUnit": 9,
+    "cPerUnit": 35,
+    "fPerUnit": 130
+  },
+  "Câpres": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 11.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 230,
+    "pPerUnit": 24,
+    "cPerUnit": 49,
+    "fPerUnit": 9
+  },
+  "Cornichons": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 4.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 140,
+    "pPerUnit": 6,
+    "cPerUnit": 24,
+    "fPerUnit": 2
+  },
+  "Bouillon de volaille": {
+    "aisle": "Condiments & Épices",
+    "unit": "pièce",
+    "unitPrice": 0.18,
+    "prepType": "pantry",
+    "kcalPerUnit": 25,
+    "pPerUnit": 1.2,
+    "cPerUnit": 2.5,
+    "fPerUnit": 1.1
+  },
+  "Bouillon de légumes": {
+    "aisle": "Condiments & Épices",
+    "unit": "pièce",
+    "unitPrice": 0.18,
+    "prepType": "pantry",
+    "kcalPerUnit": 22,
+    "pPerUnit": 0.8,
+    "cPerUnit": 2.8,
+    "fPerUnit": 0.9
+  },
+  "Bouillon de bœuf": {
+    "aisle": "Condiments & Épices",
+    "unit": "pièce",
+    "unitPrice": 0.18,
+    "prepType": "pantry",
+    "kcalPerUnit": 26,
+    "pPerUnit": 1.3,
+    "cPerUnit": 2.4,
+    "fPerUnit": 1.2
+  },
+  "Fond de veau": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.03,
+    "prepType": "pantry",
+    "kcalPerUnit": 2.8,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.5,
+    "fPerUnit": 0
+  },
+  "Vin blanc de cuisine": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 3.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 820,
+    "pPerUnit": 1,
+    "cPerUnit": 26,
+    "fPerUnit": 0
+  },
+  "Vin rouge de cuisine": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 3.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 850,
+    "pPerUnit": 1,
+    "cPerUnit": 26,
     "fPerUnit": 0
   },
   "Épices curry": {
@@ -399,6 +4529,16 @@
     "cPerUnit": 0.5,
     "fPerUnit": 0.1
   },
+  "Paprika fumé": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.04,
+    "prepType": "pantry",
+    "kcalPerUnit": 3,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.5,
+    "fPerUnit": 0.1
+  },
   "Cumin": {
     "aisle": "Condiments & Épices",
     "unit": "g",
@@ -408,6 +4548,126 @@
     "pPerUnit": 0.1,
     "cPerUnit": 0.4,
     "fPerUnit": 0.2
+  },
+  "Curcuma en poudre": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.03,
+    "prepType": "pantry",
+    "kcalPerUnit": 3.1,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.6,
+    "fPerUnit": 0
+  },
+  "Coriandre moulue": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.03,
+    "prepType": "pantry",
+    "kcalPerUnit": 3,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.5,
+    "fPerUnit": 0.2
+  },
+  "Gingembre en poudre": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.04,
+    "prepType": "pantry",
+    "kcalPerUnit": 3.3,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.7,
+    "fPerUnit": 0
+  },
+  "Cannelle moulue": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.04,
+    "prepType": "pantry",
+    "kcalPerUnit": 2.5,
+    "pPerUnit": 0,
+    "cPerUnit": 0.8,
+    "fPerUnit": 0
+  },
+  "Muscade moulue": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.05,
+    "prepType": "pantry",
+    "kcalPerUnit": 5.2,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.5,
+    "fPerUnit": 0.4
+  },
+  "Piment de Cayenne": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.04,
+    "prepType": "pantry",
+    "kcalPerUnit": 3.2,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.6,
+    "fPerUnit": 0.2
+  },
+  "Piment d'Espelette": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.08,
+    "prepType": "pantry",
+    "kcalPerUnit": 3.1,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.6,
+    "fPerUnit": 0.1
+  },
+  "Ras el hanout": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.04,
+    "prepType": "pantry",
+    "kcalPerUnit": 3.2,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.6,
+    "fPerUnit": 0.1
+  },
+  "Garam masala": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.04,
+    "prepType": "pantry",
+    "kcalPerUnit": 3.3,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.5,
+    "fPerUnit": 0.1
+  },
+  "Épices cajun": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.04,
+    "prepType": "pantry",
+    "kcalPerUnit": 2.9,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.5,
+    "fPerUnit": 0.1
+  },
+  "Épices fajitas": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.04,
+    "prepType": "pantry",
+    "kcalPerUnit": 2.8,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.6,
+    "fPerUnit": 0.1
+  },
+  "Épices tandoori": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.04,
+    "prepType": "pantry",
+    "kcalPerUnit": 3,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.5,
+    "fPerUnit": 0.1
   },
   "Herbes de Provence": {
     "aisle": "Condiments & Épices",
@@ -419,10 +4679,140 @@
     "cPerUnit": 0.4,
     "fPerUnit": 0
   },
+  "Origan séché": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.03,
+    "prepType": "pantry",
+    "kcalPerUnit": 2.6,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.7,
+    "fPerUnit": 0
+  },
+  "Basilic séché": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.03,
+    "prepType": "pantry",
+    "kcalPerUnit": 2.3,
+    "pPerUnit": 0.2,
+    "cPerUnit": 0.5,
+    "fPerUnit": 0
+  },
+  "Thym séché": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.03,
+    "prepType": "pantry",
+    "kcalPerUnit": 2.7,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.6,
+    "fPerUnit": 0.1
+  },
+  "Romarin séché": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.03,
+    "prepType": "pantry",
+    "kcalPerUnit": 3.3,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.6,
+    "fPerUnit": 0.1
+  },
+  "Persil séché": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.03,
+    "prepType": "pantry",
+    "kcalPerUnit": 2.9,
+    "pPerUnit": 0.3,
+    "cPerUnit": 0.5,
+    "fPerUnit": 0.1
+  },
+  "Ail en poudre": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.03,
+    "prepType": "pantry",
+    "kcalPerUnit": 3.3,
+    "pPerUnit": 0.2,
+    "cPerUnit": 0.7,
+    "fPerUnit": 0
+  },
+  "Oignon en poudre": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.03,
+    "prepType": "pantry",
+    "kcalPerUnit": 3.4,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.8,
+    "fPerUnit": 0
+  },
+  "Laurier": {
+    "aisle": "Condiments & Épices",
+    "unit": "pièce",
+    "unitPrice": 0.05,
+    "prepType": "pantry",
+    "kcalPerUnit": 1,
+    "pPerUnit": 0,
+    "cPerUnit": 0.2,
+    "fPerUnit": 0
+  },
+  "Clous de girofle": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.06,
+    "prepType": "pantry",
+    "kcalPerUnit": 2.7,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.7,
+    "fPerUnit": 0.1
+  },
+  "Cardamome": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.09,
+    "prepType": "pantry",
+    "kcalPerUnit": 3.1,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.7,
+    "fPerUnit": 0.1
+  },
+  "Anis étoilé": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.07,
+    "prepType": "pantry",
+    "kcalPerUnit": 3.3,
+    "pPerUnit": 0.2,
+    "cPerUnit": 0.5,
+    "fPerUnit": 0.2
+  },
+  "Safran": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 6.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 3.1,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.7,
+    "fPerUnit": 0.1
+  },
   "Sel": {
     "aisle": "Condiments & Épices",
     "unit": "g",
-    "unitPrice": 0.002,
+    "unitPrice": 0,
+    "prepType": "pantry",
+    "kcalPerUnit": 0,
+    "pPerUnit": 0,
+    "cPerUnit": 0,
+    "fPerUnit": 0
+  },
+  "Fleur de sel": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.02,
     "prepType": "pantry",
     "kcalPerUnit": 0,
     "pPerUnit": 0,
@@ -438,5 +4828,175 @@
     "pPerUnit": 0.1,
     "cPerUnit": 0.6,
     "fPerUnit": 0
+  },
+  "Poivre blanc": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.03,
+    "prepType": "pantry",
+    "kcalPerUnit": 2.9,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.7,
+    "fPerUnit": 0
+  },
+  "Baies roses": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.06,
+    "prepType": "pantry",
+    "kcalPerUnit": 3,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.7,
+    "fPerUnit": 0.1
+  },
+  "Sucre roux": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 2.4,
+    "prepType": "pantry",
+    "kcalPerUnit": 3800,
+    "pPerUnit": 0,
+    "cPerUnit": 980,
+    "fPerUnit": 0
+  },
+  "Sucre blanc": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 1.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 4000,
+    "pPerUnit": 0,
+    "cPerUnit": 1000,
+    "fPerUnit": 0
+  },
+  "Cacao non sucré": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 8.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 2280,
+    "pPerUnit": 196,
+    "cPerUnit": 579,
+    "fPerUnit": 137
+  },
+  "Chocolat noir 70%": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 11.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 5980,
+    "pPerUnit": 78,
+    "cPerUnit": 459,
+    "fPerUnit": 426
+  },
+  "Levure nutritionnelle": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 16.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 3250,
+    "pPerUnit": 450,
+    "cPerUnit": 360,
+    "fPerUnit": 50
+  },
+  "Levure chimique": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.02,
+    "prepType": "pantry",
+    "kcalPerUnit": 0.5,
+    "pPerUnit": 0,
+    "cPerUnit": 0.3,
+    "fPerUnit": 0
+  },
+  "Bicarbonate alimentaire": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.01,
+    "prepType": "pantry",
+    "kcalPerUnit": 0,
+    "pPerUnit": 0,
+    "cPerUnit": 0,
+    "fPerUnit": 0
+  },
+  "Sauce hoisin": {
+    "aisle": "Condiments & Épices",
+    "unit": "L",
+    "unitPrice": 6.9,
+    "prepType": "pantry",
+    "kcalPerUnit": 2200,
+    "pPerUnit": 32,
+    "cPerUnit": 440,
+    "fPerUnit": 34
+  },
+  "Sauce satay": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 8.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 2650,
+    "pPerUnit": 95,
+    "cPerUnit": 190,
+    "fPerUnit": 175
+  },
+  "Sauce chimichurri": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 9.8,
+    "prepType": "pantry",
+    "kcalPerUnit": 3150,
+    "pPerUnit": 18,
+    "cPerUnit": 45,
+    "fPerUnit": 320
+  },
+  "Sauce pesto alla genovese": {
+    "aisle": "Condiments & Épices",
+    "unit": "kg",
+    "unitPrice": 11.5,
+    "prepType": "pantry",
+    "kcalPerUnit": 4550,
+    "pPerUnit": 48,
+    "cPerUnit": 65,
+    "fPerUnit": 450
+  },
+  "Poivre de Sichuan": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.08,
+    "prepType": "pantry",
+    "kcalPerUnit": 3,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.6,
+    "fPerUnit": 0.1
+  },
+  "Sumac": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.06,
+    "prepType": "pantry",
+    "kcalPerUnit": 2.9,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.6,
+    "fPerUnit": 0.1
+  },
+  "Zaatar": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.05,
+    "prepType": "pantry",
+    "kcalPerUnit": 3.1,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.5,
+    "fPerUnit": 0.1
+  },
+  "Quatre-épices": {
+    "aisle": "Condiments & Épices",
+    "unit": "g",
+    "unitPrice": 0.04,
+    "prepType": "pantry",
+    "kcalPerUnit": 2.9,
+    "pPerUnit": 0.1,
+    "cPerUnit": 0.7,
+    "fPerUnit": 0.1
   }
 }
