@@ -1,172 +1,222 @@
-// js/shopping.js — Consolidation de la liste de courses, "Vider mon frigo" et Export iPhone
+/**
+ * Batch Malin V2.2 — Générateur de liste de courses consolidée (shopping.js)
+ * Intègre : fusion d'unités, mise à l'échelle calorique et déduction du stock frigo.
+ */
+(function (global) {
+  "use strict";
 
-const BatchShopping = (() => {
   const AISLE_ORDER = [
+    "Boucherie & Poissonnerie",
     "Fruits & Légumes",
-    "Viandes & Poissons",
-    "Crèmerie & Œufs",
-    "Épicerie Salée",
-    "Conserves & Bocaux",
-    "Épicerie Sucrée"
+    "Crèmerie & Oeufs",
+    "Épicerie & Féculents",
+    "Condiments & Épices"
   ];
 
-  function consolidate(planItems, recipesMap, ingredientsMap, customPrices, fridgeStock) {
-    const rawTotals = {};
+  function normalizeKey(name) {
+    return String(name || "")
+      .trim()
+      .toLowerCase()
+      .replace(/œ/g, "oe")
+      .normalize("NFD")
+      .replace(/[̀-ͯ]/g, "");
+  }
 
-    planItems.forEach(entry => {
-      const recipe = recipesMap[entry.recipeId];
-      if (!recipe) return;
-      const scale = (Number(entry.portions) || 1) / Math.max(1, Number(recipe.basePortions) || 1);
+  function toBaseUnit(quantity, unit) {
+    const u = String(unit || "").trim().toLowerCase();
+    const q = Number(quantity) || 0;
 
-      (recipe.ingredients || []).forEach(item => {
-        const ing = ingredientsMap[item.id];
-        if (!ing) return;
-        const needed = (Number(item.qty) || 0) * scale;
-        rawTotals[item.id] = (rawTotals[item.id] || 0) + needed;
-      });
-    });
+    if (u === "kg") return { qty: q * 1000, baseUnit: "g" };
+    if (u === "g") return { qty: q, baseUnit: "g" };
+    if (u === "l") return { qty: q * 1000, baseUnit: "ml" };
+    if (u === "cl") return { qty: q * 10, baseUnit: "ml" };
+    if (u === "ml") return { qty: q, baseUnit: "ml" };
+    return { qty: q, baseUnit: u || "pièce" };
+  }
 
-    const items = [];
-    let totalGross = 0;
-    let totalNet = 0;
-
-    Object.keys(rawTotals).forEach(ingId => {
-      const ing = ingredientsMap[ingId];
-      if (!ing) return;
-      const grossQty = ing.unit === 'pièce' ? Math.ceil(rawTotals[ingId]) : Math.round(rawTotals[ingId]);
-      const stockQty = Math.max(0, Number((fridgeStock && fridgeStock[ingId]) || 0));
-      const netQty = Math.max(0, grossQty - stockQty);
-
-      const unitPrice = BatchPlanner.getEffectivePrice(ing, customPrices);
-      const factor = Number(ing.unitFactor) || 1000;
-      const grossCost = Math.round(((grossQty / factor) * unitPrice) * 100) / 100;
-      const netCost = Math.round(((netQty / factor) * unitPrice) * 100) / 100;
-      const isCustomPrice = customPrices && Object.prototype.hasOwnProperty.call(customPrices, ingId);
-
-      totalGross += grossCost;
-      totalNet += netCost;
-
-      if (grossQty > 0) {
-        items.push({
-          id: ingId,
-          name: ing.name,
-          aisle: ing.aisle || "Épicerie Salée",
-          unit: ing.unit,
-          priceUnit: ing.priceUnit,
-          unitFactor: factor,
-          unitPrice,
-          isCustomPrice,
-          grossQty,
-          stockQty,
-          netQty,
-          grossCost,
-          netCost
-        });
+  function formatDisplayQuantity(baseQty, baseUnit) {
+    if (baseUnit === "g") {
+      if (baseQty >= 1000) {
+        const kg = Math.round((baseQty / 1000) * 100) / 100;
+        return { formatted: `${kg.toLocaleString("fr-FR")} kg`, value: kg, unit: "kg" };
       }
-    });
+      const roundedG = Math.round(baseQty);
+      return { formatted: `${roundedG.toLocaleString("fr-FR")} g`, value: roundedG, unit: "g" };
+    }
 
-    // Group by aisle
-    const grouped = {};
-    items.forEach(it => {
-      if (!grouped[it.aisle]) grouped[it.aisle] = [];
-      grouped[it.aisle].push(it);
-    });
+    if (baseUnit === "ml") {
+      if (baseQty >= 1000) {
+        const liters = Math.round((baseQty / 1000) * 100) / 100;
+        return { formatted: `${liters.toLocaleString("fr-FR")} L`, value: liters, unit: "L" };
+      }
+      const roundedMl = Math.round(baseQty);
+      return { formatted: `${roundedMl.toLocaleString("fr-FR")} ml`, value: roundedMl, unit: "ml" };
+    }
 
-    const orderedAisles = Object.keys(grouped).sort((a, b) => {
-      const ia = AISLE_ORDER.indexOf(a);
-      const ib = AISLE_ORDER.indexOf(b);
-      if (ia === -1 && ib === -1) return a.localeCompare(b, 'fr');
-      if (ia === -1) return 1;
-      if (ib === -1) return -1;
-      return ia - ib;
-    });
-
-    orderedAisles.forEach(aisle => {
-      grouped[aisle].sort((a, b) => a.name.localeCompare(b.name, 'fr'));
-    });
-
-    totalGross = Math.round(totalGross * 100) / 100;
-    totalNet = Math.round(totalNet * 100) / 100;
+    const roundedCount = Math.ceil(baseQty * 10) / 10;
+    const unitLabel =
+      roundedCount > 1 && baseUnit === "pièce"
+        ? "pièces"
+        : roundedCount > 1 && baseUnit === "boîte"
+        ? "boîtes"
+        : roundedCount > 1 && baseUnit === "gousse"
+        ? "gousses"
+        : roundedCount > 1 && baseUnit === "tranche"
+        ? "tranches"
+        : baseUnit;
 
     return {
-      items,
-      grouped,
-      orderedAisles,
-      totalGross,
-      totalNet,
-      totalSaved: Math.max(0, Math.round((totalGross - totalNet) * 100) / 100)
+      formatted: `${roundedCount.toLocaleString("fr-FR")} ${unitLabel}`,
+      value: roundedCount,
+      unit: unitLabel
     };
   }
 
-  function formatQty(qty, unit) {
-    if (unit === 'g' && qty >= 1000) {
-      return `${(qty / 1000).toFixed(2).replace(/\.00$/, '').replace('.', ',')} kg`;
-    }
-    if (unit === 'ml' && qty >= 1000) {
-      return `${(qty / 1000).toFixed(2).replace(/\.00$/, '').replace('.', ',')} L`;
-    }
-    if (unit === 'pièce') {
-      return `${qty} ${qty > 1 ? 'pièces' : 'pièce'}`;
-    }
-    return `${qty} ${unit}`;
-  }
+  function buildShoppingList(selectedRecipes, ingredientsCatalog = {}, pantryItems = []) {
+    const mergedMap = new Map();
+    const pantryNormSet = new Set((pantryItems || []).map(normalizeKey).filter(Boolean));
 
-  /**
-   * Génère le texte optimisé pour iPhone :
-   * - mode === 'reminders' : 1 ligne par article sans en-têtes ni puces complexes,
-   *   afin que le collage dans Apple Rappels crée instantanément une case à cocher par produit.
-   * - mode === 'notes' : structuré par rayon avec prix estimés et total net.
-   */
-  function buildIphoneExportText(consolidated, checkedMap, options = {}) {
-    const mode = options.mode || 'reminders';
-    const includeChecked = Boolean(options.includeChecked);
-    const storeName = (options.storeName || '').trim();
-
-    const activeItems = consolidated.items.filter(it => {
-      if (it.netQty <= 0) return false;
-      if (!includeChecked && checkedMap && checkedMap[it.id]) return false;
-      return true;
+    const catalogByNorm = new Map();
+    Object.entries(ingredientsCatalog).forEach(([key, meta]) => {
+      catalogByNorm.set(normalizeKey(key), { canonicalName: key, ...meta });
     });
 
-    if (!activeItems.length) {
-      return "Aucun article à acheter (liste vide ou tout est déjà dans votre panier / frigo).";
-    }
+    selectedRecipes.forEach((recipe) => {
+      const portions = Number(recipe.totalPortions) || 1;
+      const calorieScale = Number(recipe._calorieScale) || 1;
+      const recipeIngredients = recipe.ingredients || [];
 
-    if (mode === 'reminders') {
-      return activeItems
-        .map(it => `${it.name} — ${formatQty(it.netQty, it.unit)}`)
-        .join('\n');
-    }
+      recipeIngredients.forEach((item) => {
+        const norm = normalizeKey(item.name);
+        const catMeta = catalogByNorm.get(norm);
+        const displayName = catMeta ? catMeta.canonicalName : item.name;
+        const { qty, baseUnit } = toBaseUnit(item.quantity * calorieScale * portions, item.unit);
+        const mapKey = `${norm}__${baseUnit}`;
 
-    // Mode Apple Notes / WhatsApp détaillé par rayon
-    const lines = [];
-    const header = storeName ? `🛒 COURSES BATCH MALIN (${storeName})` : `🛒 COURSES BATCH MALIN`;
-    lines.push(header);
-    lines.push(`Total estimé : ${consolidated.totalNet.toFixed(2).replace('.', ',')} €`);
-    lines.push("");
+        if (!mergedMap.has(mapKey)) {
+          mergedMap.set(mapKey, {
+            id: mapKey,
+            name: displayName,
+            normName: norm,
+            baseQty: 0,
+            baseUnit,
+            aisle: (catMeta && catMeta.aisle) || "Épicerie & Féculents",
+            prepType: (catMeta && catMeta.prepType) || "pantry",
+            unitPrice: catMeta ? Number(catMeta.unitPrice) || 0 : 0,
+            priceUnit: catMeta ? catMeta.unit : baseUnit,
+            recipesUsedIn: new Set()
+          });
+        }
 
-    consolidated.orderedAisles.forEach(aisle => {
-      const aisleItems = (consolidated.grouped[aisle] || []).filter(it => {
-        if (it.netQty <= 0) return false;
-        if (!includeChecked && checkedMap && checkedMap[it.id]) return false;
-        return true;
+        const entry = mergedMap.get(mapKey);
+        entry.baseQty += qty;
+        entry.recipesUsedIn.add(recipe.name);
       });
-      if (!aisleItems.length) return;
+    });
 
-      const aisleSum = aisleItems.reduce((acc, x) => acc + x.netCost, 0);
-      lines.push(`▸ ${aisle.toUpperCase()} (${aisleSum.toFixed(2).replace('.', ',')} €)`);
-      aisleItems.forEach(it => {
-        lines.push(`• ${it.name} : ${formatQty(it.netQty, it.unit)} (~${it.netCost.toFixed(2).replace('.', ',')} €)`);
+    const allItems = [];
+    let totalEstimatedCost = 0;
+    let savedFromPantry = 0;
+
+    mergedMap.forEach((entry) => {
+      const display = formatDisplayQuantity(entry.baseQty, entry.baseUnit);
+      const inPantry =
+        pantryNormSet.has(entry.normName) ||
+        Array.from(pantryNormSet).some((p) => entry.normName.includes(p) || p.includes(entry.normName));
+
+      let rawCost = 0;
+      if (entry.unitPrice > 0) {
+        if (entry.priceUnit === "kg" && entry.baseUnit === "g") {
+          rawCost = (entry.baseQty / 1000) * entry.unitPrice;
+        } else if (entry.priceUnit === "L" && entry.baseUnit === "ml") {
+          rawCost = (entry.baseQty / 1000) * entry.unitPrice;
+        } else {
+          rawCost = entry.baseQty * entry.unitPrice;
+        }
+      } else {
+        rawCost = entry.baseUnit === "g" ? (entry.baseQty / 1000) * 3.5 : 0.8;
+      }
+
+      rawCost = Math.round(rawCost * 100) / 100;
+      const estimatedCost = inPantry ? 0 : rawCost;
+
+      if (inPantry) {
+        savedFromPantry += rawCost;
+      } else {
+        totalEstimatedCost += estimatedCost;
+      }
+
+      allItems.push({
+        id: entry.id,
+        name: entry.name,
+        aisle: entry.aisle,
+        prepType: entry.prepType,
+        formattedQty: display.formatted,
+        displayValue: display.value,
+        displayUnit: display.unit,
+        estimatedCost,
+        rawCost,
+        inPantry,
+        recipeCount: entry.recipesUsedIn.size,
+        recipesList: Array.from(entry.recipesUsedIn)
+      });
+    });
+
+    const groupedByAisle = [];
+    const aisleMap = new Map();
+
+    allItems
+      .sort((a, b) => a.name.localeCompare(b.name, "fr"))
+      .forEach((item) => {
+        if (!aisleMap.has(item.aisle)) {
+          aisleMap.set(item.aisle, []);
+        }
+        aisleMap.get(item.aisle).push(item);
+      });
+
+    AISLE_ORDER.forEach((aisleName) => {
+      if (aisleMap.has(aisleName)) {
+        groupedByAisle.push({
+          aisle: aisleName,
+          items: aisleMap.get(aisleName)
+        });
+        aisleMap.delete(aisleName);
+      }
+    });
+
+    aisleMap.forEach((items, aisleName) => {
+      groupedByAisle.push({ aisle: aisleName, items });
+    });
+
+    return {
+      items: allItems,
+      groupedByAisle,
+      totalItemsCount: allItems.length,
+      totalEstimatedCost: Math.round(totalEstimatedCost * 100) / 100,
+      savedFromPantry: Math.round(savedFromPantry * 100) / 100
+    };
+  }
+
+  function formatShoppingListAsText(shoppingData) {
+    const lines = ["BATCH MALIN — LISTE DE COURSES", ""];
+    shoppingData.groupedByAisle.forEach((group) => {
+      lines.push(`▸ ${group.aisle.toUpperCase()}`);
+      group.items.forEach((item) => {
+        const suffix = item.inPantry ? " [DÉJÀ EN STOCK]" : ` (~${item.estimatedCost.toFixed(2)} €)`;
+        lines.push(`  • ${item.name} : ${item.formattedQty}${suffix}`);
       });
       lines.push("");
     });
-
-    return lines.join('\n').trim();
+    lines.push(`Total à acheter : ${shoppingData.totalEstimatedCost.toFixed(2)} €`);
+    if (shoppingData.savedFromPantry > 0) {
+      lines.push(`Économisé grâce aux restes frigo : ${shoppingData.savedFromPantry.toFixed(2)} €`);
+    }
+    return lines.join("
+");
   }
 
-  return {
-    consolidate,
-    formatQty,
-    buildIphoneExportText
+  global.BatchShopping = {
+    buildShoppingList,
+    formatShoppingListAsText
   };
-})();
+})(window);
