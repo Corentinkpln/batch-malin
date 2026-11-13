@@ -1,6 +1,6 @@
 {
   "Poulet": { "aisle": "Boucherie & Poissonnerie", "unit": "kg", "unitPrice": 10.90, "prepType": "prep_protein", "kcalPerUnit": 1150, "pPerUnit": 230, "cPerUnit": 0, "fPerUnit": 20 },
-  "Bœuf haché": { "aisle": "Boucherie & Poissonnerie", "unit": "kg", "unitPrice": 11.50, "prepType": "prep_protein", "kcalPerUnit": 1760, "pPerUnit": 200, "cPerUnit": 0, "fPerUnit": 100 },
+  "Boeuf haché": { "aisle": "Boucherie & Poissonnerie", "unit": "kg", "unitPrice": 11.50, "prepType": "prep_protein", "kcalPerUnit": 1760, "pPerUnit": 200, "cPerUnit": 0, "fPerUnit": 100 },
   "Saumon": { "aisle": "Boucherie & Poissonnerie", "unit": "kg", "unitPrice": 18.90, "prepType": "prep_protein", "kcalPerUnit": 2080, "pPerUnit": 200, "cPerUnit": 0, "fPerUnit": 130 },
   "Cabillaud": { "aisle": "Boucherie & Poissonnerie", "unit": "kg", "unitPrice": 16.50, "prepType": "prep_protein", "kcalPerUnit": 820, "pPerUnit": 180, "cPerUnit": 0, "fPerUnit": 7 },
   "Colin": { "aisle": "Boucherie & Poissonnerie", "unit": "kg", "unitPrice": 12.90, "prepType": "prep_protein", "kcalPerUnit": 860, "pPerUnit": 190, "cPerUnit": 0, "fPerUnit": 9 },
@@ -19,10 +19,10 @@
   "Citron": { "aisle": "Fruits & Légumes", "unit": "pièce", "unitPrice": 0.55, "prepType": "chop_veg", "kcalPerUnit": 25, "pPerUnit": 1, "cPerUnit": 8, "fPerUnit": 0 },
   "Ail": { "aisle": "Fruits & Légumes", "unit": "gousse", "unitPrice": 0.12, "prepType": "chop_veg", "kcalPerUnit": 5, "pPerUnit": 0, "cPerUnit": 1, "fPerUnit": 0 },
 
-  "Œufs": { "aisle": "Crèmerie & Œufs", "unit": "pièce", "unitPrice": 0.32, "prepType": "pantry", "kcalPerUnit": 78, "pPerUnit": 6.5, "cPerUnit": 0.6, "fPerUnit": 5.3 },
-  "Crème légère": { "aisle": "Crèmerie & Œufs", "unit": "L", "unitPrice": 3.20, "prepType": "pantry", "kcalPerUnit": 1600, "pPerUnit": 25, "cPerUnit": 40, "fPerUnit": 150 },
-  "Fromage râpé": { "aisle": "Crèmerie & Œufs", "unit": "kg", "unitPrice": 8.90, "prepType": "pantry", "kcalPerUnit": 3700, "pPerUnit": 260, "cPerUnit": 15, "fPerUnit": 290 },
-  "Parmesan": { "aisle": "Crèmerie & Œufs", "unit": "kg", "unitPrice": 16.50, "prepType": "pantry", "kcalPerUnit": 4020, "pPerUnit": 350, "cPerUnit": 30, "fPerUnit": 280 },
+  "Oeufs": { "aisle": "Crèmerie & Oeufs", "unit": "pièce", "unitPrice": 0.32, "prepType": "pantry", "kcalPerUnit": 78, "pPerUnit": 6.5, "cPerUnit": 0.6, "fPerUnit": 5.3 },
+  "Crème légère": { "aisle": "Crèmerie & Oeufs", "unit": "L", "unitPrice": 3.20, "prepType": "pantry", "kcalPerUnit": 1600, "pPerUnit": 25, "cPerUnit": 40, "fPerUnit": 150 },
+  "Fromage râpé": { "aisle": "Crèmerie & Oeufs", "unit": "kg", "unitPrice": 8.90, "prepType": "pantry", "kcalPerUnit": 3700, "pPerUnit": 260, "cPerUnit": 15, "fPerUnit": 290 },
+  "Parmesan": { "aisle": "Crèmerie & Oeufs", "unit": "kg", "unitPrice": 16.50, "prepType": "pantry", "kcalPerUnit": 4020, "pPerUnit": 350, "cPerUnit": 30, "fPerUnit": 280 },
 
   "Riz basmati": { "aisle": "Épicerie & Féculents", "unit": "kg", "unitPrice": 2.60, "prepType": "rinse_grain", "kcalPerUnit": 3500, "pPerUnit": 80, "cPerUnit": 770, "fPerUnit": 10 },
   "Riz arborio": { "aisle": "Épicerie & Féculents", "unit": "kg", "unitPrice": 3.40, "prepType": "rinse_grain", "kcalPerUnit": 3480, "pPerUnit": 70, "cPerUnit": 780, "fPerUnit": 8 },
