@@ -1,5 +1,5 @@
 /**
- * Batch Malin V2.2 — Ordonnanceur parallèle de Batch Cooking (batch.js)
+ * Batch Malin V2.4 — Ordonnanceur parallèle de Batch Cooking (batch.js)
  * Gère la mise en place groupée, les cuissons parallèles par appareil,
  * l'affichage des étapes complètes des recettes et la répartition Frigo/Congélateur.
  */
@@ -189,7 +189,7 @@
         : "Réserver les portions des Jours 1–4 au réfrigérateur. ";
       const freezerPart = freezableNames.length
         ? `Congeler immédiatement le reste (Jours 5–${days}) : ${freezableNames.join(", ")}.`
-        : `Congeler les portions au-delà du jour 4 après refroidissement complet.`;
+        : "Congeler les portions au-delà du jour 4 après refroidissement complet.";
       boxingDesc = priorityFridge + freezerPart;
     } else {
       boxingDesc =
