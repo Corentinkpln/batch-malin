@@ -1,7 +1,7 @@
 /**
- * Batch Malin V2.2 — Moteur d'optimisation de menu (planner.js)
+ * Batch Malin V2.4 — Moteur d'optimisation de menu (planner.js)
  * Intègre : horizon 1-14j, restes frigo, liste noire d'ingrédients,
- * ciblage calorique dynamique, priorisation des recettes personnelles et ajout manuel au menu.
+ * ciblage calorique dynamique, priorisation des recettes personnelles et gestion manuelle du menu.
  */
 (function (global) {
   "use strict";
@@ -30,7 +30,7 @@
       .toLowerCase()
       .replace(/œ/g, "oe")
       .normalize("NFD")
-      .replace(/[̀-ͯ]/g, "");
+      .replace(/[\u0300-\u036f]/g, "");
   }
 
   function buildRecipeIndex(recipes) {
@@ -201,7 +201,16 @@
         totalCost: 0,
         synergyScore: 0,
         sharedIngredients: [],
-        nutrition: { totalCalories: 0, totalProtein: 0, totalCarbs: 0, totalFat: 0, avgCalories: 0, avgProtein: 0, avgCarbs: 0, avgFat: 0 },
+        nutrition: {
+          totalCalories: 0,
+          totalProtein: 0,
+          totalCarbs: 0,
+          totalFat: 0,
+          avgCalories: 0,
+          avgProtein: 0,
+          avgCarbs: 0,
+          avgFat: 0
+        },
         notice: "Aucune recette compatible avec votre matériel et vos exclusions. Vérifiez vos filtres."
       };
     }
@@ -336,9 +345,10 @@
     if (!recipe) return null;
 
     const servings = Math.max(1, Number(config.servings) || 1);
-    const existingList = currentPlan && Array.isArray(currentPlan.selectedRecipes)
-      ? currentPlan.selectedRecipes
-      : [];
+    const existingList =
+      currentPlan && Array.isArray(currentPlan.selectedRecipes)
+        ? currentPlan.selectedRecipes
+        : [];
 
     const existingIndex = existingList.findIndex((r) => r.id === recipeId);
     let updatedRecipes;
@@ -367,6 +377,23 @@
     );
 
     return { plan: updatedPlan, action, recipeName: recipe.name };
+  }
+
+  function removeRecipeFromPlan(currentPlan, recipeId, config) {
+    if (!currentPlan || !Array.isArray(currentPlan.selectedRecipes)) return currentPlan;
+    const servings = Math.max(1, Number(config.servings) || 1);
+    const updatedRecipes = currentPlan.selectedRecipes.filter((r) => r.id !== recipeId);
+    if (!updatedRecipes.length) return currentPlan;
+
+    const totalMeals = updatedRecipes.reduce((sum, r) => sum + (Number(r.batches) || 1), 0);
+    const totalPortions = totalMeals * servings;
+
+    return finalizePlanMetrics(
+      updatedRecipes,
+      totalMeals,
+      totalPortions,
+      currentPlan.notice
+    );
   }
 
   function replaceRecipeInPlan(currentPlan, recipeIdToReplace, indexedData, config) {
@@ -418,11 +445,12 @@
 
     if (!planned.length) return null;
     const totalPortions = totalMeals * servings;
-    return finalizePlanMetrics(planned, totalMeals, totalPortions, "Plan chargé depuis un lien partagé.");
+    return finalizePlanMetrics(planned, totalMeals, totalPortions, null);
   }
 
   function computePlanCost(plannedRecipes) {
-    return plannedRecipes.reduce((sum, r) => sum + r._effectivePrice * r.totalPortions, 0);
+    const total = plannedRecipes.reduce((sum, r) => sum + r._effectivePrice * r.totalPortions, 0);
+    return Math.round(total * 100) / 100;
   }
 
   function finalizePlanMetrics(plannedRecipes, totalMeals, totalPortions, notice) {
@@ -495,6 +523,7 @@
     isRecipeEligible,
     generatePlan,
     addRecipeToPlan,
+    removeRecipeFromPlan,
     replaceRecipeInPlan,
     rebuildPlanFromSavedSlots
   };
