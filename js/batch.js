@@ -1,101 +1,231 @@
-// js/batch.js — Ordonnancement parallèle de la session Batch Cooking
+/**
+ * Batch Malin V2.2 — Ordonnanceur parallèle de Batch Cooking (batch.js)
+ * Gère la mise en place groupée, les cuissons parallèles par appareil,
+ * l'affichage des étapes complètes des recettes et la répartition Frigo/Congélateur.
+ */
+(function (global) {
+  "use strict";
 
-const BatchScheduler = (() => {
-  function buildSchedule(planItems, recipesMap, equipmentMap) {
-    if (!planItems.length) {
-      return { equipmentList: [], phases: [], totalPrep: 0, totalCook: 0 };
+  function parseStartTimeToMinutes(timeStr) {
+    const parts = String(timeStr || "18:00").split(":");
+    const h = Math.min(23, Math.max(0, parseInt(parts[0], 10) || 18));
+    const m = Math.min(59, Math.max(0, parseInt(parts[1], 10) || 0));
+    return h * 60 + m;
+  }
+
+  function formatMinutesAsClock(totalMinutes) {
+    const wrapped = ((Math.round(totalMinutes) % 1440) + 1440) % 1440;
+    const h = Math.floor(wrapped / 60);
+    const m = wrapped % 60;
+    return `${String(h).padStart(2, "0")}h${String(m).padStart(2, "0")}`;
+  }
+
+  function generateBatchSchedule(selectedRecipes, shoppingData, startTimeStr = "18:00", days = 5) {
+    if (!selectedRecipes || !selectedRecipes.length) {
+      return {
+        steps: [],
+        totalDurationMin: 0,
+        sequentialDurationMin: 0,
+        timeSavedMin: 0,
+        startClock: formatMinutesAsClock(parseStartTimeToMinutes(startTimeStr)),
+        endClock: formatMinutesAsClock(parseStartTimeToMinutes(startTimeStr))
+      };
     }
 
-    const eqIds = new Set();
-    let totalPrep = 0;
-    let maxCook = 0;
+    const startMin = parseStartTimeToMinutes(startTimeStr);
+    const timeline = [];
 
-    const ovenRecipes = [];
-    const stoveRecipes = [];
-    const coldRecipes = [];
+    const sequentialDurationMin = selectedRecipes.reduce(
+      (sum, r) => sum + (Number(r.prepTime) || 10) + (Number(r.cookTime) || 15) + 5,
+      0
+    );
 
-    planItems.forEach(entry => {
-      const rec = recipesMap[entry.recipeId];
-      if (!rec) return;
-      totalPrep += Number(rec.prepTime) || 0;
-      maxCook = Math.max(maxCook, Number(rec.cookTime) || 0);
+    const vegList = [];
+    const proteinList = [];
+    const grainList = [];
 
-      (rec.equipment || []).forEach(id => eqIds.add(id));
+    (shoppingData.items || []).forEach((item) => {
+      if (item.prepType === "chop_veg") vegList.push(`${item.name} (${item.formattedQty})`);
+      else if (item.prepType === "prep_protein") proteinList.push(`${item.name} (${item.formattedQty})`);
+      else if (item.prepType === "rinse_grain") grainList.push(`${item.name} (${item.formattedQty})`);
+    });
 
-      const eq = rec.equipment || [];
-      if (eq.includes('four')) {
-        ovenRecipes.push({ rec, portions: entry.portions });
-      } else if ((Number(rec.cookTime) || 0) > 0) {
-        stoveRecipes.push({ rec, portions: entry.portions });
-      } else {
-        coldRecipes.push({ rec, portions: entry.portions });
+    let cursor = startMin;
+
+    if (vegList.length > 0) {
+      const vegPrepDur = Math.max(8, Math.min(25, vegList.length * 3 + 4));
+      timeline.push({
+        id: "step-prep-veg",
+        startMin: cursor,
+        durationMin: vegPrepDur,
+        clock: formatMinutesAsClock(cursor),
+        title: "Découper tous les légumes en une seule fois",
+        description: `Laver, éplucher et tailler : ${vegList.join(", ")}.`,
+        type: "prep",
+        typeLabel: "Préparation",
+        appliance: "Plan de travail"
+      });
+      cursor += vegPrepDur;
+    }
+
+    if (proteinList.length > 0) {
+      const protPrepDur = Math.max(6, Math.min(18, proteinList.length * 4 + 2));
+      timeline.push({
+        id: "step-prep-protein",
+        startMin: cursor,
+        durationMin: protPrepDur,
+        clock: formatMinutesAsClock(cursor),
+        title: "Préparer et assaisonner les protéines",
+        description: `Détailler et mariner : ${proteinList.join(", ")}.`,
+        type: "prep",
+        typeLabel: "Préparation",
+        appliance: "Plan de travail"
+      });
+      cursor += protPrepDur;
+    }
+
+    if (cursor === startMin) {
+      timeline.push({
+        id: "step-prep-general",
+        startMin: cursor,
+        durationMin: 10,
+        clock: formatMinutesAsClock(cursor),
+        title: "Mise en place des ingrédients et contenants",
+        description: `Peser et préparer les bases pour ${selectedRecipes.length} recettes.`,
+        type: "prep",
+        typeLabel: "Préparation",
+        appliance: "Plan de travail"
+      });
+      cursor += 10;
+    }
+
+    const cookingLaunchBase = cursor;
+    const applianceCursor = new Map();
+    let maxCookingEnd = cookingLaunchBase;
+
+    const recipesByCookTime = [...selectedRecipes].sort(
+      (a, b) => (Number(b.cookTime) || 15) - (Number(a.cookTime) || 15)
+    );
+
+    recipesByCookTime.forEach((recipe) => {
+      const cookDur = Math.max(8, Number(recipe.cookTime) || 15);
+      const equipList = recipe.equipment && recipe.equipment.length ? recipe.equipment : ["Plaques induction"];
+      const primaryAppliance = equipList[0];
+
+      const earliestStart = applianceCursor.get(primaryAppliance) || cookingLaunchBase;
+      const stepEnd = earliestStart + cookDur;
+      applianceCursor.set(primaryAppliance, stepEnd);
+
+      if (stepEnd > maxCookingEnd) {
+        maxCookingEnd = stepEnd;
+      }
+
+      const recipeSteps = Array.isArray(recipe.steps) ? recipe.steps.filter(Boolean) : [];
+      const summaryHint =
+        recipeSteps.length > 0
+          ? `${recipe.totalPortions} portions · ${recipeSteps.length} étape${recipeSteps.length > 1 ? "s" : ""} à suivre`
+          : `${recipe.totalPortions} portions · Cuisson maîtrisée`;
+
+      timeline.push({
+        id: `step-cook-${recipe.id}`,
+        startMin: earliestStart,
+        durationMin: cookDur,
+        clock: formatMinutesAsClock(earliestStart),
+        title: `Lancer ${recipe.name} (${primaryAppliance})`,
+        description: summaryHint,
+        subSteps: recipeSteps,
+        isCustom: Boolean(recipe.isCustom),
+        type: "cook",
+        typeLabel: primaryAppliance,
+        appliance: primaryAppliance
+      });
+
+      if (equipList.length > 1) {
+        const secondaryAppliance = equipList[1];
+        const secDur = Math.max(10, Math.round(cookDur * 0.75));
+        const secStart = applianceCursor.get(secondaryAppliance) || cookingLaunchBase;
+        const secEnd = secStart + secDur;
+        applianceCursor.set(secondaryAppliance, secEnd);
+        if (secEnd > maxCookingEnd) maxCookingEnd = secEnd;
+
+        timeline.push({
+          id: `step-cook-sec-${recipe.id}`,
+          startMin: secStart,
+          durationMin: secDur,
+          clock: formatMinutesAsClock(secStart),
+          title: `Cuisson parallèle accompagnement — ${recipe.name}`,
+          description: grainList.length
+            ? `Lancer la cuisson des féculents (${grainList.join(", ")}) sur ${secondaryAppliance}.`
+            : `Utiliser ${secondaryAppliance} en simultané.`,
+          type: "cook",
+          typeLabel: secondaryAppliance,
+          appliance: secondaryAppliance
+        });
       }
     });
 
-    const equipmentList = Array.from(eqIds)
-      .map(id => equipmentMap[id])
-      .filter(Boolean);
-
-    const phases = [];
-
-    // Phase 1 : Préparation groupée
-    phases.push({
-      title: "1️⃣ Mise en place & découpe groupée",
-      subtitle: "Sortez tout le matériel et découpez tous vos légumes et viandes en une seule fois.",
-      tasks: planItems.map(entry => {
-        const rec = recipesMap[entry.recipeId];
-        return `<strong>${rec.title}</strong> (${entry.portions} port.) — ${rec.steps[0] || "Préparer les ingrédients."}`;
-      })
+    const sauceStart = Math.min(cookingLaunchBase + 5, Math.max(cookingLaunchBase, maxCookingEnd - 12));
+    timeline.push({
+      id: "step-sauces",
+      startMin: sauceStart,
+      durationMin: 8,
+      clock: formatMinutesAsClock(sauceStart),
+      title: "Préparer les sauces, assaisonnements et garnitures",
+      description: "Profitant du temps de cuisson passif, préparer les sauces, herbes et toppings.",
+      type: "prep",
+      typeLabel: "Temps masqué",
+      appliance: "Plan de travail"
     });
 
-    // Phase 2 : Four
-    if (ovenRecipes.length) {
-      phases.push({
-        title: "2️⃣ Lancement des cuissons au Four (en parallèle)",
-        subtitle: "Enfournez ces plats en premier pour libérer vos mains pendant la cuisson.",
-        tasks: ovenRecipes.map(({ rec, portions }) =>
-          `<strong>${rec.title}</strong> (${portions} port. · ~${rec.cookTime} min) — ${rec.steps.slice(1).join(' ')}`
-        )
-      });
+    const freezableNames = selectedRecipes.filter((r) => r.freezable).map((r) => r.name);
+    const nonFreezableNames = selectedRecipes.filter((r) => !r.freezable).map((r) => r.name);
+    const packDuration = Math.max(8, selectedRecipes.length * 3);
+    const sessionEnd = maxCookingEnd + packDuration;
+
+    let boxingDesc;
+    if (Number(days) > 5) {
+      const priorityFridge = nonFreezableNames.length
+        ? `Priorité frigo (Jours 1–4) : ${nonFreezableNames.join(", ")}. `
+        : "Réserver les portions des Jours 1–4 au réfrigérateur. ";
+      const freezerPart = freezableNames.length
+        ? `Congeler immédiatement le reste (Jours 5–${days}) : ${freezableNames.join(", ")}.`
+        : `Congeler les portions au-delà du jour 4 après refroidissement complet.`;
+      boxingDesc = priorityFridge + freezerPart;
+    } else {
+      boxingDesc =
+        freezableNames.length > 0
+          ? `Répartir en contenants hermétiques. Congélation possible pour : ${freezableNames.join(", ")}.`
+          : "Répartir toutes les portions en contenants hermétiques et réfrigérer sous 2h.";
     }
 
-    // Phase 3 : Plaques & Mijotage
-    if (stoveRecipes.length) {
-      phases.push({
-        title: "3️⃣ Cuissons sur Plaques / Mijotage",
-        subtitle: "Pendant que le four tourne, enchaînez les cuissons à la poêle, casserole ou faitout.",
-        tasks: stoveRecipes.map(({ rec, portions }) =>
-          `<strong>${rec.title}</strong> (${portions} port. · ~${rec.cookTime} min) — ${rec.steps.slice(1).join(' ')}`
-        )
-      });
-    }
-
-    // Phase 4 : Sans cuisson
-    if (coldRecipes.length) {
-      phases.push({
-        title: "4️⃣ Assemblages à froid",
-        subtitle: "Préparations sans cuisson prêtes en quelques minutes.",
-        tasks: coldRecipes.map(({ rec, portions }) =>
-          `<strong>${rec.title}</strong> (${portions} port.) — ${rec.steps.join(' ')}`
-        )
-      });
-    }
-
-    // Phase 5 : Refroidissement & Stockage
-    const split = BatchPlanner.splitFridgeFreezer(planItems, recipesMap, 1);
-    phases.push({
-      title: "5️⃣ Refroidissement, Mise en Boîtes & Étiquetage",
-      subtitle: "Laissez tiédir 20-30 min avant de fermer les boîtes pour éviter la condensation.",
-      tasks: split.map(item => {
-        const parts = [];
-        if (item.fridgePortions > 0) parts.push(`🧊 ${item.fridgePortions} port. au Frigo (max ${item.recipe.fridgeDays} j)`);
-        if (item.freezerPortions > 0) parts.push(`❄️ ${item.freezerPortions} port. au Congélateur`);
-        return `<strong>${item.recipe.title}</strong> : ${parts.join(' · ')}`;
-      })
+    timeline.push({
+      id: "step-boxing",
+      startMin: maxCookingEnd,
+      durationMin: packDuration,
+      clock: formatMinutesAsClock(maxCookingEnd),
+      title: Number(days) > 5 ? "Mise en boîtes : tri Frigo (J1–4) & Congélateur" : "Assemblage et mise en boîtes",
+      description: boxingDesc,
+      type: "pack",
+      typeLabel: "Conservation",
+      appliance: "Boîtes hermétiques"
     });
 
-    return { equipmentList, phases, totalPrep, totalCook: maxCook };
+    timeline.sort((a, b) => a.startMin - b.startMin);
+
+    const totalDurationMin = Math.max(15, sessionEnd - startMin);
+    const timeSavedMin = Math.max(0, sequentialDurationMin - totalDurationMin);
+
+    return {
+      steps: timeline,
+      totalDurationMin,
+      sequentialDurationMin,
+      timeSavedMin,
+      startClock: formatMinutesAsClock(startMin),
+      endClock: formatMinutesAsClock(sessionEnd)
+    };
   }
 
-  return { buildSchedule };
-})();
+  global.BatchScheduler = {
+    generateBatchSchedule
+  };
+})(window);
