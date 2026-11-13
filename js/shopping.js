@@ -1,5 +1,5 @@
 /**
- * Batch Malin V2 — Générateur de liste de courses consolidée (shopping.js)
+ * Batch Malin V2.1 — Générateur de liste de courses consolidée (shopping.js)
  * Intègre : fusion d'unités, mise à l'échelle calorique et déduction du stock frigo.
  */
 (function (global) {
@@ -8,7 +8,7 @@
   const AISLE_ORDER = [
     "Boucherie & Poissonnerie",
     "Fruits & Légumes",
-    "Crèmerie & Œufs",
+    "Crèmerie & Oeufs",
     "Épicerie & Féculents",
     "Condiments & Épices"
   ];
@@ -17,6 +17,7 @@
     return String(name || "")
       .trim()
       .toLowerCase()
+      .replace(/œ/g, "oe")
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "");
   }
