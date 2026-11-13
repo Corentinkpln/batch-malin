@@ -1,192 +1,1626 @@
 [
   {
-    "id": 401,
-    "name": "Penne au poulet, crème légère & champignons",
+    "id": 237,
+    "name": "Penne au poulet, pesto vert & courgettes grillées",
     "category": "pasta",
-    "price": 2.40,
+    "price": 2.54,
     "prepTime": 10,
-    "cookTime": 18,
-    "calories": 570,
-    "protein": 38,
-    "carbs": 58,
-    "fat": 19,
-    "freezable": true,
-    "batchFriendly": true,
-    "equipment": ["Plaques induction"],
-    "ingredients": [
-      { "name": "Pâtes penne", "quantity": 85, "unit": "g" },
-      { "name": "Poulet", "quantity": 140, "unit": "g" },
-      { "name": "Champignons", "quantity": 100, "unit": "g" },
-      { "name": "Crème légère", "quantity": 60, "unit": "ml" },
-      { "name": "Oignon", "quantity": 35, "unit": "g" }
-    ],
-    "steps": [
-      "Cuire les pâtes penne al dente dans un grand volume d'eau salée.",
-      "Saisir les dés de poulet, les champignons émincés et l'oignon à la poêle pendant 10 min, puis déglacer avec la crème légère.",
-      "Mélanger les pâtes à la sauce et répartir en boîtes."
-    ]
-  },
-  {
-    "id": 402,
-    "name": "Fusilli bolognaise de bœuf & carottes fondantes",
-    "category": "pasta",
-    "price": 2.35,
-    "prepTime": 10,
-    "cookTime": 22,
-    "calories": 585,
-    "protein": 34,
-    "carbs": 62,
-    "fat": 21,
-    "freezable": true,
-    "batchFriendly": true,
-    "equipment": ["Plaques induction"],
-    "ingredients": [
-      { "name": "Pâtes fusilli", "quantity": 85, "unit": "g" },
-      { "name": "Bœuf haché", "quantity": 130, "unit": "g" },
-      { "name": "Coulis de tomate", "quantity": 130, "unit": "ml" },
-      { "name": "Carottes", "quantity": 70, "unit": "g" },
-      { "name": "Oignon", "quantity": 40, "unit": "g" }
-    ],
-    "steps": [
-      "Faire revenir l'oignon et les carottes râpées 5 min, ajouter le bœuf haché puis le coulis de tomate.",
-      "Laisser mijoter 15 min pendant la cuisson des fusilli.",
-      "Mélanger pâtes et sauce bolognaise avant mise en boîte."
-    ]
-  },
-  {
-    "id": 403,
-    "name": "Pâtes complètes au thon, sauce tomate & courgettes",
-    "category": "pasta",
-    "price": 1.95,
-    "prepTime": 8,
     "cookTime": 15,
-    "calories": 520,
-    "protein": 33,
-    "carbs": 64,
-    "fat": 13,
+    "calories": 697,
+    "protein": 50,
+    "carbs": 76,
+    "fat": 20,
     "freezable": true,
     "batchFriendly": true,
-    "equipment": ["Plaques induction"],
+    "equipment": [
+      "Plaques induction"
+    ],
     "ingredients": [
-      { "name": "Pâtes complètes", "quantity": 85, "unit": "g" },
-      { "name": "Thon en boîte", "quantity": 100, "unit": "g" },
-      { "name": "Coulis de tomate", "quantity": 120, "unit": "ml" },
-      { "name": "Courgettes", "quantity": 90, "unit": "g" },
-      { "name": "Huile d'olive", "quantity": 8, "unit": "ml" }
+      {
+        "name": "Pâtes penne",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Blanc de poulet",
+        "quantity": 130,
+        "unit": "g"
+      },
+      {
+        "name": "Pesto vert",
+        "quantity": 25,
+        "unit": "g"
+      },
+      {
+        "name": "Courgettes",
+        "quantity": 110,
+        "unit": "g"
+      },
+      {
+        "name": "Parmesan",
+        "quantity": 15,
+        "unit": "g"
+      }
     ],
     "steps": [
-      "Cuire les pâtes complètes dans l'eau bouillante salée.",
-      "Poêler les courgettes en petits dés 7 min, ajouter le coulis de tomate et le thon émietté.",
-      "Incorporer les pâtes égouttées et conditionner."
+      "Cuire les penne al dente dans l'eau bouillante salée.",
+      "Saisir le poulet et les courgettes en dés, mélanger aux pâtes avec le pesto et le parmesan."
     ]
   },
   {
-    "id": 404,
-    "name": "Penne aux courgettes rôties, ail & parmesan",
+    "id": 238,
+    "name": "Spaghetti bolognaise maison au bœuf 5% & carottes",
     "category": "pasta",
-    "price": 1.85,
+    "price": 2.67,
+    "prepTime": 15,
+    "cookTime": 25,
+    "calories": 615,
+    "protein": 42,
+    "carbs": 88,
+    "fat": 8,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes spaghetti",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Bœuf haché 5%",
+        "quantity": 130,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates concassées",
+        "quantity": 140,
+        "unit": "g"
+      },
+      {
+        "name": "Carottes",
+        "quantity": 60,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Origan séché",
+        "quantity": 2,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Faire revenir oignon, carotte râpée et bœuf haché.",
+      "Ajouter tomates et origan, mijoter 18 min et servir sur les spaghetti cuits."
+    ]
+  },
+  {
+    "id": 239,
+    "name": "Tagliatelles au saumon frais, citron & épinards",
+    "category": "pasta",
+    "price": 3.61,
     "prepTime": 10,
-    "cookTime": 20,
-    "calories": 510,
-    "protein": 20,
-    "carbs": 66,
-    "fat": 18,
+    "cookTime": 15,
+    "calories": 738,
+    "protein": 43,
+    "carbs": 80,
+    "fat": 26,
     "freezable": false,
     "batchFriendly": true,
-    "equipment": ["Four", "Plaques induction"],
+    "equipment": [
+      "Plaques induction"
+    ],
     "ingredients": [
-      { "name": "Pâtes penne", "quantity": 85, "unit": "g" },
-      { "name": "Courgettes", "quantity": 150, "unit": "g" },
-      { "name": "Parmesan", "quantity": 25, "unit": "g" },
-      { "name": "Ail", "quantity": 1, "unit": "gousse" },
-      { "name": "Huile d'olive", "quantity": 12, "unit": "ml" }
+      {
+        "name": "Pâtes tagliatelles",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Saumon",
+        "quantity": 130,
+        "unit": "g"
+      },
+      {
+        "name": "Épinards frais",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 45,
+        "unit": "ml"
+      },
+      {
+        "name": "Citron",
+        "quantity": 0.5,
+        "unit": "pièce"
+      }
     ],
     "steps": [
-      "Rôtir les courgettes en dés avec l'ail et l'huile d'olive 18 min au four à 200°C.",
-      "Cuire les penne al dente sur les plaques induction.",
-      "Mélanger les pâtes, les courgettes rôties et le parmesan râpé."
+      "Cuire les tagliatelles 8 min à l'eau bouillante.",
+      "Saisir les dés de saumon 4 min, ajouter crème, citron et épinards puis mélanger aux pâtes."
     ]
-  }
-  ,{
-    "id": 405,
-    "name": "Penne sauce tomate épicée, pois chiches & épinards",
+  },
+  {
+    "id": 240,
+    "name": "Fusilli crémeux aux champignons, lardons fumés & persil",
     "category": "pasta",
-    "price": 1.80,
-    "prepTime": 8,
+    "price": 2.08,
+    "prepTime": 10,
     "cookTime": 15,
-    "calories": 555,
-    "protein": 22,
-    "carbs": 82,
+    "calories": 718,
+    "protein": 34,
+    "carbs": 78,
+    "fat": 29,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes fusilli",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Lardons fumés",
+        "quantity": 75,
+        "unit": "g"
+      },
+      {
+        "name": "Champignons de Paris",
+        "quantity": 130,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 45,
+        "unit": "ml"
+      },
+      {
+        "name": "Parmesan",
+        "quantity": 15,
+        "unit": "g"
+      },
+      {
+        "name": "Persil frais",
+        "quantity": 0.2,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Cuire les fusilli al dente.",
+      "Dorer lardons et champignons émincés, ajouter crème, parmesan et persil."
+    ]
+  },
+  {
+    "id": 241,
+    "name": "Rigatoni all'arrabbiata, thon & olives noires",
+    "category": "pasta",
+    "price": 1.84,
+    "prepTime": 10,
+    "cookTime": 15,
+    "calories": 552,
+    "protein": 39,
+    "carbs": 80,
+    "fat": 7,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes rigatoni",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Thon en boîte",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates concassées",
+        "quantity": 140,
+        "unit": "g"
+      },
+      {
+        "name": "Olives noires",
+        "quantity": 25,
+        "unit": "g"
+      },
+      {
+        "name": "Ail",
+        "quantity": 1,
+        "unit": "gousse"
+      },
+      {
+        "name": "Piment de Cayenne",
+        "quantity": 1,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Mijoter tomates, ail et piment 10 min puis ajouter thon émietté et olives.",
+      "Mélanger aux rigatoni cuits al dente."
+    ]
+  },
+  {
+    "id": 242,
+    "name": "One-pot pasta crémeux poulet, poivrons & paprika fumé",
+    "category": "pasta",
+    "price": 2.35,
+    "prepTime": 10,
+    "cookTime": 16,
+    "calories": 615,
+    "protein": 45,
+    "carbs": 80,
+    "fat": 11,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes penne",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Blanc de poulet",
+        "quantity": 130,
+        "unit": "g"
+      },
+      {
+        "name": "Poivron rouge",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 40,
+        "unit": "ml"
+      },
+      {
+        "name": "Paprika fumé",
+        "quantity": 3,
+        "unit": "g"
+      },
+      {
+        "name": "Bouillon de volaille",
+        "quantity": 0.5,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Mettre penne crues, dés de poulet, poivron, paprika, bouillon et 250 ml d'eau en cocotte.",
+      "Cuire 13 min à couvert en remuant, lier avec la crème en fin de cuisson."
+    ]
+  },
+  {
+    "id": 243,
+    "name": "Nouilles sautées au poulet, légumes wok & sauce soja",
+    "category": "pasta",
+    "price": 2.56,
+    "prepTime": 12,
+    "cookTime": 14,
+    "calories": 626,
+    "protein": 46,
+    "carbs": 80,
     "fat": 13,
     "freezable": true,
     "batchFriendly": true,
-    "equipment": ["Plaques induction"],
+    "equipment": [
+      "Plaques induction"
+    ],
     "ingredients": [
-      { "name": "Pâtes penne", "quantity": 85, "unit": "g" },
-      { "name": "Pois chiches", "quantity": 95, "unit": "g" },
-      { "name": "Coulis de tomate", "quantity": 130, "unit": "ml" },
-      { "name": "Épinards frais", "quantity": 80, "unit": "g" },
-      { "name": "Paprika", "quantity": 4, "unit": "g" }
+      {
+        "name": "Nouilles de blé",
+        "quantity": 95,
+        "unit": "g"
+      },
+      {
+        "name": "Blanc de poulet",
+        "quantity": 130,
+        "unit": "g"
+      },
+      {
+        "name": "Mélange légumes wok",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce soja",
+        "quantity": 18,
+        "unit": "ml"
+      },
+      {
+        "name": "Huile de sésame",
+        "quantity": 6,
+        "unit": "ml"
+      },
+      {
+        "name": "Graines de sésame",
+        "quantity": 5,
+        "unit": "g"
+      }
     ],
     "steps": [
-      "Cuire les pâtes penne al dente.",
-      "Chauffer le coulis de tomate avec les pois chiches égouttés et le paprika pendant 8 min, incorporer les épinards en fin de cuisson.",
-      "Mélanger aux pâtes égouttées."
+      "Cuire les nouilles de blé 4 min à l'eau bouillante.",
+      "Saisir poulet et légumes wok à feu vif, ajouter nouilles, sauce soja et huile de sésame."
     ]
   },
   {
-    "id": 406,
-    "name": "Gratin de fusilli au jambon de dinde, brocoli & crème",
+    "id": 244,
+    "name": "Orzo crémeux façon risotto aux crevettes & courgettes",
     "category": "pasta",
-    "price": 2.35,
-    "prepTime": 12,
-    "cookTime": 20,
-    "calories": 560,
-    "protein": 34,
-    "carbs": 60,
-    "fat": 19,
+    "price": 3.26,
+    "prepTime": 10,
+    "cookTime": 16,
+    "calories": 568,
+    "protein": 44,
+    "carbs": 76,
+    "fat": 9,
     "freezable": true,
     "batchFriendly": true,
-    "equipment": ["Four", "Plaques induction"],
+    "equipment": [
+      "Plaques induction"
+    ],
     "ingredients": [
-      { "name": "Pâtes fusilli", "quantity": 80, "unit": "g" },
-      { "name": "Jambon de dinde", "quantity": 90, "unit": "g" },
-      { "name": "Brocoli", "quantity": 110, "unit": "g" },
-      { "name": "Crème légère", "quantity": 65, "unit": "ml" },
-      { "name": "Fromage râpé", "quantity": 25, "unit": "g" }
+      {
+        "name": "Orzo",
+        "quantity": 95,
+        "unit": "g"
+      },
+      {
+        "name": "Crevettes décortiquées",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Courgettes",
+        "quantity": 110,
+        "unit": "g"
+      },
+      {
+        "name": "Parmesan",
+        "quantity": 20,
+        "unit": "g"
+      },
+      {
+        "name": "Bouillon de légumes",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Citron",
+        "quantity": 0.3,
+        "unit": "pièce"
+      }
     ],
     "steps": [
-      "Cuire les fusilli et les fleurettes de brocoli 8 min à l'eau bouillante.",
-      "Mélanger dans un plat avec le jambon de dinde en dés et la crème légère.",
-      "Couvrir de fromage râpé et gratiner 12 min au four à 200°C."
+      "Cuire l'orzo 10 min dans le bouillon frémissant avec les courgettes en dés.",
+      "Ajouter crevettes 3 min puis lier avec parmesan et zeste de citron."
     ]
   },
   {
-    "id": 407,
-    "name": "Pâtes complètes bolognaise de lentilles corail & carottes",
+    "id": 245,
+    "name": "Lasagnes maison bœuf, courgettes & béchamel légère",
     "category": "pasta",
-    "price": 1.75,
+    "price": 3.03,
+    "prepTime": 20,
+    "cookTime": 35,
+    "calories": 654,
+    "protein": 49,
+    "carbs": 73,
+    "fat": 17,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four",
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Feuilles de lasagne",
+        "quantity": 85,
+        "unit": "g"
+      },
+      {
+        "name": "Bœuf haché 5%",
+        "quantity": 130,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates concassées",
+        "quantity": 130,
+        "unit": "g"
+      },
+      {
+        "name": "Courgettes",
+        "quantity": 90,
+        "unit": "g"
+      },
+      {
+        "name": "Lait demi-écrémé",
+        "quantity": 70,
+        "unit": "ml"
+      },
+      {
+        "name": "Fromage râpé",
+        "quantity": 25,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Mijoter bœuf, tomates et courgettes râpées 15 min.",
+      "Alterner feuilles de lasagne, sauce, lait lié et fromage, cuire 30 min à 190°C."
+    ]
+  },
+  {
+    "id": 246,
+    "name": "Pâtes complètes aux lentilles corail, sauce tomate & ricotta",
+    "category": "pasta",
+    "price": 1.2,
     "prepTime": 10,
-    "cookTime": 18,
-    "calories": 545,
-    "protein": 24,
-    "carbs": 84,
+    "cookTime": 15,
+    "calories": 529,
+    "protein": 19,
+    "carbs": 75,
+    "fat": 16,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes complètes",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Coulis de tomate",
+        "quantity": 130,
+        "unit": "ml"
+      },
+      {
+        "name": "Ricotta",
+        "quantity": 45,
+        "unit": "g"
+      },
+      {
+        "name": "Basilic frais",
+        "quantity": 0.2,
+        "unit": "pièce"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Cuire les pâtes complètes 9 min.",
+      "Chauffer le coulis de tomate avec l'huile d'olive, mélanger aux pâtes et garnir de ricotta."
+    ]
+  },
+  {
+    "id": 247,
+    "name": "Nouilles soba au saumon fumé, avocat & sésame",
+    "category": "pasta",
+    "price": 3.96,
+    "prepTime": 10,
+    "cookTime": 8,
+    "calories": 641,
+    "protein": 35,
+    "carbs": 77,
+    "fat": 23,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Nouilles soba",
+        "quantity": 95,
+        "unit": "g"
+      },
+      {
+        "name": "Saumon fumé",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Avocat",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Sauce soja",
+        "quantity": 12,
+        "unit": "ml"
+      },
+      {
+        "name": "Graines de sésame",
+        "quantity": 6,
+        "unit": "g"
+      },
+      {
+        "name": "Concombre",
+        "quantity": 0.3,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Cuire les nouilles soba 6 min et refroidir sous l'eau.",
+      "Garnir de saumon fumé, avocat, concombre, sauce soja et sésame."
+    ]
+  },
+  {
+    "id": 248,
+    "name": "Farfalle au thon, petits pois, citron & crème légère",
+    "category": "pasta",
+    "price": 1.81,
+    "prepTime": 8,
+    "cookTime": 12,
+    "calories": 612,
+    "protein": 43,
+    "carbs": 88,
+    "fat": 9,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes farfalle",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Thon en boîte",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Petits pois surgelés",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 40,
+        "unit": "ml"
+      },
+      {
+        "name": "Citron",
+        "quantity": 0.5,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Cuire les farfalle avec les petits pois dans la même casserole.",
+      "Égoutter et mélanger avec le thon émietté, la crème et le jus de citron."
+    ]
+  },
+  {
+    "id": 249,
+    "name": "Nouilles udon sautées au bœuf, poivrons & sauce teriyaki",
+    "category": "pasta",
+    "price": 3.98,
+    "prepTime": 10,
+    "cookTime": 12,
+    "calories": 502,
+    "protein": 36,
+    "carbs": 64,
     "fat": 10,
     "freezable": true,
     "batchFriendly": true,
-    "equipment": ["Plaques induction"],
+    "equipment": [
+      "Plaques induction"
+    ],
     "ingredients": [
-      { "name": "Pâtes complètes", "quantity": 85, "unit": "g" },
-      { "name": "Lentilles corail", "quantity": 65, "unit": "g" },
-      { "name": "Coulis de tomate", "quantity": 130, "unit": "ml" },
-      { "name": "Carottes", "quantity": 75, "unit": "g" },
-      { "name": "Oignon", "quantity": 40, "unit": "g" },
-      { "name": "Herbes de Provence", "quantity": 3, "unit": "g" }
+      {
+        "name": "Nouilles udon",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Bavette de bœuf",
+        "quantity": 125,
+        "unit": "g"
+      },
+      {
+        "name": "Poivron rouge",
+        "quantity": 90,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce teriyaki",
+        "quantity": 25,
+        "unit": "ml"
+      },
+      {
+        "name": "Oignon nouveau",
+        "quantity": 1,
+        "unit": "pièce"
+      }
     ],
     "steps": [
-      "Faire revenir l'oignon et les carottes râpées 4 min, ajouter les lentilles corail rincées, le coulis de tomate, les herbes et 150 ml d'eau.",
-      "Laisser mijoter 15 min pendant la cuisson des pâtes complètes.",
-      "Assembler pâtes et bolognaise végétale."
+      "Saisir le bœuf en lamelles et le poivron 4 min à feu vif.",
+      "Ajouter les nouilles udon et la sauce teriyaki, faire sauter 3 min."
+    ]
+  },
+  {
+    "id": 250,
+    "name": "Spaghetti carbonara légère aux lardons fumés & courgettes",
+    "category": "pasta",
+    "price": 1.84,
+    "prepTime": 10,
+    "cookTime": 14,
+    "calories": 736,
+    "protein": 39,
+    "carbs": 76,
+    "fat": 30,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes spaghetti",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Lardons fumés",
+        "quantity": 70,
+        "unit": "g"
+      },
+      {
+        "name": "Courgettes",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Oeufs",
+        "quantity": 1,
+        "unit": "pièce"
+      },
+      {
+        "name": "Parmesan",
+        "quantity": 25,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Cuire les spaghetti et dorer lardons et dés de courgettes.",
+      "Hors du feu, lier les pâtes chaudes avec l'œuf battu et le parmesan."
+    ]
+  },
+  {
+    "id": 251,
+    "name": "Pâtes lentilles corail au pesto rosso, poulet & roquette",
+    "category": "pasta",
+    "price": 2.82,
+    "prepTime": 10,
+    "cookTime": 14,
+    "calories": 629,
+    "protein": 59,
+    "carbs": 54,
+    "fat": 17,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes lentilles corail",
+        "quantity": 95,
+        "unit": "g"
+      },
+      {
+        "name": "Blanc de poulet",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Pesto rosso",
+        "quantity": 25,
+        "unit": "g"
+      },
+      {
+        "name": "Roquette",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Parmesan",
+        "quantity": 15,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Cuire les pâtes de lentilles corail 8 min.",
+      "Poêler le poulet en dés, mélanger aux pâtes avec le pesto rosso et la roquette fraîche."
+    ]
+  },
+  {
+    "id": 252,
+    "name": "Coquillettes façon risotto au jambon blanc & emmental",
+    "category": "pasta",
+    "price": 1.93,
+    "prepTime": 8,
+    "cookTime": 14,
+    "calories": 638,
+    "protein": 40,
+    "carbs": 75,
+    "fat": 18,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes coquillettes",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Jambon blanc",
+        "quantity": 2,
+        "unit": "pièce"
+      },
+      {
+        "name": "Emmental râpé",
+        "quantity": 30,
+        "unit": "g"
+      },
+      {
+        "name": "Bouillon de volaille",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 30,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Cuire les coquillettes dans le bouillon frémissant pendant 10 min.",
+      "Incorporer le jambon en dés, la crème et l'emmental râpé."
+    ]
+  },
+  {
+    "id": 253,
+    "name": "Nouilles de riz sautées façon Pad Thaï au poulet & cacahuètes",
+    "category": "pasta",
+    "price": 2.87,
+    "prepTime": 12,
+    "cookTime": 12,
+    "calories": 684,
+    "protein": 47,
+    "carbs": 86,
+    "fat": 17,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Nouilles de riz",
+        "quantity": 90,
+        "unit": "g"
+      },
+      {
+        "name": "Blanc de poulet",
+        "quantity": 125,
+        "unit": "g"
+      },
+      {
+        "name": "Oeufs",
+        "quantity": 1,
+        "unit": "pièce"
+      },
+      {
+        "name": "Cacahuètes",
+        "quantity": 18,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce nuoc-mâm",
+        "quantity": 12,
+        "unit": "ml"
+      },
+      {
+        "name": "Germes de soja",
+        "quantity": 70,
+        "unit": "g"
+      },
+      {
+        "name": "Citron vert",
+        "quantity": 0.5,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Réhydrater les nouilles de riz 6 min à l'eau chaude.",
+      "Saisir poulet et œuf brouillé, ajouter nouilles, germes de soja, nuoc-mâm et cacahuètes concassées."
+    ]
+  },
+  {
+    "id": 254,
+    "name": "Gratin de macaronis au chou-fleur, jambon & comté",
+    "category": "pasta",
+    "price": 2.15,
+    "prepTime": 15,
+    "cookTime": 25,
+    "calories": 620,
+    "protein": 39,
+    "carbs": 77,
+    "fat": 16,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four",
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes macaronis",
+        "quantity": 95,
+        "unit": "g"
+      },
+      {
+        "name": "Chou-fleur",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Jambon blanc",
+        "quantity": 1.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Comté",
+        "quantity": 35,
+        "unit": "g"
+      },
+      {
+        "name": "Lait demi-écrémé",
+        "quantity": 60,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Cuire macaronis et fleurettes de chou-fleur 9 min.",
+      "Mélanger avec jambon, lait et comté râpé, gratiner 15 min à 200°C."
+    ]
+  },
+  {
+    "id": 255,
+    "name": "Raviolis frais aux épinards, sauce tomate & mozzarella",
+    "category": "pasta",
+    "price": 2.18,
+    "prepTime": 5,
+    "cookTime": 12,
+    "calories": 559,
+    "protein": 25,
+    "carbs": 66,
+    "fat": 21,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Raviolis frais",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce tomate basilic",
+        "quantity": 120,
+        "unit": "ml"
+      },
+      {
+        "name": "Mozzarella",
+        "quantity": 45,
+        "unit": "g"
+      },
+      {
+        "name": "Basilic frais",
+        "quantity": 0.2,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Cuire les raviolis frais 3 min à l'eau bouillante.",
+      "Napper de sauce tomate chaude et de dés de mozzarella fondante."
+    ]
+  },
+  {
+    "id": 256,
+    "name": "Tagliatelles aux crevettes, ail, persil & tomates cerises",
+    "category": "pasta",
+    "price": 3.38,
+    "prepTime": 10,
+    "cookTime": 14,
+    "calories": 596,
+    "protein": 39,
+    "carbs": 77,
+    "fat": 14,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes tagliatelles",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Crevettes décortiquées",
+        "quantity": 125,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates cerises",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Ail",
+        "quantity": 1,
+        "unit": "gousse"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 10,
+        "unit": "ml"
+      },
+      {
+        "name": "Persil frais",
+        "quantity": 0.2,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Cuire les tagliatelles al dente.",
+      "Saisir crevettes et tomates cerises avec ail et persil dans l'huile d'olive, mélanger aux pâtes."
+    ]
+  },
+  {
+    "id": 257,
+    "name": "Orecchiette au brocoli, anchois & parmesan",
+    "category": "pasta",
+    "price": 1.62,
+    "prepTime": 10,
+    "cookTime": 14,
+    "calories": 604,
+    "protein": 28,
+    "carbs": 82,
+    "fat": 18,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes orecchiette",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Brocoli",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Anchois à l'huile",
+        "quantity": 20,
+        "unit": "g"
+      },
+      {
+        "name": "Parmesan",
+        "quantity": 20,
+        "unit": "g"
+      },
+      {
+        "name": "Ail",
+        "quantity": 1,
+        "unit": "gousse"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Cuire orecchiette et fleurettes de brocoli ensemble 10 min.",
+      "Faire fondre les anchois et l'ail dans l'huile d'olive, mélanger aux pâtes et parmesan."
+    ]
+  },
+  {
+    "id": 258,
+    "name": "Pâtes pois chiches aux aubergines rôties, tomate & feta",
+    "category": "pasta",
+    "price": 1.68,
+    "prepTime": 12,
+    "cookTime": 22,
+    "calories": 563,
+    "protein": 28,
+    "carbs": 67,
+    "fat": 19,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four",
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes pois chiches",
+        "quantity": 95,
+        "unit": "g"
+      },
+      {
+        "name": "Aubergine",
+        "quantity": 140,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates concassées",
+        "quantity": 110,
+        "unit": "g"
+      },
+      {
+        "name": "Feta",
+        "quantity": 35,
+        "unit": "g"
+      },
+      {
+        "name": "Origan séché",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Rôtir les dés d'aubergine 20 min au four à 200°C.",
+      "Mélanger aux pâtes de pois chiches cuites avec tomates chaudes, origan et feta."
+    ]
+  },
+  {
+    "id": 259,
+    "name": "Nouilles ramen sautées au tofu ferme, champignons & sésame",
+    "category": "pasta",
+    "price": 2.41,
+    "prepTime": 10,
+    "cookTime": 12,
+    "calories": 597,
+    "protein": 32,
+    "carbs": 78,
+    "fat": 17,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Nouilles ramen",
+        "quantity": 95,
+        "unit": "g"
+      },
+      {
+        "name": "Tofu ferme",
+        "quantity": 130,
+        "unit": "g"
+      },
+      {
+        "name": "Champignons de Paris",
+        "quantity": 110,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce soja",
+        "quantity": 15,
+        "unit": "ml"
+      },
+      {
+        "name": "Huile de sésame",
+        "quantity": 6,
+        "unit": "ml"
+      },
+      {
+        "name": "Oignon nouveau",
+        "quantity": 1,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Cuire les nouilles ramen 4 min.",
+      "Dorer les dés de tofu et les champignons, ajouter nouilles, sauce soja et huile de sésame."
+    ]
+  },
+  {
+    "id": 260,
+    "name": "Spaghetti aux boulettes de dinde, sauce tomate & basilic",
+    "category": "pasta",
+    "price": 2.53,
+    "prepTime": 15,
+    "cookTime": 22,
+    "calories": 673,
+    "protein": 50,
+    "carbs": 79,
+    "fat": 16,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes spaghetti",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Escalope de dinde",
+        "quantity": 130,
+        "unit": "g"
+      },
+      {
+        "name": "Coulis de tomate",
+        "quantity": 130,
+        "unit": "ml"
+      },
+      {
+        "name": "Parmesan",
+        "quantity": 15,
+        "unit": "g"
+      },
+      {
+        "name": "Basilic frais",
+        "quantity": 0.2,
+        "unit": "pièce"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Hacher ou mixer la dinde, former des boulettes et dorer à la poêle.",
+      "Mijoter 15 min dans le coulis de tomate et servir sur les spaghetti."
+    ]
+  },
+  {
+    "id": 261,
+    "name": "Penne au chorizo doux, poivrons & crème légère",
+    "category": "pasta",
+    "price": 1.55,
+    "prepTime": 10,
+    "cookTime": 15,
+    "calories": 656,
+    "protein": 26,
+    "carbs": 83,
+    "fat": 23,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes penne",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Chorizo doux",
+        "quantity": 55,
+        "unit": "g"
+      },
+      {
+        "name": "Poivron rouge",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 40,
+        "unit": "ml"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Cuire les penne al dente.",
+      "Faire revenir chorizo en dés, oignon et poivron 8 min, déglacer à la crème et lier aux pâtes."
+    ]
+  },
+  {
+    "id": 262,
+    "name": "Gnocchis poêlés au poulet, tomates cerises & mozzarella",
+    "category": "pasta",
+    "price": 2.94,
+    "prepTime": 8,
+    "cookTime": 14,
+    "calories": 613,
+    "protein": 43,
+    "carbs": 64,
+    "fat": 19,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Gnocchis",
+        "quantity": 170,
+        "unit": "g"
+      },
+      {
+        "name": "Blanc de poulet",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates cerises",
+        "quantity": 90,
+        "unit": "g"
+      },
+      {
+        "name": "Mozzarella",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Basilic séché",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Dorer gnocchis et dés de poulet 9 min à la poêle.",
+      "Ajouter tomates cerises et dés de mozzarella pour faire fondre."
+    ]
+  },
+  {
+    "id": 263,
+    "name": "Cannelloni farcis ricotta, épinards & coulis de tomate",
+    "category": "pasta",
+    "price": 1.97,
+    "prepTime": 18,
+    "cookTime": 30,
+    "calories": 588,
+    "protein": 30,
+    "carbs": 72,
+    "fat": 20,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes cannelloni",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Ricotta",
+        "quantity": 90,
+        "unit": "g"
+      },
+      {
+        "name": "Épinards frais",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Coulis de tomate",
+        "quantity": 140,
+        "unit": "ml"
+      },
+      {
+        "name": "Fromage râpé",
+        "quantity": 25,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Faire tomber les épinards et mélanger à la ricotta.",
+      "Farcir les cannelloni, napper de coulis de tomate et fromage, cuire 30 min à 190°C."
+    ]
+  },
+  {
+    "id": 264,
+    "name": "Fusilli au saumon fumé, courgettes & crème citronnée",
+    "category": "pasta",
+    "price": 3,
+    "prepTime": 10,
+    "cookTime": 12,
+    "calories": 599,
+    "protein": 31,
+    "carbs": 81,
+    "fat": 16,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes fusilli",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Saumon fumé",
+        "quantity": 75,
+        "unit": "g"
+      },
+      {
+        "name": "Courgettes",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 45,
+        "unit": "ml"
+      },
+      {
+        "name": "Citron",
+        "quantity": 0.5,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Cuire les fusilli al dente et poêler les courgettes en dés 6 min.",
+      "Ajouter crème, jus de citron et lanières de saumon fumé hors du feu."
+    ]
+  },
+  {
+    "id": 265,
+    "name": "Tagliatelles aux pleurotes, ail, persil & parmesan",
+    "category": "pasta",
+    "price": 2.55,
+    "prepTime": 10,
+    "cookTime": 14,
+    "calories": 606,
+    "protein": 26,
+    "carbs": 82,
+    "fat": 20,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes tagliatelles",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Pleurotes",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Parmesan",
+        "quantity": 25,
+        "unit": "g"
+      },
+      {
+        "name": "Ail",
+        "quantity": 1,
+        "unit": "gousse"
+      },
+      {
+        "name": "Persil frais",
+        "quantity": 0.2,
+        "unit": "pièce"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 10,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Cuire les tagliatelles al dente.",
+      "Poêler les pleurotes à feu vif avec ail et persil, lier aux pâtes avec huile d'olive et parmesan."
+    ]
+  },
+  {
+    "id": 266,
+    "name": "Penne à la norme : aubergines, sauce tomate & ricotta",
+    "category": "pasta",
+    "price": 1.37,
+    "prepTime": 12,
+    "cookTime": 22,
+    "calories": 605,
+    "protein": 19,
+    "carbs": 91,
+    "fat": 18,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes penne",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Aubergine",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce tomate basilic",
+        "quantity": 130,
+        "unit": "ml"
+      },
+      {
+        "name": "Ricotta",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 10,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Faire dorer les cubes d'aubergine 12 min à la poêle dans l'huile d'olive.",
+      "Ajouter la sauce tomate, mélanger aux penne cuites et garnir de ricotta."
+    ]
+  },
+  {
+    "id": 267,
+    "name": "Nouilles de riz aux crevettes, légumes croquants & curry",
+    "category": "pasta",
+    "price": 3.2,
+    "prepTime": 10,
+    "cookTime": 12,
+    "calories": 513,
+    "protein": 31,
+    "carbs": 90,
+    "fat": 4,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Nouilles de riz",
+        "quantity": 90,
+        "unit": "g"
+      },
+      {
+        "name": "Crevettes décortiquées",
+        "quantity": 125,
+        "unit": "g"
+      },
+      {
+        "name": "Carottes",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Poivron jaune",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Épices curry",
+        "quantity": 3,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce soja",
+        "quantity": 12,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Réhydrater les nouilles de riz 6 min.",
+      "Sauter carottes, poivron et crevettes avec curry et sauce soja, incorporer les nouilles."
+    ]
+  },
+  {
+    "id": 268,
+    "name": "Trofie au pesto alla genovese, haricots verts & pommes de terre",
+    "category": "pasta",
+    "price": 1.34,
+    "prepTime": 12,
+    "cookTime": 16,
+    "calories": 640,
+    "protein": 22,
+    "carbs": 95,
+    "fat": 19,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Pâtes trofie",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Haricots verts",
+        "quantity": 90,
+        "unit": "g"
+      },
+      {
+        "name": "Pommes de terre",
+        "quantity": 90,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce pesto alla genovese",
+        "quantity": 28,
+        "unit": "g"
+      },
+      {
+        "name": "Parmesan",
+        "quantity": 15,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Cuire trofie, dés de pommes de terre et haricots verts dans la même casserole 11 min.",
+      "Égoutter et enrober de pesto et parmesan."
     ]
   }
 ]
