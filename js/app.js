@@ -893,8 +893,7 @@
         freezerDays: Math.max(0, Number(document.getElementById("rec-freezer-days").value) || 0),
         equipment: ["poele", "boites"],
         ingredients: structuredClone(draftRecipeIngredients),
-        steps: stepsRaw ? stepsRaw.split("
-").map(s => s.trim()).filter(Boolean) : ["Préparer et cuire les ingrédients."]
+        steps: stepsRaw ? stepsRaw.split("\n").map(s => s.trim()).filter(Boolean) : ["Préparer et cuire les ingrédients."]
       };
       state.customRecipes.push(newRec);
       saveState();
