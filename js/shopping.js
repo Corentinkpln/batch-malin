@@ -1,6 +1,5 @@
 /**
- * Batch Malin V2.2 — Générateur de liste de courses consolidée (shopping.js)
- * Intègre : fusion d'unités, mise à l'échelle calorique et déduction du stock frigo.
+ * Batch Malin V2.4 — Générateur de liste de courses consolidée (shopping.js)
  */
 (function (global) {
   "use strict";
@@ -19,7 +18,7 @@
       .toLowerCase()
       .replace(/œ/g, "oe")
       .normalize("NFD")
-      .replace(/[̀-ͯ]/g, "");
+      .replace(/[\u0300-\u036f]/g, "");
   }
 
   function toBaseUnit(quantity, unit) {
@@ -211,8 +210,7 @@
     if (shoppingData.savedFromPantry > 0) {
       lines.push(`Économisé grâce aux restes frigo : ${shoppingData.savedFromPantry.toFixed(2)} €`);
     }
-    return lines.join("
-");
+    return lines.join("\n");
   }
 
   global.BatchShopping = {
