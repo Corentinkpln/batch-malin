@@ -244,6 +244,14 @@
       const scoreA = (connectivityMap.get(a.id) || 0) + freezeBoostA + pantryA - budgetPenaltyA - a._totalTime * 0.05;
       const scoreB = (connectivityMap.get(b.id) || 0) + freezeBoostB + pantryB - budgetPenaltyB - b._totalTime * 0.05;
       return scoreB - scoreA;
+      const customBoostA = a.isCustom ? 5 : 0;
+      const customBoostB = b.isCustom ? 5 : 0;
+
+      const scoreA =
+        (connectivityMap.get(a.id) || 0) + freezeBoostA + pantryA + customBoostA - budgetPenaltyA - a._totalTime * 0.05;
+      const scoreB =
+        (connectivityMap.get(b.id) || 0) + freezeBoostB + pantryB + customBoostB - budgetPenaltyB - b._totalTime * 0.05;
+      return scoreB - scoreA;
     });
 
     const starterIndex = randomizeSeed % Math.min(rankedStarters.length, 4);
@@ -269,6 +277,17 @@
         const freezeBonus = isLongHorizon ? (cand.freezable ? 0.6 : -0.4) : 0;
         const timePenalty = cand._totalTime > (Number(config.maxTime) || 90) * 0.65 ? 0.35 : 0;
         const jitter = randomizeSeed > 0 ? ((cand.id * 17 + randomizeSeed * 31) % 10) * 0.025 : 0;
+        const customBonus = cand.isCustom ? 4.5 : 0;
+        const totalScore =
+          overlap * 2.4 +
+          pantryBonus +
+          budgetScore * 1.5 +
+          catBonus +
+          batchBonus +
+          freezeBonus +
+          customBonus -
+          timePenalty +
+          jitter;
 
         const totalScore =
           overlap * 2.4 + pantryBonus + budgetScore * 1.5 + catBonus + batchBonus + freezeBonus - timePenalty + jitter;
