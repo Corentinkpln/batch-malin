@@ -135,8 +135,7 @@ const BatchShopping = (() => {
     if (mode === 'reminders') {
       return activeItems
         .map(it => `${it.name} — ${formatQty(it.netQty, it.unit)}`)
-        .join('
-');
+        .join('\n');
     }
 
     // Mode Apple Notes / WhatsApp détaillé par rayon
@@ -162,8 +161,7 @@ const BatchShopping = (() => {
       lines.push("");
     });
 
-    return lines.join('
-').trim();
+    return lines.join('\n').trim();
   }
 
   return {
