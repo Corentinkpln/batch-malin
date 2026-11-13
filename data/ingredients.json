@@ -1,6 +1,6 @@
 {
   "Poulet": { "aisle": "Boucherie & Poissonnerie", "unit": "kg", "unitPrice": 10.90, "prepType": "prep_protein", "kcalPerUnit": 1150, "pPerUnit": 230, "cPerUnit": 0, "fPerUnit": 20 },
-  "Boeuf haché": { "aisle": "Boucherie & Poissonnerie", "unit": "kg", "unitPrice": 11.50, "prepType": "prep_protein", "kcalPerUnit": 1760, "pPerUnit": 200, "cPerUnit": 0, "fPerUnit": 100 },
+  "Bœuf haché": { "aisle": "Boucherie & Poissonnerie", "unit": "kg", "unitPrice": 11.50, "prepType": "prep_protein", "kcalPerUnit": 1760, "pPerUnit": 200, "cPerUnit": 0, "fPerUnit": 100 },
   "Saumon": { "aisle": "Boucherie & Poissonnerie", "unit": "kg", "unitPrice": 18.90, "prepType": "prep_protein", "kcalPerUnit": 2080, "pPerUnit": 200, "cPerUnit": 0, "fPerUnit": 130 },
   "Cabillaud": { "aisle": "Boucherie & Poissonnerie", "unit": "kg", "unitPrice": 16.50, "prepType": "prep_protein", "kcalPerUnit": 820, "pPerUnit": 180, "cPerUnit": 0, "fPerUnit": 7 },
   "Colin": { "aisle": "Boucherie & Poissonnerie", "unit": "kg", "unitPrice": 12.90, "prepType": "prep_protein", "kcalPerUnit": 860, "pPerUnit": 190, "cPerUnit": 0, "fPerUnit": 9 },
