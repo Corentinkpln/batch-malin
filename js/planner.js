@@ -1,11 +1,10 @@
 /**
  * Batch Malin — Moteur d'optimisation de menu & anti-gaspillage (planner.js)
- * Conçu pour gérer 500+ recettes en mémoire via index inversé d'ingrédients.
+ * Gère les plans courts (1-7j) et longs (8-14j avec priorisation congélation).
  */
 (function (global) {
   "use strict";
 
-  // Ingrédients de fond de placard ignorés dans le calcul de synergie anti-gaspi
   const PANTRY_STAPLES = new Set([
     "sel",
     "poivre",
@@ -32,10 +31,6 @@
       .replace(/[\u0300-\u036f]/g, "");
   }
 
-  /**
-   * Construit un index inversé ingrédient -> Set<recipeId> en O(N)
-   * Permet de scorer des centaines de recettes instantanément.
-   */
   function buildRecipeIndex(recipes) {
     const ingredientToRecipes = new Map();
     const enriched = recipes.map((recipe) => {
@@ -75,11 +70,7 @@
     return { recipes: enriched, ingredientToRecipes };
   }
 
-  /**
-   * Vérifie la compatibilité stricte d'une recette avec les contraintes utilisateur
-   */
   function isRecipeEligible(recipe, config) {
-    // 1. Matériel disponible
     const available = new Set((config.equipment || []).map(normalizeText));
     const reqEquip = recipe.equipment || [];
     for (let i = 0; i < reqEquip.length; i++) {
@@ -88,7 +79,6 @@
       }
     }
 
-    // 2. Régime alimentaire
     const diet = config.diet || "all";
     if (diet === "vegetarian") {
       if (ANIMAL_FLESH_CATEGORIES.has(recipe.category)) return false;
@@ -113,7 +103,6 @@
       if ((Number(recipe.protein) || 0) < 28) return false;
     }
 
-    // 3. Niveau en cuisine
     const skill = config.skill || "intermediate";
     if (skill === "beginner" && recipe._difficulty === "advanced") {
       return false;
@@ -122,9 +111,6 @@
     return true;
   }
 
-  /**
-   * Calcule le ratio de recouvrement d'ingrédients entre une recette candidate et l'ensemble déjà choisi
-   */
   function computeOverlapScore(candidate, selectedRecipes) {
     if (!selectedRecipes.length || !candidate._coreIngredients.length) return 0.5;
     const pool = new Set();
@@ -140,21 +126,19 @@
     return matches / candidate._coreIngredients.length;
   }
 
-  /**
-   * Génère un plan de repas optimisé (budget, anti-gaspi, matériel, temps)
-   */
   function generatePlan(indexedData, config, options = {}) {
-    const totalMeals = Math.max(1, (Number(config.days) || 5) * (Number(config.mealsPerDay) || 2));
+    const days = Math.max(1, Number(config.days) || 5);
+    const totalMeals = days * (Number(config.mealsPerDay) || 2);
     const servings = Math.max(1, Number(config.servings) || 1);
     const totalPortions = totalMeals * servings;
     const maxBudget = Math.max(5, Number(config.budget) || 35);
     const targetPricePerPortion = maxBudget / totalPortions;
     const randomizeSeed = Number(options.seed) || 0;
+    const isLongHorizon = days > 5;
 
     let eligible = indexedData.recipes.filter((r) => isRecipeEligible(r, config));
     let notice = null;
 
-    // Fallback progressif si les filtres sont trop restrictifs
     if (eligible.length === 0) {
       eligible = indexedData.recipes.filter((r) =>
         isRecipeEligible(r, { ...config, skill: "advanced" })
@@ -171,17 +155,17 @@
         synergyScore: 0,
         sharedIngredients: [],
         nutrition: { totalCalories: 0, totalProtein: 0, totalCarbs: 0, totalFat: 0, avgCalories: 0, avgProtein: 0, avgCarbs: 0, avgFat: 0 },
-        notice: "Aucune recette ne correspond à votre sélection de matériel et de régime. Ajoutez au moins une source de cuisson (ex: Plaques induction, Four ou Air Fryer)."
+        notice: "Aucune recette ne correspond à votre sélection de matériel et de régime. Ajoutez au moins une source de cuisson."
       };
     }
 
-    // Nombre optimal de recettes distinctes pour maximiser la réutilisation sans monotonie
+    // Diversification accrue pour les plans de 8 à 14 jours (jusqu'à 8 recettes distinctes)
+    const maxRecipesCap = days > 7 ? 8 : 5;
     const targetDistinct = Math.min(
       eligible.length,
-      Math.max(1, Math.min(5, Math.ceil(totalMeals / 2.2)))
+      Math.max(1, Math.min(maxRecipesCap, Math.ceil(totalMeals / 2.6)))
     );
 
-    // Pré-calcul de la connectivité anti-gaspi de chaque recette dans l'index
     const connectivityMap = new Map();
     eligible.forEach((r) => {
       const neighbors = new Set();
@@ -192,19 +176,19 @@
       connectivityMap.set(r.id, neighbors.size);
     });
 
-    // Étape 1 : Sélection de la recette pivot (bon rapport prix/connectivité)
     const rankedStarters = [...eligible].sort((a, b) => {
       const budgetPenaltyA = Math.max(0, a.price - targetPricePerPortion * 1.15) * 4;
       const budgetPenaltyB = Math.max(0, b.price - targetPricePerPortion * 1.15) * 4;
-      const scoreA = (connectivityMap.get(a.id) || 0) - budgetPenaltyA - a._totalTime * 0.05;
-      const scoreB = (connectivityMap.get(b.id) || 0) - budgetPenaltyB - b._totalTime * 0.05;
+      const freezeBoostA = isLongHorizon && a.freezable ? 3 : 0;
+      const freezeBoostB = isLongHorizon && b.freezable ? 3 : 0;
+      const scoreA = (connectivityMap.get(a.id) || 0) + freezeBoostA - budgetPenaltyA - a._totalTime * 0.05;
+      const scoreB = (connectivityMap.get(b.id) || 0) + freezeBoostB - budgetPenaltyB - b._totalTime * 0.05;
       return scoreB - scoreA;
     });
 
     const starterIndex = randomizeSeed % Math.min(rankedStarters.length, 4);
     const chosen = [rankedStarters[starterIndex]];
 
-    // Étape 2 : Ajout glouton pondéré par synergie d'ingrédients + respect du budget + diversité
     while (chosen.length < targetDistinct) {
       const chosenIds = new Set(chosen.map((r) => r.id));
       const chosenCats = new Set(chosen.map((r) => r.category));
@@ -218,13 +202,14 @@
         const overlap = computeOverlapScore(cand, chosen);
         const priceRatio = targetPricePerPortion / Math.max(0.5, cand.price);
         const budgetScore = Math.min(1.3, priceRatio);
-        const catBonus = chosenCats.has(cand.category) ? 0 : 0.22;
+        const catBonus = chosenCats.has(cand.category) ? 0 : 0.25;
         const batchBonus = cand.batchFriendly ? 0.15 : 0;
+        const freezeBonus = isLongHorizon ? (cand.freezable ? 0.6 : -0.4) : 0;
         const timePenalty = cand._totalTime > (Number(config.maxTime) || 90) * 0.65 ? 0.35 : 0;
         const jitter = randomizeSeed > 0 ? ((cand.id * 17 + randomizeSeed * 31) % 10) * 0.025 : 0;
 
         const totalScore =
-          overlap * 2.4 + budgetScore * 1.5 + catBonus + batchBonus - timePenalty + jitter;
+          overlap * 2.4 + budgetScore * 1.5 + catBonus + batchBonus + freezeBonus - timePenalty + jitter;
 
         if (totalScore > bestScore) {
           bestScore = totalScore;
@@ -236,8 +221,6 @@
       chosen.push(bestCandidate);
     }
 
-    // Étape 3 : Répartition des créneaux de repas (batches)
-    // On favorise légèrement les recettes les moins chères et batchFriendly pour absorber plus de repas
     const sortedForAllocation = [...chosen].sort((a, b) => a.price - b.price);
     const baseBatches = Math.floor(totalMeals / sortedForAllocation.length);
     let remainder = totalMeals % sortedForAllocation.length;
@@ -253,7 +236,6 @@
       };
     });
 
-    // Étape 4 : Passe d'ajustement budgétaire si dépassement
     let currentCost = computePlanCost(planned);
     if (currentCost > maxBudget) {
       const cheaperPool = eligible
@@ -274,16 +256,17 @@
         }
       }
       if (currentCost > maxBudget) {
-        notice = `Le coût estimé (${currentCost.toFixed(2)} €) dépasse légèrement votre cible (${maxBudget.toFixed(2)} €) pour ${totalPortions} portions. Réduisez les portions ou augmentez le budget.`;
+        notice = `Le coût estimé (${currentCost.toFixed(2)} €) dépasse votre cible (${maxBudget.toFixed(2)} €) pour ${totalPortions} portions.`;
       }
+    }
+
+    if (!notice && isLongHorizon) {
+      notice = `Plan sur ${days} jours (${totalPortions} portions) : conservez les 4 premiers jours au réfrigérateur et placez immédiatement les portions restantes au congélateur.`;
     }
 
     return finalizePlanMetrics(planned, totalMeals, totalPortions, notice);
   }
 
-  /**
-   * Remplace une seule recette du plan tout en conservant la synergie d'ingrédients
-   */
   function replaceRecipeInPlan(currentPlan, recipeIdToReplace, indexedData, config) {
     const servings = Math.max(1, Number(config.servings) || 1);
     const currentIds = new Set(currentPlan.selectedRecipes.map((r) => r.id));
@@ -316,7 +299,7 @@
       updatedRecipes,
       currentPlan.totalMeals,
       currentPlan.totalPortions,
-      null
+      currentPlan.notice
     );
   }
 
@@ -327,7 +310,6 @@
   function finalizePlanMetrics(plannedRecipes, totalMeals, totalPortions, notice) {
     const totalCost = computePlanCost(plannedRecipes);
 
-    // Calcul du score anti-gaspi (part d'ingrédients frais utilisés dans >= 2 recettes)
     const usageCount = new Map();
     plannedRecipes.forEach((r) => {
       r._coreIngredients.forEach((ing) => {
@@ -354,7 +336,6 @@
         ? Math.min(100, Math.round((sharedCoreSlots / totalCoreSlots) * 100))
         : 0;
 
-    // Calcul nutritionnel global et moyen par repas
     let totalCalories = 0;
     let totalProtein = 0;
     let totalCarbs = 0;
