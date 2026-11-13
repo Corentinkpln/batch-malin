@@ -1196,12 +1196,19 @@
       }
     });
 
-    document.getElementById("custom-recipe-form").addEventListener("submit", (e) => {
+document.getElementById("custom-recipe-form").addEventListener("submit", (e) => {
       e.preventDefault();
       const name = document.getElementById("cr-name").value.trim();
       const ingredients = collectCustomIngredients();
-      if (!name || !ingredients.length) {
-        showToast("Ajoutez un nom et au moins un ingrédient");
+
+      if (!name) {
+        showToast("Indiquez un nom pour votre recette");
+        document.getElementById("cr-name").focus();
+        return;
+      }
+
+      if (!ingredients.length) {
+        showToast("Ajoutez au moins un ingrédient avec une quantité");
         return;
       }
 
@@ -1219,13 +1226,13 @@
         id: Date.now(),
         name,
         category: document.getElementById("cr-category").value,
-        price: parseFloat(document.getElementById("cr-price").value) || 2.5,
-        prepTime: parseInt(document.getElementById("cr-prep").value, 10) || 10,
-        cookTime: parseInt(document.getElementById("cr-cook").value, 10) || 15,
-        calories: parseInt(document.getElementById("cr-calories").value, 10) || 500,
-        protein: parseInt(document.getElementById("cr-protein").value, 10) || 30,
-        carbs: parseInt(document.getElementById("cr-carbs").value, 10) || 50,
-        fat: parseInt(document.getElementById("cr-fat").value, 10) || 15,
+        price: Math.max(0.1, parseFloat(document.getElementById("cr-price").value) || 2.5),
+        prepTime: Math.max(0, parseInt(document.getElementById("cr-prep").value, 10) || 10),
+        cookTime: Math.max(0, parseInt(document.getElementById("cr-cook").value, 10) || 15),
+        calories: Math.max(10, parseInt(document.getElementById("cr-calories").value, 10) || 500),
+        protein: Math.max(0, parseInt(document.getElementById("cr-protein").value, 10) || 30),
+        carbs: Math.max(0, parseInt(document.getElementById("cr-carbs").value, 10) || 50),
+        fat: Math.max(0, parseInt(document.getElementById("cr-fat").value, 10) || 15),
         freezable: document.getElementById("cr-freezable").checked,
         batchFriendly: true,
         isCustom: true,
