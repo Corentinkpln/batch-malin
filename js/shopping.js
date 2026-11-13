@@ -1,6 +1,6 @@
 /**
- * Batch Malin — Générateur de liste de courses consolidée (shopping.js)
- * Fusionne les quantités, convertit les unités (g -> kg, ml -> L) et calcule les coûts.
+ * Batch Malin V2 — Générateur de liste de courses consolidée (shopping.js)
+ * Intègre : fusion d'unités, mise à l'échelle calorique et déduction du stock frigo.
  */
 (function (global) {
   "use strict";
@@ -21,9 +21,6 @@
       .replace(/[\u0300-\u036f]/g, "");
   }
 
-  /**
-   * Convertit une quantité et son unité vers une unité canonique de calcul (g, ml ou pièce)
-   */
   function toBaseUnit(quantity, unit) {
     const u = String(unit || "").trim().toLowerCase();
     const q = Number(quantity) || 0;
@@ -36,42 +33,23 @@
     return { qty: q, baseUnit: u || "pièce" };
   }
 
-  /**
-   * Formate intelligemment pour l'affichage humain (ex: 1000 g -> 1 kg, 1250 g -> 1,25 kg)
-   */
   function formatDisplayQuantity(baseQty, baseUnit) {
     if (baseUnit === "g") {
       if (baseQty >= 1000) {
         const kg = Math.round((baseQty / 1000) * 100) / 100;
-        return {
-          formatted: `${kg.toLocaleString("fr-FR")} kg`,
-          value: kg,
-          unit: "kg"
-        };
+        return { formatted: `${kg.toLocaleString("fr-FR")} kg`, value: kg, unit: "kg" };
       }
       const roundedG = Math.round(baseQty);
-      return {
-        formatted: `${roundedG.toLocaleString("fr-FR")} g`,
-        value: roundedG,
-        unit: "g"
-      };
+      return { formatted: `${roundedG.toLocaleString("fr-FR")} g`, value: roundedG, unit: "g" };
     }
 
     if (baseUnit === "ml") {
       if (baseQty >= 1000) {
         const liters = Math.round((baseQty / 1000) * 100) / 100;
-        return {
-          formatted: `${liters.toLocaleString("fr-FR")} L`,
-          value: liters,
-          unit: "L"
-        };
+        return { formatted: `${liters.toLocaleString("fr-FR")} L`, value: liters, unit: "L" };
       }
       const roundedMl = Math.round(baseQty);
-      return {
-        formatted: `${roundedMl.toLocaleString("fr-FR")} ml`,
-        value: roundedMl,
-        unit: "ml"
-      };
+      return { formatted: `${roundedMl.toLocaleString("fr-FR")} ml`, value: roundedMl, unit: "ml" };
     }
 
     const roundedCount = Math.ceil(baseQty * 10) / 10;
@@ -93,13 +71,10 @@
     };
   }
 
-  /**
-   * Génère la liste de courses fusionnée et groupée par rayon
-   */
-  function buildShoppingList(selectedRecipes, ingredientsCatalog = {}) {
+  function buildShoppingList(selectedRecipes, ingredientsCatalog = {}, pantryItems = []) {
     const mergedMap = new Map();
+    const pantryNormSet = new Set((pantryItems || []).map(normalizeKey).filter(Boolean));
 
-    // Indexation rapide du catalogue de prix ingrédients
     const catalogByNorm = new Map();
     Object.entries(ingredientsCatalog).forEach(([key, meta]) => {
       catalogByNorm.set(normalizeKey(key), { canonicalName: key, ...meta });
@@ -107,13 +82,14 @@
 
     selectedRecipes.forEach((recipe) => {
       const portions = Number(recipe.totalPortions) || 1;
+      const calorieScale = Number(recipe._calorieScale) || 1;
       const recipeIngredients = recipe.ingredients || [];
 
       recipeIngredients.forEach((item) => {
         const norm = normalizeKey(item.name);
         const catMeta = catalogByNorm.get(norm);
         const displayName = catMeta ? catMeta.canonicalName : item.name;
-        const { qty, baseUnit } = toBaseUnit(item.quantity * portions, item.unit);
+        const { qty, baseUnit } = toBaseUnit(item.quantity * calorieScale * portions, item.unit);
         const mapKey = `${norm}__${baseUnit}`;
 
         if (!mergedMap.has(mapKey)) {
@@ -139,27 +115,35 @@
 
     const allItems = [];
     let totalEstimatedCost = 0;
+    let savedFromPantry = 0;
 
     mergedMap.forEach((entry) => {
       const display = formatDisplayQuantity(entry.baseQty, entry.baseUnit);
+      const inPantry =
+        pantryNormSet.has(entry.normName) ||
+        Array.from(pantryNormSet).some((p) => entry.normName.includes(p) || p.includes(entry.normName));
 
-      // Calcul du coût estimé de la ligne
-      let estimatedCost = 0;
+      let rawCost = 0;
       if (entry.unitPrice > 0) {
         if (entry.priceUnit === "kg" && entry.baseUnit === "g") {
-          estimatedCost = (entry.baseQty / 1000) * entry.unitPrice;
+          rawCost = (entry.baseQty / 1000) * entry.unitPrice;
         } else if (entry.priceUnit === "L" && entry.baseUnit === "ml") {
-          estimatedCost = (entry.baseQty / 1000) * entry.unitPrice;
+          rawCost = (entry.baseQty / 1000) * entry.unitPrice;
         } else {
-          estimatedCost = entry.baseQty * entry.unitPrice;
+          rawCost = entry.baseQty * entry.unitPrice;
         }
       } else {
-        // Estimation de secours proportionnelle si absent du catalogue
-        estimatedCost = entry.baseUnit === "g" ? (entry.baseQty / 1000) * 3.5 : 0.8;
+        rawCost = entry.baseUnit === "g" ? (entry.baseQty / 1000) * 3.5 : 0.8;
       }
 
-      estimatedCost = Math.round(estimatedCost * 100) / 100;
-      totalEstimatedCost += estimatedCost;
+      rawCost = Math.round(rawCost * 100) / 100;
+      const estimatedCost = inPantry ? 0 : rawCost;
+
+      if (inPantry) {
+        savedFromPantry += rawCost;
+      } else {
+        totalEstimatedCost += estimatedCost;
+      }
 
       allItems.push({
         id: entry.id,
@@ -170,12 +154,13 @@
         displayValue: display.value,
         displayUnit: display.unit,
         estimatedCost,
+        rawCost,
+        inPantry,
         recipeCount: entry.recipesUsedIn.size,
         recipesList: Array.from(entry.recipesUsedIn)
       });
     });
 
-    // Regroupement par rayon ordonné
     const groupedByAisle = [];
     const aisleMap = new Map();
 
@@ -206,23 +191,25 @@
       items: allItems,
       groupedByAisle,
       totalItemsCount: allItems.length,
-      totalEstimatedCost: Math.round(totalEstimatedCost * 100) / 100
+      totalEstimatedCost: Math.round(totalEstimatedCost * 100) / 100,
+      savedFromPantry: Math.round(savedFromPantry * 100) / 100
     };
   }
 
-  /**
-   * Génère une version texte propre pour copier/coller dans Apple Notes / WhatsApp
-   */
   function formatShoppingListAsText(shoppingData) {
     const lines = ["BATCH MALIN — LISTE DE COURSES", ""];
     shoppingData.groupedByAisle.forEach((group) => {
       lines.push(`▸ ${group.aisle.toUpperCase()}`);
       group.items.forEach((item) => {
-        lines.push(`  • ${item.name} : ${item.formattedQty} (~${item.estimatedCost.toFixed(2)} €)`);
+        const suffix = item.inPantry ? " [DÉJÀ EN STOCK]" : ` (~${item.estimatedCost.toFixed(2)} €)`;
+        lines.push(`  • ${item.name} : ${item.formattedQty}${suffix}`);
       });
       lines.push("");
     });
-    lines.push(`Total estimé : ${shoppingData.totalEstimatedCost.toFixed(2)} €`);
+    lines.push(`Total à acheter : ${shoppingData.totalEstimatedCost.toFixed(2)} €`);
+    if (shoppingData.savedFromPantry > 0) {
+      lines.push(`Économisé grâce aux restes frigo : ${shoppingData.savedFromPantry.toFixed(2)} €`);
+    }
     return lines.join("\n");
   }
 
