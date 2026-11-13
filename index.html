@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Batch Malin V2.2 — Générateur intelligent de batch cooking économique, anti-gaspi, sur-mesure et catalogue complet." />
+  <meta name="description" content="Batch Malin V2.4 — Générateur intelligent de batch cooking économique, anti-gaspi, sur-mesure et catalogue complet." />
   <title>Batch Malin — Studio Batch Cooking Intelligent</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230071e3'/%3E%3Cpath d='M22 18v28M22 18c-4 0-6 3-6 7s2 7 6 7M42 18v12a6 6 0 0 1-6 6h0a6 6 0 0 1-6-6V18M36 36v10' stroke='white' stroke-width='4' stroke-linecap='round' fill='none'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="css/style.css" />
@@ -30,7 +30,7 @@
         </div>
         <div>
           <span class="brand__name">Batch Malin</span>
-          <span class="brand__tag">Studio Culinaire V2.2</span>
+          <span class="brand__tag">Studio Culinaire V2.4</span>
         </div>
       </div>
 
@@ -91,7 +91,16 @@
           <h2 id="config-heading" class="section-title">Paramètres de la session</h2>
           <p class="section-subtitle">Toutes vos préférences et recettes personnelles sont sauvegardées localement.</p>
         </div>
-        <button type="button" class="btn btn--subtle" id="btn-reset-prefs">Réinitialiser</button>
+        <div class="toolbar-actions">
+          <button type="button" class="btn btn--subtle btn--sm" id="btn-export-backup" title="Exporter préférences, favoris et recettes perso en JSON">
+            Sauvegarder (.json)
+          </button>
+          <button type="button" class="btn btn--subtle btn--sm" id="btn-import-backup" title="Restaurer une sauvegarde JSON">
+            Restaurer (.json)
+          </button>
+          <input type="file" id="input-import-backup" accept=".json,application/json" class="hidden" />
+          <button type="button" class="btn btn--subtle btn--sm" id="btn-reset-prefs">Réinitialiser</button>
+        </div>
       </div>
 
       <!-- Grille principale des paramètres -->
@@ -281,6 +290,19 @@
 
     <!-- Zone de résultats -->
     <section id="results-section" class="results-section" aria-live="polite">
+      <!-- Bandeau d'aperçu cloisonné pour plan partagé (#plan=...) -->
+      <div id="shared-plan-banner" class="notice-banner hidden" role="region" aria-label="Plan partagé">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <strong>Mode aperçu d’un plan partagé</strong> — Vos paramètres et recettes personnelles locaux restent protégés tant que vous n’importez pas ce plan.
+          </div>
+          <div class="toolbar-actions">
+            <button type="button" class="btn btn--primary btn--sm" id="btn-import-shared-plan">Importer dans mon espace</button>
+            <button type="button" class="btn btn--subtle btn--sm" id="btn-exit-shared-plan">Quitter l’aperçu</button>
+          </div>
+        </div>
+      </div>
+
       <div id="plan-notice" class="notice-banner hidden"></div>
 
       <!-- KPI Cards -->
@@ -380,6 +402,7 @@
           </div>
           <div class="toolbar-actions">
             <button type="button" class="btn btn--subtle" id="btn-copy-shopping">Copier la liste</button>
+            <button type="button" class="btn btn--subtle" id="btn-download-shopping-txt">Télécharger (.txt)</button>
             <button type="button" class="btn btn--subtle" id="btn-print-plan">Imprimer / PDF</button>
           </div>
         </div>
@@ -447,6 +470,10 @@
                 <input type="checkbox" id="all-filter-freezable" />
                 <span>Congélables</span>
               </label>
+              <label class="checkbox-pill checkbox-pill--sm">
+                <input type="checkbox" id="all-filter-favorites" />
+                <span>Favoris</span>
+              </label>
             </div>
           </div>
 
@@ -472,9 +499,14 @@
             <h2 class="section-title">Mes recettes personnelles</h2>
             <p class="section-subtitle">Intégrées prioritairement au moteur de génération, à la liste de courses et au planning.</p>
           </div>
-          <button type="button" class="btn btn--primary btn--sm" id="btn-new-recipe-tab">
-            + Nouvelle recette
-          </button>
+          <div class="toolbar-actions">
+            <button type="button" class="btn btn--subtle btn--sm" id="btn-export-custom-json">
+              Exporter JSON
+            </button>
+            <button type="button" class="btn btn--primary btn--sm" id="btn-new-recipe-tab">
+              + Nouvelle recette
+            </button>
+          </div>
         </div>
         <div id="custom-recipes-grid" class="menu-grid"></div>
       </div>
