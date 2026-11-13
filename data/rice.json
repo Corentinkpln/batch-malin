@@ -109,4 +109,88 @@
       "Composer les bowls dans des boîtes hermétiques."
     ]
   }
+  ,{
+    "id": 505,
+    "name": "Risotto crémeux aux courgettes, petits pois & parmesan",
+    "category": "rice",
+    "price": 2.15,
+    "prepTime": 10,
+    "cookTime": 20,
+    "calories": 525,
+    "protein": 18,
+    "carbs": 72,
+    "fat": 17,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": ["Plaques induction"],
+    "ingredients": [
+      { "name": "Riz arborio", "quantity": 85, "unit": "g" },
+      { "name": "Courgettes", "quantity": 110, "unit": "g" },
+      { "name": "Petits pois", "quantity": 65, "unit": "g" },
+      { "name": "Oignon", "quantity": 35, "unit": "g" },
+      { "name": "Parmesan", "quantity": 25, "unit": "g" },
+      { "name": "Huile d'olive", "quantity": 8, "unit": "ml" }
+    ],
+    "steps": [
+      "Nacrer le riz arborio avec l'oignon émincé dans l'huile d'olive 2 min.",
+      "Ajouter progressivement du bouillon chaud pendant 16 min en incorporant les dés de courgette et les petits pois à mi-cuisson.",
+      "Lier hors du feu avec le parmesan."
+    ]
+  },
+  {
+    "id": 506,
+    "name": "Bowl tex-mex bœuf épicé, haricots rouges & riz",
+    "category": "rice",
+    "price": 2.45,
+    "prepTime": 10,
+    "cookTime": 16,
+    "calories": 585,
+    "protein": 35,
+    "carbs": 68,
+    "fat": 18,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Plaques induction"],
+    "ingredients": [
+      { "name": "Riz basmati", "quantity": 75, "unit": "g" },
+      { "name": "Bœuf haché", "quantity": 130, "unit": "g" },
+      { "name": "Haricots rouges", "quantity": 80, "unit": "g" },
+      { "name": "Poivron rouge", "quantity": 80, "unit": "g" },
+      { "name": "Cumin", "quantity": 3, "unit": "g" },
+      { "name": "Paprika", "quantity": 3, "unit": "g" }
+    ],
+    "steps": [
+      "Cuire le riz basmati à l'eau bouillante salée.",
+      "Saisir le bœuf haché avec le poivron en dés, le cumin et le paprika 8 min, puis ajouter les haricots rouges égouttés 3 min.",
+      "Composer les bowls dans des boîtes hermétiques."
+    ]
+  },
+  {
+    "id": 507,
+    "name": "Bowl coco-curry aux pois chiches, brocoli & œuf",
+    "category": "rice",
+    "price": 1.85,
+    "prepTime": 8,
+    "cookTime": 16,
+    "calories": 550,
+    "protein": 22,
+    "carbs": 68,
+    "fat": 20,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": ["Plaques induction"],
+    "ingredients": [
+      { "name": "Riz basmati", "quantity": 75, "unit": "g" },
+      { "name": "Pois chiches", "quantity": 95, "unit": "g" },
+      { "name": "Brocoli", "quantity": 100, "unit": "g" },
+      { "name": "Œufs", "quantity": 1, "unit": "pièce" },
+      { "name": "Lait de coco", "quantity": 80, "unit": "ml" },
+      { "name": "Épices curry", "quantity": 5, "unit": "g" }
+    ],
+    "steps": [
+      "Cuire le riz basmati, le brocoli et l'œuf dur (9 min) dans la même casserole d'eau bouillante pour économiser une plaque.",
+      "Chauffer les pois chiches dans le lait de coco au curry pendant 6 min.",
+      "Assembler le riz, le brocoli, le curry de pois chiches et l'œuf écalé."
+    ]
+  }
 ]
