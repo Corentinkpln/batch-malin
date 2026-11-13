@@ -137,4 +137,86 @@
       "Mélanger les pâtes égouttées à la poêlée et répartir."
     ]
   }
+  ,{
+    "id": 6,
+    "name": "Poulet laqué miel-soja & patates douces rôties",
+    "category": "chicken",
+    "price": 2.50,
+    "prepTime": 10,
+    "cookTime": 22,
+    "calories": 535,
+    "protein": 39,
+    "carbs": 54,
+    "fat": 15,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Air Fryer", "Four"],
+    "ingredients": [
+      { "name": "Poulet", "quantity": 155, "unit": "g" },
+      { "name": "Patate douce", "quantity": 160, "unit": "g" },
+      { "name": "Sauce soja", "quantity": 15, "unit": "ml" },
+      { "name": "Miel", "quantity": 10, "unit": "g" },
+      { "name": "Huile d'olive", "quantity": 8, "unit": "ml" }
+    ],
+    "steps": [
+      "Tailler les patates douces en cubes, mélanger avec huile d'olive et enfourner 22 min à 200°C.",
+      "Enrober les dés de poulet de sauce soja et miel, cuire 14 min à 190°C au Air Fryer.",
+      "Répartir en boîtes hermétiques."
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Poulet basquaise express aux poivrons & riz",
+    "category": "chicken",
+    "price": 2.40,
+    "prepTime": 12,
+    "cookTime": 20,
+    "calories": 505,
+    "protein": 37,
+    "carbs": 55,
+    "fat": 13,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Plaques induction"],
+    "ingredients": [
+      { "name": "Poulet", "quantity": 150, "unit": "g" },
+      { "name": "Poivron rouge", "quantity": 100, "unit": "g" },
+      { "name": "Oignon", "quantity": 45, "unit": "g" },
+      { "name": "Coulis de tomate", "quantity": 120, "unit": "ml" },
+      { "name": "Riz basmati", "quantity": 75, "unit": "g" },
+      { "name": "Huile d'olive", "quantity": 8, "unit": "ml" }
+    ],
+    "steps": [
+      "Lancer la cuisson du riz basmati à l'eau bouillante salée.",
+      "Saisir le poulet en morceaux avec l'oignon et les poivrons émincés 6 min, verser le coulis de tomate et mijoter 14 min.",
+      "Assembler avec le riz égoutté."
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Fusilli au poulet crémeux curry & brocoli",
+    "category": "chicken",
+    "price": 2.45,
+    "prepTime": 10,
+    "cookTime": 16,
+    "calories": 560,
+    "protein": 40,
+    "carbs": 57,
+    "fat": 17,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Plaques induction"],
+    "ingredients": [
+      { "name": "Poulet", "quantity": 145, "unit": "g" },
+      { "name": "Pâtes fusilli", "quantity": 80, "unit": "g" },
+      { "name": "Brocoli", "quantity": 110, "unit": "g" },
+      { "name": "Crème légère", "quantity": 60, "unit": "ml" },
+      { "name": "Épices curry", "quantity": 5, "unit": "g" }
+    ],
+    "steps": [
+      "Cuire les fusilli et les fleurettes de brocoli ensemble dans l'eau bouillante salée pendant 9 min.",
+      "Poêler les dés de poulet avec le curry 8 min, déglacer avec la crème légère.",
+      "Mélanger pâtes, brocoli et poulet crémeux."
+    ]
+  }
 ]
