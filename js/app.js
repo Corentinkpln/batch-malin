@@ -30,7 +30,7 @@
     rice: "Riz & Bowls"
   };
 
-  const DEFAULT_PREFS = {
+   DEFAULT_PREFS = {
     budget: 35,
     days: 5,
     mealsPerDay: 2,
@@ -42,7 +42,7 @@
     equipment: ["Air Fryer", "Four", "Plaques induction", "Micro-ondes"]
   };
 
-  const state = {
+   state = {
     equipmentList: [],
     ingredientsCatalog: {},
     indexedRecipes: { recipes: [], ingredientToRecipes: new Map() },
@@ -60,7 +60,7 @@
      Icônes SVG minimalistes pour le matériel
      -------------------------------------------------------------------------- */
   function getEquipmentIconSvg(iconKey) {
-    const icons = {
+     icons = {
       airfryer: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="4"/><path d="M5 13h14"/><circle cx="12" cy="8" r="2"/></svg>`,
       oven: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18"/><rect x="7" y="12" width="10" height="5" rx="1"/></svg>`,
       induction: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="12" r="3"/><circle cx="16" cy="12" r="2"/></svg>`,
@@ -76,15 +76,15 @@
      -------------------------------------------------------------------------- */
   function loadLocalStorage() {
     try {
-      const savedPrefs = JSON.parse(localStorage.getItem(STORAGE_KEYS.PREFS) || "null");
+       savedPrefs = JSON.parse(localStorage.getItem(STORAGE_KEYS.PREFS) || "null");
       if (savedPrefs && typeof savedPrefs === "object") {
         state.prefs = { ...DEFAULT_PREFS, ...savedPrefs };
       }
-      const savedFavs = JSON.parse(localStorage.getItem(STORAGE_KEYS.FAVORITES) || "[]");
+       savedFavs = JSON.parse(localStorage.getItem(STORAGE_KEYS.FAVORITES) || "[]");
       if (Array.isArray(savedFavs)) {
         state.favorites = new Set(savedFavs);
       }
-      const savedShop = JSON.parse(localStorage.getItem(STORAGE_KEYS.CHECKED_SHOPPING) || "[]");
+       savedShop = JSON.parse(localStorage.getItem(STORAGE_KEYS.CHECKED_SHOPPING) || "[]");
       if (Array.isArray(savedShop)) {
         state.checkedShopping = new Set(savedShop);
       }
@@ -250,7 +250,8 @@
     const schedule = global.BatchScheduler.generateBatchSchedule(
       plan.selectedRecipes,
       shopping,
-      state.prefs.startTime
+      state.prefs.startTime,
+      state.prefs.days
     );
 
     state.currentPlan = plan;
@@ -764,7 +765,8 @@
           state.currentPlan,
           id,
           state.indexedRecipes,
-          state.prefs
+          state.prefs,
+          state.prefs.days
         );
         state.currentShopping = global.BatchShopping.buildShoppingList(
           state.currentPlan.selectedRecipes,
