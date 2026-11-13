@@ -459,7 +459,7 @@
         Choisissez vos ingrédients (quantités pour <strong>1 portion</strong>). Le prix et les valeurs nutritionnelles sont estimés automatiquement.
       </p>
 
-      <form id="custom-recipe-form" class="cr-form">
+      <form id="custom-recipe-form" class="cr-form" novalidate>
         <div class="cr-grid-2">
           <div class="cr-field">
             <label for="cr-name">Nom de la recette *</label>
@@ -524,11 +524,11 @@
           <div id="cr-manual-overrides" class="cr-grid-5 hidden" style="margin-top: 12px;">
             <div class="cr-field">
               <label for="cr-price">Prix (€)</label>
-              <input type="number" id="cr-price" class="select-input" step="0.05" min="0.1" value="2.50" />
+              <input type="number" id="cr-price" class="select-input" step="0.01" min="0" value="2.50" />
             </div>
             <div class="cr-field">
               <label for="cr-calories">Kcal</label>
-              <input type="number" id="cr-calories" class="select-input" min="50" value="500" />
+              <input type="number" id="cr-calories" class="select-input" min="0" value="500" />
             </div>
             <div class="cr-field">
               <label for="cr-protein">Prot. (g)</label>
