@@ -107,4 +107,85 @@
       "Répartir dans les contenants."
     ]
   }
+  ,{
+    "id": 205,
+    "name": "Saumon laqué miel-soja, riz vapeur & courgettes",
+    "category": "fish",
+    "price": 3.50,
+    "prepTime": 10,
+    "cookTime": 15,
+    "calories": 590,
+    "protein": 36,
+    "carbs": 56,
+    "fat": 24,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": ["Air Fryer", "Rice Cooker"],
+    "ingredients": [
+      { "name": "Saumon", "quantity": 140, "unit": "g" },
+      { "name": "Riz basmati", "quantity": 75, "unit": "g" },
+      { "name": "Courgettes", "quantity": 120, "unit": "g" },
+      { "name": "Sauce soja", "quantity": 15, "unit": "ml" },
+      { "name": "Miel", "quantity": 8, "unit": "g" }
+    ],
+    "steps": [
+      "Lancer le riz basmati dans le Rice Cooker avec les courgettes en rondelles dans le panier vapeur.",
+      "Badigeonner le saumon de sauce soja et miel, cuire 11 min à 185°C dans le Air Fryer.",
+      "Conditionner en boîtes."
+    ]
+  },
+  {
+    "id": 206,
+    "name": "Brandade légère de cabillaud & patates douces",
+    "category": "fish",
+    "price": 3.10,
+    "prepTime": 15,
+    "cookTime": 22,
+    "calories": 485,
+    "protein": 33,
+    "carbs": 52,
+    "fat": 15,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Four", "Plaques induction"],
+    "ingredients": [
+      { "name": "Cabillaud", "quantity": 140, "unit": "g" },
+      { "name": "Patate douce", "quantity": 180, "unit": "g" },
+      { "name": "Oignon", "quantity": 35, "unit": "g" },
+      { "name": "Huile d'olive", "quantity": 10, "unit": "ml" },
+      { "name": "Fromage râpé", "quantity": 20, "unit": "g" }
+    ],
+    "steps": [
+      "Cuire les cubes de patate douce 15 min à l'eau bouillante et pocher le cabillaud 6 min.",
+      "Écraser ensemble avec l'huile d'olive et l'oignon revenu.",
+      "Parsemer de fromage râpé et gratiner 10 min au four à 200°C."
+    ]
+  },
+  {
+    "id": 207,
+    "name": "Riz sauté express au thon, petits pois & œufs",
+    "category": "fish",
+    "price": 1.95,
+    "prepTime": 8,
+    "cookTime": 15,
+    "calories": 530,
+    "protein": 35,
+    "carbs": 62,
+    "fat": 14,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Plaques induction"],
+    "ingredients": [
+      { "name": "Thon en boîte", "quantity": 110, "unit": "g" },
+      { "name": "Riz basmati", "quantity": 80, "unit": "g" },
+      { "name": "Petits pois", "quantity": 75, "unit": "g" },
+      { "name": "Œufs", "quantity": 1, "unit": "pièce" },
+      { "name": "Sauce soja", "quantity": 12, "unit": "ml" }
+    ],
+    "steps": [
+      "Cuire le riz basmati et les petits pois 11 min à l'eau bouillante.",
+      "Brouiller l'œuf à la poêle, ajouter le thon émietté, le riz égoutté et la sauce soja.",
+      "Faire sauter 3 min à feu vif."
+    ]
+  }
 ]
