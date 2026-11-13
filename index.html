@@ -40,7 +40,7 @@
           <span id="header-recipe-count">Chargement...</span>
         </div>
 
-        <button type="button" class="btn btn--subtle" id="btn-open--modal">
+        <button type="button" class="btn btn--subtle" id="btn-open-custom-modal">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
             <line x1="12" y1="5" x2="12" y2="19"></line>
             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -346,8 +346,8 @@
         <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="batch">
           Planning batch cooking
         </button>
-        <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="">
-          Mes recettes <span class="tab-badge" id="tab--count">0</span>
+        <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="custom">
+          Mes recettes <span class="tab-badge" id="tab-custom-count">0</span>
         </button>
         <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="favorites">
           Favoris <span class="tab-badge" id="tab-fav-count">0</span>
@@ -400,7 +400,7 @@
       </div>
 
       <!-- Vue 4 : Mes recettes personnelles -->
-      <div id="panel-" class="tab-panel" role="tabpanel">
+      <div id="panel-custom" class="tab-panel" role="tabpanel">
         <div class="panel-toolbar">
           <div>
             <h2 class="section-title">Mes recettes personnelles</h2>
@@ -410,7 +410,7 @@
             + Nouvelle recette
           </button>
         </div>
-        <div id="-recipes-grid" class="menu-grid"></div>
+        <div id="custom-recipes-grid" class="menu-grid"></div>
       </div>
 
       <!-- Vue 5 : Favoris -->
@@ -459,7 +459,7 @@
         Choisissez vos ingrédients (quantités pour <strong>1 portion</strong>). Le prix et les valeurs nutritionnelles sont estimés automatiquement.
       </p>
 
-      <form id="custom-recipe-form" class="cr-form" novalidate>
+      <form id="custom-recipe-form" class="cr-form">
         <div class="cr-grid-2">
           <div class="cr-field">
             <label for="cr-name">Nom de la recette *</label>
@@ -524,11 +524,11 @@
           <div id="cr-manual-overrides" class="cr-grid-5 hidden" style="margin-top: 12px;">
             <div class="cr-field">
               <label for="cr-price">Prix (€)</label>
-              <input type="number" id="cr-price" class="select-input" step="0.01" min="0" value="2.50" />
+              <input type="number" id="cr-price" class="select-input" step="0.05" min="0.1" value="2.50" />
             </div>
             <div class="cr-field">
               <label for="cr-calories">Kcal</label>
-              <input type="number" id="cr-calories" class="select-input" min="0" value="500" />
+              <input type="number" id="cr-calories" class="select-input" min="50" value="500" />
             </div>
             <div class="cr-field">
               <label for="cr-protein">Prot. (g)</label>
