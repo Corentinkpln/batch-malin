@@ -1,7 +1,7 @@
 /**
- * Batch Malin V2 — Ordonnanceur parallèle de Batch Cooking (batch.js)
- * Gère la mise en place groupée, les cuissons parallèles par appareil
- * et la répartition Frigo (J1-J4) vs Congélateur (J5-J14).
+ * Batch Malin V2.1 — Ordonnanceur parallèle de Batch Cooking (batch.js)
+ * Gère la mise en place groupée, les cuissons parallèles par appareil,
+ * l'affichage des étapes complètes des recettes et la répartition Frigo/Congélateur.
  */
 (function (global) {
   "use strict";
@@ -120,7 +120,7 @@
         maxCookingEnd = stepEnd;
       }
 
-     const recipeSteps = Array.isArray(recipe.steps) ? recipe.steps.filter(Boolean) : [];
+      const recipeSteps = Array.isArray(recipe.steps) ? recipe.steps.filter(Boolean) : [];
       const summaryHint =
         recipeSteps.length > 0
           ? `${recipe.totalPortions} portions · ${recipeSteps.length} étape${recipeSteps.length > 1 ? "s" : ""} à suivre`
