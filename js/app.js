@@ -1,5 +1,5 @@
 /**
- * Batch Malin V2 — Contrôleur principal, recettes personnelles, partage URL & LocalStorage (app.js)
+ * Batch Malin V2.1 — Contrôleur principal, recettes personnelles, partage URL & LocalStorage (app.js)
  */
 (function (global) {
   "use strict";
@@ -61,6 +61,14 @@
     currentSchedule: null,
     variantSeed: 0
   };
+
+  function escapeHtml(str) {
+    return String(str || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
 
   /* --------------------------------------------------------------------------
      Encodage UTF-8 Base64 sûr pour le partage par URL (#plan=...)
@@ -176,7 +184,8 @@
   function rebuildCombinedIndex() {
     const combined = [...state.baseRecipes, ...state.customRecipes];
     state.indexedRecipes = global.BatchPlanner.buildRecipeIndex(combined);
-    document.getElementById("header-recipe-count").textContent = `${combined.length} recettes indexées`;
+    const countEl = document.getElementById("header-recipe-count");
+    if (countEl) countEl.textContent = `${combined.length} recettes indexées`;
   }
 
   /* --------------------------------------------------------------------------
@@ -230,8 +239,9 @@
 
   function populateIngredientsDatalist() {
     const dl = document.getElementById("ingredients-datalist");
+    if (!dl) return;
     const keys = Object.keys(state.ingredientsCatalog).sort((a, b) => a.localeCompare(b, "fr"));
-    dl.innerHTML = keys.map((k) => `<option value="${k}"></option>`).join("");
+    dl.innerHTML = keys.map((k) => `<option value="${escapeHtml(k)}"></option>`).join("");
   }
 
   /* --------------------------------------------------------------------------
@@ -292,7 +302,7 @@
     pantryBox.innerHTML = (state.prefs.pantryItems || [])
       .map(
         (item, idx) =>
-          `<span class="filter-tag filter-tag--pantry">${item} <button type="button" data-remove-pantry="${idx}" aria-label="Retirer ${item}">×</button></span>`
+          `<span class="filter-tag filter-tag--pantry">${escapeHtml(item)} <button type="button" data-remove-pantry="${idx}" aria-label="Retirer ${escapeHtml(item)}">×</button></span>`
       )
       .join("");
 
@@ -300,7 +310,7 @@
     excludeBox.innerHTML = (state.prefs.excludedItems || [])
       .map(
         (item, idx) =>
-          `<span class="filter-tag filter-tag--exclude">${item} <button type="button" data-remove-exclude="${idx}" aria-label="Retirer ${item}">×</button></span>`
+          `<span class="filter-tag filter-tag--exclude">${escapeHtml(item)} <button type="button" data-remove-exclude="${idx}" aria-label="Retirer ${escapeHtml(item)}">×</button></span>`
       )
       .join("");
   }
@@ -313,14 +323,14 @@
       .map((eq) => {
         const isSelected = selectedSet.has(eq.name);
         return `
-          <button type="button" class="equip-card ${isSelected ? "is-selected" : ""}" data-equip="${eq.name}" aria-pressed="${isSelected}">
+          <button type="button" class="equip-card ${isSelected ? "is-selected" : ""}" data-equip="${escapeHtml(eq.name)}" aria-pressed="${isSelected}">
             <div class="equip-card__top">
               <span class="equip-card__icon">${getEquipmentIconSvg(eq.icon)}</span>
               <span class="equip-card__check" aria-hidden="true">✓</span>
             </div>
             <div>
-              <div class="equip-card__name">${eq.name}</div>
-              <div class="equip-card__cat">${eq.category}</div>
+              <div class="equip-card__name">${escapeHtml(eq.name)}</div>
+              <div class="equip-card__cat">${escapeHtml(eq.category)}</div>
             </div>
           </button>
         `;
@@ -478,7 +488,7 @@
         const isPantry = pantrySet && pantrySet.has(norm);
         const isShared = sharedSet && sharedSet.has(norm);
         const cls = isPantry ? "is-pantry" : isShared ? "is-shared" : "";
-        return `<span class="ing-chip ${cls}">${ing.name}</span>`;
+        return `<span class="ing-chip ${cls}">${escapeHtml(ing.name)}</span>`;
       })
       .join("");
 
@@ -486,7 +496,7 @@
       <article class="recipe-card">
         <div class="recipe-card__header">
           <div class="recipe-badges">
-            <span class="cat-badge">${catLabel}</span>
+            <span class="cat-badge">${escapeHtml(catLabel)}</span>
             ${recipe.isCustom ? `<span class="custom-badge">Perso</span>` : ""}
             ${mode === "plan" ? `<span class="portions-badge">${portions} portions</span>` : ""}
             ${recipe.freezable ? `<span class="freeze-badge">Congélable</span>` : ""}
@@ -499,7 +509,7 @@
           </button>
         </div>
 
-        <h3 class="recipe-card__title">${recipe.name}</h3>
+        <h3 class="recipe-card__title">${escapeHtml(recipe.name)}</h3>
 
         <div class="recipe-card__metrics">
           <div>
@@ -525,7 +535,7 @@
         <div class="recipe-card__ingredients">${ingChips}</div>
 
         <div class="recipe-card__equip">
-          Matériel : ${(recipe.equipment || []).join(" · ") || "Sans cuisson"}
+          Matériel : ${escapeHtml((recipe.equipment || []).join(" · ") || "Sans cuisson")}
         </div>
 
         <div class="recipe-card__actions">
@@ -561,18 +571,18 @@
           .map((item) => {
             const checked = state.checkedShopping.has(item.id);
             return `
-              <li class="shopping-item ${checked ? "is-checked" : ""} ${item.inPantry ? "is-in-pantry" : ""}" data-toggle-shop="${item.id}">
+              <li class="shopping-item ${checked ? "is-checked" : ""} ${item.inPantry ? "is-in-pantry" : ""}" data-toggle-shop="${escapeHtml(item.id)}">
                 <div class="shopping-item__left">
                   <span class="shopping-checkbox" aria-hidden="true">✓</span>
                   <div>
-                    <span class="shopping-item__name">${item.name}</span>
+                    <span class="shopping-item__name">${escapeHtml(item.name)}</span>
                     <span class="shopping-item__sub">
-                      ${item.inPantry ? "Déjà dans votre frigo" : item.recipeCount > 1 ? `Mutualisé sur ${item.recipeCount} recettes` : item.recipesList[0]}
+                      ${item.inPantry ? "Déjà dans votre frigo" : item.recipeCount > 1 ? `Mutualisé sur ${item.recipeCount} recettes` : escapeHtml(item.recipesList[0])}
                     </span>
                   </div>
                 </div>
                 <div class="shopping-item__right">
-                  <span class="shopping-item__qty">${item.formattedQty}</span>
+                  <span class="shopping-item__qty">${escapeHtml(item.formattedQty)}</span>
                   <span class="shopping-item__price">
                     ${item.inPantry ? "0,00 € (en stock)" : `~${item.estimatedCost.toFixed(2).replace(".", ",")} €`}
                   </span>
@@ -585,7 +595,7 @@
         return `
           <section class="aisle-card">
             <h3 class="aisle-card__title">
-              <span>${group.aisle}</span>
+              <span>${escapeHtml(group.aisle)}</span>
               <span class="kpi-pill">${group.items.length}</span>
             </h3>
             <ul class="shopping-list">${rows}</ul>
@@ -625,7 +635,7 @@
   }
 
   /* --------------------------------------------------------------------------
-     Rendu Planning Batch Cooking
+     Rendu Planning Batch Cooking (avec toutes les étapes détaillées)
      -------------------------------------------------------------------------- */
   function renderBatchTimeline(schedule) {
     const container = document.getElementById("batch-timeline");
@@ -638,19 +648,30 @@
     container.innerHTML = schedule.steps
       .map((step) => {
         const isDone = state.doneBatchSteps.has(step.id);
+        const subStepsHtml =
+          Array.isArray(step.subSteps) && step.subSteps.length > 0
+            ? `<ol class="timeline-substeps">${step.subSteps
+                .map((s) => `<li>${escapeHtml(s)}</li>`)
+                .join("")}</ol>`
+            : "";
+
         return `
-          <article class="timeline-step ${isDone ? "is-done" : ""}" data-toggle-step="${step.id}" style="cursor: pointer;">
+          <article class="timeline-step ${isDone ? "is-done" : ""}" data-toggle-step="${escapeHtml(step.id)}" style="cursor: pointer;">
             <div class="timeline-step__time">
-              <span class="timeline-time-main">${step.clock}</span>
+              <span class="timeline-time-main">${escapeHtml(step.clock)}</span>
               <span class="timeline-time-dur">${step.durationMin} min</span>
             </div>
             <div class="timeline-step__body">
-              <div>
-                <h3 class="timeline-step__title">${step.title}</h3>
-                <p class="timeline-step__desc">${step.description}</p>
+              <div class="timeline-step__main">
+                <h3 class="timeline-step__title">
+                  ${escapeHtml(step.title)}
+                  ${step.isCustom ? `<span class="custom-badge" style="margin-left: 8px; vertical-align: middle;">Perso</span>` : ""}
+                </h3>
+                <p class="timeline-step__desc">${escapeHtml(step.description)}</p>
+                ${subStepsHtml}
               </div>
               <div class="timeline-step__tags">
-                <span class="step-type-pill step-type-pill--${step.type}">${step.typeLabel}</span>
+                <span class="step-type-pill step-type-pill--${step.type}">${escapeHtml(step.typeLabel)}</span>
               </div>
             </div>
           </article>
@@ -715,18 +736,18 @@
     const ingredientsHtml = (recipe.ingredients || [])
       .map((ing) => {
         const scaledQty = Math.round(ing.quantity * scale * mult * 10) / 10;
-        return `<li><strong>${ing.name}</strong> : ${scaledQty.toLocaleString("fr-FR")} ${ing.unit}</li>`;
+        return `<li><strong>${escapeHtml(ing.name)}</strong> : ${scaledQty.toLocaleString("fr-FR")} ${escapeHtml(ing.unit)}</li>`;
       })
       .join("");
 
-    const stepsHtml = (recipe.steps || []).map((st) => `<li>${st}</li>`).join("");
+    const stepsHtml = (recipe.steps || []).map((st) => `<li>${escapeHtml(st)}</li>`).join("");
 
     document.getElementById("modal-recipe-body").innerHTML = `
       <div class="recipe-badges">
-        <span class="cat-badge">${CATEGORY_LABELS[recipe.category] || recipe.category}</span>
+        <span class="cat-badge">${escapeHtml(CATEGORY_LABELS[recipe.category] || recipe.category)}</span>
         ${recipe.isCustom ? `<span class="custom-badge">Recette personnelle</span>` : ""}
       </div>
-      <h2 id="modal-recipe-title" style="margin: 12px 0 8px; font-size: 1.6rem; letter-spacing: -0.025em;">${recipe.name}</h2>
+      <h2 id="modal-recipe-title" style="margin: 12px 0 8px; font-size: 1.6rem; letter-spacing: -0.025em;">${escapeHtml(recipe.name)}</h2>
       <p style="margin: 0 0 18px; color: var(--text-secondary);">
         Quantités ajustées pour <strong>${mult} portion${mult > 1 ? "s" : ""}</strong> ·
         Préparation ${recipe.prepTime} min · Cuisson ${recipe.cookTime} min ·
@@ -764,7 +785,7 @@
     equipContainer.innerHTML = state.equipmentList
       .map(
         (eq, idx) =>
-          `<button type="button" class="cr-equip-chip ${idx === 2 ? "is-active" : ""}" data-cr-equip="${eq.name}">${eq.name}</button>`
+          `<button type="button" class="cr-equip-chip ${idx === 2 ? "is-active" : ""}" data-cr-equip="${escapeHtml(eq.name)}">${escapeHtml(eq.name)}</button>`
       )
       .join("");
 
@@ -787,8 +808,8 @@
     const row = document.createElement("div");
     row.className = "cr-ing-row";
     row.innerHTML = `
-      <input type="text" class="select-input cr-ing-name" list="ingredients-datalist" placeholder="Ingrédient (ex: Poulet)" value="${defaultName}" required />
-      <input type="number" class="select-input cr-ing-qty" min="0.1" step="any" placeholder="Qté" value="${defaultQty}" required />
+      <input type="text" class="select-input cr-ing-name" list="ingredients-datalist" placeholder="Ingrédient (ex: Poulet)" value="${escapeHtml(defaultName)}" />
+      <input type="number" class="select-input cr-ing-qty" min="0.1" step="any" placeholder="Qté" value="${defaultQty}" />
       <select class="select-input cr-ing-unit">
         <option value="g" ${defaultUnit === "g" ? "selected" : ""}>g</option>
         <option value="ml" ${defaultUnit === "ml" ? "selected" : ""}>ml</option>
@@ -845,7 +866,6 @@
         carbs += factor * (Number(meta.cPerUnit) || 0);
         fat += factor * (Number(meta.fPerUnit) || 0);
       } else {
-        // Estimation neutre si l'ingrédient n'est pas dans ingredients.json
         const fallbackFactor = u === "g" || u === "ml" ? ing.quantity / 100 : ing.quantity;
         price += fallbackFactor * 0.45;
         calories += fallbackFactor * 120;
@@ -1196,7 +1216,7 @@
       }
     });
 
-document.getElementById("custom-recipe-form").addEventListener("submit", (e) => {
+    document.getElementById("custom-recipe-form").addEventListener("submit", (e) => {
       e.preventDefault();
       const name = document.getElementById("cr-name").value.trim();
       const ingredients = collectCustomIngredients();
@@ -1245,10 +1265,10 @@ document.getElementById("custom-recipe-form").addEventListener("submit", (e) => 
 
       state.customRecipes.push(newRecipe);
       saveCustomRecipes();
+      runFullGeneration(true);
       closeCustomRecipeModal();
-      renderCustomRecipesView();
-      switchTab("custom");
-      showToast(`Recette « ${name} » ajoutée à votre catalogue`);
+      switchTab("batch");
+      showToast(`Recette « ${name} » ajoutée et intégrée au planning`);
     });
 
     // Délégation globale sur les clics dynamiques
@@ -1291,8 +1311,7 @@ document.getElementById("custom-recipe-form").addEventListener("submit", (e) => 
         state.favorites.delete(id);
         saveCustomRecipes();
         saveFavorites();
-        renderCustomRecipesView();
-        renderFavoritesView();
+        runFullGeneration(false);
         showToast("Recette personnelle supprimée");
         return;
       }
