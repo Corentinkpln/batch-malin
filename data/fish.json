@@ -1,191 +1,1601 @@
 [
   {
-    "id": 201,
-    "name": "Pavé de saumon Air Fryer, riz & brocoli",
+    "id": 169,
+    "name": "Pavé de saumon rôti citron-aneth & brocoli vapeur",
     "category": "fish",
-    "price": 3.45,
+    "price": 4.07,
     "prepTime": 8,
-    "cookTime": 14,
-    "calories": 580,
+    "cookTime": 16,
+    "calories": 459,
     "protein": 36,
-    "carbs": 50,
-    "fat": 25,
-    "freezable": false,
-    "batchFriendly": true,
-    "equipment": ["Air Fryer", "Plaques induction"],
-    "ingredients": [
-      { "name": "Saumon", "quantity": 140, "unit": "g" },
-      { "name": "Riz basmati", "quantity": 75, "unit": "g" },
-      { "name": "Brocoli", "quantity": 120, "unit": "g" },
-      { "name": "Citron", "quantity": 0.25, "unit": "pièce" },
-      { "name": "Huile d'olive", "quantity": 8, "unit": "ml" }
-    ],
-    "steps": [
-      "Cuire le riz basmati et les fleurettes de brocoli à l'eau bouillante sur les plaques induction.",
-      "Assaisonner le pavé de saumon d'huile d'olive et citron, cuire 11 min à 185°C dans le Air Fryer.",
-      "Répartir en boîtes hermétiques."
-    ]
-  },
-  {
-    "id": 202,
-    "name": "Curry doux de cabillaud coco & épinards",
-    "category": "fish",
-    "price": 3.15,
-    "prepTime": 10,
-    "cookTime": 15,
-    "calories": 495,
-    "protein": 34,
-    "carbs": 51,
-    "fat": 16,
+    "carbs": 16,
+    "fat": 28,
     "freezable": true,
     "batchFriendly": true,
-    "equipment": ["Plaques induction"],
+    "equipment": [
+      "Four"
+    ],
     "ingredients": [
-      { "name": "Cabillaud", "quantity": 140, "unit": "g" },
-      { "name": "Riz basmati", "quantity": 75, "unit": "g" },
-      { "name": "Épinards frais", "quantity": 100, "unit": "g" },
-      { "name": "Lait de coco", "quantity": 90, "unit": "ml" },
-      { "name": "Épices curry", "quantity": 5, "unit": "g" }
+      {
+        "name": "Pavé de saumon",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Brocoli",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Citron",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Aneth frais",
+        "quantity": 0.2,
+        "unit": "pièce"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
     ],
     "steps": [
-      "Lancer la cuisson du riz basmati.",
-      "Chauffer le lait de coco avec les épices curry, pocher les morceaux de cabillaud 8 min et ajouter les épinards en fin de cuisson.",
-      "Assembler avec le riz."
+      "Disposer le pavé de saumon et les fleurettes de brocoli sur une plaque.",
+      "Arroser d'huile d'olive et citron, parsemer d'aneth et enfourner 16 min à 190°C."
     ]
   },
   {
-    "id": 203,
-    "name": "Galettes protéinées de thon, carottes & avoine",
+    "id": 170,
+    "name": "Dos de cabillaud sauce vierge tomate-basilic & courgettes",
     "category": "fish",
-    "price": 1.95,
+    "price": 4.57,
     "prepTime": 10,
     "cookTime": 16,
-    "calories": 440,
-    "protein": 35,
-    "carbs": 38,
+    "calories": 303,
+    "protein": 33,
+    "carbs": 14,
     "fat": 14,
     "freezable": true,
     "batchFriendly": true,
-    "equipment": ["Four"],
+    "equipment": [
+      "Four"
+    ],
     "ingredients": [
-      { "name": "Thon en boîte", "quantity": 120, "unit": "g" },
-      { "name": "Carottes", "quantity": 100, "unit": "g" },
-      { "name": "Œufs", "quantity": 1, "unit": "pièce" },
-      { "name": "Flocons d'avoine", "quantity": 45, "unit": "g" },
-      { "name": "Oignon", "quantity": 30, "unit": "g" }
+      {
+        "name": "Dos de cabillaud",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Courgettes",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates cerises",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 12,
+        "unit": "ml"
+      },
+      {
+        "name": "Basilic frais",
+        "quantity": 0.2,
+        "unit": "pièce"
+      },
+      {
+        "name": "Citron",
+        "quantity": 0.5,
+        "unit": "pièce"
+      }
     ],
     "steps": [
-      "Mélanger le thon égoutté, les carottes râpées, l'œuf, les flocons d'avoine et l'oignon ciselé.",
-      "Former 3 galettes par portion sur une plaque sulfurisée et enfourner 16 min à 195°C.",
-      "Laisser refroidir avant mise en boîte."
+      "Enfourner le cabillaud et les courgettes en rondelles 15 min à 190°C.",
+      "Mélanger tomates cerises coupées, huile d'olive, citron et basilic pour napper."
     ]
   },
   {
-    "id": 204,
-    "name": "Filet de colin rôti aux courgettes & herbes",
+    "id": 171,
+    "name": "Saumon laqué miso-miel au Air Fryer & pak choï",
     "category": "fish",
-    "price": 2.55,
-    "prepTime": 8,
-    "cookTime": 20,
-    "calories": 430,
-    "protein": 32,
-    "carbs": 44,
+    "price": 3.94,
+    "prepTime": 10,
+    "cookTime": 12,
+    "calories": 422,
+    "protein": 36,
+    "carbs": 17,
+    "fat": 23,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Air Fryer"
+    ],
+    "ingredients": [
+      {
+        "name": "Pavé de saumon",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Pak choï",
+        "quantity": 170,
+        "unit": "g"
+      },
+      {
+        "name": "Miso blanc",
+        "quantity": 12,
+        "unit": "g"
+      },
+      {
+        "name": "Miel",
+        "quantity": 10,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce soja",
+        "quantity": 10,
+        "unit": "ml"
+      },
+      {
+        "name": "Graines de sésame",
+        "quantity": 5,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Mélanger miso blanc, miel et sauce soja pour badigeonner le saumon.",
+      "Cuire 11 min à 185°C au Air Fryer avec le pak choï coupé en deux."
+    ]
+  },
+  {
+    "id": 172,
+    "name": "Curry de cabillaud au lait de coco & épinards frais",
+    "category": "fish",
+    "price": 4.06,
+    "prepTime": 10,
+    "cookTime": 18,
+    "calories": 406,
+    "protein": 36,
+    "carbs": 17,
+    "fat": 22,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Cabillaud",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Lait de coco",
+        "quantity": 110,
+        "unit": "ml"
+      },
+      {
+        "name": "Épinards frais",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Épices curry",
+        "quantity": 4,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates concassées",
+        "quantity": 80,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Faire revenir l'oignon avec le curry, ajouter tomates et lait de coco.",
+      "Pocher les morceaux de cabillaud 10 min et ajouter les épinards en fin de cuisson."
+    ]
+  },
+  {
+    "id": 173,
+    "name": "Filet de truite aux amandes effilées & haricots verts",
+    "category": "fish",
+    "price": 3.8,
+    "prepTime": 10,
+    "cookTime": 15,
+    "calories": 464,
+    "protein": 40,
+    "carbs": 20,
+    "fat": 27,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Truite",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Haricots verts",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Amandes",
+        "quantity": 15,
+        "unit": "g"
+      },
+      {
+        "name": "Beurre demi-sel",
+        "quantity": 10,
+        "unit": "g"
+      },
+      {
+        "name": "Citron",
+        "quantity": 0.5,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Cuire les haricots verts 8 min à l'eau bouillante.",
+      "Poêler la truite 4 min par face au beurre, torréfier les amandes et arroser de citron."
+    ]
+  },
+  {
+    "id": 174,
+    "name": "Brandade de cabillaud légère aux pommes de terre & ail",
+    "category": "fish",
+    "price": 3.31,
+    "prepTime": 15,
+    "cookTime": 25,
+    "calories": 414,
+    "protein": 33,
+    "carbs": 39,
+    "fat": 14,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four",
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Cabillaud",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Pommes de terre",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Lait demi-écrémé",
+        "quantity": 50,
+        "unit": "ml"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 12,
+        "unit": "ml"
+      },
+      {
+        "name": "Ail",
+        "quantity": 1,
+        "unit": "gousse"
+      },
+      {
+        "name": "Persil frais",
+        "quantity": 0.2,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Cuire pommes de terre et cabillaud 15 min à l'eau ou vapeur.",
+      "Écraser avec huile d'olive, lait chaud, ail et persil, gratiner 10 min au four."
+    ]
+  },
+  {
+    "id": 175,
+    "name": "Crevettes sautées ail, persil & poêlée de courgettes",
+    "category": "fish",
+    "price": 3.93,
+    "prepTime": 10,
+    "cookTime": 12,
+    "calories": 284,
+    "protein": 33,
+    "carbs": 12,
     "fat": 12,
     "freezable": false,
     "batchFriendly": true,
-    "equipment": ["Four"],
+    "equipment": [
+      "Plaques induction"
+    ],
     "ingredients": [
-      { "name": "Colin", "quantity": 150, "unit": "g" },
-      { "name": "Courgettes", "quantity": 140, "unit": "g" },
-      { "name": "Patate douce", "quantity": 140, "unit": "g" },
-      { "name": "Huile d'olive", "quantity": 10, "unit": "ml" },
-      { "name": "Herbes de Provence", "quantity": 3, "unit": "g" }
+      {
+        "name": "Crevettes décortiquées",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Courgettes",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Ail",
+        "quantity": 1,
+        "unit": "gousse"
+      },
+      {
+        "name": "Persil frais",
+        "quantity": 0.3,
+        "unit": "pièce"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 10,
+        "unit": "ml"
+      },
+      {
+        "name": "Citron",
+        "quantity": 0.5,
+        "unit": "pièce"
+      }
     ],
     "steps": [
-      "Disposer les cubes de patate douce et de courgette huilés sur la plaque et enfourner 10 min à 200°C.",
-      "Ajouter les filets de colin parsemés d'herbes de Provence et poursuivre la cuisson 10 min.",
-      "Répartir dans les contenants."
-    ]
-  }
-  ,{
-    "id": 205,
-    "name": "Saumon laqué miel-soja, riz vapeur & courgettes",
-    "category": "fish",
-    "price": 3.50,
-    "prepTime": 10,
-    "cookTime": 15,
-    "calories": 590,
-    "protein": 36,
-    "carbs": 56,
-    "fat": 24,
-    "freezable": false,
-    "batchFriendly": true,
-    "equipment": ["Air Fryer", "Rice Cooker"],
-    "ingredients": [
-      { "name": "Saumon", "quantity": 140, "unit": "g" },
-      { "name": "Riz basmati", "quantity": 75, "unit": "g" },
-      { "name": "Courgettes", "quantity": 120, "unit": "g" },
-      { "name": "Sauce soja", "quantity": 15, "unit": "ml" },
-      { "name": "Miel", "quantity": 8, "unit": "g" }
-    ],
-    "steps": [
-      "Lancer le riz basmati dans le Rice Cooker avec les courgettes en rondelles dans le panier vapeur.",
-      "Badigeonner le saumon de sauce soja et miel, cuire 11 min à 185°C dans le Air Fryer.",
-      "Conditionner en boîtes."
+      "Faire sauter les courgettes en dés 7 min à l'huile d'olive.",
+      "Ajouter les crevettes, l'ail et le persil 4 min à feu vif et arroser de citron."
     ]
   },
   {
-    "id": 206,
-    "name": "Brandade légère de cabillaud & patates douces",
+    "id": 176,
+    "name": "Pavé de lieu noir croûte d'herbes & ratatouille",
     "category": "fish",
-    "price": 3.10,
-    "prepTime": 15,
-    "cookTime": 22,
-    "calories": 485,
-    "protein": 33,
-    "carbs": 52,
-    "fat": 15,
+    "price": 2.7,
+    "prepTime": 10,
+    "cookTime": 20,
+    "calories": 329,
+    "protein": 35,
+    "carbs": 22,
+    "fat": 11,
     "freezable": true,
     "batchFriendly": true,
-    "equipment": ["Four", "Plaques induction"],
+    "equipment": [
+      "Four"
+    ],
     "ingredients": [
-      { "name": "Cabillaud", "quantity": 140, "unit": "g" },
-      { "name": "Patate douce", "quantity": 180, "unit": "g" },
-      { "name": "Oignon", "quantity": 35, "unit": "g" },
-      { "name": "Huile d'olive", "quantity": 10, "unit": "ml" },
-      { "name": "Fromage râpé", "quantity": 20, "unit": "g" }
+      {
+        "name": "Lieu noir",
+        "quantity": 165,
+        "unit": "g"
+      },
+      {
+        "name": "Ratatouille surgelée",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Chapelure",
+        "quantity": 15,
+        "unit": "g"
+      },
+      {
+        "name": "Herbes de Provence",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
     ],
     "steps": [
-      "Cuire les cubes de patate douce 15 min à l'eau bouillante et pocher le cabillaud 6 min.",
-      "Écraser ensemble avec l'huile d'olive et l'oignon revenu.",
-      "Parsemer de fromage râpé et gratiner 10 min au four à 200°C."
+      "Disposer la ratatouille dans un plat, poser le lieu noir recouvert de chapelure aux herbes.",
+      "Enfourner 20 min à 195°C."
     ]
   },
   {
-    "id": 207,
-    "name": "Riz sauté express au thon, petits pois & œufs",
+    "id": 177,
+    "name": "Pavé de saumon teriyaki & patate douce rôtie",
     "category": "fish",
-    "price": 1.95,
-    "prepTime": 8,
-    "cookTime": 15,
-    "calories": 530,
+    "price": 3.67,
+    "prepTime": 10,
+    "cookTime": 22,
+    "calories": 610,
     "protein": 35,
-    "carbs": 62,
+    "carbs": 47,
+    "fat": 30,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four"
+    ],
+    "ingredients": [
+      {
+        "name": "Pavé de saumon",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Patate douce",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce teriyaki",
+        "quantity": 20,
+        "unit": "ml"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      },
+      {
+        "name": "Graines de sésame",
+        "quantity": 5,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Enfourner les cubes de patate douce 12 min à 200°C.",
+      "Ajouter le saumon badigeonné de sauce teriyaki et poursuivre 10 min."
+    ]
+  },
+  {
+    "id": 178,
+    "name": "Colin à la provençale, olives noires & fenouil braisé",
+    "category": "fish",
+    "price": 3.18,
+    "prepTime": 12,
+    "cookTime": 22,
+    "calories": 332,
+    "protein": 35,
+    "carbs": 18,
     "fat": 14,
     "freezable": true,
     "batchFriendly": true,
-    "equipment": ["Plaques induction"],
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
     "ingredients": [
-      { "name": "Thon en boîte", "quantity": 110, "unit": "g" },
-      { "name": "Riz basmati", "quantity": 80, "unit": "g" },
-      { "name": "Petits pois", "quantity": 75, "unit": "g" },
-      { "name": "Œufs", "quantity": 1, "unit": "pièce" },
-      { "name": "Sauce soja", "quantity": 12, "unit": "ml" }
+      {
+        "name": "Colin",
+        "quantity": 165,
+        "unit": "g"
+      },
+      {
+        "name": "Fenouil",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates concassées",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Olives noires",
+        "quantity": 25,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      },
+      {
+        "name": "Thym séché",
+        "quantity": 2,
+        "unit": "g"
+      }
     ],
     "steps": [
-      "Cuire le riz basmati et les petits pois 11 min à l'eau bouillante.",
-      "Brouiller l'œuf à la poêle, ajouter le thon émietté, le riz égoutté et la sauce soja.",
-      "Faire sauter 3 min à feu vif."
+      "Faire braiser le fenouil émincé avec les tomates et olives 12 min.",
+      "Déposer les filets de colin par-dessus et cuire 8 min à couvert."
+    ]
+  },
+  {
+    "id": 179,
+    "name": "Filet de maquereau rôti moutarde & pommes de terre vapeur",
+    "category": "fish",
+    "price": 2.88,
+    "prepTime": 10,
+    "cookTime": 18,
+    "calories": 514,
+    "protein": 36,
+    "carbs": 39,
+    "fat": 24,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four"
+    ],
+    "ingredients": [
+      {
+        "name": "Filet de maquereau",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Pommes de terre",
+        "quantity": 190,
+        "unit": "g"
+      },
+      {
+        "name": "Moutarde à l'ancienne",
+        "quantity": 15,
+        "unit": "g"
+      },
+      {
+        "name": "Citron",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Ciboulette fraîche",
+        "quantity": 0.2,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Cuire les pommes de terre 15 min à la vapeur.",
+      "Badigeonner les filets de maquereau de moutarde et cuire 10 min au four à 200°C."
+    ]
+  },
+  {
+    "id": 180,
+    "name": "Thon frais mi-cuit au sésame & haricots verts croquants",
+    "category": "fish",
+    "price": 4.2,
+    "prepTime": 10,
+    "cookTime": 12,
+    "calories": 380,
+    "protein": 42,
+    "carbs": 15,
+    "fat": 18,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Thon frais",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Haricots verts",
+        "quantity": 170,
+        "unit": "g"
+      },
+      {
+        "name": "Graines de sésame",
+        "quantity": 12,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce soja",
+        "quantity": 15,
+        "unit": "ml"
+      },
+      {
+        "name": "Huile de sésame",
+        "quantity": 6,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Cuire les haricots verts 6 min à l'eau bouillante.",
+      "Rouler le pavé de thon dans le sésame et saisir 1 min 30 par face à feu vif."
+    ]
+  },
+  {
+    "id": 181,
+    "name": "Calamars sautés à l'ail, chorizo doux & poivrons",
+    "category": "fish",
+    "price": 3.49,
+    "prepTime": 12,
+    "cookTime": 15,
+    "calories": 378,
+    "protein": 34,
+    "carbs": 13,
+    "fat": 20,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Calamars",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Chorizo doux",
+        "quantity": 35,
+        "unit": "g"
+      },
+      {
+        "name": "Poivron rouge",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Ail",
+        "quantity": 1,
+        "unit": "gousse"
+      },
+      {
+        "name": "Persil frais",
+        "quantity": 0.2,
+        "unit": "pièce"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Faire revenir le chorizo en rondelles et le poivron émincé 6 min.",
+      "Saisir les calamars 4 min à feu vif avec ail et persil."
+    ]
+  },
+  {
+    "id": 182,
+    "name": "Dorade rôtie au four, fenouil & tomates cerises",
+    "category": "fish",
+    "price": 3.96,
+    "prepTime": 10,
+    "cookTime": 20,
+    "calories": 362,
+    "protein": 36,
+    "carbs": 20,
+    "fat": 17,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four"
+    ],
+    "ingredients": [
+      {
+        "name": "Dorade",
+        "quantity": 165,
+        "unit": "g"
+      },
+      {
+        "name": "Fenouil",
+        "quantity": 140,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates cerises",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Citron",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 10,
+        "unit": "ml"
+      },
+      {
+        "name": "Romarin séché",
+        "quantity": 2,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Disposer fenouil émincé et tomates cerises dans un plat huilé.",
+      "Poser les filets de dorade, arroser de citron et enfourner 18 min à 195°C."
+    ]
+  },
+  {
+    "id": 183,
+    "name": "Parmentier de saumon & poireaux fondants",
+    "category": "fish",
+    "price": 3.68,
+    "prepTime": 15,
+    "cookTime": 25,
+    "calories": 623,
+    "protein": 41,
+    "carbs": 43,
+    "fat": 31,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four",
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Saumon",
+        "quantity": 145,
+        "unit": "g"
+      },
+      {
+        "name": "Pommes de terre",
+        "quantity": 190,
+        "unit": "g"
+      },
+      {
+        "name": "Poireaux",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 40,
+        "unit": "ml"
+      },
+      {
+        "name": "Fromage râpé",
+        "quantity": 20,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Cuire les pommes de terre à l'eau et écraser avec la crème.",
+      "Faire fondre les poireaux, mélanger au saumon émietté, couvrir de purée et gratiner 15 min."
+    ]
+  },
+  {
+    "id": 184,
+    "name": "Gambas sautées au curry doux & courgettes",
+    "category": "fish",
+    "price": 4.14,
+    "prepTime": 10,
+    "cookTime": 14,
+    "calories": 362,
+    "protein": 36,
+    "carbs": 14,
+    "fat": 19,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Gambas",
+        "quantity": 155,
+        "unit": "g"
+      },
+      {
+        "name": "Courgettes",
+        "quantity": 170,
+        "unit": "g"
+      },
+      {
+        "name": "Lait de coco",
+        "quantity": 90,
+        "unit": "ml"
+      },
+      {
+        "name": "Épices curry",
+        "quantity": 3,
+        "unit": "g"
+      },
+      {
+        "name": "Citron vert",
+        "quantity": 0.5,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Faire revenir les courgettes en demi-rondelles avec le curry 6 min.",
+      "Ajouter les gambas et le lait de coco, cuire 5 min et arroser de citron vert."
+    ]
+  },
+  {
+    "id": 185,
+    "name": "Filet de bar rôti au citron vert & purée de patate douce",
+    "category": "fish",
+    "price": 4.26,
+    "prepTime": 12,
+    "cookTime": 22,
+    "calories": 460,
+    "protein": 36,
+    "carbs": 46,
+    "fat": 15,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four",
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Bar",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Patate douce",
+        "quantity": 210,
+        "unit": "g"
+      },
+      {
+        "name": "Citron vert",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 10,
+        "unit": "ml"
+      },
+      {
+        "name": "Coriandre fraîche",
+        "quantity": 0.2,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Cuire la patate douce 16 min à l'eau puis écraser avec un filet d'huile d'olive.",
+      "Cuire le bar 12 min au four à 195°C avec jus de citron vert et coriandre."
+    ]
+  },
+  {
+    "id": 186,
+    "name": "Cabillaud façon fish & chips sain au Air Fryer",
+    "category": "fish",
+    "price": 3.74,
+    "prepTime": 12,
+    "cookTime": 18,
+    "calories": 492,
+    "protein": 39,
+    "carbs": 54,
+    "fat": 13,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Air Fryer"
+    ],
+    "ingredients": [
+      {
+        "name": "Dos de cabillaud",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Pommes de terre",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Panko",
+        "quantity": 25,
+        "unit": "g"
+      },
+      {
+        "name": "Oeufs",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Cuire les frites de pommes de terre 12 min à 195°C au Air Fryer.",
+      "Paner le cabillaud dans l'œuf et le panko, ajouter 8 min au Air Fryer."
+    ]
+  },
+  {
+    "id": 187,
+    "name": "Moules marinières express & pommes de terre grenaille",
+    "category": "fish",
+    "price": 2.86,
+    "prepTime": 12,
+    "cookTime": 15,
+    "calories": 560,
+    "protein": 47,
+    "carbs": 50,
+    "fat": 14,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Moules",
+        "quantity": 350,
+        "unit": "g"
+      },
+      {
+        "name": "Pommes de terre grenaille",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Échalote",
+        "quantity": 25,
+        "unit": "g"
+      },
+      {
+        "name": "Vin blanc de cuisine",
+        "quantity": 50,
+        "unit": "ml"
+      },
+      {
+        "name": "Persil frais",
+        "quantity": 0.3,
+        "unit": "pièce"
+      },
+      {
+        "name": "Beurre demi-sel",
+        "quantity": 8,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Cuire les pommes de terre grenaille 15 min à la vapeur.",
+      "Ouvrir les moules à feu vif avec échalote, vin blanc, beurre et persil."
+    ]
+  },
+  {
+    "id": 188,
+    "name": "Haddock pochée au lait, épinards & pommes de terre",
+    "category": "fish",
+    "price": 3.81,
+    "prepTime": 10,
+    "cookTime": 18,
+    "calories": 357,
+    "protein": 42,
+    "carbs": 42,
+    "fat": 4,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Haddock fumé",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Pommes de terre",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Épinards frais",
+        "quantity": 140,
+        "unit": "g"
+      },
+      {
+        "name": "Lait demi-écrémé",
+        "quantity": 100,
+        "unit": "ml"
+      },
+      {
+        "name": "Poivre",
+        "quantity": 1,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Cuire les pommes de terre 15 min à l'eau.",
+      "Pocher le haddock 8 min dans le lait frémissant et faire tomber les épinards."
+    ]
+  },
+  {
+    "id": 189,
+    "name": "Rillettes de thon maison, avocat & crudités croquantes",
+    "category": "fish",
+    "price": 3.21,
+    "prepTime": 10,
+    "cookTime": 0,
+    "calories": 389,
+    "protein": 38,
+    "carbs": 16,
+    "fat": 20,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Mixeur / Blender"
+    ],
+    "ingredients": [
+      {
+        "name": "Thon en boîte",
+        "quantity": 130,
+        "unit": "g"
+      },
+      {
+        "name": "Fromage frais à tartiner",
+        "quantity": 35,
+        "unit": "g"
+      },
+      {
+        "name": "Avocat",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Concombre",
+        "quantity": 0.4,
+        "unit": "pièce"
+      },
+      {
+        "name": "Citron",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Ciboulette fraîche",
+        "quantity": 0.2,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Émietter le thon avec le fromage frais, citron et ciboulette.",
+      "Accompagner de tranches d'avocat et bâtonnets de concombre."
+    ]
+  },
+  {
+    "id": 190,
+    "name": "Pavé de truite laqué miel-moutarde & brocoli",
+    "category": "fish",
+    "price": 3.3,
+    "prepTime": 10,
+    "cookTime": 16,
+    "calories": 414,
+    "protein": 39,
+    "carbs": 21,
+    "fat": 21,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four"
+    ],
+    "ingredients": [
+      {
+        "name": "Truite",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Brocoli",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Miel",
+        "quantity": 10,
+        "unit": "g"
+      },
+      {
+        "name": "Moutarde de Dijon",
+        "quantity": 10,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Badigeonner la truite de miel et moutarde.",
+      "Enfourner 15 min à 190°C avec les fleurettes de brocoli huilées."
+    ]
+  },
+  {
+    "id": 191,
+    "name": "Noix de Saint-Jacques poêlées & fondue de poireaux",
+    "category": "fish",
+    "price": 5.39,
+    "prepTime": 12,
+    "cookTime": 18,
+    "calories": 328,
+    "protein": 29,
+    "carbs": 21,
+    "fat": 16,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Noix de Saint-Jacques",
+        "quantity": 140,
+        "unit": "g"
+      },
+      {
+        "name": "Poireaux",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 40,
+        "unit": "ml"
+      },
+      {
+        "name": "Beurre demi-sel",
+        "quantity": 10,
+        "unit": "g"
+      },
+      {
+        "name": "Citron",
+        "quantity": 0.3,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Faire fondre les poireaux émincés 14 min à couvert avec la crème.",
+      "Saisir les Saint-Jacques 1 min 30 par face au beurre bien chaud."
+    ]
+  },
+  {
+    "id": 192,
+    "name": "Merlu sauce tomate aux câpres & haricots verts",
+    "category": "fish",
+    "price": 3.66,
+    "prepTime": 10,
+    "cookTime": 18,
+    "calories": 308,
+    "protein": 35,
+    "carbs": 19,
+    "fat": 11,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Merlu",
+        "quantity": 165,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates concassées",
+        "quantity": 130,
+        "unit": "g"
+      },
+      {
+        "name": "Haricots verts",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Câpres",
+        "quantity": 15,
+        "unit": "g"
+      },
+      {
+        "name": "Ail",
+        "quantity": 1,
+        "unit": "gousse"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Cuire les haricots verts 8 min.",
+      "Mijoter les tomates avec ail et câpres 8 min puis pocher le merlu 7 min dans la sauce."
+    ]
+  },
+  {
+    "id": 193,
+    "name": "Saumon vapeur douce, sauce yaourt-aneth & carottes",
+    "category": "fish",
+    "price": 3.9,
+    "prepTime": 10,
+    "cookTime": 16,
+    "calories": 447,
+    "protein": 35,
+    "carbs": 24,
+    "fat": 23,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cuiseur vapeur"
+    ],
+    "ingredients": [
+      {
+        "name": "Pavé de saumon",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Carottes",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Yaourt grec",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Aneth frais",
+        "quantity": 0.2,
+        "unit": "pièce"
+      },
+      {
+        "name": "Citron",
+        "quantity": 0.5,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Cuire le saumon et les rondelles de carottes 14 min à la vapeur.",
+      "Mélanger yaourt grec, aneth et citron pour accompagner."
+    ]
+  },
+  {
+    "id": 194,
+    "name": "Sardines rôties au citron, thym & tomates cerises",
+    "category": "fish",
+    "price": 2.95,
+    "prepTime": 10,
+    "cookTime": 15,
+    "calories": 574,
+    "protein": 41,
+    "carbs": 39,
+    "fat": 29,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Four"
+    ],
+    "ingredients": [
+      {
+        "name": "Sardines fraîches",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates cerises",
+        "quantity": 140,
+        "unit": "g"
+      },
+      {
+        "name": "Pommes de terre",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Citron",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Thym séché",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Précuire les pommes de terre en dés 12 min.",
+      "Ajouter les sardines et tomates cerises avec citron et thym, enfourner 12 min à 200°C."
+    ]
+  },
+  {
+    "id": 195,
+    "name": "Cassolette de cabillaud, crevettes & poireaux",
+    "category": "fish",
+    "price": 3.77,
+    "prepTime": 12,
+    "cookTime": 20,
+    "calories": 348,
+    "protein": 42,
+    "carbs": 12,
+    "fat": 15,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four"
+    ],
+    "ingredients": [
+      {
+        "name": "Cabillaud",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Crevettes décortiquées",
+        "quantity": 60,
+        "unit": "g"
+      },
+      {
+        "name": "Poireaux",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 45,
+        "unit": "ml"
+      },
+      {
+        "name": "Fromage râpé",
+        "quantity": 20,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Faire fondre les poireaux 10 min à la poêle avec la crème.",
+      "Mélanger au cabillaud et crevettes, parsemer de fromage et cuire 15 min à 195°C."
+    ]
+  },
+  {
+    "id": 196,
+    "name": "Poulpe grillé paprika fumé & pommes de terre grenaille",
+    "category": "fish",
+    "price": 3.52,
+    "prepTime": 12,
+    "cookTime": 20,
+    "calories": 398,
+    "protein": 28,
+    "carbs": 39,
+    "fat": 14,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Poulpe",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Pommes de terre grenaille",
+        "quantity": 190,
+        "unit": "g"
+      },
+      {
+        "name": "Paprika fumé",
+        "quantity": 3,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 12,
+        "unit": "ml"
+      },
+      {
+        "name": "Ail",
+        "quantity": 1,
+        "unit": "gousse"
+      }
+    ],
+    "steps": [
+      "Cuire les pommes de terre grenaille 15 min à la vapeur.",
+      "Saisir le poulpe 5 min à la poêle avec huile d'olive, ail et paprika fumé."
+    ]
+  },
+  {
+    "id": 197,
+    "name": "Pavé de saumon en croûte de pistaches & asperges",
+    "category": "fish",
+    "price": 4.78,
+    "prepTime": 10,
+    "cookTime": 16,
+    "calories": 532,
+    "protein": 38,
+    "carbs": 12,
+    "fat": 37,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Four"
+    ],
+    "ingredients": [
+      {
+        "name": "Pavé de saumon",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Asperges vertes",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Pistaches",
+        "quantity": 18,
+        "unit": "g"
+      },
+      {
+        "name": "Moutarde de Dijon",
+        "quantity": 8,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Badigeonner le saumon de moutarde et presser les pistaches concassées dessus.",
+      "Enfourner 15 min à 190°C avec les asperges huilées."
+    ]
+  },
+  {
+    "id": 198,
+    "name": "Églefin pochée sauce safranée & fenouil",
+    "category": "fish",
+    "price": 4.59,
+    "prepTime": 12,
+    "cookTime": 18,
+    "calories": 280,
+    "protein": 35,
+    "carbs": 17,
+    "fat": 8,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Églefin",
+        "quantity": 165,
+        "unit": "g"
+      },
+      {
+        "name": "Fenouil",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 45,
+        "unit": "ml"
+      },
+      {
+        "name": "Safran",
+        "quantity": 0.2,
+        "unit": "g"
+      },
+      {
+        "name": "Échalote",
+        "quantity": 20,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Faire revenir fenouil émincé et échalote 10 min.",
+      "Ajouter crème et safran, pocher les filets d'églefin 7 min à feu doux."
+    ]
+  },
+  {
+    "id": 199,
+    "name": "Boulettes de saumon maison, aneth & courgettes",
+    "category": "fish",
+    "price": 3.69,
+    "prepTime": 15,
+    "cookTime": 16,
+    "calories": 460,
+    "protein": 38,
+    "carbs": 20,
+    "fat": 24,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Air Fryer"
+    ],
+    "ingredients": [
+      {
+        "name": "Saumon",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Courgettes",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Oeufs",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Chapelure",
+        "quantity": 20,
+        "unit": "g"
+      },
+      {
+        "name": "Aneth frais",
+        "quantity": 0.2,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Hacher le saumon au couteau, mélanger avec œuf, chapelure et aneth.",
+      "Former des boulettes et cuire 13 min à 190°C au Air Fryer avec les courgettes."
+    ]
+  },
+  {
+    "id": 200,
+    "name": "Crevettes façon Thaï au lait de coco & poivrons",
+    "category": "fish",
+    "price": 3.72,
+    "prepTime": 10,
+    "cookTime": 14,
+    "calories": 364,
+    "protein": 33,
+    "carbs": 11,
+    "fat": 21,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Crevettes décortiquées",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Poivron rouge",
+        "quantity": 90,
+        "unit": "g"
+      },
+      {
+        "name": "Lait de coco",
+        "quantity": 100,
+        "unit": "ml"
+      },
+      {
+        "name": "Pâte de curry jaune",
+        "quantity": 10,
+        "unit": "g"
+      },
+      {
+        "name": "Coriandre fraîche",
+        "quantity": 0.2,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Faire revenir la pâte de curry jaune et les poivrons en lanières 5 min.",
+      "Verser le lait de coco, ajouter les crevettes 5 min et parsemer de coriandre."
     ]
   }
 ]
