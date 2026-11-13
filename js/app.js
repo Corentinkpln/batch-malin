@@ -1,5 +1,6 @@
 /**
- * Batch Malin V2.2 — Contrôleur principal, catalogue complet, recettes personnelles & LocalStorage (app.js)
+ * Batch Malin V2.4 — Contrôleur principal, catalogue complet, cloisonnement des plans partagés,
+ * import/export JSON, export .txt iPhone & LocalStorage (app.js)
  */
 (function (global) {
   "use strict";
@@ -56,6 +57,7 @@
     favorites: new Set(),
     checkedShopping: new Set(),
     doneBatchSteps: new Set(),
+    sharedPreview: null,
     currentPlan: null,
     currentShopping: null,
     currentSchedule: null,
@@ -65,9 +67,14 @@
       category: "all",
       onlyCompatible: false,
       onlyFreezable: false,
+      onlyFavorites: false,
       sortBy: "default"
     }
   };
+
+  function getActivePrefs() {
+    return state.sharedPreview ? state.sharedPreview.prefs : state.prefs;
+  }
 
   function escapeHtml(str) {
     return String(str || "")
@@ -75,6 +82,18 @@
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
+  }
+
+  function downloadTextFile(filename, content, mimeType = "text/plain;charset=utf-8") {
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
   /* --------------------------------------------------------------------------
@@ -146,6 +165,7 @@
   }
 
   function savePrefs() {
+    if (state.sharedPreview) return;
     try {
       localStorage.setItem(STORAGE_KEYS.PREFS, JSON.stringify(state.prefs));
     } catch (err) {
@@ -189,8 +209,21 @@
   }
 
   function rebuildCombinedIndex() {
-    const combined = [...state.baseRecipes, ...state.customRecipes];
+    const existingIds = new Set([
+      ...state.baseRecipes.map((r) => r.id),
+      ...state.customRecipes.map((r) => r.id)
+    ]);
+
+    const temporaryShared =
+      state.sharedPreview && Array.isArray(state.sharedPreview.custom)
+        ? state.sharedPreview.custom
+            .filter((cr) => cr && cr.id && !existingIds.has(cr.id))
+            .map((cr) => ({ ...cr, isCustom: true, _isSharedPreview: true }))
+        : [];
+
+    const combined = [...state.baseRecipes, ...state.customRecipes, ...temporaryShared];
     state.indexedRecipes = global.BatchPlanner.buildRecipeIndex(combined);
+
     const countEl = document.getElementById("header-recipe-count");
     if (countEl) countEl.textContent = `${combined.length} recettes indexées`;
     const tabAllEl = document.getElementById("tab-all-count");
@@ -258,26 +291,27 @@
      Synchronisation UI des paramètres
      -------------------------------------------------------------------------- */
   function syncInputsFromPrefs() {
-    document.getElementById("input-budget").value = state.prefs.budget;
-    document.getElementById("input-days").value = state.prefs.days;
-    document.getElementById("input-meals-per-day").value = state.prefs.mealsPerDay;
-    document.getElementById("input-servings").value = state.prefs.servings;
-    document.getElementById("input-max-time").value = state.prefs.maxTime;
-    document.getElementById("input-diet").value = state.prefs.diet;
-    document.getElementById("input-skill").value = state.prefs.skill;
-    document.getElementById("input-start-time").value = state.prefs.startTime;
+    const active = getActivePrefs();
+    document.getElementById("input-budget").value = active.budget;
+    document.getElementById("input-days").value = active.days;
+    document.getElementById("input-meals-per-day").value = active.mealsPerDay;
+    document.getElementById("input-servings").value = active.servings;
+    document.getElementById("input-max-time").value = active.maxTime;
+    document.getElementById("input-diet").value = active.diet;
+    document.getElementById("input-skill").value = active.skill;
+    document.getElementById("input-start-time").value = active.startTime;
 
     const calToggle = document.getElementById("toggle-calorie-target");
     const calSlider = document.getElementById("input-target-calories");
     const calControls = document.getElementById("calorie-target-controls");
-    calToggle.checked = Boolean(state.prefs.calorieTargetEnabled);
-    calSlider.value = state.prefs.targetCalories || 600;
+    calToggle.checked = Boolean(active.calorieTargetEnabled);
+    calSlider.value = active.targetCalories || 600;
     calSlider.disabled = !calToggle.checked;
     calControls.classList.toggle("is-disabled", !calToggle.checked);
     document.getElementById("display-target-calories").textContent = calSlider.value;
 
     document.querySelectorAll(".segmented-btn").forEach((btn) => {
-      btn.classList.toggle("is-active", Number(btn.dataset.meals) === Number(state.prefs.mealsPerDay));
+      btn.classList.toggle("is-active", Number(btn.dataset.meals) === Number(active.mealsPerDay));
     });
 
     updateConfigHints();
@@ -286,11 +320,12 @@
   }
 
   function updateConfigHints() {
-    const budget = Number(state.prefs.budget);
-    const days = Number(state.prefs.days);
-    const mealsPerDay = Number(state.prefs.mealsPerDay);
-    const servings = Number(state.prefs.servings);
-    const maxTime = Number(state.prefs.maxTime);
+    const active = getActivePrefs();
+    const budget = Number(active.budget);
+    const days = Number(active.days);
+    const mealsPerDay = Number(active.mealsPerDay);
+    const servings = Number(active.servings);
+    const maxTime = Number(active.maxTime);
 
     const totalMeals = days * mealsPerDay;
     const totalPortions = totalMeals * servings;
@@ -308,8 +343,9 @@
   }
 
   function renderTagContainers() {
+    const active = getActivePrefs();
     const pantryBox = document.getElementById("pantry-tags");
-    pantryBox.innerHTML = (state.prefs.pantryItems || [])
+    pantryBox.innerHTML = (active.pantryItems || [])
       .map(
         (item, idx) =>
           `<span class="filter-tag filter-tag--pantry">${escapeHtml(item)} <button type="button" data-remove-pantry="${idx}" aria-label="Retirer ${escapeHtml(item)}">×</button></span>`
@@ -317,7 +353,7 @@
       .join("");
 
     const excludeBox = document.getElementById("exclude-tags");
-    excludeBox.innerHTML = (state.prefs.excludedItems || [])
+    excludeBox.innerHTML = (active.excludedItems || [])
       .map(
         (item, idx) =>
           `<span class="filter-tag filter-tag--exclude">${escapeHtml(item)} <button type="button" data-remove-exclude="${idx}" aria-label="Retirer ${escapeHtml(item)}">×</button></span>`
@@ -326,8 +362,9 @@
   }
 
   function renderEquipmentCards() {
+    const active = getActivePrefs();
     const grid = document.getElementById("equipment-grid");
-    const selectedSet = new Set(state.prefs.equipment);
+    const selectedSet = new Set(active.equipment);
 
     grid.innerHTML = state.equipmentList
       .map((eq) => {
@@ -359,23 +396,25 @@
       saveDoneBatchSteps();
     }
 
-    const plan = global.BatchPlanner.generatePlan(state.indexedRecipes, state.prefs, {
+    const active = getActivePrefs();
+    const plan = global.BatchPlanner.generatePlan(state.indexedRecipes, active, {
       seed: state.variantSeed
     });
     applyPlanAndRender(plan);
   }
 
   function applyPlanAndRender(plan) {
+    const active = getActivePrefs();
     const shopping = global.BatchShopping.buildShoppingList(
       plan.selectedRecipes,
       state.ingredientsCatalog,
-      state.prefs.pantryItems
+      active.pantryItems
     );
     const schedule = global.BatchScheduler.generateBatchSchedule(
       plan.selectedRecipes,
       shopping,
-      state.prefs.startTime,
-      state.prefs.days
+      active.startTime,
+      active.days
     );
 
     state.currentPlan = plan;
@@ -391,6 +430,12 @@
     const schedule = state.currentSchedule;
     if (!plan) return;
 
+    const active = getActivePrefs();
+    const sharedBanner = document.getElementById("shared-plan-banner");
+    if (sharedBanner) {
+      sharedBanner.classList.toggle("hidden", !state.sharedPreview);
+    }
+
     const noticeEl = document.getElementById("plan-notice");
     if (plan.notice) {
       noticeEl.textContent = plan.notice;
@@ -401,7 +446,7 @@
 
     // KPI 1 : Coût & Budget
     const displayCost = shopping.totalEstimatedCost;
-    const maxBudget = Number(state.prefs.budget);
+    const maxBudget = Number(active.budget);
     const costPerPortion = displayCost / Math.max(1, plan.totalPortions);
     const budgetRatio = Math.min(100, Math.round((displayCost / Math.max(1, maxBudget)) * 100));
 
@@ -434,7 +479,7 @@
     document.getElementById("kpi-synergy-bar").style.width = `${plan.synergyScore}%`;
 
     // KPI 3 : Temps Batch Cooking
-    const maxTime = Number(state.prefs.maxTime);
+    const maxTime = Number(active.maxTime);
     const timeRatio = Math.min(100, Math.round((schedule.totalDurationMin / Math.max(1, maxTime)) * 100));
     document.getElementById("kpi-total-time").textContent = `${schedule.totalDurationMin} min`;
     document.getElementById("kpi-time-detail").textContent = `${schedule.startClock} → ${schedule.endClock} (max ${maxTime} min)`;
@@ -464,8 +509,9 @@
      -------------------------------------------------------------------------- */
   function renderMenuCards(plan) {
     const grid = document.getElementById("menu-grid");
+    const active = getActivePrefs();
     const sharedSet = new Set(plan.sharedIngredients);
-    const pantrySet = new Set((state.prefs.pantryItems || []).map(global.BatchPlanner.normalizeText));
+    const pantrySet = new Set((active.pantryItems || []).map(global.BatchPlanner.normalizeText));
 
     if (!plan.selectedRecipes.length) {
       grid.innerHTML = `<div class="empty-state">Aucune recette sélectionnée. Ajustez vos appareils, vos exclusions ou ajoutez une recette depuis l’onglet <strong>Toutes les recettes</strong>.</div>`;
@@ -481,10 +527,11 @@
   }
 
   function renderSingleRecipeCard(recipe, sharedSet, pantrySet, mode) {
+    const active = getActivePrefs();
     const isFav = state.favorites.has(recipe.id);
     const totalTime = (Number(recipe.prepTime) || 0) + (Number(recipe.cookTime) || 0);
     const catLabel = CATEGORY_LABELS[recipe.category] || recipe.category;
-    const portions = recipe.totalPortions || state.prefs.servings;
+    const portions = recipe.totalPortions || active.servings;
     const scale = recipe._calorieScale || 1;
     const unitPrice = recipe._effectivePrice != null ? recipe._effectivePrice : Number(recipe.price);
     const unitCal = recipe._effectiveCalories != null ? recipe._effectiveCalories : recipe.calories;
@@ -510,7 +557,10 @@
 
     let secondaryActionHtml = "";
     if (mode === "plan") {
-      secondaryActionHtml = `<button type="button" class="btn btn--ghost btn--sm" data-replace-recipe="${recipe.id}">Remplacer</button>`;
+      secondaryActionHtml = `
+        <button type="button" class="btn btn--ghost btn--sm" data-replace-recipe="${recipe.id}">Remplacer</button>
+        ${state.currentPlan.selectedRecipes.length > 1 ? `<button type="button" class="btn btn--danger-ghost btn--sm" data-remove-from-plan="${recipe.id}" title="Retirer ce plat du menu">Retirer</button>` : ""}
+      `;
     } else if (mode === "catalog" || mode === "fav") {
       secondaryActionHtml = inPlanSlot
         ? `<button type="button" class="btn btn--in-plan btn--sm" data-add-to-plan="${recipe.id}">✓ Dans le menu (+1)</button>`
@@ -524,7 +574,7 @@
         <div class="recipe-card__header">
           <div class="recipe-badges">
             <span class="cat-badge">${escapeHtml(catLabel)}</span>
-            ${recipe.isCustom ? `<span class="custom-badge">Perso</span>` : ""}
+            ${recipe._isSharedPreview ? `<span class="custom-badge">Partagée</span>` : recipe.isCustom ? `<span class="custom-badge">Perso</span>` : ""}
             ${mode === "plan" ? `<span class="portions-badge">${portions} portions</span>` : ""}
             ${recipe.freezable ? `<span class="freeze-badge">Congélable</span>` : ""}
             ${mode === "plan" && scale !== 1 ? `<span class="scale-badge">Portion ×${scale}</span>` : ""}
@@ -576,17 +626,18 @@
   }
 
   /* --------------------------------------------------------------------------
-     Rendu Catalogue Complet & Recherche (V2.2)
+     Rendu Catalogue Complet & Recherche
      -------------------------------------------------------------------------- */
   function renderAllRecipesView() {
     const grid = document.getElementById("all-recipes-grid");
     const summaryEl = document.getElementById("all-recipes-summary");
     if (!grid) return;
 
+    const active = getActivePrefs();
     const allRecipes = state.indexedRecipes.recipes || [];
-    const { query, category, onlyCompatible, onlyFreezable, sortBy } = state.catalogFilter;
+    const { query, category, onlyCompatible, onlyFreezable, onlyFavorites, sortBy } = state.catalogFilter;
     const normQuery = global.BatchPlanner.normalizeText(query);
-    const pantrySet = new Set((state.prefs.pantryItems || []).map(global.BatchPlanner.normalizeText));
+    const pantrySet = new Set((active.pantryItems || []).map(global.BatchPlanner.normalizeText));
 
     let filtered = allRecipes.filter((r) => {
       if (category === "custom") {
@@ -595,11 +646,15 @@
         if (r.category !== category) return false;
       }
 
-      if (onlyCompatible && !global.BatchPlanner.isRecipeEligible(r, state.prefs)) {
+      if (onlyCompatible && !global.BatchPlanner.isRecipeEligible(r, active)) {
         return false;
       }
 
       if (onlyFreezable && !r.freezable) {
+        return false;
+      }
+
+      if (onlyFavorites && !state.favorites.has(r.id)) {
         return false;
       }
 
@@ -819,13 +874,14 @@
      Modale Détail Recette
      -------------------------------------------------------------------------- */
   function openRecipeModal(recipeId) {
+    const active = getActivePrefs();
     const recipe =
       (state.currentPlan && state.currentPlan.selectedRecipes.find((r) => r.id === recipeId)) ||
       state.indexedRecipes.recipes.find((r) => r.id === recipeId);
 
     if (!recipe) return;
 
-    const mult = recipe.totalPortions || state.prefs.servings;
+    const mult = recipe.totalPortions || active.servings;
     const scale = recipe._calorieScale || 1;
     const unitPrice = recipe._effectivePrice != null ? recipe._effectivePrice : Number(recipe.price);
     const unitCal = recipe._effectiveCalories != null ? recipe._effectiveCalories : recipe.calories;
@@ -845,7 +901,7 @@
     document.getElementById("modal-recipe-body").innerHTML = `
       <div class="recipe-badges">
         <span class="cat-badge">${escapeHtml(CATEGORY_LABELS[recipe.category] || recipe.category)}</span>
-        ${recipe.isCustom ? `<span class="custom-badge">Recette personnelle</span>` : ""}
+        ${recipe._isSharedPreview ? `<span class="custom-badge">Recette partagée (aperçu)</span>` : recipe.isCustom ? `<span class="custom-badge">Recette personnelle</span>` : ""}
       </div>
       <h2 id="modal-recipe-title" style="margin: 12px 0 8px; font-size: 1.6rem; letter-spacing: -0.025em;">${escapeHtml(recipe.name)}</h2>
       <p style="margin: 0 0 18px; color: var(--text-secondary);">
@@ -912,7 +968,10 @@
       <input type="number" class="select-input cr-ing-qty" min="0.1" step="any" placeholder="Qté" value="${defaultQty}" />
       <select class="select-input cr-ing-unit">
         <option value="g" ${defaultUnit === "g" ? "selected" : ""}>g</option>
+        <option value="kg" ${defaultUnit === "kg" ? "selected" : ""}>kg</option>
         <option value="ml" ${defaultUnit === "ml" ? "selected" : ""}>ml</option>
+        <option value="cl" ${defaultUnit === "cl" ? "selected" : ""}>cl</option>
+        <option value="L" ${defaultUnit === "L" ? "selected" : ""}>L</option>
         <option value="pièce" ${defaultUnit === "pièce" ? "selected" : ""}>pièce</option>
         <option value="gousse" ${defaultUnit === "gousse" ? "selected" : ""}>gousse</option>
         <option value="boîte" ${defaultUnit === "boîte" ? "selected" : ""}>boîte</option>
@@ -955,10 +1014,21 @@
 
       if (meta) {
         let factor = 0;
-        if (meta.unit === "kg" && u === "g") factor = ing.quantity / 1000;
-        else if (meta.unit === "L" && u === "ml") factor = ing.quantity / 1000;
-        else if (meta.unit === "g" && u === "g") factor = ing.quantity;
-        else factor = ing.quantity;
+        if (meta.unit === "kg") {
+          if (u === "kg") factor = ing.quantity;
+          else if (u === "g") factor = ing.quantity / 1000;
+          else factor = ing.quantity;
+        } else if (meta.unit === "L") {
+          if (u === "l") factor = ing.quantity;
+          else if (u === "cl") factor = ing.quantity / 100;
+          else if (u === "ml") factor = ing.quantity / 1000;
+          else factor = ing.quantity;
+        } else if (meta.unit === "g") {
+          if (u === "kg") factor = ing.quantity * 1000;
+          else factor = ing.quantity;
+        } else {
+          factor = ing.quantity;
+        }
 
         price += factor * (Number(meta.unitPrice) || 0);
         calories += factor * (Number(meta.kcalPerUnit) || 0);
@@ -966,7 +1036,14 @@
         carbs += factor * (Number(meta.cPerUnit) || 0);
         fat += factor * (Number(meta.fPerUnit) || 0);
       } else {
-        const fallbackFactor = u === "g" || u === "ml" ? ing.quantity / 100 : ing.quantity;
+        const fallbackFactor =
+          u === "kg" || u === "l"
+            ? ing.quantity * 10
+            : u === "cl"
+            ? ing.quantity / 10
+            : u === "g" || u === "ml"
+            ? ing.quantity / 100
+            : ing.quantity;
         price += fallbackFactor * 0.45;
         calories += fallbackFactor * 120;
         protein += fallbackFactor * 6;
@@ -1015,7 +1092,139 @@
   }
 
   /* --------------------------------------------------------------------------
-     Partage sans serveur via URL Hash (#plan=...)
+     Export & Import JSON (Sauvegarde complète + Export recettes perso)
+     -------------------------------------------------------------------------- */
+  function sanitizeCustomRecipeForExport(r) {
+    return {
+      id: r.id,
+      name: r.name,
+      category: r.category,
+      price: Math.round((Number(r.price) || 0) * 100) / 100,
+      prepTime: Number(r.prepTime) || 0,
+      cookTime: Number(r.cookTime) || 0,
+      calories: Number(r.calories) || 0,
+      protein: Number(r.protein) || 0,
+      carbs: Number(r.carbs) || 0,
+      fat: Number(r.fat) || 0,
+      freezable: Boolean(r.freezable),
+      batchFriendly: r.batchFriendly !== false,
+      equipment: Array.isArray(r.equipment) ? r.equipment : [],
+      ingredients: Array.isArray(r.ingredients) ? r.ingredients : [],
+      steps: Array.isArray(r.steps) ? r.steps : []
+    };
+  }
+
+  function exportFullBackupJson() {
+    const dateStamp = new Date().toISOString().slice(0, 10);
+    const payload = {
+      app: "Batch Malin",
+      version: "2.4",
+      exportedAt: new Date().toISOString(),
+      prefs: state.prefs,
+      favorites: Array.from(state.favorites),
+      customRecipes: state.customRecipes.map((r) => ({
+        ...sanitizeCustomRecipeForExport(r),
+        isCustom: true
+      }))
+    };
+
+    downloadTextFile(
+      `batch-malin-sauvegarde-${dateStamp}.json`,
+      JSON.stringify(payload, null, 2),
+      "application/json;charset=utf-8"
+    );
+    showToast("Sauvegarde JSON téléchargée");
+  }
+
+  function exportCustomRecipesJson() {
+    if (!state.customRecipes.length) {
+      showToast("Aucune recette personnelle à exporter");
+      return;
+    }
+    const cleanList = state.customRecipes.map(sanitizeCustomRecipeForExport);
+    downloadTextFile(
+      "mes-recettes-batch-malin.json",
+      JSON.stringify(cleanList, null, 2),
+      "application/json;charset=utf-8"
+    );
+    showToast(`${cleanList.length} recette(s) exportée(s) en JSON`);
+  }
+
+  function handleBackupFileImport(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const parsed = JSON.parse(String(reader.result || ""));
+        if (!parsed || typeof parsed !== "object") {
+          throw new Error("Format JSON invalide");
+        }
+
+        // Supporte à la fois une sauvegarde complète { prefs, favorites, customRecipes }
+        // ou un tableau brut de recettes [ { id, name, ingredients, ... } ]
+        if (Array.isArray(parsed)) {
+          const existingIds = new Set(state.customRecipes.map((r) => r.id));
+          let addedCount = 0;
+          parsed.forEach((item) => {
+            if (item && item.name && Array.isArray(item.ingredients)) {
+              const id = item.id && !existingIds.has(item.id) ? item.id : Date.now() + addedCount;
+              existingIds.add(id);
+              state.customRecipes.push({
+                ...sanitizeCustomRecipeForExport(item),
+                id,
+                isCustom: true
+              });
+              addedCount++;
+            }
+          });
+          saveCustomRecipes();
+          runFullGeneration(false);
+          showToast(`${addedCount} recette(s) importée(s) avec succès`);
+          return;
+        }
+
+        if (parsed.prefs && typeof parsed.prefs === "object") {
+          state.prefs = { ...DEFAULT_PREFS, ...parsed.prefs };
+        }
+
+        if (Array.isArray(parsed.favorites)) {
+          parsed.favorites.forEach((id) => state.favorites.add(id));
+        }
+
+        if (Array.isArray(parsed.customRecipes)) {
+          const existingIds = new Set(state.customRecipes.map((r) => r.id));
+          parsed.customRecipes.forEach((cr) => {
+            if (cr && cr.id && cr.name && !existingIds.has(cr.id)) {
+              existingIds.add(cr.id);
+              state.customRecipes.push({
+                ...sanitizeCustomRecipeForExport(cr),
+                isCustom: true
+              });
+            }
+          });
+        }
+
+        state.sharedPreview = null;
+        if (window.location.hash) {
+          window.history.replaceState(null, "", window.location.pathname);
+        }
+
+        savePrefs();
+        saveFavorites();
+        saveCustomRecipes();
+        syncInputsFromPrefs();
+        runFullGeneration(true);
+        showToast("Sauvegarde JSON restaurée avec succès");
+      } catch (err) {
+        console.error(err);
+        showToast("Fichier JSON invalide ou corrompu");
+      }
+    };
+    reader.readAsText(file, "UTF-8");
+  }
+
+  /* --------------------------------------------------------------------------
+     Partage sans serveur via URL Hash (#plan=...) avec cloisonnement strict
      -------------------------------------------------------------------------- */
   async function shareCurrentPlanByUrl() {
     if (!state.currentPlan || !state.currentPlan.selectedRecipes.length) {
@@ -1023,43 +1232,30 @@
       return;
     }
 
+    const active = getActivePrefs();
     const usedCustomRecipes = state.currentPlan.selectedRecipes
       .filter((r) => r.isCustom)
       .map((r) => ({
-        id: r.id,
-        name: r.name,
-        category: r.category,
-        price: r.price,
-        prepTime: r.prepTime,
-        cookTime: r.cookTime,
-        calories: r.calories,
-        protein: r.protein,
-        carbs: r.carbs,
-        fat: r.fat,
-        freezable: r.freezable,
-        batchFriendly: true,
-        isCustom: true,
-        equipment: r.equipment,
-        ingredients: r.ingredients,
-        steps: r.steps
+        ...sanitizeCustomRecipeForExport(r),
+        isCustom: true
       }));
 
     const payload = {
       v: 2,
       prefs: {
-        budget: state.prefs.budget,
-        days: state.prefs.days,
-        mealsPerDay: state.prefs.mealsPerDay,
-        servings: state.prefs.servings,
-        maxTime: state.prefs.maxTime,
-        diet: state.prefs.diet,
-        skill: state.prefs.skill,
-        startTime: state.prefs.startTime,
-        calorieTargetEnabled: state.prefs.calorieTargetEnabled,
-        targetCalories: state.prefs.targetCalories,
-        pantryItems: state.prefs.pantryItems,
-        excludedItems: state.prefs.excludedItems,
-        equipment: state.prefs.equipment
+        budget: active.budget,
+        days: active.days,
+        mealsPerDay: active.mealsPerDay,
+        servings: active.servings,
+        maxTime: active.maxTime,
+        diet: active.diet,
+        skill: active.skill,
+        startTime: active.startTime,
+        calorieTargetEnabled: active.calorieTargetEnabled,
+        targetCalories: active.targetCalories,
+        pantryItems: active.pantryItems,
+        excludedItems: active.excludedItems,
+        equipment: active.equipment
       },
       slots: state.currentPlan.selectedRecipes.map((r) => ({ id: r.id, batches: r.batches })),
       custom: usedCustomRecipes
@@ -1085,33 +1281,87 @@
     const payload = decodeSharePayload(encoded);
     if (!payload || !Array.isArray(payload.slots)) return false;
 
-    if (payload.prefs && typeof payload.prefs === "object") {
-      state.prefs = { ...DEFAULT_PREFS, ...payload.prefs };
-    }
+    const previewPrefs =
+      payload.prefs && typeof payload.prefs === "object"
+        ? { ...DEFAULT_PREFS, ...payload.prefs }
+        : { ...state.prefs };
 
-    if (Array.isArray(payload.custom) && payload.custom.length > 0) {
-      const existingIds = new Set(state.customRecipes.map((r) => r.id));
-      payload.custom.forEach((cr) => {
-        if (!existingIds.has(cr.id)) {
-          state.customRecipes.push({ ...cr, isCustom: true });
-        }
-      });
-      rebuildCombinedIndex();
-    }
+    const previewCustom = Array.isArray(payload.custom)
+      ? payload.custom.filter((cr) => cr && cr.id && cr.name)
+      : [];
 
+    state.sharedPreview = {
+      prefs: previewPrefs,
+      slots: payload.slots,
+      custom: previewCustom
+    };
+
+    rebuildCombinedIndex();
     syncInputsFromPrefs();
+
     const restoredPlan = global.BatchPlanner.rebuildPlanFromSavedSlots(
       payload.slots,
       state.indexedRecipes,
-      state.prefs
+      previewPrefs
     );
 
     if (restoredPlan) {
       applyPlanAndRender(restoredPlan);
-      showToast("Plan partagé chargé avec succès");
+      showToast("Aperçu du plan partagé chargé");
       return true;
     }
+
+    state.sharedPreview = null;
+    rebuildCombinedIndex();
     return false;
+  }
+
+  function importSharedPreviewIntoLocalSpace() {
+    if (!state.sharedPreview) return;
+
+    const { prefs: sharedPrefs, custom: sharedCustom } = state.sharedPreview;
+    state.prefs = { ...DEFAULT_PREFS, ...sharedPrefs };
+
+    if (Array.isArray(sharedCustom) && sharedCustom.length > 0) {
+      const existingIds = new Set(state.customRecipes.map((r) => r.id));
+      sharedCustom.forEach((cr) => {
+        if (cr && cr.id && !existingIds.has(cr.id)) {
+          existingIds.add(cr.id);
+          state.customRecipes.push({
+            ...sanitizeCustomRecipeForExport(cr),
+            isCustom: true
+          });
+        }
+      });
+    }
+
+    state.sharedPreview = null;
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+
+    savePrefs();
+    saveCustomRecipes();
+    rebuildCombinedIndex();
+    syncInputsFromPrefs();
+
+    if (state.currentPlan) {
+      state.currentPlan.notice = null;
+      applyPlanAndRender(state.currentPlan);
+    }
+    showToast("Plan partagé importé dans votre espace personnel");
+  }
+
+  function exitSharedPreviewMode() {
+    if (!state.sharedPreview) return;
+    state.sharedPreview = null;
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+    rebuildCombinedIndex();
+    syncInputsFromPrefs();
+    runFullGeneration(true);
+    showToast("Retour à vos paramètres personnels");
   }
 
   /* --------------------------------------------------------------------------
@@ -1151,7 +1401,7 @@
 
     rangeMap.forEach(([elId, key]) => {
       document.getElementById(elId).addEventListener("input", (e) => {
-        state.prefs[key] = Number(e.target.value);
+        getActivePrefs()[key] = Number(e.target.value);
         updateConfigHints();
         savePrefs();
       });
@@ -1160,7 +1410,7 @@
     document.querySelectorAll(".segmented-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         const meals = Number(btn.dataset.meals);
-        state.prefs.mealsPerDay = meals;
+        getActivePrefs().mealsPerDay = meals;
         document.getElementById("input-meals-per-day").value = meals;
         document.querySelectorAll(".segmented-btn").forEach((b) =>
           b.classList.toggle("is-active", b === btn)
@@ -1177,7 +1427,7 @@
           "input-skill": "skill",
           "input-start-time": "startTime"
         };
-        state.prefs[map[id]] = e.target.value;
+        getActivePrefs()[map[id]] = e.target.value;
         savePrefs();
         if (state.catalogFilter.onlyCompatible) renderAllRecipesView();
       });
@@ -1186,7 +1436,7 @@
     // Ciblage calorique
     document.getElementById("toggle-calorie-target").addEventListener("change", (e) => {
       const enabled = e.target.checked;
-      state.prefs.calorieTargetEnabled = enabled;
+      getActivePrefs().calorieTargetEnabled = enabled;
       const slider = document.getElementById("input-target-calories");
       slider.disabled = !enabled;
       document.getElementById("calorie-target-controls").classList.toggle("is-disabled", !enabled);
@@ -1194,20 +1444,21 @@
     });
 
     document.getElementById("input-target-calories").addEventListener("input", (e) => {
-      state.prefs.targetCalories = Number(e.target.value);
+      getActivePrefs().targetCalories = Number(e.target.value);
       document.getElementById("display-target-calories").textContent = e.target.value;
       savePrefs();
     });
 
     // Tags Vider mon frigo & Exclusions
     function addTagItem(inputId, listKey) {
+      const active = getActivePrefs();
       const input = document.getElementById(inputId);
       const val = input.value.trim();
       if (!val) return;
-      const list = state.prefs[listKey] || [];
+      const list = active[listKey] || [];
       if (!list.some((x) => global.BatchPlanner.normalizeText(x) === global.BatchPlanner.normalizeText(val))) {
         list.push(val);
-        state.prefs[listKey] = list;
+        active[listKey] = list;
         savePrefs();
         renderTagContainers();
         renderAllRecipesView();
@@ -1235,18 +1486,19 @@
     document.getElementById("equipment-grid").addEventListener("click", (e) => {
       const card = e.target.closest(".equip-card");
       if (!card) return;
+      const active = getActivePrefs();
       const name = card.dataset.equip;
-      const set = new Set(state.prefs.equipment);
+      const set = new Set(active.equipment);
       if (set.has(name)) set.delete(name);
       else set.add(name);
-      state.prefs.equipment = Array.from(set);
+      active.equipment = Array.from(set);
       savePrefs();
       renderEquipmentCards();
       if (state.catalogFilter.onlyCompatible) renderAllRecipesView();
     });
 
     document.getElementById("btn-equip-essentials").addEventListener("click", () => {
-      state.prefs.equipment = ["Four", "Plaques induction", "Micro-ondes"];
+      getActivePrefs().equipment = ["Four", "Plaques induction", "Micro-ondes"];
       savePrefs();
       renderEquipmentCards();
       if (state.catalogFilter.onlyCompatible) renderAllRecipesView();
@@ -1254,16 +1506,22 @@
     });
 
     document.getElementById("btn-equip-all").addEventListener("click", () => {
-      state.prefs.equipment = state.equipmentList.map((e) => e.name);
+      getActivePrefs().equipment = state.equipmentList.map((e) => e.name);
       savePrefs();
       renderEquipmentCards();
       if (state.catalogFilter.onlyCompatible) renderAllRecipesView();
       showToast("Tout le matériel sélectionné");
     });
 
-    // Boutons Génération & Partage
+    // Boutons Génération, Partage & Sauvegarde JSON
     ["btn-generate-top", "btn-generate-main"].forEach((id) => {
       document.getElementById(id).addEventListener("click", () => {
+        if (state.sharedPreview) {
+          state.prefs = { ...DEFAULT_PREFS, ...state.sharedPreview.prefs };
+          state.sharedPreview = null;
+          rebuildCombinedIndex();
+          savePrefs();
+        }
         if (window.location.hash) window.history.replaceState(null, "", window.location.pathname);
         runFullGeneration(true);
         document.getElementById("results-section").scrollIntoView({ behavior: "smooth" });
@@ -1278,9 +1536,28 @@
     });
 
     document.getElementById("btn-share-plan").addEventListener("click", shareCurrentPlanByUrl);
+    document.getElementById("btn-import-shared-plan").addEventListener("click", importSharedPreviewIntoLocalSpace);
+    document.getElementById("btn-exit-shared-plan").addEventListener("click", exitSharedPreviewMode);
+
+    document.getElementById("btn-export-backup").addEventListener("click", exportFullBackupJson);
+    document.getElementById("btn-import-backup").addEventListener("click", () => {
+      document.getElementById("input-import-backup").click();
+    });
+    document.getElementById("input-import-backup").addEventListener("change", (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (file) {
+        handleBackupFileImport(file);
+        e.target.value = "";
+      }
+    });
+
+    document.getElementById("btn-export-custom-json").addEventListener("click", exportCustomRecipesJson);
 
     document.getElementById("btn-reset-prefs").addEventListener("click", () => {
+      state.sharedPreview = null;
+      if (window.location.hash) window.history.replaceState(null, "", window.location.pathname);
       state.prefs = { ...DEFAULT_PREFS, pantryItems: [], excludedItems: [] };
+      rebuildCombinedIndex();
       savePrefs();
       syncInputsFromPrefs();
       runFullGeneration(true);
@@ -1302,7 +1579,7 @@
       document.getElementById("results-section").scrollIntoView({ behavior: "smooth" });
     });
 
-    // Filtres & Recherche de l'onglet "Toutes les recettes" (V2.2)
+    // Filtres & Recherche de l'onglet "Toutes les recettes"
     const allSearchInput = document.getElementById("all-search-input");
     const clearSearchBtn = document.getElementById("btn-clear-all-search");
 
@@ -1327,6 +1604,11 @@
 
     document.getElementById("all-filter-freezable").addEventListener("change", (e) => {
       state.catalogFilter.onlyFreezable = e.target.checked;
+      renderAllRecipesView();
+    });
+
+    document.getElementById("all-filter-favorites").addEventListener("change", (e) => {
+      state.catalogFilter.onlyFavorites = e.target.checked;
       renderAllRecipesView();
     });
 
@@ -1391,8 +1673,7 @@
 
       const rawSteps = document
         .getElementById("cr-steps")
-        .value.split("
-")
+        .value.split("\n")
         .map((s) => s.trim())
         .filter(Boolean);
 
@@ -1429,7 +1710,7 @@
     document.body.addEventListener("click", (e) => {
       const remPantry = e.target.closest("[data-remove-pantry]");
       if (remPantry) {
-        state.prefs.pantryItems.splice(Number(remPantry.dataset.removePantry), 1);
+        getActivePrefs().pantryItems.splice(Number(remPantry.dataset.removePantry), 1);
         savePrefs();
         renderTagContainers();
         renderAllRecipesView();
@@ -1438,7 +1719,7 @@
 
       const remExclude = e.target.closest("[data-remove-exclude]");
       if (remExclude) {
-        state.prefs.excludedItems.splice(Number(remExclude.dataset.removeExclude), 1);
+        getActivePrefs().excludedItems.splice(Number(remExclude.dataset.removeExclude), 1);
         savePrefs();
         renderTagContainers();
         renderAllRecipesView();
@@ -1451,12 +1732,14 @@
           category: "all",
           onlyCompatible: false,
           onlyFreezable: false,
+          onlyFavorites: false,
           sortBy: "default"
         };
         document.getElementById("all-search-input").value = "";
         document.getElementById("btn-clear-all-search").classList.add("hidden");
         document.getElementById("all-filter-compatible").checked = false;
         document.getElementById("all-filter-freezable").checked = false;
+        document.getElementById("all-filter-favorites").checked = false;
         document.getElementById("all-sort-select").value = "default";
         document.querySelectorAll("#all-category-pills .cat-filter-pill").forEach((p) =>
           p.classList.toggle("is-active", p.dataset.cat === "all")
@@ -1520,7 +1803,7 @@
           state.currentPlan,
           id,
           state.indexedRecipes,
-          state.prefs
+          getActivePrefs()
         );
         if (result) {
           applyPlanAndRender(result.plan);
@@ -1533,6 +1816,19 @@
         return;
       }
 
+      const removePlanBtn = e.target.closest("[data-remove-from-plan]");
+      if (removePlanBtn && state.currentPlan) {
+        const id = Number(removePlanBtn.dataset.removeFromPlan);
+        const updatedPlan = global.BatchPlanner.removeRecipeFromPlan(
+          state.currentPlan,
+          id,
+          getActivePrefs()
+        );
+        applyPlanAndRender(updatedPlan);
+        showToast("Recette retirée du menu");
+        return;
+      }
+
       const replaceBtn = e.target.closest("[data-replace-recipe]");
       if (replaceBtn && state.currentPlan) {
         const id = Number(replaceBtn.dataset.replaceRecipe);
@@ -1540,7 +1836,7 @@
           state.currentPlan,
           id,
           state.indexedRecipes,
-          state.prefs
+          getActivePrefs()
         );
         applyPlanAndRender(updatedPlan);
         showToast("Recette remplacée en conservant la synergie");
@@ -1587,6 +1883,14 @@
       } catch {
         showToast("Copie impossible sur ce navigateur");
       }
+    });
+
+    document.getElementById("btn-download-shopping-txt").addEventListener("click", () => {
+      if (!state.currentShopping) return;
+      const text = global.BatchShopping.formatShoppingListAsText(state.currentShopping);
+      const dateStamp = new Date().toISOString().slice(0, 10);
+      downloadTextFile(`liste-courses-batch-malin-${dateStamp}.txt`, text);
+      showToast("Fichier .txt téléchargé (prêt pour Notes / Rappels iPhone)");
     });
 
     document.getElementById("btn-print-plan").addEventListener("click", () => {
