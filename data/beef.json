@@ -1,192 +1,1671 @@
 [
   {
-    "id": 101,
-    "name": "Chili express de bœuf, haricots rouges & riz",
+    "id": 137,
+    "name": "Bœuf bourguignon express & carottes fondantes",
     "category": "beef",
-    "price": 2.50,
-    "prepTime": 10,
-    "cookTime": 20,
-    "calories": 590,
-    "protein": 36,
-    "carbs": 62,
-    "fat": 19,
+    "price": 3.04,
+    "prepTime": 15,
+    "cookTime": 45,
+    "calories": 447,
+    "protein": 39,
+    "carbs": 30,
+    "fat": 15,
     "freezable": true,
     "batchFriendly": true,
-    "equipment": ["Plaques induction"],
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
     "ingredients": [
-      { "name": "Bœuf haché", "quantity": 130, "unit": "g" },
-      { "name": "Haricots rouges", "quantity": 80, "unit": "g" },
-      { "name": "Coulis de tomate", "quantity": 120, "unit": "ml" },
-      { "name": "Oignon", "quantity": 45, "unit": "g" },
-      { "name": "Riz basmati", "quantity": 70, "unit": "g" },
-      { "name": "Cumin", "quantity": 4, "unit": "g" }
+      {
+        "name": "Bœuf à braiser",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Carottes",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Champignons de Paris",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Vin rouge de cuisine",
+        "quantity": 60,
+        "unit": "ml"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Bouillon de bœuf",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Farine de blé",
+        "quantity": 8,
+        "unit": "g"
+      }
     ],
     "steps": [
-      "Lancer la cuisson du riz basmati dans une casserole d'eau salée.",
-      "Faire revenir l'oignon émincé et le bœuf haché avec le cumin pendant 6 min, puis verser le coulis de tomate et les haricots rouges.",
-      "Laisser mijoter 12 min à feu doux et mettre en boîtes avec le riz."
+      "Saisir les cubes de bœuf avec l'oignon et saupoudrer de farine.",
+      "Mouiller avec le vin rouge et le bouillon, ajouter carottes et champignons, mijoter 45 min."
     ]
   },
   {
-    "id": 102,
-    "name": "Boulettes de bœuf rôties, courgettes & sauce tomate",
+    "id": 138,
+    "name": "Boulettes de bœuf sauce tomate basilic & courgettes",
     "category": "beef",
-    "price": 2.75,
+    "price": 3.25,
     "prepTime": 15,
     "cookTime": 22,
-    "calories": 530,
-    "protein": 35,
-    "carbs": 45,
+    "calories": 381,
+    "protein": 38,
+    "carbs": 17,
+    "fat": 17,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Bœuf haché 5%",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Coulis de tomate",
+        "quantity": 140,
+        "unit": "ml"
+      },
+      {
+        "name": "Courgettes",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Basilic séché",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Façonner des boulettes avec le bœuf haché et l'oignon ciselé.",
+      "Dorer 6 min à la poêle, ajouter courgettes et coulis de tomate, mijoter 15 min."
+    ]
+  },
+  {
+    "id": 139,
+    "name": "Hachis parmentier maison de bœuf & patate douce",
+    "category": "beef",
+    "price": 3.29,
+    "prepTime": 20,
+    "cookTime": 30,
+    "calories": 580,
+    "protein": 43,
+    "carbs": 51,
     "fat": 22,
     "freezable": true,
     "batchFriendly": true,
-    "equipment": ["Four"],
+    "equipment": [
+      "Four",
+      "Plaques induction"
+    ],
     "ingredients": [
-      { "name": "Bœuf haché", "quantity": 140, "unit": "g" },
-      { "name": "Courgettes", "quantity": 120, "unit": "g" },
-      { "name": "Coulis de tomate", "quantity": 110, "unit": "ml" },
-      { "name": "Oignon", "quantity": 40, "unit": "g" },
-      { "name": "Pâtes penne", "quantity": 75, "unit": "g" }
+      {
+        "name": "Bœuf haché 5%",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Patate douce",
+        "quantity": 220,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Coulis de tomate",
+        "quantity": 60,
+        "unit": "ml"
+      },
+      {
+        "name": "Fromage râpé",
+        "quantity": 25,
+        "unit": "g"
+      },
+      {
+        "name": "Beurre doux",
+        "quantity": 8,
+        "unit": "g"
+      }
     ],
     "steps": [
-      "Façonner des boulettes avec le bœuf haché et l'oignon ciselé, les déposer sur plaque avec les courgettes en dés.",
-      "Enfourner 20 min à 200°C.",
-      "Napper de coulis de tomate chaud et accompagner des pâtes penne."
+      "Cuire les patates douces 18 min à l'eau et écraser avec le beurre.",
+      "Faire revenir bœuf, oignon et coulis de tomate, couvrir de purée et fromage puis gratiner 15 min."
     ]
   },
   {
-    "id": 103,
-    "name": "Bœuf sauté aux carottes, oignons & sauce soja",
+    "id": 140,
+    "name": "Bœuf sauté au brocoli, sauce soja & gingembre",
     "category": "beef",
-    "price": 2.60,
-    "prepTime": 10,
-    "cookTime": 15,
-    "calories": 545,
-    "protein": 34,
-    "carbs": 56,
-    "fat": 19,
-    "freezable": true,
-    "batchFriendly": true,
-    "equipment": ["Plaques induction"],
-    "ingredients": [
-      { "name": "Bœuf haché", "quantity": 135, "unit": "g" },
-      { "name": "Carottes", "quantity": 110, "unit": "g" },
-      { "name": "Oignon", "quantity": 50, "unit": "g" },
-      { "name": "Riz basmati", "quantity": 80, "unit": "g" },
-      { "name": "Sauce soja", "quantity": 15, "unit": "ml" }
-    ],
-    "steps": [
-      "Cuire le riz basmati à l'eau bouillante pendant 11 min.",
-      "Saisir à feu vif le bœuf, les carottes en fines lamelles et l'oignon pendant 10 min, déglacer à la sauce soja.",
-      "Assembler le riz et le sauté de bœuf."
-    ]
-  },
-  {
-    "id": 104,
-    "name": "Hachis parmentier de patates douces & carottes",
-    "category": "beef",
-    "price": 2.80,
-    "prepTime": 15,
-    "cookTime": 25,
-    "calories": 550,
-    "protein": 33,
-    "carbs": 52,
-    "fat": 21,
-    "freezable": true,
-    "batchFriendly": true,
-    "equipment": ["Four", "Plaques induction"],
-    "ingredients": [
-      { "name": "Bœuf haché", "quantity": 135, "unit": "g" },
-      { "name": "Patate douce", "quantity": 180, "unit": "g" },
-      { "name": "Carottes", "quantity": 80, "unit": "g" },
-      { "name": "Oignon", "quantity": 40, "unit": "g" },
-      { "name": "Fromage râpé", "quantity": 25, "unit": "g" }
-    ],
-    "steps": [
-      "Cuire les patates douces en dés à l'eau bouillante 15 min puis les écraser en purée.",
-      "Faire revenir le bœuf haché avec les carottes en petits dés et l'oignon.",
-      "Monter dans un plat à gratin, parsemer de fromage râpé et gratiner 15 min au four à 200°C."
-    ]
-  }
-  ,{
-    "id": 105,
-    "name": "Poivrons rôtis farcis au bœuf & riz tomate",
-    "category": "beef",
-    "price": 2.75,
-    "prepTime": 15,
-    "cookTime": 25,
-    "calories": 540,
-    "protein": 34,
-    "carbs": 52,
-    "fat": 20,
-    "freezable": true,
-    "batchFriendly": true,
-    "equipment": ["Four", "Plaques induction"],
-    "ingredients": [
-      { "name": "Bœuf haché", "quantity": 135, "unit": "g" },
-      { "name": "Poivron rouge", "quantity": 140, "unit": "g" },
-      { "name": "Riz basmati", "quantity": 65, "unit": "g" },
-      { "name": "Coulis de tomate", "quantity": 100, "unit": "ml" },
-      { "name": "Fromage râpé", "quantity": 20, "unit": "g" }
-    ],
-    "steps": [
-      "Précuire le riz basmati 8 min et faire revenir le bœuf haché avec le coulis de tomate.",
-      "Garnir les demi-poivrons épépinés avec le mélange bœuf-riz, parsemer de fromage râpé.",
-      "Enfourner 22 min à 195°C."
-    ]
-  },
-  {
-    "id": 106,
-    "name": "Mijoté de bœuf, lentilles vertes & carottes",
-    "category": "beef",
-    "price": 2.35,
-    "prepTime": 10,
-    "cookTime": 25,
-    "calories": 565,
-    "protein": 39,
-    "carbs": 54,
+    "price": 3.74,
+    "prepTime": 12,
+    "cookTime": 14,
+    "calories": 386,
+    "protein": 40,
+    "carbs": 20,
     "fat": 18,
     "freezable": true,
     "batchFriendly": true,
-    "equipment": ["Plaques induction"],
+    "equipment": [
+      "Plaques induction"
+    ],
     "ingredients": [
-      { "name": "Bœuf haché", "quantity": 130, "unit": "g" },
-      { "name": "Lentilles vertes", "quantity": 75, "unit": "g" },
-      { "name": "Carottes", "quantity": 100, "unit": "g" },
-      { "name": "Oignon", "quantity": 40, "unit": "g" },
-      { "name": "Coulis de tomate", "quantity": 110, "unit": "ml" }
+      {
+        "name": "Bavette de bœuf",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Brocoli",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce soja",
+        "quantity": 18,
+        "unit": "ml"
+      },
+      {
+        "name": "Gingembre frais",
+        "quantity": 8,
+        "unit": "g"
+      },
+      {
+        "name": "Fécule de maïs",
+        "quantity": 6,
+        "unit": "g"
+      },
+      {
+        "name": "Huile de sésame",
+        "quantity": 6,
+        "unit": "ml"
+      }
     ],
     "steps": [
-      "Saisir le bœuf haché, l'oignon émincé et les carottes en rondelles 5 min.",
-      "Ajouter les lentilles vertes rincées, le coulis de tomate et 200 ml d'eau.",
-      "Laisser mijoter à couvert 22 min."
+      "Blanchir le brocoli 5 min puis saisir les lamelles de bœuf 3 min à feu très vif.",
+      "Réunir avec sauce soja, gingembre et fécule diluée pour napper."
     ]
   },
   {
-    "id": 107,
-    "name": "Steak haché façon bouchère, frites de patates douces & brocoli",
+    "id": 141,
+    "name": "Filet mignon de porc à la moutarde & pommes de terre",
     "category": "beef",
-    "price": 2.70,
+    "price": 2.74,
+    "prepTime": 12,
+    "cookTime": 30,
+    "calories": 553,
+    "protein": 42,
+    "carbs": 39,
+    "fat": 26,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Filet mignon de porc",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Pommes de terre",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 45,
+        "unit": "ml"
+      },
+      {
+        "name": "Moutarde à l'ancienne",
+        "quantity": 15,
+        "unit": "g"
+      },
+      {
+        "name": "Échalote",
+        "quantity": 25,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Dorer le filet mignon en médaillons avec l'échalote.",
+      "Ajouter pommes de terre en dés, un fond d'eau, crème et moutarde, mijoter 25 min."
+    ]
+  },
+  {
+    "id": 142,
+    "name": "Chili con carne traditionnel aux haricots rouges",
+    "category": "beef",
+    "price": 2.92,
+    "prepTime": 15,
+    "cookTime": 30,
+    "calories": 537,
+    "protein": 44,
+    "carbs": 47,
+    "fat": 18,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Bœuf haché",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Haricots rouges",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates concassées",
+        "quantity": 140,
+        "unit": "g"
+      },
+      {
+        "name": "Poivron rouge",
+        "quantity": 60,
+        "unit": "g"
+      },
+      {
+        "name": "Maïs en boîte",
+        "quantity": 50,
+        "unit": "g"
+      },
+      {
+        "name": "Cumin",
+        "quantity": 3,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Faire revenir l'oignon, le poivron et le bœuf haché avec le cumin.",
+      "Ajouter tomates concassées, haricots rouges et maïs, laisser mijoter 25 min."
+    ]
+  },
+  {
+    "id": 143,
+    "name": "Sauté de porc au caramel doux & carottes",
+    "category": "beef",
+    "price": 1.9,
+    "prepTime": 12,
+    "cookTime": 28,
+    "calories": 373,
+    "protein": 36,
+    "carbs": 30,
+    "fat": 12,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Sauté de porc",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Carottes",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce soja",
+        "quantity": 15,
+        "unit": "ml"
+      },
+      {
+        "name": "Sucre roux",
+        "quantity": 10,
+        "unit": "g"
+      },
+      {
+        "name": "Gingembre frais",
+        "quantity": 8,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Faire fondre le sucre roux avec la sauce soja pour obtenir un caramel léger.",
+      "Ajouter les dés de porc, carottes, oignon et gingembre, mijoter 25 min à couvert."
+    ]
+  },
+  {
+    "id": 144,
+    "name": "Steak haché façon bouchère, champignons & haricots verts",
+    "category": "beef",
+    "price": 3.13,
     "prepTime": 10,
-    "cookTime": 18,
-    "calories": 525,
-    "protein": 34,
+    "cookTime": 15,
+    "calories": 368,
+    "protein": 32,
+    "carbs": 19,
+    "fat": 20,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Steak haché",
+        "quantity": 1,
+        "unit": "pièce"
+      },
+      {
+        "name": "Champignons de Paris",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Haricots verts",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Échalote",
+        "quantity": 20,
+        "unit": "g"
+      },
+      {
+        "name": "Beurre demi-sel",
+        "quantity": 8,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Cuire les haricots verts 8 min à l'eau bouillante.",
+      "Saisir le steak haché et poêler les champignons avec l'échalote au beurre."
+    ]
+  },
+  {
+    "id": 145,
+    "name": "Paleron de bœuf confit aux oignons & purée de pommes de terre",
+    "category": "beef",
+    "price": 2.91,
+    "prepTime": 15,
+    "cookTime": 50,
+    "calories": 535,
+    "protein": 42,
     "carbs": 46,
     "fat": 21,
     "freezable": true,
     "batchFriendly": true,
-    "equipment": ["Air Fryer"],
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
     "ingredients": [
-      { "name": "Bœuf haché", "quantity": 140, "unit": "g" },
-      { "name": "Patate douce", "quantity": 160, "unit": "g" },
-      { "name": "Brocoli", "quantity": 110, "unit": "g" },
-      { "name": "Paprika", "quantity": 4, "unit": "g" },
-      { "name": "Huile d'olive", "quantity": 10, "unit": "ml" }
+      {
+        "name": "Paleron de bœuf",
+        "quantity": 165,
+        "unit": "g"
+      },
+      {
+        "name": "Pommes de terre",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Bouillon de bœuf",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Lait demi-écrémé",
+        "quantity": 40,
+        "unit": "ml"
+      },
+      {
+        "name": "Beurre doux",
+        "quantity": 8,
+        "unit": "g"
+      }
     ],
     "steps": [
-      "Couper les patates douces en bâtonnets, enrober d'huile d'olive et paprika, lancer 12 min à 195°C au Air Fryer.",
-      "Ajouter les steaks façonnés et les fleurettes de brocoli huilées pour les 7 dernières minutes.",
-      "Répartir en boîtes."
+      "Mijoter le paleron avec les oignons émincés et le bouillon pendant 45 min.",
+      "Cuire les pommes de terre à l'eau et écraser avec lait et beurre."
+    ]
+  },
+  {
+    "id": 146,
+    "name": "Blanquette de veau traditionnelle & champignons",
+    "category": "beef",
+    "price": 3.27,
+    "prepTime": 15,
+    "cookTime": 45,
+    "calories": 409,
+    "protein": 40,
+    "carbs": 21,
+    "fat": 19,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Veau à blanquette",
+        "quantity": 165,
+        "unit": "g"
+      },
+      {
+        "name": "Carottes",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Champignons de Paris",
+        "quantity": 90,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 45,
+        "unit": "ml"
+      },
+      {
+        "name": "Bouillon de volaille",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Faire mijoter le veau avec carottes, oignon et bouillon pendant 35 min.",
+      "Ajouter les champignons 10 min avant la fin et lier la sauce avec la crème."
+    ]
+  },
+  {
+    "id": 147,
+    "name": "Bœuf façon tigre qui pleure & légumes wok",
+    "category": "beef",
+    "price": 4.41,
+    "prepTime": 12,
+    "cookTime": 12,
+    "calories": 322,
+    "protein": 39,
+    "carbs": 20,
+    "fat": 10,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Rumsteck de bœuf",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Mélange légumes wok",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce huître",
+        "quantity": 15,
+        "unit": "ml"
+      },
+      {
+        "name": "Sauce soja",
+        "quantity": 10,
+        "unit": "ml"
+      },
+      {
+        "name": "Citron vert",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Coriandre fraîche",
+        "quantity": 0.2,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Saisir le rumsteck 2 min par face, laisser reposer et trancher finement.",
+      "Faire sauter les légumes wok, napper de sauce huître, soja, citron vert et coriandre."
+    ]
+  },
+  {
+    "id": 148,
+    "name": "Boulettes de bœuf aux épices marocaines & courgettes",
+    "category": "beef",
+    "price": 3.4,
+    "prepTime": 15,
+    "cookTime": 22,
+    "calories": 356,
+    "protein": 37,
+    "carbs": 13,
+    "fat": 17,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Bœuf haché 5%",
+        "quantity": 155,
+        "unit": "g"
+      },
+      {
+        "name": "Courgettes",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates concassées",
+        "quantity": 130,
+        "unit": "g"
+      },
+      {
+        "name": "Ras el hanout",
+        "quantity": 3,
+        "unit": "g"
+      },
+      {
+        "name": "Coriandre fraîche",
+        "quantity": 0.2,
+        "unit": "pièce"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Mélanger le bœuf avec le ras el hanout et former des boulettes.",
+      "Dorer à la poêle puis mijoter 15 min avec les courgettes en dés et les tomates."
+    ]
+  },
+  {
+    "id": 149,
+    "name": "Sauté d'agneau aux épices douces, abricots secs & carottes",
+    "category": "beef",
+    "price": 3.3,
+    "prepTime": 15,
+    "cookTime": 40,
+    "calories": 490,
+    "protein": 33,
+    "carbs": 38,
+    "fat": 24,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Sauté d'agneau",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Carottes",
+        "quantity": 140,
+        "unit": "g"
+      },
+      {
+        "name": "Abricots secs",
+        "quantity": 30,
+        "unit": "g"
+      },
+      {
+        "name": "Cumin",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Cannelle moulue",
+        "quantity": 1,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Dorer l'agneau avec l'oignon et les épices en cocotte.",
+      "Ajouter carottes, abricots secs et un verre d'eau, mijoter 35 min."
+    ]
+  },
+  {
+    "id": 150,
+    "name": "Rôti de porc aux herbes & pommes de terre rôties",
+    "category": "beef",
+    "price": 2.18,
+    "prepTime": 10,
+    "cookTime": 35,
+    "calories": 525,
+    "protein": 39,
+    "carbs": 41,
+    "fat": 23,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four"
+    ],
+    "ingredients": [
+      {
+        "name": "Rôti de porc",
+        "quantity": 165,
+        "unit": "g"
+      },
+      {
+        "name": "Pommes de terre",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon rouge",
+        "quantity": 50,
+        "unit": "g"
+      },
+      {
+        "name": "Romarin séché",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 10,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Entourer le rôti de porc de quartiers de pommes de terre et d'oignon rouge.",
+      "Arroser d'huile d'olive, parsemer de romarin et enfourner 35 min à 195°C."
+    ]
+  },
+  {
+    "id": 151,
+    "name": "Bœuf haché façon bolognaise maison & aubergines rôties",
+    "category": "beef",
+    "price": 3.3,
+    "prepTime": 15,
+    "cookTime": 28,
+    "calories": 399,
+    "protein": 36,
+    "carbs": 22,
+    "fat": 18,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction",
+      "Four"
+    ],
+    "ingredients": [
+      {
+        "name": "Bœuf haché 5%",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Aubergine",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates concassées",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Origan séché",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 10,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Rôtir les dés d'aubergine 20 min au four à 200°C.",
+      "Mijoter le bœuf haché avec oignon, tomates et origan, puis mélanger aux aubergines."
+    ]
+  },
+  {
+    "id": 152,
+    "name": "Poivrons farcis au bœuf haché, herbes & coulis tomate",
+    "category": "beef",
+    "price": 3.38,
+    "prepTime": 15,
+    "cookTime": 32,
+    "calories": 389,
+    "protein": 41,
+    "carbs": 21,
+    "fat": 14,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four"
+    ],
+    "ingredients": [
+      {
+        "name": "Poivron rouge",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Bœuf haché 5%",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Coulis de tomate",
+        "quantity": 100,
+        "unit": "ml"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Persil séché",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Fromage râpé",
+        "quantity": 20,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Couper les poivrons en deux et les garnir du mélange bœuf, oignon et persil.",
+      "Déposer dans un plat avec le coulis de tomate, parsemer de fromage et cuire 32 min à 195°C."
+    ]
+  },
+  {
+    "id": 153,
+    "name": "Bœuf sauté aux champignons shiitake & pak choï",
+    "category": "beef",
+    "price": 4.9,
+    "prepTime": 12,
+    "cookTime": 14,
+    "calories": 351,
+    "protein": 39,
+    "carbs": 12,
+    "fat": 18,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Bavette de bœuf",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Champignons shiitake",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Pak choï",
+        "quantity": 140,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce soja",
+        "quantity": 15,
+        "unit": "ml"
+      },
+      {
+        "name": "Ail",
+        "quantity": 1,
+        "unit": "gousse"
+      },
+      {
+        "name": "Huile de sésame",
+        "quantity": 6,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Saisir les lamelles de bœuf 3 min à feu vif et réserver.",
+      "Faire sauter shiitake, pak choï et ail 6 min puis remettre le bœuf avec la sauce soja."
+    ]
+  },
+  {
+    "id": 154,
+    "name": "Saucisses de Toulouse lentilles vertes & carottes",
+    "category": "beef",
+    "price": 2.06,
+    "prepTime": 12,
+    "cookTime": 32,
+    "calories": 741,
+    "protein": 45,
+    "carbs": 63,
+    "fat": 34,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Saucisse de Toulouse",
+        "quantity": 140,
+        "unit": "g"
+      },
+      {
+        "name": "Lentilles vertes",
+        "quantity": 90,
+        "unit": "g"
+      },
+      {
+        "name": "Carottes",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Thym séché",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Laurier",
+        "quantity": 1,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Dorer les saucisses en cocotte puis ajouter oignon et carottes en rondelles.",
+      "Verser les lentilles rincées, couvrir d'eau avec thym et laurier, mijoter 28 min."
+    ]
+  },
+  {
+    "id": 155,
+    "name": "Escalope de veau à la crème, citron & brocoli",
+    "category": "beef",
+    "price": 4.14,
+    "prepTime": 10,
+    "cookTime": 16,
+    "calories": 401,
+    "protein": 41,
+    "carbs": 18,
+    "fat": 20,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Escalope de veau",
+        "quantity": 155,
+        "unit": "g"
+      },
+      {
+        "name": "Brocoli",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 45,
+        "unit": "ml"
+      },
+      {
+        "name": "Citron",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Beurre doux",
+        "quantity": 8,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Cuire le brocoli 6 min à l'eau bouillante.",
+      "Saisir l'escalope de veau au beurre 3 min par face, déglacer au jus de citron et crème."
+    ]
+  },
+  {
+    "id": 156,
+    "name": "Boulettes de porc à la citronnelle & courgettes sautées",
+    "category": "beef",
+    "price": 2.51,
+    "prepTime": 15,
+    "cookTime": 20,
+    "calories": 449,
+    "protein": 24,
+    "carbs": 12,
+    "fat": 35,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Air Fryer",
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Chair à saucisse",
+        "quantity": 140,
+        "unit": "g"
+      },
+      {
+        "name": "Courgettes",
+        "quantity": 170,
+        "unit": "g"
+      },
+      {
+        "name": "Citronnelle fraîche",
+        "quantity": 1,
+        "unit": "pièce"
+      },
+      {
+        "name": "Sauce nuoc-mâm",
+        "quantity": 10,
+        "unit": "ml"
+      },
+      {
+        "name": "Coriandre fraîche",
+        "quantity": 0.2,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Mélanger la viande avec la citronnelle hachée et le nuoc-mâm, former des boulettes.",
+      "Cuire 14 min à 190°C au Air Fryer et servir avec les courgettes sautées."
+    ]
+  },
+  {
+    "id": 157,
+    "name": "Bœuf façon stroganoff express & haricots verts",
+    "category": "beef",
+    "price": 4.49,
+    "prepTime": 12,
+    "cookTime": 18,
+    "calories": 390,
+    "protein": 42,
+    "carbs": 21,
+    "fat": 17,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Rumsteck de bœuf",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Champignons de Paris",
+        "quantity": 110,
+        "unit": "g"
+      },
+      {
+        "name": "Haricots verts",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 45,
+        "unit": "ml"
+      },
+      {
+        "name": "Paprika",
+        "quantity": 3,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Cuire les haricots verts 8 min à l'eau.",
+      "Saisir les lamelles de bœuf et les champignons avec oignon et paprika, lier à la crème."
+    ]
+  },
+  {
+    "id": 158,
+    "name": "Filet mignon de porc laqué érable-moutarde & patates douces",
+    "category": "beef",
+    "price": 2.86,
+    "prepTime": 12,
+    "cookTime": 28,
+    "calories": 521,
+    "protein": 39,
+    "carbs": 49,
+    "fat": 19,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four"
+    ],
+    "ingredients": [
+      {
+        "name": "Filet mignon de porc",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Patate douce",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Sirop d'érable",
+        "quantity": 12,
+        "unit": "ml"
+      },
+      {
+        "name": "Moutarde de Dijon",
+        "quantity": 12,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Enfourner les cubes de patate douce et le filet mignon 20 min à 200°C.",
+      "Badigeonner de sirop d'érable et moutarde puis terminer 8 min au four."
+    ]
+  },
+  {
+    "id": 159,
+    "name": "Chili rapide au bœuf, patate douce & haricots noirs",
+    "category": "beef",
+    "price": 3.36,
+    "prepTime": 12,
+    "cookTime": 25,
+    "calories": 494,
+    "protein": 44,
+    "carbs": 54,
+    "fat": 9,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Bœuf haché 5%",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Patate douce",
+        "quantity": 130,
+        "unit": "g"
+      },
+      {
+        "name": "Haricots noirs",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates concassées",
+        "quantity": 130,
+        "unit": "g"
+      },
+      {
+        "name": "Paprika fumé",
+        "quantity": 3,
+        "unit": "g"
+      },
+      {
+        "name": "Cumin",
+        "quantity": 2,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Faire revenir le bœuf avec les dés de patate douce et les épices.",
+      "Ajouter tomates concassées et haricots noirs, mijoter 20 min à couvert."
+    ]
+  },
+  {
+    "id": 160,
+    "name": "Bavette de bœuf à l'échalote & purée de panais",
+    "category": "beef",
+    "price": 4.02,
+    "prepTime": 15,
+    "cookTime": 22,
+    "calories": 535,
+    "protein": 38,
+    "carbs": 43,
+    "fat": 24,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Bavette de bœuf",
+        "quantity": 155,
+        "unit": "g"
+      },
+      {
+        "name": "Panais",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Échalote",
+        "quantity": 35,
+        "unit": "g"
+      },
+      {
+        "name": "Beurre demi-sel",
+        "quantity": 10,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 30,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Cuire le panais en cubes 18 min à l'eau et mixer avec crème et beurre.",
+      "Saisir la bavette 2 min par face et faire fondre les échalotes dans le suc de cuisson."
+    ]
+  },
+  {
+    "id": 161,
+    "name": "Rôti de veau aux carottes nouvelles & petits pois",
+    "category": "beef",
+    "price": 3.75,
+    "prepTime": 12,
+    "cookTime": 38,
+    "calories": 453,
+    "protein": 43,
+    "carbs": 30,
+    "fat": 18,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Rôti de veau",
+        "quantity": 165,
+        "unit": "g"
+      },
+      {
+        "name": "Carottes",
+        "quantity": 130,
+        "unit": "g"
+      },
+      {
+        "name": "Petits pois surgelés",
+        "quantity": 90,
+        "unit": "g"
+      },
+      {
+        "name": "Bouillon de volaille",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Dorer le rôti de veau en cocotte avec l'oignon.",
+      "Ajouter carottes et bouillon, cuire 30 min puis incorporer les petits pois 8 min."
+    ]
+  },
+  {
+    "id": 162,
+    "name": "Sauté de porc au curry vert & aubergines",
+    "category": "beef",
+    "price": 2.66,
+    "prepTime": 12,
+    "cookTime": 24,
+    "calories": 478,
+    "protein": 37,
+    "carbs": 14,
+    "fat": 31,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Sauté de porc",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Aubergine",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Lait de coco",
+        "quantity": 100,
+        "unit": "ml"
+      },
+      {
+        "name": "Pâte de curry vert",
+        "quantity": 12,
+        "unit": "g"
+      },
+      {
+        "name": "Basilic frais",
+        "quantity": 0.2,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Faire revenir la pâte de curry vert et les dés de porc 5 min.",
+      "Ajouter les cubes d'aubergine et le lait de coco, mijoter 18 min."
+    ]
+  },
+  {
+    "id": 163,
+    "name": "Côte de porc grillée aux herbes & ratatouille maison",
+    "category": "beef",
+    "price": 2.28,
+    "prepTime": 12,
+    "cookTime": 22,
+    "calories": 466,
+    "protein": 36,
+    "carbs": 13,
+    "fat": 30,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Côte de porc",
+        "quantity": 170,
+        "unit": "g"
+      },
+      {
+        "name": "Courgettes",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Poivron rouge",
+        "quantity": 70,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates concassées",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Herbes de Provence",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Mijoter courgettes, poivron et tomates 18 min avec les herbes.",
+      "Griller la côte de porc 4 min par face à la poêle."
+    ]
+  },
+  {
+    "id": 164,
+    "name": "Bœuf haché façon kefta, courgettes & sauce yaourt-menthe",
+    "category": "beef",
+    "price": 3.27,
+    "prepTime": 15,
+    "cookTime": 18,
+    "calories": 313,
+    "protein": 38,
+    "carbs": 12,
+    "fat": 12,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Air Fryer"
+    ],
+    "ingredients": [
+      {
+        "name": "Bœuf haché 5%",
+        "quantity": 155,
+        "unit": "g"
+      },
+      {
+        "name": "Courgettes",
+        "quantity": 170,
+        "unit": "g"
+      },
+      {
+        "name": "Yaourt grec",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Menthe fraîche",
+        "quantity": 0.2,
+        "unit": "pièce"
+      },
+      {
+        "name": "Cumin",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon rouge",
+        "quantity": 40,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Façonner des brochettes de bœuf épicé au cumin et oignon rouge.",
+      "Cuire 14 min à 195°C au Air Fryer avec les courgettes, servir avec le yaourt à la menthe."
+    ]
+  },
+  {
+    "id": 165,
+    "name": "Joue de bœuf fondante aux carottes & orange",
+    "category": "beef",
+    "price": 4.09,
+    "prepTime": 15,
+    "cookTime": 55,
+    "calories": 593,
+    "protein": 43,
+    "carbs": 80,
+    "fat": 14,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Joue de bœuf",
+        "quantity": 170,
+        "unit": "g"
+      },
+      {
+        "name": "Carottes",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Orange",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Bouillon de bœuf",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Thym séché",
+        "quantity": 2,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Saisir la joue de bœuf avec l'oignon en cocotte.",
+      "Ajouter carottes, jus et zeste d'orange, bouillon et thym, mijoter 50 min."
+    ]
+  },
+  {
+    "id": 166,
+    "name": "Boulettes de bœuf sauce BBQ maison & chou rouge braisé",
+    "category": "beef",
+    "price": 2.52,
+    "prepTime": 15,
+    "cookTime": 25,
+    "calories": 424,
+    "protein": 30,
+    "carbs": 38,
+    "fat": 19,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four"
+    ],
+    "ingredients": [
+      {
+        "name": "Boulettes de bœuf",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Chou rouge",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce barbecue",
+        "quantity": 25,
+        "unit": "ml"
+      },
+      {
+        "name": "Pomme",
+        "quantity": 50,
+        "unit": "g"
+      },
+      {
+        "name": "Vinaigre de cidre",
+        "quantity": 10,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Émincer le chou rouge et le faire braiser 20 min avec la pomme et le vinaigre de cidre.",
+      "Cuire les boulettes 15 min au four nappées de sauce BBQ."
+    ]
+  },
+  {
+    "id": 167,
+    "name": "Émincé de bœuf poivrons-oignons façon fajitas & avocat",
+    "category": "beef",
+    "price": 4.46,
+    "prepTime": 12,
+    "cookTime": 14,
+    "calories": 430,
+    "protein": 37,
+    "carbs": 23,
+    "fat": 23,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Bavette de bœuf",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Poivron rouge",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Poivron jaune",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon rouge",
+        "quantity": 50,
+        "unit": "g"
+      },
+      {
+        "name": "Avocat",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Épices fajitas",
+        "quantity": 4,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Saisir à feu vif le bœuf en lamelles avec poivrons, oignon et épices fajitas.",
+      "Ajouter les tranches d'avocat au moment de servir."
+    ]
+  },
+  {
+    "id": 168,
+    "name": "Mijoté de porc aux lentilles blondes & poireaux",
+    "category": "beef",
+    "price": 2.17,
+    "prepTime": 15,
+    "cookTime": 35,
+    "calories": 605,
+    "protein": 55,
+    "carbs": 63,
+    "fat": 14,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Sauté de porc",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Lentilles blondes",
+        "quantity": 85,
+        "unit": "g"
+      },
+      {
+        "name": "Poireaux",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Carottes",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Bouillon de légumes",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Moutarde de Dijon",
+        "quantity": 10,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Dorer le porc et les légumes émincés en cocotte.",
+      "Ajouter les lentilles rincées, le bouillon et la moutarde, mijoter 30 min."
     ]
   }
 ]
