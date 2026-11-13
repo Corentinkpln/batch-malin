@@ -1,7 +1,7 @@
 /**
- * Batch Malin V2 — Moteur d'optimisation de menu (planner.js)
+ * Batch Malin V2.1 — Moteur d'optimisation de menu (planner.js)
  * Intègre : horizon 1-14j, restes frigo, liste noire d'ingrédients,
- * ciblage calorique dynamique et recettes personnelles.
+ * ciblage calorique dynamique et priorisation des recettes personnelles.
  */
 (function (global) {
   "use strict";
@@ -28,6 +28,7 @@
     return String(str || "")
       .trim()
       .toLowerCase()
+      .replace(/œ/g, "oe")
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "");
   }
@@ -71,9 +72,6 @@
     return { recipes: enriched, ingredientToRecipes };
   }
 
-  /**
-   * Calcule le facteur d'échelle d'une recette selon l'objectif calorique
-   */
   function getCalorieScale(recipe, config) {
     if (!config || !config.calorieTargetEnabled) return 1;
     const target = Number(config.targetCalories) || 600;
@@ -98,11 +96,7 @@
     };
   }
 
-  /**
-   * Vérifie la compatibilité stricte (matériel, régime, niveau, ingrédients exclus)
-   */
   function isRecipeEligible(recipe, config) {
-    // 1. Exclusions / Allergies utilisateur
     const excludedList = (config.excludedItems || []).map(normalizeText).filter(Boolean);
     if (excludedList.length > 0) {
       const hasExcluded = recipe._allIngredientsNorm.some((ingNorm) =>
@@ -111,7 +105,6 @@
       if (hasExcluded) return false;
     }
 
-    // 2. Matériel disponible
     const available = new Set((config.equipment || []).map(normalizeText));
     const reqEquip = recipe.equipment || [];
     for (let i = 0; i < reqEquip.length; i++) {
@@ -120,7 +113,6 @@
       }
     }
 
-    // 3. Régime alimentaire
     const diet = config.diet || "all";
     if (diet === "vegetarian") {
       if (ANIMAL_FLESH_CATEGORIES.has(recipe.category)) return false;
@@ -146,7 +138,6 @@
       if (effProt < 28) return false;
     }
 
-    // 4. Niveau en cuisine (les recettes perso de l'utilisateur ne sont jamais bloquées par le niveau)
     const skill = config.skill || "intermediate";
     if (!recipe.isCustom && skill === "beginner" && recipe._difficulty === "advanced") {
       return false;
@@ -240,10 +231,6 @@
       const freezeBoostB = isLongHorizon && b.freezable ? 3 : 0;
       const pantryA = computePantryBonus(a, pantryNormSet) * 2;
       const pantryB = computePantryBonus(b, pantryNormSet) * 2;
-
-      const scoreA = (connectivityMap.get(a.id) || 0) + freezeBoostA + pantryA - budgetPenaltyA - a._totalTime * 0.05;
-      const scoreB = (connectivityMap.get(b.id) || 0) + freezeBoostB + pantryB - budgetPenaltyB - b._totalTime * 0.05;
-      return scoreB - scoreA;
       const customBoostA = a.isCustom ? 5 : 0;
       const customBoostB = b.isCustom ? 5 : 0;
 
@@ -254,7 +241,8 @@
       return scoreB - scoreA;
     });
 
-    const starterIndex = randomizeSeed % Math.min(rankedStarters.length, 4);
+    const hasCustomEligible = rankedStarters.some((r) => r.isCustom);
+    const starterIndex = hasCustomEligible ? 0 : randomizeSeed % Math.min(rankedStarters.length, 4);
     const chosen = [rankedStarters[starterIndex]];
 
     while (chosen.length < targetDistinct) {
@@ -275,9 +263,10 @@
         const catBonus = chosenCats.has(cand.category) ? 0 : 0.25;
         const batchBonus = cand.batchFriendly ? 0.15 : 0;
         const freezeBonus = isLongHorizon ? (cand.freezable ? 0.6 : -0.4) : 0;
+        const customBonus = cand.isCustom ? 4.5 : 0;
         const timePenalty = cand._totalTime > (Number(config.maxTime) || 90) * 0.65 ? 0.35 : 0;
         const jitter = randomizeSeed > 0 ? ((cand.id * 17 + randomizeSeed * 31) % 10) * 0.025 : 0;
-        const customBonus = cand.isCustom ? 4.5 : 0;
+
         const totalScore =
           overlap * 2.4 +
           pantryBonus +
@@ -288,9 +277,6 @@
           customBonus -
           timePenalty +
           jitter;
-
-        const totalScore =
-          overlap * 2.4 + pantryBonus + budgetScore * 1.5 + catBonus + batchBonus + freezeBonus - timePenalty + jitter;
 
         if (totalScore > bestScore) {
           bestScore = totalScore;
@@ -323,6 +309,7 @@
 
       for (let i = planned.length - 1; i >= 0 && currentCost > maxBudget; i--) {
         const expensive = planned[i];
+        if (expensive.isCustom) continue;
         const replacement = cheaperPool.find(
           (c) => c.price * getCalorieScale(c, config) < expensive._effectivePrice * 0.85
         );
