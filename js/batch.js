@@ -1,7 +1,6 @@
 /**
  * Batch Malin — Ordonnanceur parallèle de Batch Cooking (batch.js)
- * Regroupe les tâches de mise en place similaires et exécute les cuissons en parallèle
- * par appareil afin de minimiser la durée totale de session.
+ * Gère le découpage Frigo (J1-J4) vs Congélateur (J5-J14) sur les plans longs.
  */
 (function (global) {
   "use strict";
@@ -20,10 +19,7 @@
     return `${String(h).padStart(2, "0")}h${String(m).padStart(2, "0")}`;
   }
 
-  /**
-   * Génère un planning chronologique optimisé minimisant le temps total
-   */
-  function generateBatchSchedule(selectedRecipes, shoppingData, startTimeStr = "18:00") {
+  function generateBatchSchedule(selectedRecipes, shoppingData, startTimeStr = "18:00", days = 5) {
     if (!selectedRecipes || !selectedRecipes.length) {
       return {
         steps: [],
@@ -38,13 +34,11 @@
     const startMin = parseStartTimeToMinutes(startTimeStr);
     const timeline = [];
 
-    // Calcul du temps séquentiel naïf (pour mesurer le gain réel de parallélisation)
     const sequentialDurationMin = selectedRecipes.reduce(
       (sum, r) => sum + (Number(r.prepTime) || 10) + (Number(r.cookTime) || 15) + 5,
       0
     );
 
-    // 1. Regroupement intelligent des préparations par type d'ingrédient
     const vegList = [];
     const proteinList = [];
     const grainList = [];
@@ -57,9 +51,8 @@
 
     let cursor = startMin;
 
-    // Étape initiale : Découpe groupée des légumes
     if (vegList.length > 0) {
-      const vegPrepDur = Math.max(8, Math.min(22, vegList.length * 3 + 4));
+      const vegPrepDur = Math.max(8, Math.min(25, vegList.length * 3 + 4));
       timeline.push({
         id: "step-prep-veg",
         startMin: cursor,
@@ -74,9 +67,8 @@
       cursor += vegPrepDur;
     }
 
-    // Étape suivante : Préparation des protéines & marinades
     if (proteinList.length > 0) {
-      const protPrepDur = Math.max(6, Math.min(15, proteinList.length * 4 + 2));
+      const protPrepDur = Math.max(6, Math.min(18, proteinList.length * 4 + 2));
       timeline.push({
         id: "step-prep-protein",
         startMin: cursor,
@@ -91,7 +83,6 @@
       cursor += protPrepDur;
     }
 
-    // Si aucun légume/protéine catalogué, mise en place générale
     if (cursor === startMin) {
       timeline.push({
         id: "step-prep-general",
@@ -107,13 +98,10 @@
       cursor += 10;
     }
 
-    // 2. Ordonnancement parallèle des cuissons par appareil
-    // Chaque appareil possède sa propre file temporelle : deux appareils distincts démarrent ensemble !
     const cookingLaunchBase = cursor;
     const applianceCursor = new Map();
     let maxCookingEnd = cookingLaunchBase;
 
-    // Trier les recettes par temps de cuisson décroissant (Longest Processing Time first - LPT)
     const recipesByCookTime = [...selectedRecipes].sort(
       (a, b) => (Number(b.cookTime) || 15) - (Number(a.cookTime) || 15)
     );
@@ -145,7 +133,6 @@
         appliance: primaryAppliance
       });
 
-      // Si la recette utilise un second appareil (ex: riz sur plaques pendant poulet au Air Fryer)
       if (equipList.length > 1) {
         const secondaryAppliance = equipList[1];
         const secDur = Math.max(10, Math.round(cookDur * 0.75));
@@ -170,7 +157,6 @@
       }
     });
 
-    // 3. Tâche de sauces / finitions pendant le temps masqué des cuissons
     const sauceStart = Math.min(cookingLaunchBase + 5, Math.max(cookingLaunchBase, maxCookingEnd - 12));
     timeline.push({
       id: "step-sauces",
@@ -184,27 +170,39 @@
       appliance: "Plan de travail"
     });
 
-    // 4. Assemblage final et mise en boîtes
     const freezableNames = selectedRecipes.filter((r) => r.freezable).map((r) => r.name);
+    const nonFreezableNames = selectedRecipes.filter((r) => !r.freezable).map((r) => r.name);
     const packDuration = Math.max(8, selectedRecipes.length * 3);
     const sessionEnd = maxCookingEnd + packDuration;
+
+    let boxingDesc;
+    if (Number(days) > 5) {
+      const priorityFridge = nonFreezableNames.length
+        ? `Priorité frigo (Jours 1–4) : ${nonFreezableNames.join(", ")}. `
+        : "Réserver les portions des Jours 1–4 au réfrigérateur. ";
+      const freezerPart = freezableNames.length
+        ? `Congeler immédiatement le reste (Jours 5–${days}) : ${freezableNames.join(", ")}.`
+        : `Congeler les portions au-delà du jour 4 après refroidissement complet.`;
+      boxingDesc = priorityFridge + freezerPart;
+    } else {
+      boxingDesc =
+        freezableNames.length > 0
+          ? `Répartir en contenants hermétiques. Congélation possible pour : ${freezableNames.join(", ")}.`
+          : "Répartir toutes les portions en contenants hermétiques et réfrigérer sous 2h.";
+    }
 
     timeline.push({
       id: "step-boxing",
       startMin: maxCookingEnd,
       durationMin: packDuration,
       clock: formatMinutesAsClock(maxCookingEnd),
-      title: "Assemblage, refroidissement et mise en boîtes",
-      description:
-        freezableNames.length > 0
-          ? `Répartir en contenants hermétiques. Congélation possible pour : ${freezableNames.join(", ")}.`
-          : "Répartir toutes les portions en contenants hermétiques et réfrigérer sous 2h.",
+      title: Number(days) > 5 ? "Mise en boîtes : tri Frigo (J1–4) & Congélateur" : "Assemblage et mise en boîtes",
+      description: boxingDesc,
       type: "pack",
       typeLabel: "Conservation",
       appliance: "Boîtes hermétiques"
     });
 
-    // Tri chronologique strict
     timeline.sort((a, b) => a.startMin - b.startMin);
 
     const totalDurationMin = Math.max(15, sessionEnd - startMin);
