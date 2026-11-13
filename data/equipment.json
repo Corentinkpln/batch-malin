@@ -1,42 +1,52 @@
 [
   {
-    "id": "four",
-    "name": "Four traditionnel",
-    "icon": "🔥"
+    "name": "Air Fryer",
+    "category": "Cuisson rapide",
+    "icon": "airfryer"
   },
   {
-    "id": "plaques",
-    "name": "Plaques de cuisson",
-    "icon": "🍳"
+    "name": "Four",
+    "category": "Rôtissage & Gratins",
+    "icon": "oven"
   },
   {
-    "id": "poele",
-    "name": "Grande poêle / Sauteuse",
-    "icon": "🥘"
+    "name": "Plaques induction",
+    "category": "Poêle & Mijotage",
+    "icon": "induction"
   },
   {
-    "id": "faitout",
-    "name": "Faitout / Cocotte",
-    "icon": "🍲"
+    "name": "Micro-ondes",
+    "category": "Réchauffage & Vapeur",
+    "icon": "microwave"
   },
   {
-    "id": "casserole",
-    "name": "Casserole",
-    "icon": "🥣"
+    "name": "Cocotte / Faitout",
+    "category": "Plats mijotés",
+    "icon": "pot"
   },
   {
-    "id": "plaque_four",
-    "name": "Plaque de cuisson + papier sulfurisé",
-    "icon": "📋"
+    "name": "Mixeur / Blender",
+    "category": "Soupes & Sauces",
+    "icon": "blender"
   },
   {
-    "id": "mixeur",
-    "name": "Mixeur plongeant / Blender",
-    "icon": "🌪️"
+    "name": "Cuiseur vapeur",
+    "category": "Cuisson douce",
+    "icon": "pot"
   },
   {
-    "id": "boites",
-    "name": "Boîtes hermétiques (verre/sans BPA)",
-    "icon": "🥡"
+    "name": "Robot cuiseur",
+    "category": "Tout-en-un",
+    "icon": "blender"
+  },
+  {
+    "name": "Grill / Plancha",
+    "category": "Saisir & Griller",
+    "icon": "induction"
+  },
+  {
+    "name": "Autocuiseur",
+    "category": "Gain de temps",
+    "icon": "pot"
   }
 ]
