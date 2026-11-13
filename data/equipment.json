@@ -1,17 +1,42 @@
 [
-  { "id": "air-fryer", "name": "Air Fryer", "category": "Cuisson rapide", "icon": "airfryer" },
-  { "id": "four", "name": "Four", "category": "Rôtissage & Gratins", "icon": "oven" },
-  { "id": "plaques-induction", "name": "Plaques induction", "category": "Poêle & Casserole", "icon": "induction" },
-  { "id": "micro-ondes", "name": "Micro-ondes", "category": "Réchauffage & Express", "icon": "microwave" },
-  { "id": "cookeo", "name": "Cookeo", "category": "Multicuiseur sous pression", "icon": "pot" },
-  { "id": "thermomix", "name": "Thermomix", "category": "Robot cuiseur", "icon": "blender" },
-  { "id": "monsieur-cuisine", "name": "Monsieur Cuisine", "category": "Robot cuiseur", "icon": "blender" },
-  { "id": "rice-cooker", "name": "Rice Cooker", "category": "Céréales & Vapeur", "icon": "pot" },
-  { "id": "multicuiseur-ninja", "name": "Multicuiseur Ninja", "category": "Pression & Air Crisp", "icon": "airfryer" },
-  { "id": "mijoteuse", "name": "Mijoteuse", "category": "Cuisson lente", "icon": "pot" },
-  { "id": "autocuiseur", "name": "Autocuiseur", "category": "Cocotte sous pression", "icon": "pot" },
-  { "id": "plancha", "name": "Plancha", "category": "Saisie directe", "icon": "induction" },
-  { "id": "barbecue", "name": "Barbecue", "category": "Grillade", "icon": "induction" },
-  { "id": "blender", "name": "Blender", "category": "Soupes & Sauces", "icon": "blender" },
-  { "id": "mixeur-plongeant", "name": "Mixeur plongeant", "category": "Veloutés & Purées", "icon": "blender" }
+  {
+    "id": "four",
+    "name": "Four traditionnel",
+    "icon": "🔥"
+  },
+  {
+    "id": "plaques",
+    "name": "Plaques de cuisson",
+    "icon": "🍳"
+  },
+  {
+    "id": "poele",
+    "name": "Grande poêle / Sauteuse",
+    "icon": "🥘"
+  },
+  {
+    "id": "faitout",
+    "name": "Faitout / Cocotte",
+    "icon": "🍲"
+  },
+  {
+    "id": "casserole",
+    "name": "Casserole",
+    "icon": "🥣"
+  },
+  {
+    "id": "plaque_four",
+    "name": "Plaque de cuisson + papier sulfurisé",
+    "icon": "📋"
+  },
+  {
+    "id": "mixeur",
+    "name": "Mixeur plongeant / Blender",
+    "icon": "🌪️"
+  },
+  {
+    "id": "boites",
+    "name": "Boîtes hermétiques (verre/sans BPA)",
+    "icon": "🥡"
+  }
 ]

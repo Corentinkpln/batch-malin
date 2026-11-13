@@ -1,0 +1,606 @@
+[
+  {
+    "id": "poulet_curry_coco_riz",
+    "title": "Poulet curry doux & lait de coco, riz basmati",
+    "category": "Viandes",
+    "basePortions": 4,
+    "prepTime": 15,
+    "cookTime": 25,
+    "fridgeDays": 4,
+    "freezerDays": 60,
+    "equipment": [
+      "poele",
+      "casserole",
+      "boites"
+    ],
+    "ingredients": [
+      {
+        "id": "poulet_filet",
+        "qty": 600
+      },
+      {
+        "id": "riz_basmati",
+        "qty": 320
+      },
+      {
+        "id": "lait_coco",
+        "qty": 400
+      },
+      {
+        "id": "oignon",
+        "qty": 150
+      },
+      {
+        "id": "courgette",
+        "qty": 300
+      },
+      {
+        "id": "huile_olive",
+        "qty": 20
+      }
+    ],
+    "steps": [
+      "Couper les filets de poulet en dés réguliers, émincer l'oignon et détailler les courgettes en demi-rondelles.",
+      "Lancer la cuisson du riz basmati dans l'eau bouillante salée (11 min).",
+      "Saisir le poulet et l'oignon dans l'huile d'olive 6 min à feu vif avec du curry.",
+      "Ajouter les courgettes et le lait de coco, laisser mijoter 15 min à feu doux jusqu'à réduction onctueuse.",
+      "Répartir en portions dans les boîtes hermétiques une fois refroidi."
+    ]
+  },
+  {
+    "id": "chili_con_carne_express",
+    "title": "Chili con carne maison & riz complet/basmati",
+    "category": "Viandes",
+    "basePortions": 4,
+    "prepTime": 15,
+    "cookTime": 30,
+    "fridgeDays": 4,
+    "freezerDays": 90,
+    "equipment": [
+      "faitout",
+      "casserole",
+      "boites"
+    ],
+    "ingredients": [
+      {
+        "id": "boeuf_hache_5",
+        "qty": 500
+      },
+      {
+        "id": "haricots_rouges",
+        "qty": 400
+      },
+      {
+        "id": "tomates_concassees",
+        "qty": 400
+      },
+      {
+        "id": "poivron",
+        "qty": 200
+      },
+      {
+        "id": "oignon",
+        "qty": 150
+      },
+      {
+        "id": "riz_basmati",
+        "qty": 280
+      },
+      {
+        "id": "huile_olive",
+        "qty": 15
+      }
+    ],
+    "steps": [
+      "Émincer l'oignon et couper le poivron en petits dés.",
+      "Faire revenir l'oignon, le poivron et le bœuf haché dans le faitout pendant 8 min.",
+      "Ajouter les tomates concassées, les haricots rouges rincés, cumin et paprika. Mijoter 20 min à couvert.",
+      "Cuire le riz en parallèle et portionner."
+    ]
+  },
+  {
+    "id": "filet_mignon_moutarde_pdt",
+    "title": "Filet mignon moutarde à l'ancienne & pommes de terre rôties",
+    "category": "Viandes",
+    "basePortions": 4,
+    "prepTime": 15,
+    "cookTime": 35,
+    "fridgeDays": 4,
+    "freezerDays": 60,
+    "equipment": [
+      "four",
+      "plaque_four",
+      "poele",
+      "boites"
+    ],
+    "ingredients": [
+      {
+        "id": "porc_filet_mignon",
+        "qty": 600
+      },
+      {
+        "id": "pomme_de_terre",
+        "qty": 800
+      },
+      {
+        "id": "carotte",
+        "qty": 300
+      },
+      {
+        "id": "creme_legere",
+        "qty": 200
+      },
+      {
+        "id": "moutarde",
+        "qty": 40
+      },
+      {
+        "id": "huile_olive",
+        "qty": 25
+      }
+    ],
+    "steps": [
+      "Préchauffer le four à 200°C. Couper pommes de terre et carottes en cubes, mélanger avec huile d'olive et enfourner 35 min.",
+      "Couper le filet mignon en médaillons de 2 cm et les dorer 4 min par face à la poêle.",
+      "Déglacer avec la crème légère et la moutarde, laisser épaissir 5 min à feu doux.",
+      "Assembler viande nappée de sauce et légumes rôtis."
+    ]
+  },
+  {
+    "id": "dinde_teriyaki_brocoli",
+    "title": "Émincé de dinde glacé soja-miel, brocoli & riz",
+    "category": "Viandes",
+    "basePortions": 4,
+    "prepTime": 15,
+    "cookTime": 20,
+    "fridgeDays": 4,
+    "freezerDays": 60,
+    "equipment": [
+      "poele",
+      "casserole",
+      "boites"
+    ],
+    "ingredients": [
+      {
+        "id": "dinde_escalope",
+        "qty": 600
+      },
+      {
+        "id": "brocoli",
+        "qty": 500
+      },
+      {
+        "id": "riz_basmati",
+        "qty": 320
+      },
+      {
+        "id": "sauce_soja",
+        "qty": 60
+      },
+      {
+        "id": "miel",
+        "qty": 30
+      },
+      {
+        "id": "ail",
+        "qty": 12
+      },
+      {
+        "id": "huile_olive",
+        "qty": 15
+      }
+    ],
+    "steps": [
+      "Détailler le brocoli en fleurettes et le blanchir 6 min dans l'eau bouillante (ou vapeur).",
+      "Cuire le riz basmati.",
+      "Saisir les lanières de dinde 6 min avec l'ail haché, verser la sauce soja et le miel et laisser caraméliser 3 min.",
+      "Répartir riz, brocoli croquant et dinde laquée."
+    ]
+  },
+  {
+    "id": "saumon_four_patate_douce",
+    "title": "Pavés de saumon rôtis au citron, patate douce & épinards",
+    "category": "Poissons",
+    "basePortions": 4,
+    "prepTime": 15,
+    "cookTime": 30,
+    "fridgeDays": 3,
+    "freezerDays": 45,
+    "equipment": [
+      "four",
+      "plaque_four",
+      "poele",
+      "boites"
+    ],
+    "ingredients": [
+      {
+        "id": "saumon_pave",
+        "qty": 520
+      },
+      {
+        "id": "patate_douce",
+        "qty": 800
+      },
+      {
+        "id": "epinards",
+        "qty": 300
+      },
+      {
+        "id": "citron",
+        "qty": 1
+      },
+      {
+        "id": "huile_olive",
+        "qty": 20
+      }
+    ],
+    "steps": [
+      "Couper les patates douces en dés, arroser d'huile d'olive et enfourner 20 min à 200°C.",
+      "Ajouter les pavés de saumon citronnés sur la plaque et poursuivre la cuisson 12 min.",
+      "Faire tomber les épinards frais 3 min à la poêle avec une goutte d'huile d'olive.",
+      "Portionner (consommer sous 3 jours au frigo ou congeler)."
+    ]
+  },
+  {
+    "id": "cabillaud_provencale_quinoa",
+    "title": "Dos de cabillaud sauce vierge tomate-poivron & quinoa",
+    "category": "Poissons",
+    "basePortions": 4,
+    "prepTime": 15,
+    "cookTime": 20,
+    "fridgeDays": 3,
+    "freezerDays": 45,
+    "equipment": [
+      "poele",
+      "casserole",
+      "boites"
+    ],
+    "ingredients": [
+      {
+        "id": "cabillaud_dos",
+        "qty": 560
+      },
+      {
+        "id": "quinoa",
+        "qty": 280
+      },
+      {
+        "id": "tomates_concassees",
+        "qty": 400
+      },
+      {
+        "id": "poivron",
+        "qty": 200
+      },
+      {
+        "id": "oignon",
+        "qty": 120
+      },
+      {
+        "id": "huile_olive",
+        "qty": 20
+      }
+    ],
+    "steps": [
+      "Rincer le quinoa et le cuire 12 min dans 2 fois son volume d'eau.",
+      "Faire revenir oignon et poivron émincés 6 min, ajouter les tomates concassées et mijoter 10 min.",
+      "Déposer les dos de cabillaud dans la sauce, couvrir et cuire 8 min à feu doux.",
+      "Dresser avec le quinoa."
+    ]
+  },
+  {
+    "id": "pates_thon_tomate_olives",
+    "title": "Pennes complètes au thon, sauce tomate basilic & parmesan",
+    "category": "Poissons",
+    "basePortions": 4,
+    "prepTime": 10,
+    "cookTime": 15,
+    "fridgeDays": 4,
+    "freezerDays": 60,
+    "equipment": [
+      "casserole",
+      "poele",
+      "boites"
+    ],
+    "ingredients": [
+      {
+        "id": "pates_completes",
+        "qty": 360
+      },
+      {
+        "id": "thon_nature",
+        "qty": 320
+      },
+      {
+        "id": "tomates_concassees",
+        "qty": 500
+      },
+      {
+        "id": "oignon",
+        "qty": 120
+      },
+      {
+        "id": "parmesan",
+        "qty": 60
+      },
+      {
+        "id": "huile_olive",
+        "qty": 15
+      }
+    ],
+    "steps": [
+      "Cuire les pâtes complètes al dente (retirer 1 min au temps indiqué pour le réchauffage).",
+      "Faire suer l'oignon émincé, ajouter les tomates concassées et laisser réduire 10 min.",
+      "Incorporer le thon émietté hors du feu, mélanger aux pâtes et parsemer de parmesan."
+    ]
+  },
+  {
+    "id": "dahl_lentilles_corail",
+    "title": "Dahl crémeux de lentilles corail, coco & riz basmati",
+    "category": "Végétarien",
+    "basePortions": 4,
+    "prepTime": 10,
+    "cookTime": 25,
+    "fridgeDays": 5,
+    "freezerDays": 90,
+    "equipment": [
+      "faitout",
+      "casserole",
+      "boites"
+    ],
+    "ingredients": [
+      {
+        "id": "lentilles_corail",
+        "qty": 300
+      },
+      {
+        "id": "lait_coco",
+        "qty": 400
+      },
+      {
+        "id": "tomates_concassees",
+        "qty": 400
+      },
+      {
+        "id": "riz_basmati",
+        "qty": 260
+      },
+      {
+        "id": "oignon",
+        "qty": 150
+      },
+      {
+        "id": "ail",
+        "qty": 12
+      },
+      {
+        "id": "huile_olive",
+        "qty": 15
+      }
+    ],
+    "steps": [
+      "Faire revenir l'oignon et l'ail hachés avec curry/curcuma dans le faitout.",
+      "Ajouter les lentilles corail rincées, les tomates concassées, le lait de coco et 200 ml d'eau.",
+      "Mijoter 20 min en remuant régulièrement. Cuire le riz en parallèle."
+    ]
+  },
+  {
+    "id": "curry_pois_chiches_epinards",
+    "title": "Curry de pois chiches, patate douce & pousses d'épinards",
+    "category": "Végétarien",
+    "basePortions": 4,
+    "prepTime": 15,
+    "cookTime": 25,
+    "fridgeDays": 5,
+    "freezerDays": 90,
+    "equipment": [
+      "faitout",
+      "boites"
+    ],
+    "ingredients": [
+      {
+        "id": "pois_chiches",
+        "qty": 480
+      },
+      {
+        "id": "patate_douce",
+        "qty": 500
+      },
+      {
+        "id": "epinards",
+        "qty": 250
+      },
+      {
+        "id": "lait_coco",
+        "qty": 300
+      },
+      {
+        "id": "tomates_concassees",
+        "qty": 300
+      },
+      {
+        "id": "oignon",
+        "qty": 130
+      },
+      {
+        "id": "huile_olive",
+        "qty": 15
+      }
+    ],
+    "steps": [
+      "Couper la patate douce en petits dés de 1,5 cm.",
+      "Faire revenir l'oignon 4 min, ajouter patate douce, pois chiches, lait de coco et tomates concassées.",
+      "Cuire 20 min à couvert jusqu'à ce que la patate douce soit fondante, puis incorporer les épinards 2 min avant la fin."
+    ]
+  },
+  {
+    "id": "salade_lentilles_feta_rotis",
+    "title": "Bowl lentilles vertes, courge butternut rôtie & feta",
+    "category": "Végétarien",
+    "basePortions": 4,
+    "prepTime": 15,
+    "cookTime": 30,
+    "fridgeDays": 5,
+    "freezerDays": 0,
+    "equipment": [
+      "four",
+      "plaque_four",
+      "casserole",
+      "boites"
+    ],
+    "ingredients": [
+      {
+        "id": "lentilles_vertes",
+        "qty": 280
+      },
+      {
+        "id": "butternut",
+        "qty": 600
+      },
+      {
+        "id": "feta",
+        "qty": 160
+      },
+      {
+        "id": "oignon",
+        "qty": 100
+      },
+      {
+        "id": "huile_olive",
+        "qty": 25
+      }
+    ],
+    "steps": [
+      "Couper la butternut en cubes, mélanger avec huile d'olive et herbes, enfourner 30 min à 200°C.",
+      "Cuire les lentilles vertes 22 min départ eau froide non salée.",
+      "Mélanger lentilles tièdes, butternut rôtie et feta émiettée (se déguste froid ou tiède)."
+    ]
+  },
+  {
+    "id": "shakshuka_oeufs_poivrons",
+    "title": "Shakshuka poivrons-tomates & œufs pochés",
+    "category": "Végétarien",
+    "basePortions": 4,
+    "prepTime": 12,
+    "cookTime": 20,
+    "fridgeDays": 3,
+    "freezerDays": 0,
+    "equipment": [
+      "poele",
+      "boites"
+    ],
+    "ingredients": [
+      {
+        "id": "oeufs",
+        "qty": 8
+      },
+      {
+        "id": "tomates_concassees",
+        "qty": 600
+      },
+      {
+        "id": "poivron",
+        "qty": 300
+      },
+      {
+        "id": "oignon",
+        "qty": 150
+      },
+      {
+        "id": "feta",
+        "qty": 100
+      },
+      {
+        "id": "huile_olive",
+        "qty": 15
+      }
+    ],
+    "steps": [
+      "Faire fondre oignon et poivrons émincés 8 min à la sauteuse.",
+      "Verser les tomates concassées et laisser réduire 10 min.",
+      "Creuser des nids, casser les œufs et couvrir 5 min jusqu'à cuisson des blancs. Parsemer de feta."
+    ]
+  },
+  {
+    "id": "bowlcake_avoine_banane",
+    "title": "Baked Oats (gâteau d'avoine) banane & pépites chocolat noir",
+    "category": "Petit-déj & Collations",
+    "basePortions": 4,
+    "prepTime": 10,
+    "cookTime": 25,
+    "fridgeDays": 5,
+    "freezerDays": 60,
+    "equipment": [
+      "four",
+      "mixeur",
+      "boites"
+    ],
+    "ingredients": [
+      {
+        "id": "flocons_avoine",
+        "qty": 240
+      },
+      {
+        "id": "banane",
+        "qty": 250
+      },
+      {
+        "id": "oeufs",
+        "qty": 3
+      },
+      {
+        "id": "lait_demi",
+        "qty": 200
+      },
+      {
+        "id": "chocolat_noir",
+        "qty": 60
+      }
+    ],
+    "steps": [
+      "Mixer flocons d'avoine, bananes mûres, œufs et lait jusqu'à obtenir une pâte homogène.",
+      "Incorporer le chocolat noir concassé et verser dans 4 ramequins ou un plat.",
+      "Enfourner 25 min à 180°C. Idéal pour 4 petits-déjeuners prêts d'avance."
+    ]
+  },
+  {
+    "id": "overnight_oats_fromage_blanc",
+    "title": "Overnight Oats protéinés fromage blanc, miel & amandes",
+    "category": "Petit-déj & Collations",
+    "basePortions": 4,
+    "prepTime": 10,
+    "cookTime": 0,
+    "fridgeDays": 4,
+    "freezerDays": 0,
+    "equipment": [
+      "boites"
+    ],
+    "ingredients": [
+      {
+        "id": "flocons_avoine",
+        "qty": 220
+      },
+      {
+        "id": "fromage_blanc",
+        "qty": 500
+      },
+      {
+        "id": "lait_demi",
+        "qty": 200
+      },
+      {
+        "id": "amandes",
+        "qty": 60
+      },
+      {
+        "id": "miel",
+        "qty": 40
+      }
+    ],
+    "steps": [
+      "Répartir flocons d'avoine, fromage blanc, lait et miel directement dans 4 bocaux ou boîtes.",
+      "Bien mélanger et laisser gonfler au réfrigérateur toute la nuit.",
+      "Ajouter les amandes concassées au moment de déguster."
+    ]
+  }
+]
