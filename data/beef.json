@@ -108,4 +108,85 @@
       "Monter dans un plat à gratin, parsemer de fromage râpé et gratiner 15 min au four à 200°C."
     ]
   }
+  ,{
+    "id": 105,
+    "name": "Poivrons rôtis farcis au bœuf & riz tomate",
+    "category": "beef",
+    "price": 2.75,
+    "prepTime": 15,
+    "cookTime": 25,
+    "calories": 540,
+    "protein": 34,
+    "carbs": 52,
+    "fat": 20,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Four", "Plaques induction"],
+    "ingredients": [
+      { "name": "Bœuf haché", "quantity": 135, "unit": "g" },
+      { "name": "Poivron rouge", "quantity": 140, "unit": "g" },
+      { "name": "Riz basmati", "quantity": 65, "unit": "g" },
+      { "name": "Coulis de tomate", "quantity": 100, "unit": "ml" },
+      { "name": "Fromage râpé", "quantity": 20, "unit": "g" }
+    ],
+    "steps": [
+      "Précuire le riz basmati 8 min et faire revenir le bœuf haché avec le coulis de tomate.",
+      "Garnir les demi-poivrons épépinés avec le mélange bœuf-riz, parsemer de fromage râpé.",
+      "Enfourner 22 min à 195°C."
+    ]
+  },
+  {
+    "id": 106,
+    "name": "Mijoté de bœuf, lentilles vertes & carottes",
+    "category": "beef",
+    "price": 2.35,
+    "prepTime": 10,
+    "cookTime": 25,
+    "calories": 565,
+    "protein": 39,
+    "carbs": 54,
+    "fat": 18,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Plaques induction"],
+    "ingredients": [
+      { "name": "Bœuf haché", "quantity": 130, "unit": "g" },
+      { "name": "Lentilles vertes", "quantity": 75, "unit": "g" },
+      { "name": "Carottes", "quantity": 100, "unit": "g" },
+      { "name": "Oignon", "quantity": 40, "unit": "g" },
+      { "name": "Coulis de tomate", "quantity": 110, "unit": "ml" }
+    ],
+    "steps": [
+      "Saisir le bœuf haché, l'oignon émincé et les carottes en rondelles 5 min.",
+      "Ajouter les lentilles vertes rincées, le coulis de tomate et 200 ml d'eau.",
+      "Laisser mijoter à couvert 22 min."
+    ]
+  },
+  {
+    "id": 107,
+    "name": "Steak haché façon bouchère, frites de patates douces & brocoli",
+    "category": "beef",
+    "price": 2.70,
+    "prepTime": 10,
+    "cookTime": 18,
+    "calories": 525,
+    "protein": 34,
+    "carbs": 46,
+    "fat": 21,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": ["Air Fryer"],
+    "ingredients": [
+      { "name": "Bœuf haché", "quantity": 140, "unit": "g" },
+      { "name": "Patate douce", "quantity": 160, "unit": "g" },
+      { "name": "Brocoli", "quantity": 110, "unit": "g" },
+      { "name": "Paprika", "quantity": 4, "unit": "g" },
+      { "name": "Huile d'olive", "quantity": 10, "unit": "ml" }
+    ],
+    "steps": [
+      "Couper les patates douces en bâtonnets, enrober d'huile d'olive et paprika, lancer 12 min à 195°C au Air Fryer.",
+      "Ajouter les steaks façonnés et les fleurettes de brocoli huilées pour les 7 dernières minutes.",
+      "Répartir en boîtes."
+    ]
+  }
 ]
