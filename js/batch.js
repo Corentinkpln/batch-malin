@@ -1,6 +1,7 @@
 /**
- * Batch Malin — Ordonnanceur parallèle de Batch Cooking (batch.js)
- * Gère le découpage Frigo (J1-J4) vs Congélateur (J5-J14) sur les plans longs.
+ * Batch Malin V2 — Ordonnanceur parallèle de Batch Cooking (batch.js)
+ * Gère la mise en place groupée, les cuissons parallèles par appareil
+ * et la répartition Frigo (J1-J4) vs Congélateur (J5-J14).
  */
 (function (global) {
   "use strict";
