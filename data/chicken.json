@@ -1,222 +1,1898 @@
 [
   {
-    "id": 1,
-    "name": "Poulet curry coco",
+    "id": 101,
+    "name": "Poulet rôti citron, thym & pommes de terre grenaille",
     "category": "chicken",
-    "price": 2.45,
+    "price": 2.94,
     "prepTime": 10,
-    "cookTime": 20,
-    "calories": 540,
-    "protein": 38,
-    "carbs": 52,
-    "fat": 18,
-    "freezable": true,
-    "batchFriendly": true,
-    "equipment": ["Air Fryer", "Plaques induction"],
-    "ingredients": [
-      { "name": "Poulet", "quantity": 150, "unit": "g" },
-      { "name": "Riz basmati", "quantity": 75, "unit": "g" },
-      { "name": "Carottes", "quantity": 80, "unit": "g" },
-      { "name": "Oignon", "quantity": 40, "unit": "g" },
-      { "name": "Lait de coco", "quantity": 80, "unit": "ml" },
-      { "name": "Épices curry", "quantity": 5, "unit": "g" }
-    ],
-    "steps": [
-      "Rincer le riz basmati et lancer la cuisson à l'eau bouillante salée sur les plaques induction.",
-      "Couper le poulet en dés, enrober d'épices curry et cuire 14 min à 190°C au Air Fryer.",
-      "Faire revenir les carottes en rondelles et l'oignon émincé, ajouter le lait de coco puis assembler avec le poulet et le riz."
-    ]
-  },
-  {
-    "id": 2,
-    "name": "Poulet rôti citron, carottes & patates douces",
-    "category": "chicken",
-    "price": 2.65,
-    "prepTime": 12,
     "cookTime": 30,
-    "calories": 520,
-    "protein": 39,
-    "carbs": 48,
-    "fat": 16,
-    "freezable": true,
-    "batchFriendly": true,
-    "equipment": ["Four"],
-    "ingredients": [
-      { "name": "Poulet", "quantity": 160, "unit": "g" },
-      { "name": "Patate douce", "quantity": 150, "unit": "g" },
-      { "name": "Carottes", "quantity": 100, "unit": "g" },
-      { "name": "Huile d'olive", "quantity": 10, "unit": "ml" },
-      { "name": "Herbes de Provence", "quantity": 3, "unit": "g" }
-    ],
-    "steps": [
-      "Préchauffer le four à 200°C et tailler les patates douces et carottes en cubes réguliers.",
-      "Disposer le poulet et les légumes sur une plaque avec huile d'olive et herbes de Provence, puis enfourner 30 min.",
-      "Laisser tiédir avant de répartir en boîtes hermétiques."
-    ]
-  },
-  {
-    "id": 3,
-    "name": "Poulet teriyaki & brocoli vapeur",
-    "category": "chicken",
-    "price": 2.55,
-    "prepTime": 10,
-    "cookTime": 18,
-    "calories": 510,
-    "protein": 40,
-    "carbs": 54,
-    "fat": 12,
-    "freezable": true,
-    "batchFriendly": true,
-    "equipment": ["Air Fryer", "Rice Cooker"],
-    "ingredients": [
-      { "name": "Poulet", "quantity": 150, "unit": "g" },
-      { "name": "Riz basmati", "quantity": 80, "unit": "g" },
-      { "name": "Brocoli", "quantity": 120, "unit": "g" },
-      { "name": "Sauce soja", "quantity": 15, "unit": "ml" },
-      { "name": "Miel", "quantity": 8, "unit": "g" }
-    ],
-    "steps": [
-      "Lancer le riz basmati dans le Rice Cooker avec les fleurettes de brocoli dans le panier vapeur.",
-      "Mariner le poulet dans la sauce soja et le miel, puis cuire 15 min à 185°C dans le Air Fryer.",
-      "Assembler le riz, le brocoli et le poulet laqué dans les boîtes."
-    ]
-  },
-  {
-    "id": 4,
-    "name": "Mijoté de poulet tomate, courgettes & poivrons",
-    "category": "chicken",
-    "price": 2.35,
-    "prepTime": 10,
-    "cookTime": 15,
-    "calories": 470,
-    "protein": 37,
-    "carbs": 44,
-    "fat": 14,
-    "freezable": true,
-    "batchFriendly": true,
-    "equipment": ["Cookeo"],
-    "ingredients": [
-      { "name": "Poulet", "quantity": 150, "unit": "g" },
-      { "name": "Courgettes", "quantity": 100, "unit": "g" },
-      { "name": "Poivron rouge", "quantity": 70, "unit": "g" },
-      { "name": "Oignon", "quantity": 40, "unit": "g" },
-      { "name": "Coulis de tomate", "quantity": 120, "unit": "ml" },
-      { "name": "Riz basmati", "quantity": 70, "unit": "g" }
-    ],
-    "steps": [
-      "Faire dorer le poulet et l'oignon émincé en mode dorer dans le Cookeo.",
-      "Ajouter les courgettes, le poivron, le coulis de tomate et lancer 10 min de cuisson sous pression.",
-      "Servir accompagné du riz basmati cuit."
-    ]
-  },
-  {
-    "id": 5,
-    "name": "Émincé de poulet paprika & poêlée de courgettes",
-    "category": "chicken",
-    "price": 2.30,
-    "prepTime": 8,
-    "cookTime": 16,
-    "calories": 465,
-    "protein": 38,
-    "carbs": 42,
-    "fat": 15,
-    "freezable": true,
-    "batchFriendly": true,
-    "equipment": ["Plaques induction"],
-    "ingredients": [
-      { "name": "Poulet", "quantity": 150, "unit": "g" },
-      { "name": "Courgettes", "quantity": 130, "unit": "g" },
-      { "name": "Oignon", "quantity": 40, "unit": "g" },
-      { "name": "Pâtes penne", "quantity": 75, "unit": "g" },
-      { "name": "Paprika", "quantity": 4, "unit": "g" },
-      { "name": "Huile d'olive", "quantity": 10, "unit": "ml" }
-    ],
-    "steps": [
-      "Cuire les pâtes penne al dente dans une casserole d'eau bouillante salée.",
-      "Saisir le poulet au paprika avec l'oignon et les courgettes en demi-rondelles à la poêle pendant 12 min.",
-      "Mélanger les pâtes égouttées à la poêlée et répartir."
-    ]
-  }
-  ,{
-    "id": 6,
-    "name": "Poulet laqué miel-soja & patates douces rôties",
-    "category": "chicken",
-    "price": 2.50,
-    "prepTime": 10,
-    "cookTime": 22,
-    "calories": 535,
-    "protein": 39,
-    "carbs": 54,
-    "fat": 15,
-    "freezable": true,
-    "batchFriendly": true,
-    "equipment": ["Air Fryer", "Four"],
-    "ingredients": [
-      { "name": "Poulet", "quantity": 155, "unit": "g" },
-      { "name": "Patate douce", "quantity": 160, "unit": "g" },
-      { "name": "Sauce soja", "quantity": 15, "unit": "ml" },
-      { "name": "Miel", "quantity": 10, "unit": "g" },
-      { "name": "Huile d'olive", "quantity": 8, "unit": "ml" }
-    ],
-    "steps": [
-      "Tailler les patates douces en cubes, mélanger avec huile d'olive et enfourner 22 min à 200°C.",
-      "Enrober les dés de poulet de sauce soja et miel, cuire 14 min à 190°C au Air Fryer.",
-      "Répartir en boîtes hermétiques."
-    ]
-  },
-  {
-    "id": 7,
-    "name": "Poulet basquaise express aux poivrons & riz",
-    "category": "chicken",
-    "price": 2.40,
-    "prepTime": 12,
-    "cookTime": 20,
-    "calories": 505,
-    "protein": 37,
-    "carbs": 55,
+    "calories": 449,
+    "protein": 42,
+    "carbs": 41,
     "fat": 13,
     "freezable": true,
     "batchFriendly": true,
-    "equipment": ["Plaques induction"],
+    "equipment": [
+      "Four"
+    ],
     "ingredients": [
-      { "name": "Poulet", "quantity": 150, "unit": "g" },
-      { "name": "Poivron rouge", "quantity": 100, "unit": "g" },
-      { "name": "Oignon", "quantity": 45, "unit": "g" },
-      { "name": "Coulis de tomate", "quantity": 120, "unit": "ml" },
-      { "name": "Riz basmati", "quantity": 75, "unit": "g" },
-      { "name": "Huile d'olive", "quantity": 8, "unit": "ml" }
+      {
+        "name": "Blanc de poulet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Pommes de terre grenaille",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Citron",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 10,
+        "unit": "ml"
+      },
+      {
+        "name": "Thym séché",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Ail",
+        "quantity": 1,
+        "unit": "gousse"
+      }
     ],
     "steps": [
-      "Lancer la cuisson du riz basmati à l'eau bouillante salée.",
-      "Saisir le poulet en morceaux avec l'oignon et les poivrons émincés 6 min, verser le coulis de tomate et mijoter 14 min.",
-      "Assembler avec le riz égoutté."
+      "Couper les pommes de terre grenaille en deux et le poulet en gros morceaux.",
+      "Mélanger avec l'huile d'olive, le jus de citron, l'ail haché et le thym.",
+      "Enfourner 30 min à 200°C en remuant à mi-cuisson."
     ]
   },
   {
-    "id": 8,
-    "name": "Fusilli au poulet crémeux curry & brocoli",
+    "id": 102,
+    "name": "Poulet croustillant Air Fryer & patates douces rôties",
     "category": "chicken",
-    "price": 2.45,
+    "price": 2.73,
+    "prepTime": 10,
+    "cookTime": 20,
+    "calories": 452,
+    "protein": 41,
+    "carbs": 42,
+    "fat": 13,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Air Fryer"
+    ],
+    "ingredients": [
+      {
+        "name": "Aiguillettes de poulet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Patate douce",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Paprika fumé",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 10,
+        "unit": "ml"
+      },
+      {
+        "name": "Ail en poudre",
+        "quantity": 2,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Tailler la patate douce en bâtonnets et les enrober d'huile d'olive et paprika.",
+      "Cuire 12 min à 195°C au Air Fryer, ajouter le poulet assaisonné et poursuivre 8 min."
+    ]
+  },
+  {
+    "id": 103,
+    "name": "Émincé de poulet moutarde à l'ancienne & haricots verts",
+    "category": "chicken",
+    "price": 2.99,
+    "prepTime": 10,
+    "cookTime": 18,
+    "calories": 433,
+    "protein": 44,
+    "carbs": 20,
+    "fat": 20,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Blanc de poulet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Haricots verts",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 50,
+        "unit": "ml"
+      },
+      {
+        "name": "Moutarde à l'ancienne",
+        "quantity": 15,
+        "unit": "g"
+      },
+      {
+        "name": "Échalote",
+        "quantity": 25,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Cuire les haricots verts à l'eau bouillante 8 min puis les égoutter.",
+      "Saisir le poulet émincé avec l'échalote, déglacer avec la crème et la moutarde."
+    ]
+  },
+  {
+    "id": 104,
+    "name": "Poulet basquaise mijoté & pommes de terre vapeur",
+    "category": "chicken",
+    "price": 2.85,
+    "prepTime": 15,
+    "cookTime": 30,
+    "calories": 519,
+    "protein": 42,
+    "carbs": 48,
+    "fat": 18,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Haut de cuisse de poulet",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Poivron rouge",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Poivron vert",
+        "quantity": 60,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates concassées",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 50,
+        "unit": "g"
+      },
+      {
+        "name": "Pommes de terre",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Piment d'Espelette",
+        "quantity": 1,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Dorer les hauts de cuisse en cocotte puis réserver.",
+      "Faire revenir oignon et poivrons, ajouter tomates et poulet, mijoter 25 min avec les pommes de terre."
+    ]
+  },
+  {
+    "id": 105,
+    "name": "Filet de dinde mariné miel, soja & brocoli croquant",
+    "category": "chicken",
+    "price": 2.72,
     "prepTime": 10,
     "cookTime": 16,
-    "calories": 560,
-    "protein": 40,
-    "carbs": 57,
+    "calories": 350,
+    "protein": 46,
+    "carbs": 22,
+    "fat": 11,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Filet de dinde",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Brocoli",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce soja",
+        "quantity": 15,
+        "unit": "ml"
+      },
+      {
+        "name": "Miel",
+        "quantity": 10,
+        "unit": "g"
+      },
+      {
+        "name": "Huile de sésame",
+        "quantity": 5,
+        "unit": "ml"
+      },
+      {
+        "name": "Graines de sésame",
+        "quantity": 5,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Faire sauter les fleurettes de brocoli 6 min au wok avec un fond d'eau.",
+      "Saisir la dinde en lamelles 7 min puis laquer avec sauce soja, miel et sésame."
+    ]
+  },
+  {
+    "id": 106,
+    "name": "Poulet tandoori express au Air Fryer & chou-fleur rôti",
+    "category": "chicken",
+    "price": 3.08,
+    "prepTime": 10,
+    "cookTime": 22,
+    "calories": 365,
+    "protein": 44,
+    "carbs": 14,
+    "fat": 15,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Air Fryer"
+    ],
+    "ingredients": [
+      {
+        "name": "Blanc de poulet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Chou-fleur",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Yaourt grec",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Épices tandoori",
+        "quantity": 4,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      },
+      {
+        "name": "Coriandre fraîche",
+        "quantity": 0.2,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Mélanger le poulet avec le yaourt grec et les épices tandoori.",
+      "Disposer avec les fleurettes de chou-fleur huilées dans le Air Fryer 20 min à 190°C."
+    ]
+  },
+  {
+    "id": 107,
+    "name": "Blanquette de dinde légère aux carottes & champignons",
+    "category": "chicken",
+    "price": 2.57,
+    "prepTime": 15,
+    "cookTime": 35,
+    "calories": 394,
+    "protein": 41,
+    "carbs": 25,
+    "fat": 15,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Sauté de dinde",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Carottes",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Champignons de Paris",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 50,
+        "unit": "ml"
+      },
+      {
+        "name": "Bouillon de volaille",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Fécule de maïs",
+        "quantity": 8,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Mijoter la dinde avec les carottes en rondelles et le bouillon pendant 25 min.",
+      "Ajouter les champignons émincés et lier la sauce avec la crème et la fécule."
+    ]
+  },
+  {
+    "id": 108,
+    "name": "Poulet façon fajitas aux trois poivrons & haricots noirs",
+    "category": "chicken",
+    "price": 2.89,
+    "prepTime": 12,
+    "cookTime": 18,
+    "calories": 430,
+    "protein": 45,
+    "carbs": 33,
+    "fat": 12,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Blanc de poulet",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Poivron rouge",
+        "quantity": 70,
+        "unit": "g"
+      },
+      {
+        "name": "Poivron jaune",
+        "quantity": 70,
+        "unit": "g"
+      },
+      {
+        "name": "Haricots noirs",
+        "quantity": 90,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon rouge",
+        "quantity": 50,
+        "unit": "g"
+      },
+      {
+        "name": "Épices fajitas",
+        "quantity": 4,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Émincer le poulet, les poivrons et l'oignon rouge en lanières.",
+      "Faire sauter à feu vif 10 min avec les épices fajitas et incorporer les haricots noirs rincés."
+    ]
+  },
+  {
+    "id": 109,
+    "name": "Cuisse de poulet rôtie aux herbes de Provence & ratatouille",
+    "category": "chicken",
+    "price": 2.56,
+    "prepTime": 10,
+    "cookTime": 35,
+    "calories": 522,
+    "protein": 42,
+    "carbs": 18,
+    "fat": 32,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four"
+    ],
+    "ingredients": [
+      {
+        "name": "Cuisse de poulet",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Courgettes",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Aubergine",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates concassées",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Herbes de Provence",
+        "quantity": 3,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 10,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Disposer les légumes coupés en dés dans un plat avec les tomates et les herbes.",
+      "Poser les cuisses de poulet par-dessus et enfourner 35 min à 200°C."
+    ]
+  },
+  {
+    "id": 110,
+    "name": "Aiguillettes de poulet pesto vert, courgettes & pignons",
+    "category": "chicken",
+    "price": 3.42,
+    "prepTime": 10,
+    "cookTime": 15,
+    "calories": 408,
+    "protein": 43,
+    "carbs": 12,
+    "fat": 21,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Aiguillettes de poulet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Courgettes",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Pesto vert",
+        "quantity": 25,
+        "unit": "g"
+      },
+      {
+        "name": "Pignons de pin",
+        "quantity": 10,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates cerises",
+        "quantity": 80,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Saisir les aiguillettes et les courgettes en demi-rondelles 8 min à la poêle.",
+      "Hors du feu, enrober de pesto vert, ajouter les tomates cerises et parsemer de pignons."
+    ]
+  },
+  {
+    "id": 111,
+    "name": "Poulet mariné citron-romarin & patate douce au four",
+    "category": "chicken",
+    "price": 2.85,
+    "prepTime": 10,
+    "cookTime": 28,
+    "calories": 472,
+    "protein": 42,
+    "carbs": 47,
+    "fat": 13,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four"
+    ],
+    "ingredients": [
+      {
+        "name": "Blanc de poulet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Patate douce",
+        "quantity": 210,
+        "unit": "g"
+      },
+      {
+        "name": "Citron",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Romarin séché",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 10,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Couper patates douces et poulet en dés réguliers.",
+      "Mélanger avec citron, romarin et huile d'olive, rôtir 28 min à 200°C."
+    ]
+  },
+  {
+    "id": 112,
+    "name": "Poulet laqué teriyaki, pak choï & carottes sautées",
+    "category": "chicken",
+    "price": 2.42,
+    "prepTime": 12,
+    "cookTime": 16,
+    "calories": 435,
+    "protein": 35,
+    "carbs": 22,
+    "fat": 24,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Haut de cuisse de poulet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Pak choï",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Carottes",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce teriyaki",
+        "quantity": 25,
+        "unit": "ml"
+      },
+      {
+        "name": "Gingembre frais",
+        "quantity": 8,
+        "unit": "g"
+      },
+      {
+        "name": "Huile neutre",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Faire sauter les carottes en bâtonnets et le pak choï 6 min.",
+      "Dorer le poulet coupé en morceaux puis napper de sauce teriyaki et gingembre râpé."
+    ]
+  },
+  {
+    "id": 113,
+    "name": "Poulet normand au cidre, pommes & champignons",
+    "category": "chicken",
+    "price": 2.94,
+    "prepTime": 12,
+    "cookTime": 25,
+    "calories": 399,
+    "protein": 43,
+    "carbs": 21,
     "fat": 17,
     "freezable": true,
     "batchFriendly": true,
-    "equipment": ["Plaques induction"],
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
     "ingredients": [
-      { "name": "Poulet", "quantity": 145, "unit": "g" },
-      { "name": "Pâtes fusilli", "quantity": 80, "unit": "g" },
-      { "name": "Brocoli", "quantity": 110, "unit": "g" },
-      { "name": "Crème légère", "quantity": 60, "unit": "ml" },
-      { "name": "Épices curry", "quantity": 5, "unit": "g" }
+      {
+        "name": "Blanc de poulet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Pomme",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Champignons de Paris",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 45,
+        "unit": "ml"
+      },
+      {
+        "name": "Échalote",
+        "quantity": 25,
+        "unit": "g"
+      },
+      {
+        "name": "Beurre demi-sel",
+        "quantity": 8,
+        "unit": "g"
+      }
     ],
     "steps": [
-      "Cuire les fusilli et les fleurettes de brocoli ensemble dans l'eau bouillante salée pendant 9 min.",
-      "Poêler les dés de poulet avec le curry 8 min, déglacer avec la crème légère.",
-      "Mélanger pâtes, brocoli et poulet crémeux."
+      "Dorer le poulet et les quartiers de pomme au beurre.",
+      "Ajouter champignons et échalote, laisser mijoter 15 min puis incorporer la crème."
+    ]
+  },
+  {
+    "id": 114,
+    "name": "Escalope de dinde panée au Air Fryer & purée de carottes",
+    "category": "chicken",
+    "price": 2.65,
+    "prepTime": 15,
+    "cookTime": 22,
+    "calories": 523,
+    "protein": 49,
+    "carbs": 53,
+    "fat": 13,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Air Fryer",
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Escalope de dinde",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Chapelure",
+        "quantity": 25,
+        "unit": "g"
+      },
+      {
+        "name": "Oeufs",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Carottes",
+        "quantity": 220,
+        "unit": "g"
+      },
+      {
+        "name": "Pommes de terre",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Beurre doux",
+        "quantity": 8,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Paner l'escalope dans l'œuf battu puis la chapelure et cuire 14 min à 195°C au Air Fryer.",
+      "Cuire carottes et pommes de terre à l'eau puis écraser avec le beurre."
+    ]
+  },
+  {
+    "id": 115,
+    "name": "Poulet curry rouge thaï & haricots verts",
+    "category": "chicken",
+    "price": 3.47,
+    "prepTime": 10,
+    "cookTime": 20,
+    "calories": 445,
+    "protein": 43,
+    "carbs": 19,
+    "fat": 22,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Blanc de poulet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Lait de coco",
+        "quantity": 100,
+        "unit": "ml"
+      },
+      {
+        "name": "Pâte de curry rouge",
+        "quantity": 12,
+        "unit": "g"
+      },
+      {
+        "name": "Haricots verts",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Poivron rouge",
+        "quantity": 60,
+        "unit": "g"
+      },
+      {
+        "name": "Basilic frais",
+        "quantity": 0.2,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Faire revenir la pâte de curry rouge 1 min, ajouter le lait de coco et le poulet émincé.",
+      "Incorporer haricots verts et poivron, mijoter 15 min et parsemer de basilic."
+    ]
+  },
+  {
+    "id": 116,
+    "name": "Sauté de dinde aux poireaux & crème de moutarde",
+    "category": "chicken",
+    "price": 2.42,
+    "prepTime": 12,
+    "cookTime": 22,
+    "calories": 425,
+    "protein": 40,
+    "carbs": 14,
+    "fat": 23,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Sauté de dinde",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Poireaux",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 50,
+        "unit": "ml"
+      },
+      {
+        "name": "Moutarde de Dijon",
+        "quantity": 12,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Faire fondre les poireaux émincés 10 min à couvert avec un filet d'eau.",
+      "Dorer la dinde à part, réunir le tout avec crème et moutarde 5 min."
+    ]
+  },
+  {
+    "id": 117,
+    "name": "Poulet façon colombo antillais & courgettes",
+    "category": "chicken",
+    "price": 2.59,
+    "prepTime": 12,
+    "cookTime": 28,
+    "calories": 506,
+    "protein": 38,
+    "carbs": 35,
+    "fat": 25,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Haut de cuisse de poulet",
+        "quantity": 170,
+        "unit": "g"
+      },
+      {
+        "name": "Pommes de terre",
+        "quantity": 140,
+        "unit": "g"
+      },
+      {
+        "name": "Courgettes",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Épices curry",
+        "quantity": 4,
+        "unit": "g"
+      },
+      {
+        "name": "Citron vert",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Ail",
+        "quantity": 1,
+        "unit": "gousse"
+      },
+      {
+        "name": "Huile neutre",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Faire revenir le poulet avec ail et épices curry.",
+      "Ajouter pommes de terre, courgettes et un verre d'eau, mijoter 25 min et arroser de citron vert."
+    ]
+  },
+  {
+    "id": 118,
+    "name": "Aiguillettes de canard au miel, figues & panais rôtis",
+    "category": "chicken",
+    "price": 4.21,
+    "prepTime": 12,
+    "cookTime": 25,
+    "calories": 499,
+    "protein": 35,
+    "carbs": 52,
+    "fat": 18,
+    "freezable": false,
+    "batchFriendly": true,
+    "equipment": [
+      "Four",
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Aiguillettes de canard",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Panais",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Figue fraîche",
+        "quantity": 1,
+        "unit": "pièce"
+      },
+      {
+        "name": "Miel",
+        "quantity": 10,
+        "unit": "g"
+      },
+      {
+        "name": "Vinaigre balsamique",
+        "quantity": 10,
+        "unit": "ml"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Rôtir les bâtonnets de panais 22 min au four à 200°C.",
+      "Saisir les aiguillettes 3 min à feu vif, déglacer au vinaigre balsamique et miel avec les figues."
+    ]
+  },
+  {
+    "id": 119,
+    "name": "Poulet satay cacahuète & brocoli vapeur",
+    "category": "chicken",
+    "price": 3.23,
+    "prepTime": 10,
+    "cookTime": 18,
+    "calories": 522,
+    "protein": 50,
+    "carbs": 22,
+    "fat": 28,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Blanc de poulet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Beurre de cacahuète",
+        "quantity": 20,
+        "unit": "g"
+      },
+      {
+        "name": "Lait de coco",
+        "quantity": 80,
+        "unit": "ml"
+      },
+      {
+        "name": "Sauce soja",
+        "quantity": 10,
+        "unit": "ml"
+      },
+      {
+        "name": "Brocoli",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Citron vert",
+        "quantity": 0.5,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Cuire le brocoli 6 min à la vapeur ou à l'eau.",
+      "Saisir le poulet en dés puis napper de beurre de cacahuète dilué dans le lait de coco et sauce soja."
+    ]
+  },
+  {
+    "id": 120,
+    "name": "Poulet méditerranéen olives, tomates séchées & fenouil",
+    "category": "chicken",
+    "price": 2.61,
+    "prepTime": 12,
+    "cookTime": 28,
+    "calories": 521,
+    "protein": 39,
+    "carbs": 24,
+    "fat": 31,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four"
+    ],
+    "ingredients": [
+      {
+        "name": "Haut de cuisse de poulet",
+        "quantity": 170,
+        "unit": "g"
+      },
+      {
+        "name": "Fenouil",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Tomates séchées",
+        "quantity": 25,
+        "unit": "g"
+      },
+      {
+        "name": "Olives noires",
+        "quantity": 25,
+        "unit": "g"
+      },
+      {
+        "name": "Origan séché",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 10,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Émincer le fenouil et le déposer dans un plat avec tomates séchées et olives.",
+      "Ajouter le poulet, huiler, parsemer d'origan et cuire 28 min à 200°C."
+    ]
+  },
+  {
+    "id": 121,
+    "name": "Brochettes de poulet marinées yaourt-citron & poivrons",
+    "category": "chicken",
+    "price": 2.86,
+    "prepTime": 15,
+    "cookTime": 16,
+    "calories": 284,
+    "protein": 43,
+    "carbs": 17,
+    "fat": 5,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Air Fryer"
+    ],
+    "ingredients": [
+      {
+        "name": "Blanc de poulet",
+        "quantity": 165,
+        "unit": "g"
+      },
+      {
+        "name": "Yaourt nature",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Poivron rouge",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon rouge",
+        "quantity": 50,
+        "unit": "g"
+      },
+      {
+        "name": "Cumin",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Citron",
+        "quantity": 0.5,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Mariner les cubes de poulet dans le yaourt, cumin et jus de citron.",
+      "Alterner poulet, poivron et oignon sur des pics et cuire 15 min à 195°C au Air Fryer."
+    ]
+  },
+  {
+    "id": 122,
+    "name": "Poulet forestier aux pleurotes & purée de céleri",
+    "category": "chicken",
+    "price": 4.05,
+    "prepTime": 15,
+    "cookTime": 25,
+    "calories": 450,
+    "protein": 47,
+    "carbs": 32,
+    "fat": 17,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Blanc de poulet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Pleurotes",
+        "quantity": 140,
+        "unit": "g"
+      },
+      {
+        "name": "Céleri-rave",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 40,
+        "unit": "ml"
+      },
+      {
+        "name": "Échalote",
+        "quantity": 20,
+        "unit": "g"
+      },
+      {
+        "name": "Beurre doux",
+        "quantity": 8,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Cuire le céleri-rave en dés 18 min à l'eau puis mixer avec le beurre.",
+      "Poêler le poulet et les pleurotes avec l'échalote, déglacer à la crème."
+    ]
+  },
+  {
+    "id": 123,
+    "name": "Rôti de dinde aux pruneaux & carottes glacées",
+    "category": "chicken",
+    "price": 2.89,
+    "prepTime": 10,
+    "cookTime": 35,
+    "calories": 466,
+    "protein": 40,
+    "carbs": 51,
+    "fat": 13,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Rôti de dinde",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Carottes",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Pruneaux",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Bouillon de volaille",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Miel",
+        "quantity": 8,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Dorer le rôti de dinde en cocotte.",
+      "Ajouter carottes en tronçons, pruneaux, miel et bouillon, cuire à couvert 30 min."
+    ]
+  },
+  {
+    "id": 124,
+    "name": "Poulet tikka masala express & chou-fleur vapeur",
+    "category": "chicken",
+    "price": 2.99,
+    "prepTime": 12,
+    "cookTime": 22,
+    "calories": 357,
+    "protein": 44,
+    "carbs": 22,
+    "fat": 10,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Blanc de poulet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Coulis de tomate",
+        "quantity": 120,
+        "unit": "ml"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 40,
+        "unit": "ml"
+      },
+      {
+        "name": "Garam masala",
+        "quantity": 3,
+        "unit": "g"
+      },
+      {
+        "name": "Chou-fleur",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Faire revenir l'oignon et le poulet avec le garam masala.",
+      "Ajouter coulis de tomate et crème, laisser mijoter 15 min et servir avec le chou-fleur cuit."
+    ]
+  },
+  {
+    "id": 125,
+    "name": "Haut de cuisse de poulet laqué miel-balsamique & patate douce",
+    "category": "chicken",
+    "price": 2.4,
+    "prepTime": 10,
+    "cookTime": 30,
+    "calories": 592,
+    "protein": 39,
+    "carbs": 53,
+    "fat": 25,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four"
+    ],
+    "ingredients": [
+      {
+        "name": "Haut de cuisse de poulet",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Patate douce",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Miel",
+        "quantity": 12,
+        "unit": "g"
+      },
+      {
+        "name": "Vinaigre balsamique",
+        "quantity": 12,
+        "unit": "ml"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      },
+      {
+        "name": "Thym séché",
+        "quantity": 2,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Rôtir les dés de patate douce et le poulet 20 min à 200°C.",
+      "Badigeonner de miel et vinaigre balsamique puis poursuivre la cuisson 10 min."
+    ]
+  },
+  {
+    "id": 126,
+    "name": "Poulet façon tajine citron confit, olives vertes & courgettes",
+    "category": "chicken",
+    "price": 2.53,
+    "prepTime": 15,
+    "cookTime": 30,
+    "calories": 386,
+    "protein": 36,
+    "carbs": 16,
+    "fat": 21,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Haut de cuisse de poulet",
+        "quantity": 170,
+        "unit": "g"
+      },
+      {
+        "name": "Courgettes",
+        "quantity": 140,
+        "unit": "g"
+      },
+      {
+        "name": "Olives vertes",
+        "quantity": 30,
+        "unit": "g"
+      },
+      {
+        "name": "Citron",
+        "quantity": 0.5,
+        "unit": "pièce"
+      },
+      {
+        "name": "Curcuma en poudre",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Gingembre en poudre",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Faire revenir l'oignon, les épices et le poulet en cocotte.",
+      "Ajouter courgettes, olives, citron en quartiers et un fond d'eau, mijoter 25 min."
+    ]
+  },
+  {
+    "id": 127,
+    "name": "Émincé de poulet cajun & poêlée maïs-poivrons",
+    "category": "chicken",
+    "price": 2.97,
+    "prepTime": 10,
+    "cookTime": 16,
+    "calories": 358,
+    "protein": 41,
+    "carbs": 22,
+    "fat": 12,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Aiguillettes de poulet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Poivron rouge",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Maïs en boîte",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Épices cajun",
+        "quantity": 4,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      },
+      {
+        "name": "Ciboulette fraîche",
+        "quantity": 0.2,
+        "unit": "pièce"
+      }
+    ],
+    "steps": [
+      "Enrober le poulet d'épices cajun et saisir 6 min à la poêle.",
+      "Ajouter poivrons en dés et maïs égoutté, faire sauter 8 min."
+    ]
+  },
+  {
+    "id": 128,
+    "name": "Poulet à l'estragon & petits pois carottes fondants",
+    "category": "chicken",
+    "price": 2.98,
+    "prepTime": 12,
+    "cookTime": 22,
+    "calories": 398,
+    "protein": 46,
+    "carbs": 30,
+    "fat": 10,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Blanc de poulet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Petits pois surgelés",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Carottes",
+        "quantity": 100,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 45,
+        "unit": "ml"
+      },
+      {
+        "name": "Estragon frais",
+        "quantity": 0.3,
+        "unit": "pièce"
+      },
+      {
+        "name": "Échalote",
+        "quantity": 20,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Faire revenir échalote, poulet et carottes en rondelles 10 min.",
+      "Ajouter petits pois, un fond d'eau, crème et estragon, mijoter 12 min."
+    ]
+  },
+  {
+    "id": 129,
+    "name": "Poulet croustillant parmesan & brocolis rôtis",
+    "category": "chicken",
+    "price": 3.04,
+    "prepTime": 12,
+    "cookTime": 20,
+    "calories": 513,
+    "protein": 54,
+    "carbs": 27,
+    "fat": 22,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Air Fryer"
+    ],
+    "ingredients": [
+      {
+        "name": "Blanc de poulet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Parmesan",
+        "quantity": 25,
+        "unit": "g"
+      },
+      {
+        "name": "Chapelure",
+        "quantity": 20,
+        "unit": "g"
+      },
+      {
+        "name": "Brocoli",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 10,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Mélanger parmesan râpé et chapelure, paner le poulet légèrement huilé.",
+      "Cuire au Air Fryer 16 min à 195°C avec les fleurettes de brocoli."
+    ]
+  },
+  {
+    "id": 130,
+    "name": "Sauté de pintade aux champignons & purée de potimarron",
+    "category": "chicken",
+    "price": 3.53,
+    "prepTime": 15,
+    "cookTime": 30,
+    "calories": 485,
+    "protein": 44,
+    "carbs": 26,
+    "fat": 24,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Pintade",
+        "quantity": 170,
+        "unit": "g"
+      },
+      {
+        "name": "Potimarron",
+        "quantity": 220,
+        "unit": "g"
+      },
+      {
+        "name": "Champignons de Paris",
+        "quantity": 110,
+        "unit": "g"
+      },
+      {
+        "name": "Échalote",
+        "quantity": 25,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 35,
+        "unit": "ml"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Cuire le potimarron en cubes 18 min à la vapeur puis écraser.",
+      "Saisir la pintade et les champignons avec l'échalote, déglacer à la crème et mijoter 15 min."
+    ]
+  },
+  {
+    "id": 131,
+    "name": "Poulet sauce chimichurri & pommes de terre rôties",
+    "category": "chicken",
+    "price": 2.56,
+    "prepTime": 10,
+    "cookTime": 28,
+    "calories": 487,
+    "protein": 42,
+    "carbs": 36,
+    "fat": 19,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four"
+    ],
+    "ingredients": [
+      {
+        "name": "Blanc de poulet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Pommes de terre",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce chimichurri",
+        "quantity": 25,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Rôtir les pommes de terre en quartiers 20 min à 200°C.",
+      "Ajouter le poulet 12 min puis napper de sauce chimichurri avant de mettre en boîte."
+    ]
+  },
+  {
+    "id": 132,
+    "name": "Lapin à la moutarde & carottes fondantes",
+    "category": "chicken",
+    "price": 2.93,
+    "prepTime": 15,
+    "cookTime": 40,
+    "calories": 429,
+    "protein": 42,
+    "carbs": 23,
+    "fat": 18,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Cocotte / Faitout"
+    ],
+    "ingredients": [
+      {
+        "name": "Lapin",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Carottes",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Moutarde de Dijon",
+        "quantity": 18,
+        "unit": "g"
+      },
+      {
+        "name": "Crème légère",
+        "quantity": 40,
+        "unit": "ml"
+      },
+      {
+        "name": "Échalote",
+        "quantity": 25,
+        "unit": "g"
+      },
+      {
+        "name": "Thym séché",
+        "quantity": 2,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Badigeonner le lapin de moutarde et le dorer en cocotte avec l'échalote.",
+      "Ajouter les carottes et un verre d'eau, mijoter 35 min puis lier à la crème."
+    ]
+  },
+  {
+    "id": 133,
+    "name": "Poulet mariné sésame-gingembre & haricots verts sautés",
+    "category": "chicken",
+    "price": 2.9,
+    "prepTime": 10,
+    "cookTime": 16,
+    "calories": 328,
+    "protein": 43,
+    "carbs": 15,
+    "fat": 11,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Aiguillettes de poulet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Haricots verts",
+        "quantity": 170,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce soja",
+        "quantity": 15,
+        "unit": "ml"
+      },
+      {
+        "name": "Gingembre frais",
+        "quantity": 8,
+        "unit": "g"
+      },
+      {
+        "name": "Huile de sésame",
+        "quantity": 6,
+        "unit": "ml"
+      },
+      {
+        "name": "Graines de sésame",
+        "quantity": 5,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Blanchir les haricots verts 6 min puis les faire sauter avec le poulet émincé.",
+      "Déglacer à la sauce soja, gingembre râpé et huile de sésame."
+    ]
+  },
+  {
+    "id": 134,
+    "name": "Poulet gratiné mozzarella, coulis tomate & courgettes",
+    "category": "chicken",
+    "price": 3.02,
+    "prepTime": 12,
+    "cookTime": 25,
+    "calories": 433,
+    "protein": 49,
+    "carbs": 13,
+    "fat": 20,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Four"
+    ],
+    "ingredients": [
+      {
+        "name": "Blanc de poulet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Coulis de tomate",
+        "quantity": 110,
+        "unit": "ml"
+      },
+      {
+        "name": "Mozzarella",
+        "quantity": 45,
+        "unit": "g"
+      },
+      {
+        "name": "Courgettes",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Basilic séché",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Huile d'olive",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Disposer les courgettes en rondelles et le poulet dans un plat.",
+      "Napper de coulis de tomate, couvrir de mozzarella et gratiner 25 min à 200°C."
+    ]
+  },
+  {
+    "id": 135,
+    "name": "Escalope de dinde au curry doux, pomme & lait de coco",
+    "category": "chicken",
+    "price": 2.57,
+    "prepTime": 10,
+    "cookTime": 18,
+    "calories": 468,
+    "protein": 41,
+    "carbs": 17,
+    "fat": 27,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Escalope de dinde",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Lait de coco",
+        "quantity": 90,
+        "unit": "ml"
+      },
+      {
+        "name": "Pomme",
+        "quantity": 60,
+        "unit": "g"
+      },
+      {
+        "name": "Épices curry",
+        "quantity": 4,
+        "unit": "g"
+      },
+      {
+        "name": "Oignon",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Huile neutre",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Faire revenir l'oignon, la pomme en dés et le curry.",
+      "Ajouter la dinde émincée et le lait de coco, mijoter 12 min."
+    ]
+  },
+  {
+    "id": 136,
+    "name": "Poulet façon yakitori & poêlée de chou blanc",
+    "category": "chicken",
+    "price": 2.22,
+    "prepTime": 12,
+    "cookTime": 16,
+    "calories": 433,
+    "protein": 35,
+    "carbs": 22,
+    "fat": 23,
+    "freezable": true,
+    "batchFriendly": true,
+    "equipment": [
+      "Plaques induction"
+    ],
+    "ingredients": [
+      {
+        "name": "Haut de cuisse de poulet",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Chou blanc",
+        "quantity": 160,
+        "unit": "g"
+      },
+      {
+        "name": "Sauce soja sucrée",
+        "quantity": 20,
+        "unit": "ml"
+      },
+      {
+        "name": "Oignon nouveau",
+        "quantity": 1,
+        "unit": "pièce"
+      },
+      {
+        "name": "Huile neutre",
+        "quantity": 8,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Émincer finement le chou blanc et le faire sauter 7 min.",
+      "Dorer les dés de poulet et caraméliser avec la sauce soja sucrée et l'oignon nouveau."
     ]
   }
 ]
