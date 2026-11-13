@@ -1,956 +1,1613 @@
-// js/app.js — Contrôleur principal Batch Malin V2.3
+/**
+ * Batch Malin V2.2 — Contrôleur principal, catalogue complet, recettes personnelles & LocalStorage (app.js)
+ */
+(function (global) {
+  "use strict";
 
-(function () {
-  const STORAGE_KEY = "batch_malin_v2_3_state";
-
-  const defaultState = {
-    plan: [
-      { recipeId: "poulet_curry_coco_riz", portions: 4 },
-      { recipeId: "dahl_lentilles_corail", portions: 4 }
-    ],
-    settings: {
-      days: 5,
-      people: 1,
-      kcalTarget: 2200
-    },
-    fridgeStock: {},        // { ingredientId: qty }
-    checkedShopping: {},    // { ingredientId: true }
-    customPrices: {},       // { ingredientId: number }
-    storeName: "",
-    customRecipes: [],
-    customIngredients: []
+  const STORAGE_KEYS = {
+    PREFS: "batch_malin_prefs_v2",
+    FAVORITES: "batch_malin_favorites_v2",
+    CUSTOM_RECIPES: "batch_malin_custom_recipes_v2",
+    CHECKED_SHOPPING: "batch_malin_checked_shop_v2",
+    DONE_STEPS: "batch_malin_done_steps_v2"
   };
 
-  let state = loadState();
-  let sharedPreviewPlan = null; // Cloisonnement strict V2.3 pour les URLs partagées
-  let baseRecipes = [];
-  let baseIngredients = [];
-  let equipmentMap = {};
-  let draftRecipeIngredients = [];
+  const RECIPE_FILES = [
+    "data/chicken.json",
+    "data/beef.json",
+    "data/fish.json",
+    "data/vegetarian.json",
+    "data/pasta.json",
+    "data/rice.json"
+  ];
 
-  function loadState() {
+  const CATEGORY_LABELS = {
+    chicken: "Volaille",
+    beef: "Bœuf",
+    fish: "Poisson",
+    vegetarian: "Végétarien",
+    pasta: "Pâtes",
+    rice: "Riz & Bowls"
+  };
+
+  const DEFAULT_PREFS = {
+    budget: 35,
+    days: 5,
+    mealsPerDay: 2,
+    servings: 1,
+    maxTime: 90,
+    diet: "all",
+    skill: "intermediate",
+    startTime: "18:00",
+    calorieTargetEnabled: false,
+    targetCalories: 600,
+    pantryItems: [],
+    excludedItems: [],
+    equipment: ["Air Fryer", "Four", "Plaques induction", "Micro-ondes"]
+  };
+
+  const state = {
+    equipmentList: [],
+    ingredientsCatalog: {},
+    baseRecipes: [],
+    customRecipes: [],
+    indexedRecipes: { recipes: [], ingredientToRecipes: new Map() },
+    prefs: { ...DEFAULT_PREFS },
+    favorites: new Set(),
+    checkedShopping: new Set(),
+    doneBatchSteps: new Set(),
+    currentPlan: null,
+    currentShopping: null,
+    currentSchedule: null,
+    variantSeed: 0,
+    catalogFilter: {
+      query: "",
+      category: "all",
+      onlyCompatible: false,
+      onlyFreezable: false,
+      sortBy: "default"
+    }
+  };
+
+  function escapeHtml(str) {
+    return String(str || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  /* --------------------------------------------------------------------------
+     Encodage UTF-8 Base64 sûr pour le partage par URL (#plan=...)
+     -------------------------------------------------------------------------- */
+  function encodeSharePayload(obj) {
+    const json = JSON.stringify(obj);
+    const bytes = new TextEncoder().encode(json);
+    let binary = "";
+    for (let i = 0; i < bytes.length; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+
+  function decodeSharePayload(encoded) {
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return structuredClone(defaultState);
-      const parsed = JSON.parse(raw);
-      return {
-        ...structuredClone(defaultState),
-        ...parsed,
-        settings: { ...defaultState.settings, ...(parsed.settings || {}) }
-      };
+      const b64 = encoded.replace(/-/g, "+").replace(/_/g, "/");
+      const binary = atob(b64);
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) {
+        bytes[i] = binary.charCodeAt(i);
+      }
+      const json = new TextDecoder().decode(bytes);
+      return JSON.parse(json);
     } catch {
-      return structuredClone(defaultState);
+      return null;
     }
   }
 
-  function saveState() {
-    if (sharedPreviewPlan) return; // Ne jamais écraser les données perso pendant un aperçu partagé
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    } catch (e) {
-      console.warn("Erreur sauvegarde localStorage", e);
-    }
-  }
-
-  function getActivePlan() {
-    return sharedPreviewPlan ? sharedPreviewPlan.plan : state.plan;
-  }
-
-  function getActiveSettings() {
-    return sharedPreviewPlan ? sharedPreviewPlan.settings : state.settings;
-  }
-
-  function getAllIngredientsMap() {
-    const map = {};
-    [...baseIngredients, ...(state.customIngredients || [])].forEach(ing => {
-      map[ing.id] = ing;
-    });
-    return map;
-  }
-
-  function getAllRecipesList() {
-    return [...baseRecipes, ...(state.customRecipes || [])];
-  }
-
-  function getAllRecipesMap() {
-    const map = {};
-    getAllRecipesList().forEach(r => {
-      map[r.id] = r;
-    });
-    return map;
-  }
-
-  function formatEuro(val) {
-    return `${(Number(val) || 0).toFixed(2).replace('.', ',')} €`;
-  }
-
-  function showToast(msg) {
-    const toast = document.getElementById("toast");
-    toast.textContent = msg;
-    toast.classList.remove("hidden");
-    clearTimeout(toast._timer);
-    toast._timer = setTimeout(() => toast.classList.add("hidden"), 3000);
-  }
-
-  // --- Initialisation ---
-  async function init() {
-    try {
-      const [recRes, ingRes, eqRes] = await Promise.all([
-        fetch("data/recipes.json"),
-        fetch("data/ingredients.json"),
-        fetch("data/equipment.json")
-      ]);
-      baseRecipes = await recRes.json();
-      baseIngredients = await ingRes.json();
-      const eqList = await eqRes.json();
-      eqList.forEach(e => { equipmentMap[e.id] = e; });
-    } catch (err) {
-      console.error("Erreur chargement JSON:", err);
-      showToast("Erreur de chargement des fichiers data/*.json (utilisez un serveur local ou GitHub Pages).");
-    }
-
-    checkSharedUrlHash();
-    bindEvents();
-    populateIngredientSelects();
-    renderAll();
-  }
-
-  // --- Cloisonnement URL partagée V2.3 ---
-  function checkSharedUrlHash() {
-    const hash = window.location.hash || "";
-    if (!hash.startsWith("#plan=")) return;
-    try {
-      const encoded = hash.slice(6);
-      const jsonStr = decodeURIComponent(escape(atob(encoded)));
-      const payload = JSON.parse(jsonStr);
-      if (payload && Array.isArray(payload.plan)) {
-        sharedPreviewPlan = {
-          plan: payload.plan,
-          settings: { ...defaultState.settings, ...(payload.settings || {}) }
-        };
-        document.getElementById("shared-plan-banner").classList.remove("hidden");
-      }
-    } catch (e) {
-      console.warn("Lien de partage invalide:", e);
-    }
-  }
-
-  function generateShareUrl() {
-    const payload = {
-      plan: getActivePlan(),
-      settings: getActiveSettings()
+  /* --------------------------------------------------------------------------
+     Icônes SVG minimalistes
+     -------------------------------------------------------------------------- */
+  function getEquipmentIconSvg(iconKey) {
+    const icons = {
+      airfryer: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="4"/><path d="M5 13h14"/><circle cx="12" cy="8" r="2"/></svg>`,
+      oven: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18"/><rect x="7" y="12" width="10" height="5" rx="1"/></svg>`,
+      induction: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="12" r="3"/><circle cx="16" cy="12" r="2"/></svg>`,
+      microwave: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="3"/><rect x="5" y="9" width="10" height="6" rx="1"/><line x1="18" y1="10" x2="18" y2="14"/></svg>`,
+      pot: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h16v7a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3v-7z"/><path d="M8 6h8"/><path d="M2 10h2M20 10h2"/></svg>`,
+      blender: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3h10l-1.5 11h-7L7 3z"/><rect x="6" y="14" width="12" height="6" rx="2"/></svg>`
     };
-    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
-    const url = `${window.location.origin}${window.location.pathname}#plan=${encoded}`;
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(url).then(() => {
-        showToast("Lien du planning copié ! Vos données privées restent isolées.");
-      });
-    } else {
-      prompt("Copiez ce lien de partage :", url);
+    return icons[iconKey] || icons.pot;
+  }
+
+  /* --------------------------------------------------------------------------
+     Persistence LocalStorage
+     -------------------------------------------------------------------------- */
+  function loadLocalStorage() {
+    try {
+      const savedPrefs = JSON.parse(localStorage.getItem(STORAGE_KEYS.PREFS) || "null");
+      if (savedPrefs && typeof savedPrefs === "object") {
+        state.prefs = { ...DEFAULT_PREFS, ...savedPrefs };
+      }
+      const savedFavs = JSON.parse(localStorage.getItem(STORAGE_KEYS.FAVORITES) || "[]");
+      if (Array.isArray(savedFavs)) state.favorites = new Set(savedFavs);
+
+      const savedCustom = JSON.parse(localStorage.getItem(STORAGE_KEYS.CUSTOM_RECIPES) || "[]");
+      if (Array.isArray(savedCustom)) state.customRecipes = savedCustom;
+
+      const savedShop = JSON.parse(localStorage.getItem(STORAGE_KEYS.CHECKED_SHOPPING) || "[]");
+      if (Array.isArray(savedShop)) state.checkedShopping = new Set(savedShop);
+
+      const savedSteps = JSON.parse(localStorage.getItem(STORAGE_KEYS.DONE_STEPS) || "[]");
+      if (Array.isArray(savedSteps)) state.doneBatchSteps = new Set(savedSteps);
+    } catch (err) {
+      console.warn("Lecture LocalStorage ignorée :", err);
     }
   }
 
-  // --- Navigation & Modales ---
-  function switchTab(tabName) {
-    document.querySelectorAll(".nav-tab").forEach(btn => {
-      btn.classList.toggle("active", btn.dataset.tab === tabName);
-    });
-    document.querySelectorAll(".tab-panel").forEach(panel => {
-      panel.classList.toggle("active", panel.id === `tab-${tabName}`);
-    });
+  function savePrefs() {
+    try {
+      localStorage.setItem(STORAGE_KEYS.PREFS, JSON.stringify(state.prefs));
+    } catch (err) {
+      console.warn(err);
+    }
   }
 
-  function openModal(id) {
-    document.getElementById(id).classList.remove("hidden");
+  function saveFavorites() {
+    try {
+      localStorage.setItem(STORAGE_KEYS.FAVORITES, JSON.stringify(Array.from(state.favorites)));
+      updateHeaderCounters();
+    } catch (err) {
+      console.warn(err);
+    }
   }
 
-  function closeModal(id) {
-    document.getElementById(id).classList.add("hidden");
+  function saveCustomRecipes() {
+    try {
+      localStorage.setItem(STORAGE_KEYS.CUSTOM_RECIPES, JSON.stringify(state.customRecipes));
+      rebuildCombinedIndex();
+      updateHeaderCounters();
+    } catch (err) {
+      console.warn(err);
+    }
   }
 
-  // --- Rendu Global ---
-  function renderAll() {
-    const ingredientsMap = getAllIngredientsMap();
-    const recipesMap = getAllRecipesMap();
-    const plan = getActivePlan();
-    const settings = getActiveSettings();
-
-    const consolidated = BatchShopping.consolidate(
-      plan,
-      recipesMap,
-      ingredientsMap,
-      state.customPrices,
-      state.fridgeStock
-    );
-
-    const totalPortions = plan.reduce((acc, p) => acc + (Number(p.portions) || 0), 0);
-    const perMeal = totalPortions > 0 ? consolidated.totalNet / totalPortions : 0;
-
-    document.getElementById("kpi-portions").textContent = totalPortions;
-    document.getElementById("kpi-budget").textContent = formatEuro(consolidated.totalNet);
-    document.getElementById("kpi-per-meal").textContent = formatEuro(perMeal);
-
-    const remainingCount = consolidated.items.filter(i => i.netQty > 0 && !state.checkedShopping[i.id]).length;
-    document.getElementById("nav-shopping-count").textContent = remainingCount;
-
-    renderCatalog(recipesMap, ingredientsMap);
-    renderPlanner(plan, settings, recipesMap, ingredientsMap);
-    renderShopping(consolidated, ingredientsMap);
-    renderBatch(plan, recipesMap);
-    renderPricesTab(ingredientsMap);
+  function saveCheckedShopping() {
+    try {
+      localStorage.setItem(STORAGE_KEYS.CHECKED_SHOPPING, JSON.stringify(Array.from(state.checkedShopping)));
+    } catch (err) {
+      console.warn(err);
+    }
   }
 
-  // --- 1. Catalogue ---
-  function renderCatalog(recipesMap, ingredientsMap) {
-    const query = (document.getElementById("catalog-search").value || "").toLowerCase().trim();
-    const cat = document.getElementById("catalog-category").value;
-    const storage = document.getElementById("catalog-storage").value;
-    const sort = document.getElementById("catalog-sort").value;
+  function saveDoneBatchSteps() {
+    try {
+      localStorage.setItem(STORAGE_KEYS.DONE_STEPS, JSON.stringify(Array.from(state.doneBatchSteps)));
+    } catch (err) {
+      console.warn(err);
+    }
+  }
 
-    const customIds = new Set((state.customRecipes || []).map(r => r.id));
+  function rebuildCombinedIndex() {
+    const combined = [...state.baseRecipes, ...state.customRecipes];
+    state.indexedRecipes = global.BatchPlanner.buildRecipeIndex(combined);
+    const countEl = document.getElementById("header-recipe-count");
+    if (countEl) countEl.textContent = `${combined.length} recettes indexées`;
+    const tabAllEl = document.getElementById("tab-all-count");
+    if (tabAllEl) tabAllEl.textContent = combined.length;
+    renderAllRecipesView();
+  }
 
-    let list = getAllRecipesList().map(rec => {
-      const metrics = BatchPlanner.computeRecipeMetrics(rec, ingredientsMap, state.customPrices);
-      return { rec, metrics, isCustom: customIds.has(rec.id) };
-    });
+  /* --------------------------------------------------------------------------
+     Chargement JSON strict
+     -------------------------------------------------------------------------- */
+  async function loadAllData() {
+    const banner = document.getElementById("cors-banner");
 
-    list = list.filter(({ rec, isCustom }) => {
-      if (cat === "CUSTOM" && !isCustom) return false;
-      if (cat !== "ALL" && cat !== "CUSTOM" && rec.category !== cat) return false;
-      if (storage === "FREEZER" && !(rec.freezerDays > 0)) return false;
-      if (storage === "FRIDGE4" && !(rec.fridgeDays >= 4)) return false;
-      if (query) {
-        const titleMatch = rec.title.toLowerCase().includes(query);
-        const ingMatch = (rec.ingredients || []).some(item => {
-          const ing = ingredientsMap[item.id];
-          return ing && ing.name.toLowerCase().includes(query);
-        });
-        if (!titleMatch && !ingMatch) return false;
-      }
-      return true;
-    });
-
-    if (sort === "price-asc") list.sort((a, b) => a.metrics.costPerPortion - b.metrics.costPerPortion);
-    if (sort === "kcal-desc") list.sort((a, b) => b.metrics.kcalPerPortion - a.metrics.kcalPerPortion);
-    if (sort === "time-asc") list.sort((a, b) => (a.rec.prepTime + a.rec.cookTime) - (b.rec.prepTime + b.rec.cookTime));
-
-    const grid = document.getElementById("catalog-grid");
-    if (!list.length) {
-      grid.innerHTML = `<div class="card">Aucune recette ne correspond à vos filtres.</div>`;
+    if (window.location.protocol === "file:") {
+      banner.classList.remove("hidden");
       return;
     }
 
-    grid.innerHTML = list.map(({ rec, metrics, isCustom }) => `
+    async function fetchJsonStrict(path) {
+      const response = await fetch(path);
+      if (!response.ok) throw new Error(`${path} introuvable (HTTP ${response.status})`);
+      try {
+        return await response.json();
+      } catch {
+        throw new Error(`${path} contient une erreur de syntaxe JSON`);
+      }
+    }
+
+    try {
+      const [equipRes, ingRes, ...recipeResults] = await Promise.all([
+        fetchJsonStrict("data/equipment.json"),
+        fetchJsonStrict("data/ingredients.json"),
+        ...RECIPE_FILES.map((path) =>
+          fetchJsonStrict(path).catch((err) => {
+            console.warn(err.message);
+            return [];
+          })
+        )
+      ]);
+
+      state.equipmentList = Array.isArray(equipRes) ? equipRes : [];
+      state.ingredientsCatalog = ingRes && typeof ingRes === "object" ? ingRes : {};
+      state.baseRecipes = recipeResults.flat().filter((r) => r && r.id && r.name);
+
+      populateIngredientsDatalist();
+      rebuildCombinedIndex();
+      banner.classList.add("hidden");
+    } catch (error) {
+      console.error("Erreur de chargement JSON :", error);
+      banner.querySelector(".cors-banner__badge").textContent = "Erreur Fichier JSON";
+      banner.querySelector("p").textContent = error.message;
+      banner.classList.remove("hidden");
+      document.getElementById("header-recipe-count").textContent = "Erreur données";
+    }
+  }
+
+  function populateIngredientsDatalist() {
+    const dl = document.getElementById("ingredients-datalist");
+    if (!dl) return;
+    const keys = Object.keys(state.ingredientsCatalog).sort((a, b) => a.localeCompare(b, "fr"));
+    dl.innerHTML = keys.map((k) => `<option value="${escapeHtml(k)}"></option>`).join("");
+  }
+
+  /* --------------------------------------------------------------------------
+     Synchronisation UI des paramètres
+     -------------------------------------------------------------------------- */
+  function syncInputsFromPrefs() {
+    document.getElementById("input-budget").value = state.prefs.budget;
+    document.getElementById("input-days").value = state.prefs.days;
+    document.getElementById("input-meals-per-day").value = state.prefs.mealsPerDay;
+    document.getElementById("input-servings").value = state.prefs.servings;
+    document.getElementById("input-max-time").value = state.prefs.maxTime;
+    document.getElementById("input-diet").value = state.prefs.diet;
+    document.getElementById("input-skill").value = state.prefs.skill;
+    document.getElementById("input-start-time").value = state.prefs.startTime;
+
+    const calToggle = document.getElementById("toggle-calorie-target");
+    const calSlider = document.getElementById("input-target-calories");
+    const calControls = document.getElementById("calorie-target-controls");
+    calToggle.checked = Boolean(state.prefs.calorieTargetEnabled);
+    calSlider.value = state.prefs.targetCalories || 600;
+    calSlider.disabled = !calToggle.checked;
+    calControls.classList.toggle("is-disabled", !calToggle.checked);
+    document.getElementById("display-target-calories").textContent = calSlider.value;
+
+    document.querySelectorAll(".segmented-btn").forEach((btn) => {
+      btn.classList.toggle("is-active", Number(btn.dataset.meals) === Number(state.prefs.mealsPerDay));
+    });
+
+    updateConfigHints();
+    renderTagContainers();
+    renderEquipmentCards();
+  }
+
+  function updateConfigHints() {
+    const budget = Number(state.prefs.budget);
+    const days = Number(state.prefs.days);
+    const mealsPerDay = Number(state.prefs.mealsPerDay);
+    const servings = Number(state.prefs.servings);
+    const maxTime = Number(state.prefs.maxTime);
+
+    const totalMeals = days * mealsPerDay;
+    const totalPortions = totalMeals * servings;
+    const perPortion = budget / Math.max(1, totalPortions);
+
+    document.getElementById("display-budget").textContent = budget;
+    document.getElementById("display-days").textContent = days;
+    document.getElementById("display-meals-per-day").textContent = mealsPerDay;
+    document.getElementById("display-servings").textContent = servings;
+    document.getElementById("display-max-time").textContent = maxTime;
+
+    document.getElementById("hint-per-meal").textContent = `Soit ~${perPortion.toFixed(2).replace(".", ",")} € / portion`;
+    document.getElementById("hint-total-meals").textContent = `${totalMeals} repas à préparer`;
+    document.getElementById("hint-total-portions").textContent = `${totalPortions} portions totales`;
+  }
+
+  function renderTagContainers() {
+    const pantryBox = document.getElementById("pantry-tags");
+    pantryBox.innerHTML = (state.prefs.pantryItems || [])
+      .map(
+        (item, idx) =>
+          `<span class="filter-tag filter-tag--pantry">${escapeHtml(item)} <button type="button" data-remove-pantry="${idx}" aria-label="Retirer ${escapeHtml(item)}">×</button></span>`
+      )
+      .join("");
+
+    const excludeBox = document.getElementById("exclude-tags");
+    excludeBox.innerHTML = (state.prefs.excludedItems || [])
+      .map(
+        (item, idx) =>
+          `<span class="filter-tag filter-tag--exclude">${escapeHtml(item)} <button type="button" data-remove-exclude="${idx}" aria-label="Retirer ${escapeHtml(item)}">×</button></span>`
+      )
+      .join("");
+  }
+
+  function renderEquipmentCards() {
+    const grid = document.getElementById("equipment-grid");
+    const selectedSet = new Set(state.prefs.equipment);
+
+    grid.innerHTML = state.equipmentList
+      .map((eq) => {
+        const isSelected = selectedSet.has(eq.name);
+        return `
+          <button type="button" class="equip-card ${isSelected ? "is-selected" : ""}" data-equip="${escapeHtml(eq.name)}" aria-pressed="${isSelected}">
+            <div class="equip-card__top">
+              <span class="equip-card__icon">${getEquipmentIconSvg(eq.icon)}</span>
+              <span class="equip-card__check" aria-hidden="true">✓</span>
+            </div>
+            <div>
+              <div class="equip-card__name">${escapeHtml(eq.name)}</div>
+              <div class="equip-card__cat">${escapeHtml(eq.category)}</div>
+            </div>
+          </button>
+        `;
+      })
+      .join("");
+  }
+
+  /* --------------------------------------------------------------------------
+     Génération & Restitution du Plan
+     -------------------------------------------------------------------------- */
+  function runFullGeneration(resetChecklists = true) {
+    if (resetChecklists) {
+      state.checkedShopping.clear();
+      state.doneBatchSteps.clear();
+      saveCheckedShopping();
+      saveDoneBatchSteps();
+    }
+
+    const plan = global.BatchPlanner.generatePlan(state.indexedRecipes, state.prefs, {
+      seed: state.variantSeed
+    });
+    applyPlanAndRender(plan);
+  }
+
+  function applyPlanAndRender(plan) {
+    const shopping = global.BatchShopping.buildShoppingList(
+      plan.selectedRecipes,
+      state.ingredientsCatalog,
+      state.prefs.pantryItems
+    );
+    const schedule = global.BatchScheduler.generateBatchSchedule(
+      plan.selectedRecipes,
+      shopping,
+      state.prefs.startTime,
+      state.prefs.days
+    );
+
+    state.currentPlan = plan;
+    state.currentShopping = shopping;
+    state.currentSchedule = schedule;
+
+    renderAllResults();
+  }
+
+  function renderAllResults() {
+    const plan = state.currentPlan;
+    const shopping = state.currentShopping;
+    const schedule = state.currentSchedule;
+    if (!plan) return;
+
+    const noticeEl = document.getElementById("plan-notice");
+    if (plan.notice) {
+      noticeEl.textContent = plan.notice;
+      noticeEl.classList.remove("hidden");
+    } else {
+      noticeEl.classList.add("hidden");
+    }
+
+    // KPI 1 : Coût & Budget
+    const displayCost = shopping.totalEstimatedCost;
+    const maxBudget = Number(state.prefs.budget);
+    const costPerPortion = displayCost / Math.max(1, plan.totalPortions);
+    const budgetRatio = Math.min(100, Math.round((displayCost / Math.max(1, maxBudget)) * 100));
+
+    document.getElementById("kpi-total-cost").textContent = `${displayCost.toFixed(2).replace(".", ",")} €`;
+    document.getElementById("kpi-cost-detail").textContent =
+      shopping.savedFromPantry > 0
+        ? `${costPerPortion.toFixed(2).replace(".", ",")} € / portion · -${shopping.savedFromPantry.toFixed(2).replace(".", ",")} € via frigo`
+        : `${costPerPortion.toFixed(2).replace(".", ",")} € / portion · ${plan.totalPortions} portions`;
+
+    const budgetStatus = document.getElementById("kpi-budget-status");
+    const budgetBar = document.getElementById("kpi-budget-bar");
+    budgetBar.style.width = `${budgetRatio}%`;
+
+    if (displayCost <= maxBudget) {
+      budgetStatus.textContent = `-${(maxBudget - displayCost).toFixed(2).replace(".", ",")} € sous budget`;
+      budgetStatus.className = "kpi-pill kpi-pill--green";
+      budgetBar.className = "progress-fill progress-fill--blue";
+    } else {
+      budgetStatus.textContent = `+${(displayCost - maxBudget).toFixed(2).replace(".", ",")} €`;
+      budgetStatus.className = "kpi-pill kpi-pill--red";
+      budgetBar.className = "progress-fill progress-fill--red";
+    }
+
+    // KPI 2 : Anti-gaspi
+    document.getElementById("kpi-synergy-score").textContent = `${plan.synergyScore} %`;
+    document.getElementById("kpi-synergy-detail").textContent =
+      plan.sharedIngredients.length > 0
+        ? `${plan.sharedIngredients.length} ingrédients communs (${plan.sharedIngredients.slice(0, 3).join(", ")})`
+        : `${shopping.totalItemsCount} ingrédients au total`;
+    document.getElementById("kpi-synergy-bar").style.width = `${plan.synergyScore}%`;
+
+    // KPI 3 : Temps Batch Cooking
+    const maxTime = Number(state.prefs.maxTime);
+    const timeRatio = Math.min(100, Math.round((schedule.totalDurationMin / Math.max(1, maxTime)) * 100));
+    document.getElementById("kpi-total-time").textContent = `${schedule.totalDurationMin} min`;
+    document.getElementById("kpi-time-detail").textContent = `${schedule.startClock} → ${schedule.endClock} (max ${maxTime} min)`;
+    document.getElementById("kpi-time-saved").textContent = `-${schedule.timeSavedMin} min gagnées`;
+    document.getElementById("kpi-time-bar").style.width = `${timeRatio}%`;
+
+    // KPI 4 : Nutrition
+    document.getElementById("kpi-avg-calories").textContent = `${plan.nutrition.avgCalories} kcal`;
+    document.getElementById("kpi-weekly-kcal").textContent = `${plan.nutrition.totalCalories.toLocaleString("fr-FR")} kcal total`;
+    document.getElementById("kpi-avg-protein").textContent = `${plan.nutrition.avgProtein}g`;
+    document.getElementById("kpi-avg-carbs").textContent = `${plan.nutrition.avgCarbs}g`;
+    document.getElementById("kpi-avg-fat").textContent = `${plan.nutrition.avgFat}g`;
+
+    document.getElementById("tab-shopping-count").textContent = shopping.totalItemsCount;
+    updateHeaderCounters();
+
+    renderMenuCards(plan);
+    renderShoppingView(shopping);
+    renderBatchTimeline(schedule);
+    renderAllRecipesView();
+    renderCustomRecipesView();
+    renderFavoritesView();
+  }
+
+  /* --------------------------------------------------------------------------
+     Rendu des cartes recettes (Menu, Catalogue, Perso, Favoris)
+     -------------------------------------------------------------------------- */
+  function renderMenuCards(plan) {
+    const grid = document.getElementById("menu-grid");
+    const sharedSet = new Set(plan.sharedIngredients);
+    const pantrySet = new Set((state.prefs.pantryItems || []).map(global.BatchPlanner.normalizeText));
+
+    if (!plan.selectedRecipes.length) {
+      grid.innerHTML = `<div class="empty-state">Aucune recette sélectionnée. Ajustez vos appareils, vos exclusions ou ajoutez une recette depuis l’onglet <strong>Toutes les recettes</strong>.</div>`;
+      return;
+    }
+
+    document.getElementById("menu-summary-text").textContent =
+      `${plan.selectedRecipes.length} recettes distinctes pour couvrir ${plan.totalMeals} repas (${plan.totalPortions} portions).`;
+
+    grid.innerHTML = plan.selectedRecipes
+      .map((recipe) => renderSingleRecipeCard(recipe, sharedSet, pantrySet, "plan"))
+      .join("");
+  }
+
+  function renderSingleRecipeCard(recipe, sharedSet, pantrySet, mode) {
+    const isFav = state.favorites.has(recipe.id);
+    const totalTime = (Number(recipe.prepTime) || 0) + (Number(recipe.cookTime) || 0);
+    const catLabel = CATEGORY_LABELS[recipe.category] || recipe.category;
+    const portions = recipe.totalPortions || state.prefs.servings;
+    const scale = recipe._calorieScale || 1;
+    const unitPrice = recipe._effectivePrice != null ? recipe._effectivePrice : Number(recipe.price);
+    const unitCal = recipe._effectiveCalories != null ? recipe._effectiveCalories : recipe.calories;
+    const unitProt = recipe._effectiveProtein != null ? recipe._effectiveProtein : recipe.protein;
+    const unitCarbs = recipe._effectiveCarbs != null ? recipe._effectiveCarbs : recipe.carbs;
+    const unitFat = recipe._effectiveFat != null ? recipe._effectiveFat : recipe.fat;
+
+    const inPlanSlot =
+      state.currentPlan && Array.isArray(state.currentPlan.selectedRecipes)
+        ? state.currentPlan.selectedRecipes.find((r) => r.id === recipe.id)
+        : null;
+
+    const ingChips = (recipe.ingredients || [])
+      .slice(0, 6)
+      .map((ing) => {
+        const norm = global.BatchPlanner.normalizeText(ing.name);
+        const isPantry = pantrySet && pantrySet.has(norm);
+        const isShared = sharedSet && sharedSet.has(norm);
+        const cls = isPantry ? "is-pantry" : isShared ? "is-shared" : "";
+        return `<span class="ing-chip ${cls}">${escapeHtml(ing.name)}</span>`;
+      })
+      .join("");
+
+    let secondaryActionHtml = "";
+    if (mode === "plan") {
+      secondaryActionHtml = `<button type="button" class="btn btn--ghost btn--sm" data-replace-recipe="${recipe.id}">Remplacer</button>`;
+    } else if (mode === "catalog" || mode === "fav") {
+      secondaryActionHtml = inPlanSlot
+        ? `<button type="button" class="btn btn--in-plan btn--sm" data-add-to-plan="${recipe.id}">✓ Dans le menu (+1)</button>`
+        : `<button type="button" class="btn btn--ghost btn--sm" data-add-to-plan="${recipe.id}">+ Au menu</button>`;
+    } else if (mode === "custom") {
+      secondaryActionHtml = `<button type="button" class="btn btn--danger-ghost btn--sm" data-delete-custom="${recipe.id}">Supprimer</button>`;
+    }
+
+    return `
       <article class="recipe-card">
-        <div>
-          <div class="recipe-top">
-            <span class="badge ${isCustom ? 'badge-custom' : ''}">${isCustom ? '✨ Perso · ' : ''}${rec.category}</span>
-            <span class="badge badge-price">${formatEuro(metrics.costPerPortion)} / port.</span>
+        <div class="recipe-card__header">
+          <div class="recipe-badges">
+            <span class="cat-badge">${escapeHtml(catLabel)}</span>
+            ${recipe.isCustom ? `<span class="custom-badge">Perso</span>` : ""}
+            ${mode === "plan" ? `<span class="portions-badge">${portions} portions</span>` : ""}
+            ${recipe.freezable ? `<span class="freeze-badge">Congélable</span>` : ""}
+            ${mode === "plan" && scale !== 1 ? `<span class="scale-badge">Portion ×${scale}</span>` : ""}
           </div>
-          <h3 class="recipe-title">${rec.title}</h3>
-          <div class="recipe-meta">
-            <span>🔥 ${metrics.kcalPerPortion} kcal</span>
-            <span>💪 ${metrics.protPerPortion}g prot</span>
-            <span>⏱️ ${rec.prepTime + rec.cookTime} min</span>
-            <span>🧊 ${rec.fridgeDays}j</span>
-            <span>${rec.freezerDays > 0 ? `❄️ ${rec.freezerDays}j` : '🚫 Congél.'}</span>
+          <button type="button" class="fav-btn ${isFav ? "is-fav" : ""}" data-toggle-fav="${recipe.id}" aria-label="Ajouter aux favoris">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="${isFav ? "currentColor" : "none"}" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </button>
+        </div>
+
+        <h3 class="recipe-card__title">${escapeHtml(recipe.name)}</h3>
+
+        <div class="recipe-card__metrics">
+          <div>
+            <span class="metric-item__val">${unitPrice.toFixed(2).replace(".", ",")} €</span>
+            <span class="metric-item__lbl">/ portion</span>
+          </div>
+          <div>
+            <span class="metric-item__val">${totalTime} min</span>
+            <span class="metric-item__lbl">${recipe.prepTime}m + ${recipe.cookTime}m</span>
+          </div>
+          <div>
+            <span class="metric-item__val">${unitCal}</span>
+            <span class="metric-item__lbl">kcal / port.</span>
           </div>
         </div>
-        <div class="recipe-actions">
-          <button class="btn btn-ghost btn-sm" data-view-recipe="${rec.id}">Détails</button>
-          <button class="btn btn-primary btn-sm" data-add-plan="${rec.id}">+ Planifier (${rec.basePortions}p)</button>
+
+        <div class="recipe-card__macros">
+          <span>Protéines : <strong>${unitProt}g</strong></span>
+          <span>Glucides : <strong>${unitCarbs}g</strong></span>
+          <span>Lipides : <strong>${unitFat}g</strong></span>
+        </div>
+
+        <div class="recipe-card__ingredients">${ingChips}</div>
+
+        <div class="recipe-card__equip">
+          Matériel : ${escapeHtml((recipe.equipment || []).join(" · ") || "Sans cuisson")}
+        </div>
+
+        <div class="recipe-card__actions">
+          <button type="button" class="btn btn--subtle btn--sm" data-inspect-recipe="${recipe.id}">
+            Voir la recette
+          </button>
+          ${secondaryActionHtml}
         </div>
       </article>
-    `).join("");
-  }
-
-  function showRecipeDetail(recipeId) {
-    const recipesMap = getAllRecipesMap();
-    const ingredientsMap = getAllIngredientsMap();
-    const rec = recipesMap[recipeId];
-    if (!rec) return;
-    const metrics = BatchPlanner.computeRecipeMetrics(rec, ingredientsMap, state.customPrices);
-
-    document.getElementById("detail-title").textContent = rec.title;
-    document.getElementById("detail-body").innerHTML = `
-      <div class="summary-strip">
-        <div class="strip-pill"><strong>${formatEuro(metrics.costPerPortion)}</strong> / portion (${formatEuro(metrics.totalCost)} total)</div>
-        <div class="strip-pill"><strong>${metrics.kcalPerPortion} kcal</strong> · P ${metrics.protPerPortion}g · G ${metrics.carbsPerPortion}g · L ${metrics.fatPerPortion}g</div>
-        <div class="strip-pill">🧊 Frigo : ${rec.fridgeDays}j · ${rec.freezerDays > 0 ? `❄️ Congél : ${rec.freezerDays}j` : 'Non congélable'}</div>
-      </div>
-      <h3>Ingrédients (pour ${rec.basePortions} portions)</h3>
-      <ul>
-        ${rec.ingredients.map(it => {
-          const ing = ingredientsMap[it.id];
-          if (!ing) return "";
-          const price = BatchPlanner.getEffectivePrice(ing, state.customPrices);
-          const cost = (it.qty / (ing.unitFactor || 1000)) * price;
-          return `<li><strong>${ing.name}</strong> : ${BatchShopping.formatQty(it.qty, ing.unit)} <span class="muted">(${formatEuro(cost)})</span></li>`;
-        }).join("")}
-      </ul>
-      <h3>Préparation</h3>
-      <ol>
-        ${rec.steps.map(s => `<li>${s}</li>`).join("")}
-      </ol>
-      <div class="modal-footer">
-        <button class="btn btn-primary" data-add-plan="${rec.id}" data-close-modal="modal-recipe-detail">+ Ajouter au planning</button>
-      </div>
     `;
-    openModal("modal-recipe-detail");
   }
 
-  // --- 2. Planning ---
-  function renderPlanner(plan, settings, recipesMap, ingredientsMap) {
-    document.getElementById("plan-days").value = settings.days;
-    document.getElementById("plan-people").value = settings.people;
-    document.getElementById("plan-kcal-target").value = settings.kcalTarget;
+  /* --------------------------------------------------------------------------
+     Rendu Catalogue Complet & Recherche (V2.2)
+     -------------------------------------------------------------------------- */
+  function renderAllRecipesView() {
+    const grid = document.getElementById("all-recipes-grid");
+    const summaryEl = document.getElementById("all-recipes-summary");
+    if (!grid) return;
 
-    const splitItems = BatchPlanner.splitFridgeFreezer(plan, recipesMap, settings.people);
+    const allRecipes = state.indexedRecipes.recipes || [];
+    const { query, category, onlyCompatible, onlyFreezable, sortBy } = state.catalogFilter;
+    const normQuery = global.BatchPlanner.normalizeText(query);
+    const pantrySet = new Set((state.prefs.pantryItems || []).map(global.BatchPlanner.normalizeText));
 
-    let totalKcal = 0;
-    let totalPortions = 0;
-    let totalFridge = 0;
-    let totalFreezer = 0;
+    let filtered = allRecipes.filter((r) => {
+      if (category === "custom") {
+        if (!r.isCustom) return false;
+      } else if (category !== "all") {
+        if (r.category !== category) return false;
+      }
 
-    splitItems.forEach(item => {
-      const m = BatchPlanner.computeRecipeMetrics(item.recipe, ingredientsMap, state.customPrices);
-      totalKcal += m.kcalPerPortion * item.portions;
-      totalPortions += item.portions;
-      totalFridge += item.fridgePortions;
-      totalFreezer += item.freezerPortions;
-    });
+      if (onlyCompatible && !global.BatchPlanner.isRecipeEligible(r, state.prefs)) {
+        return false;
+      }
 
-    const targetKcal = settings.days * settings.people * settings.kcalTarget;
-    const avgDailyKcal = Math.round(totalKcal / Math.max(1, settings.days * settings.people));
+      if (onlyFreezable && !r.freezable) {
+        return false;
+      }
 
-    document.getElementById("planner-summary-bar").innerHTML = `
-      <div class="strip-pill">🎯 Cible : <strong>${targetKcal.toLocaleString('fr-FR')} kcal</strong> (${settings.kcalTarget} kcal/j/pers)</div>
-      <div class="strip-pill">🔥 Planifié : <strong>${totalKcal.toLocaleString('fr-FR')} kcal</strong> (~${avgDailyKcal} kcal/j/pers)</div>
-      <div class="strip-pill">🧊 Frigo : <strong>${totalFridge} port.</strong> · ❄️ Congélateur : <strong>${totalFreezer} port.</strong></div>
-    `;
+      if (normQuery) {
+        const catLabel = CATEGORY_LABELS[r.category] || r.category || "";
+        const haystack = [
+          r.name,
+          catLabel,
+          ...(r.ingredients || []).map((i) => i.name),
+          ...(r.equipment || [])
+        ]
+          .map(global.BatchPlanner.normalizeText)
+          .join(" ");
 
-    const container = document.getElementById("planner-list");
-    if (!splitItems.length) {
-      container.innerHTML = `<div class="card">Votre planning est vide. Ajoutez des recettes depuis l'onglet <strong>Catalogue & Recettes</strong>.</div>`;
-      return;
-    }
+        if (!haystack.includes(normQuery)) {
+          return false;
+        }
+      }
 
-    container.innerHTML = splitItems.map((item, idx) => {
-      const m = BatchPlanner.computeRecipeMetrics(item.recipe, ingredientsMap, state.customPrices);
-      return `
-        <div class="plan-item">
-          <div>
-            <strong>${item.recipe.title}</strong>
-            <div class="muted">${m.kcalPerPortion} kcal / port. · ${formatEuro(m.costPerPortion)} / port. · Total : ${formatEuro(m.costPerPortion * item.portions)}</div>
-            <div class="storage-badges">
-              ${item.fridgePortions > 0 ? `<span class="tag-fridge">🧊 ${item.fridgePortions} au frigo (≤ ${item.recipe.fridgeDays}j)</span>` : ''}
-              ${item.freezerPortions > 0 ? `<span class="tag-freezer">❄️ ${item.freezerPortions} au congélateur</span>` : ''}
-            </div>
-          </div>
-          <div style="display:flex; align-items:center; gap:10px;">
-            <div class="stepper">
-              <button data-plan-delta="-1" data-plan-idx="${idx}" aria-label="Diminuer">−</button>
-              <span>${item.portions}p</span>
-              <button data-plan-delta="1" data-plan-idx="${idx}" aria-label="Augmenter">+</button>
-            </div>
-            <button class="btn btn-ghost btn-sm" data-plan-remove="${idx}" aria-label="Supprimer">🗑️</button>
-          </div>
-        </div>
-      `;
-    }).join("");
-  }
-
-  // --- 3. Liste de courses & Frigo ---
-  function renderShopping(consolidated, ingredientsMap) {
-    const storeLabel = (state.storeName || "").trim() || "Prix catalogue par défaut";
-    document.getElementById("shopping-store-label").textContent = storeLabel;
-
-    const stockKeys = Object.keys(state.fridgeStock || {}).filter(k => state.fridgeStock[k] > 0);
-    document.getElementById("fridge-items-count").textContent = stockKeys.length;
-
-    const stockContainer = document.getElementById("fridge-stock-list");
-    stockContainer.innerHTML = stockKeys.length
-      ? stockKeys.map(id => {
-          const ing = ingredientsMap[id];
-          if (!ing) return "";
-          return `<span class="fridge-tag">${ing.name} : ${BatchShopping.formatQty(state.fridgeStock[id], ing.unit)} <button data-remove-fridge="${id}">✕</button></span>`;
-        }).join("")
-      : `<span class="muted">Aucun ingrédient déclaré en stock.</span>`;
-
-    document.getElementById("shop-total-net").textContent = formatEuro(consolidated.totalNet);
-    document.getElementById("shop-total-saved").textContent = formatEuro(consolidated.totalSaved);
-    const remaining = consolidated.items.filter(i => i.netQty > 0 && !state.checkedShopping[i.id]).length;
-    document.getElementById("shop-items-remaining").textContent = remaining;
-
-    const aislesContainer = document.getElementById("shopping-aisles");
-    if (!consolidated.orderedAisles.length) {
-      aislesContainer.innerHTML = `<div class="card">Ajoutez des recettes dans votre planning pour générer automatiquement la liste de courses.</div>`;
-      return;
-    }
-
-    aislesContainer.innerHTML = consolidated.orderedAisles.map(aisle => {
-      const items = consolidated.grouped[aisle];
-      const aisleTotal = items.reduce((sum, it) => sum + it.netCost, 0);
-      return `
-        <div class="aisle-card">
-          <div class="aisle-header">
-            <span class="aisle-title">${aisle}</span>
-            <strong>${formatEuro(aisleTotal)}</strong>
-          </div>
-          ${items.map(it => {
-            const fullyCovered = it.netQty <= 0;
-            const checked = Boolean(state.checkedShopping[it.id]) || fullyCovered;
-            return `
-              <div class="shop-row ${checked ? 'checked' : ''}">
-                <label class="shop-left">
-                  <input type="checkbox" data-toggle-shop="${it.id}" ${checked ? 'checked' : ''} ${fullyCovered ? 'disabled' : ''} />
-                  <div>
-                    <div class="shop-name"><strong>${it.name}</strong> — ${BatchShopping.formatQty(it.netQty, it.unit)}</div>
-                    ${it.stockQty > 0 ? `<div class="muted" style="font-size:0.78rem;">Besoin ${BatchShopping.formatQty(it.grossQty, it.unit)} − Frigo ${BatchShopping.formatQty(it.stockQty, it.unit)}</div>` : ''}
-                  </div>
-                </label>
-                <div class="shop-right">
-                  <button class="inline-price-btn ${it.isCustomPrice ? 'custom' : ''}" data-quick-price="${it.id}" title="Modifier le prix unitaire">
-                    ${it.unitPrice.toFixed(2).replace('.', ',')} €/${it.priceUnit} ✏️
-                  </button>
-                  <strong>${formatEuro(it.netCost)}</strong>
-                </div>
-              </div>
-            `;
-          }).join("")}
-        </div>
-      `;
-    }).join("");
-  }
-
-  // --- 4. Session Batch ---
-  function renderBatch(plan, recipesMap) {
-    const schedule = BatchScheduler.buildSchedule(plan, recipesMap, equipmentMap);
-    const eqContainer = document.getElementById("batch-equipment");
-    const tlContainer = document.getElementById("batch-timeline");
-
-    if (!schedule.phases.length) {
-      eqContainer.innerHTML = `<span class="muted">Aucun matériel requis tant que le planning est vide.</span>`;
-      tlContainer.innerHTML = `<div class="card">Planifiez des recettes pour obtenir l'ordonnancement de votre session.</div>`;
-      return;
-    }
-
-    eqContainer.innerHTML = `
-      <strong>🧰 Matériel nécessaire (${schedule.equipmentList.length}) :</strong>
-      <div class="fridge-tags" style="margin-top:8px;">
-        ${schedule.equipmentList.map(eq => `<span class="badge">${eq.icon} ${eq.name}</span>`).join("")}
-      </div>
-    `;
-
-    tlContainer.innerHTML = schedule.phases.map(phase => `
-      <div class="batch-phase">
-        <h3>${phase.title}</h3>
-        <p class="muted" style="margin-top:0;">${phase.subtitle}</p>
-        ${phase.tasks.map(t => `<div class="batch-step">${t}</div>`).join("")}
-      </div>
-    `).join("");
-  }
-
-  // --- 5. Onglet Mes Prix & Sauvegarde ---
-  function renderPricesTab(ingredientsMap) {
-    document.getElementById("store-name-input").value = state.storeName || "";
-
-    const allIngs = Object.values(ingredientsMap).sort((a, b) => a.name.localeCompare(b.name, 'fr'));
-    const overrideCount = Object.keys(state.customPrices || {}).length;
-    document.getElementById("prices-override-stats").textContent =
-      `${overrideCount} prix personnalisé${overrideCount > 1 ? 's' : ''}`;
-
-    // Populate aisle filter once
-    const aisleSelect = document.getElementById("prices-aisle-filter");
-    if (aisleSelect.options.length <= 1) {
-      const aisles = Array.from(new Set(allIngs.map(i => i.aisle))).sort();
-      aisles.forEach(a => {
-        const opt = document.createElement("option");
-        opt.value = a;
-        opt.textContent = a;
-        aisleSelect.appendChild(opt);
-      });
-    }
-
-    const q = (document.getElementById("prices-search").value || "").toLowerCase().trim();
-    const aisleFilter = aisleSelect.value;
-    const onlyModified = document.getElementById("prices-only-modified").checked;
-
-    const filtered = allIngs.filter(ing => {
-      const isMod = Object.prototype.hasOwnProperty.call(state.customPrices || {}, ing.id);
-      if (onlyModified && !isMod) return false;
-      if (aisleFilter !== "ALL" && ing.aisle !== aisleFilter) return false;
-      if (q && !ing.name.toLowerCase().includes(q)) return false;
       return true;
     });
 
-    const tbody = document.getElementById("prices-tbody");
-    tbody.innerHTML = filtered.map(ing => {
-      const isMod = Object.prototype.hasOwnProperty.call(state.customPrices || {}, ing.id);
-      const activePrice = BatchPlanner.getEffectivePrice(ing, state.customPrices);
-      return `
-        <tr class="${isMod ? 'is-modified' : ''}">
-          <td>
-            <strong>${ing.name}</strong>
-            ${isMod ? '<span class="badge badge-price" style="margin-left:6px;">Perso</span>' : ''}
-          </td>
-          <td><span class="badge">${ing.aisle}</span></td>
-          <td class="muted">${Number(ing.defaultPrice).toFixed(2).replace('.', ',')} €</td>
-          <td class="price-input-cell">
-            <input type="number" step="0.01" min="0" value="${activePrice.toFixed(2)}"
-              class="${isMod ? 'modified' : ''}"
-              data-price-input="${ing.id}" aria-label="Prix de ${ing.name}" />
-          </td>
-          <td>/ ${ing.priceUnit}</td>
-          <td>
-            ${isMod ? `<button class="btn btn-ghost btn-sm" data-reset-price="${ing.id}" title="Rétablir prix par défaut">↺ Défaut</button>` : '<span class="muted">—</span>'}
-          </td>
-        </tr>
+    if (sortBy === "price-asc") {
+      filtered = [...filtered].sort((a, b) => Number(a.price) - Number(b.price));
+    } else if (sortBy === "price-desc") {
+      filtered = [...filtered].sort((a, b) => Number(b.price) - Number(a.price));
+    } else if (sortBy === "time-asc") {
+      filtered = [...filtered].sort((a, b) => (a._totalTime || 0) - (b._totalTime || 0));
+    } else if (sortBy === "protein-desc") {
+      filtered = [...filtered].sort((a, b) => (Number(b.protein) || 0) - (Number(a.protein) || 0));
+    } else if (sortBy === "calories-asc") {
+      filtered = [...filtered].sort((a, b) => (Number(a.calories) || 0) - (Number(b.calories) || 0));
+    }
+
+    if (summaryEl) {
+      summaryEl.textContent = `${filtered.length} recette${filtered.length > 1 ? "s" : ""} affichée${filtered.length > 1 ? "s" : ""} sur ${allRecipes.length} au catalogue.`;
+    }
+
+    if (!filtered.length) {
+      grid.innerHTML = `
+        <div class="empty-state">
+          <p style="margin: 0 0 12px;">Aucune recette ne correspond à votre recherche ou vos filtres.</p>
+          <button type="button" class="btn btn--subtle btn--sm" id="btn-reset-catalog-filters">Effacer les filtres de recherche</button>
+        </div>
       `;
-    }).join("");
+      return;
+    }
+
+    grid.innerHTML = filtered
+      .map((r) => renderSingleRecipeCard(r, null, pantrySet, "catalog"))
+      .join("");
   }
 
-  function populateIngredientSelects() {
-    const allIngs = Object.values(getAllIngredientsMap()).sort((a, b) => a.name.localeCompare(b.name, 'fr'));
-    const optionsHtml = allIngs.map(ing =>
-      `<option value="${ing.id}">${ing.name} (${ing.unit})</option>`
-    ).join("");
-    document.getElementById("fridge-ingredient-select").innerHTML = optionsHtml;
-    document.getElementById("rec-ing-select").innerHTML = optionsHtml;
+  /* --------------------------------------------------------------------------
+     Rendu Liste de courses
+     -------------------------------------------------------------------------- */
+  function renderShoppingView(shopping) {
+    const container = document.getElementById("shopping-container");
+
+    if (!shopping.items.length) {
+      container.innerHTML = `<div class="empty-state">Aucun ingrédient à afficher.</div>`;
+      return;
+    }
+
+    const aislesHtml = shopping.groupedByAisle
+      .map((group) => {
+        const rows = group.items
+          .map((item) => {
+            const checked = state.checkedShopping.has(item.id);
+            return `
+              <li class="shopping-item ${checked ? "is-checked" : ""} ${item.inPantry ? "is-in-pantry" : ""}" data-toggle-shop="${escapeHtml(item.id)}">
+                <div class="shopping-item__left">
+                  <span class="shopping-checkbox" aria-hidden="true">✓</span>
+                  <div>
+                    <span class="shopping-item__name">${escapeHtml(item.name)}</span>
+                    <span class="shopping-item__sub">
+                      ${item.inPantry ? "Déjà dans votre frigo" : item.recipeCount > 1 ? `Mutualisé sur ${item.recipeCount} recettes` : escapeHtml(item.recipesList[0])}
+                    </span>
+                  </div>
+                </div>
+                <div class="shopping-item__right">
+                  <span class="shopping-item__qty">${escapeHtml(item.formattedQty)}</span>
+                  <span class="shopping-item__price">
+                    ${item.inPantry ? "0,00 € (en stock)" : `~${item.estimatedCost.toFixed(2).replace(".", ",")} €`}
+                  </span>
+                </div>
+              </li>
+            `;
+          })
+          .join("");
+
+        return `
+          <section class="aisle-card">
+            <h3 class="aisle-card__title">
+              <span>${escapeHtml(group.aisle)}</span>
+              <span class="kpi-pill">${group.items.length}</span>
+            </h3>
+            <ul class="shopping-list">${rows}</ul>
+          </section>
+        `;
+      })
+      .join("");
+
+    const mutualizedCount = shopping.items.filter((i) => i.recipeCount > 1).length;
+
+    container.innerHTML = `
+      <div class="aisles-grid">${aislesHtml}</div>
+      <aside class="shopping-summary-card">
+        <h3 class="subsection-title" style="margin-bottom: 12px;">Synthèse panier</h3>
+        <div class="summary-row">
+          <span>Articles distincts</span>
+          <strong>${shopping.totalItemsCount}</strong>
+        </div>
+        <div class="summary-row">
+          <span>Ingrédients mutualisés</span>
+          <strong>${mutualizedCount}</strong>
+        </div>
+        <div class="summary-row">
+          <span>Économie restes frigo</span>
+          <strong style="color: var(--green);">-${shopping.savedFromPantry.toFixed(2).replace(".", ",")} €</strong>
+        </div>
+        <div class="summary-row">
+          <span>Coût par portion</span>
+          <strong>${(shopping.totalEstimatedCost / Math.max(1, state.currentPlan.totalPortions)).toFixed(2).replace(".", ",")} €</strong>
+        </div>
+        <div class="summary-row">
+          <span>Total à payer</span>
+          <strong style="color: var(--accent);">${shopping.totalEstimatedCost.toFixed(2).replace(".", ",")} €</strong>
+        </div>
+      </aside>
+    `;
   }
 
-  // --- Export iPhone ---
-  function refreshIphonePreview() {
-    const ingredientsMap = getAllIngredientsMap();
-    const recipesMap = getAllRecipesMap();
-    const consolidated = BatchShopping.consolidate(
-      getActivePlan(),
-      recipesMap,
-      ingredientsMap,
-      state.customPrices,
-      state.fridgeStock
-    );
-    const mode = document.querySelector('input[name="iphone-format"]:checked').value;
-    const includeChecked = document.getElementById("iphone-include-checked").checked;
-    const text = BatchShopping.buildIphoneExportText(consolidated, state.checkedShopping, {
-      mode,
-      includeChecked,
-      storeName: state.storeName
+  /* --------------------------------------------------------------------------
+     Rendu Planning Batch Cooking (avec toutes les étapes détaillées)
+     -------------------------------------------------------------------------- */
+  function renderBatchTimeline(schedule) {
+    const container = document.getElementById("batch-timeline");
+
+    if (!schedule.steps.length) {
+      container.innerHTML = `<div class="empty-state">Aucune étape de planification disponible.</div>`;
+      return;
+    }
+
+    container.innerHTML = schedule.steps
+      .map((step) => {
+        const isDone = state.doneBatchSteps.has(step.id);
+        const subStepsHtml =
+          Array.isArray(step.subSteps) && step.subSteps.length > 0
+            ? `<ol class="timeline-substeps">${step.subSteps
+                .map((s) => `<li>${escapeHtml(s)}</li>`)
+                .join("")}</ol>`
+            : "";
+
+        return `
+          <article class="timeline-step ${isDone ? "is-done" : ""}" data-toggle-step="${escapeHtml(step.id)}" style="cursor: pointer;">
+            <div class="timeline-step__time">
+              <span class="timeline-time-main">${escapeHtml(step.clock)}</span>
+              <span class="timeline-time-dur">${step.durationMin} min</span>
+            </div>
+            <div class="timeline-step__body">
+              <div class="timeline-step__main">
+                <h3 class="timeline-step__title">
+                  ${escapeHtml(step.title)}
+                  ${step.isCustom ? `<span class="custom-badge" style="margin-left: 8px; vertical-align: middle;">Perso</span>` : ""}
+                </h3>
+                <p class="timeline-step__desc">${escapeHtml(step.description)}</p>
+                ${subStepsHtml}
+              </div>
+              <div class="timeline-step__tags">
+                <span class="step-type-pill step-type-pill--${step.type}">${escapeHtml(step.typeLabel)}</span>
+              </div>
+            </div>
+          </article>
+        `;
+      })
+      .join("");
+  }
+
+  /* --------------------------------------------------------------------------
+     Rendu Mes Recettes Personnelles & Favoris
+     -------------------------------------------------------------------------- */
+  function renderCustomRecipesView() {
+    const grid = document.getElementById("custom-recipes-grid");
+    if (!state.customRecipes.length) {
+      grid.innerHTML = `<div class="empty-state">Vous n’avez pas encore créé de recette personnelle. Cliquez sur <strong>« + Créer une recette »</strong> pour ajouter vos plats fétiches.</div>`;
+      return;
+    }
+
+    grid.innerHTML = state.customRecipes
+      .map((r) => renderSingleRecipeCard(r, null, null, "custom"))
+      .join("");
+  }
+
+  function renderFavoritesView() {
+    const grid = document.getElementById("favorites-grid");
+    const favRecipes = state.indexedRecipes.recipes.filter((r) => state.favorites.has(r.id));
+
+    if (!favRecipes.length) {
+      grid.innerHTML = `<div class="empty-state">Aucune recette favorite. Cliquez sur le cœur d’une recette pour la sauvegarder.</div>`;
+      return;
+    }
+
+    grid.innerHTML = favRecipes
+      .map((r) => renderSingleRecipeCard(r, null, null, "fav"))
+      .join("");
+  }
+
+  function updateHeaderCounters() {
+    document.getElementById("favorites-count").textContent = state.favorites.size;
+    document.getElementById("tab-fav-count").textContent = state.favorites.size;
+    document.getElementById("tab-custom-count").textContent = state.customRecipes.length;
+    document.getElementById("tab-all-count").textContent = state.indexedRecipes.recipes.length;
+  }
+
+  /* --------------------------------------------------------------------------
+     Modale Détail Recette
+     -------------------------------------------------------------------------- */
+  function openRecipeModal(recipeId) {
+    const recipe =
+      (state.currentPlan && state.currentPlan.selectedRecipes.find((r) => r.id === recipeId)) ||
+      state.indexedRecipes.recipes.find((r) => r.id === recipeId);
+
+    if (!recipe) return;
+
+    const mult = recipe.totalPortions || state.prefs.servings;
+    const scale = recipe._calorieScale || 1;
+    const unitPrice = recipe._effectivePrice != null ? recipe._effectivePrice : Number(recipe.price);
+    const unitCal = recipe._effectiveCalories != null ? recipe._effectiveCalories : recipe.calories;
+    const unitProt = recipe._effectiveProtein != null ? recipe._effectiveProtein : recipe.protein;
+    const unitCarbs = recipe._effectiveCarbs != null ? recipe._effectiveCarbs : recipe.carbs;
+    const unitFat = recipe._effectiveFat != null ? recipe._effectiveFat : recipe.fat;
+
+    const ingredientsHtml = (recipe.ingredients || [])
+      .map((ing) => {
+        const scaledQty = Math.round(ing.quantity * scale * mult * 10) / 10;
+        return `<li><strong>${escapeHtml(ing.name)}</strong> : ${scaledQty.toLocaleString("fr-FR")} ${escapeHtml(ing.unit)}</li>`;
+      })
+      .join("");
+
+    const stepsHtml = (recipe.steps || []).map((st) => `<li>${escapeHtml(st)}</li>`).join("");
+
+    document.getElementById("modal-recipe-body").innerHTML = `
+      <div class="recipe-badges">
+        <span class="cat-badge">${escapeHtml(CATEGORY_LABELS[recipe.category] || recipe.category)}</span>
+        ${recipe.isCustom ? `<span class="custom-badge">Recette personnelle</span>` : ""}
+      </div>
+      <h2 id="modal-recipe-title" style="margin: 12px 0 8px; font-size: 1.6rem; letter-spacing: -0.025em;">${escapeHtml(recipe.name)}</h2>
+      <p style="margin: 0 0 18px; color: var(--text-secondary);">
+        Quantités ajustées pour <strong>${mult} portion${mult > 1 ? "s" : ""}</strong> ·
+        Préparation ${recipe.prepTime} min · Cuisson ${recipe.cookTime} min ·
+        ${unitCal} kcal / portion
+      </p>
+      <div class="macro-mini-bars" style="margin-bottom: 20px;">
+        <span class="macro-tag macro-tag--p">Protéines <strong>${unitProt}g</strong></span>
+        <span class="macro-tag macro-tag--c">Glucides <strong>${unitCarbs}g</strong></span>
+        <span class="macro-tag macro-tag--f">Lipides <strong>${unitFat}g</strong></span>
+        <span class="macro-tag">Coût total : <strong>${(unitPrice * mult).toFixed(2).replace(".", ",")} €</strong></span>
+      </div>
+      <h3 class="subsection-title">Ingrédients nécessaires</h3>
+      <ul class="modal-list">${ingredientsHtml}</ul>
+      <h3 class="subsection-title">Étapes de préparation</h3>
+      <ol class="modal-list">${stepsHtml}</ol>
+    `;
+
+    document.getElementById("recipe-modal").classList.remove("hidden");
+  }
+
+  function closeRecipeModal() {
+    document.getElementById("recipe-modal").classList.add("hidden");
+  }
+
+  /* --------------------------------------------------------------------------
+     Modale Création de Recette Personnelle + Estimation Auto
+     -------------------------------------------------------------------------- */
+  function openCustomRecipeModal() {
+    const form = document.getElementById("custom-recipe-form");
+    form.reset();
+    document.getElementById("cr-auto-macros").checked = true;
+    document.getElementById("cr-manual-overrides").classList.add("hidden");
+
+    const equipContainer = document.getElementById("cr-equipment-list");
+    equipContainer.innerHTML = state.equipmentList
+      .map(
+        (eq, idx) =>
+          `<button type="button" class="cr-equip-chip ${idx === 2 ? "is-active" : ""}" data-cr-equip="${escapeHtml(eq.name)}">${escapeHtml(eq.name)}</button>`
+      )
+      .join("");
+
+    const rowsContainer = document.getElementById("cr-ingredients-rows");
+    rowsContainer.innerHTML = "";
+    addCustomIngredientRow("Poulet", 150, "g");
+    addCustomIngredientRow("Riz basmati", 75, "g");
+    addCustomIngredientRow("Carottes", 80, "g");
+
+    recalculateCustomRecipePreview();
+    document.getElementById("custom-recipe-modal").classList.remove("hidden");
+  }
+
+  function closeCustomRecipeModal() {
+    document.getElementById("custom-recipe-modal").classList.add("hidden");
+  }
+
+  function addCustomIngredientRow(defaultName = "", defaultQty = 100, defaultUnit = "g") {
+    const rowsContainer = document.getElementById("cr-ingredients-rows");
+    const row = document.createElement("div");
+    row.className = "cr-ing-row";
+    row.innerHTML = `
+      <input type="text" class="select-input cr-ing-name" list="ingredients-datalist" placeholder="Ingrédient (ex: Poulet)" value="${escapeHtml(defaultName)}" />
+      <input type="number" class="select-input cr-ing-qty" min="0.1" step="any" placeholder="Qté" value="${defaultQty}" />
+      <select class="select-input cr-ing-unit">
+        <option value="g" ${defaultUnit === "g" ? "selected" : ""}>g</option>
+        <option value="ml" ${defaultUnit === "ml" ? "selected" : ""}>ml</option>
+        <option value="pièce" ${defaultUnit === "pièce" ? "selected" : ""}>pièce</option>
+        <option value="gousse" ${defaultUnit === "gousse" ? "selected" : ""}>gousse</option>
+        <option value="boîte" ${defaultUnit === "boîte" ? "selected" : ""}>boîte</option>
+      </select>
+      <button type="button" class="btn btn--danger-ghost cr-remove-ing" aria-label="Supprimer cette ligne">×</button>
+    `;
+    rowsContainer.appendChild(row);
+  }
+
+  function collectCustomIngredients() {
+    const rows = document.querySelectorAll("#cr-ingredients-rows .cr-ing-row");
+    const list = [];
+    rows.forEach((row) => {
+      const name = row.querySelector(".cr-ing-name").value.trim();
+      const quantity = parseFloat(row.querySelector(".cr-ing-qty").value) || 0;
+      const unit = row.querySelector(".cr-ing-unit").value;
+      if (name && quantity > 0) {
+        list.push({ name, quantity, unit });
+      }
     });
-    document.getElementById("iphone-preview-text").value = text;
+    return list;
   }
 
-  // --- Événements ---
+  function estimateNutritionAndPriceFromIngredients(ingredients) {
+    const catalogByNorm = new Map();
+    Object.entries(state.ingredientsCatalog).forEach(([k, v]) => {
+      catalogByNorm.set(global.BatchPlanner.normalizeText(k), v);
+    });
+
+    let price = 0;
+    let calories = 0;
+    let protein = 0;
+    let carbs = 0;
+    let fat = 0;
+
+    ingredients.forEach((ing) => {
+      const norm = global.BatchPlanner.normalizeText(ing.name);
+      const meta = catalogByNorm.get(norm);
+      const u = ing.unit.toLowerCase();
+
+      if (meta) {
+        let factor = 0;
+        if (meta.unit === "kg" && u === "g") factor = ing.quantity / 1000;
+        else if (meta.unit === "L" && u === "ml") factor = ing.quantity / 1000;
+        else if (meta.unit === "g" && u === "g") factor = ing.quantity;
+        else factor = ing.quantity;
+
+        price += factor * (Number(meta.unitPrice) || 0);
+        calories += factor * (Number(meta.kcalPerUnit) || 0);
+        protein += factor * (Number(meta.pPerUnit) || 0);
+        carbs += factor * (Number(meta.cPerUnit) || 0);
+        fat += factor * (Number(meta.fPerUnit) || 0);
+      } else {
+        const fallbackFactor = u === "g" || u === "ml" ? ing.quantity / 100 : ing.quantity;
+        price += fallbackFactor * 0.45;
+        calories += fallbackFactor * 120;
+        protein += fallbackFactor * 6;
+        carbs += fallbackFactor * 14;
+        fat += fallbackFactor * 4;
+      }
+    });
+
+    return {
+      price: Math.max(0.5, Math.round(price * 100) / 100),
+      calories: Math.max(80, Math.round(calories)),
+      protein: Math.round(protein),
+      carbs: Math.round(carbs),
+      fat: Math.round(fat)
+    };
+  }
+
+  function recalculateCustomRecipePreview() {
+    const auto = document.getElementById("cr-auto-macros").checked;
+    const ingredients = collectCustomIngredients();
+    const est = auto
+      ? estimateNutritionAndPriceFromIngredients(ingredients)
+      : {
+          price: parseFloat(document.getElementById("cr-price").value) || 2.5,
+          calories: parseInt(document.getElementById("cr-calories").value, 10) || 500,
+          protein: parseInt(document.getElementById("cr-protein").value, 10) || 30,
+          carbs: parseInt(document.getElementById("cr-carbs").value, 10) || 50,
+          fat: parseInt(document.getElementById("cr-fat").value, 10) || 15
+        };
+
+    if (auto) {
+      document.getElementById("cr-price").value = est.price.toFixed(2);
+      document.getElementById("cr-calories").value = est.calories;
+      document.getElementById("cr-protein").value = est.protein;
+      document.getElementById("cr-carbs").value = est.carbs;
+      document.getElementById("cr-fat").value = est.fat;
+    }
+
+    document.getElementById("cr-live-preview").innerHTML = `
+      <span class="macro-tag">Prix : <strong>${est.price.toFixed(2).replace(".", ",")} €</strong></span>
+      <span class="macro-tag">Énergie : <strong>${est.calories} kcal</strong></span>
+      <span class="macro-tag macro-tag--p">Protéines <strong>${est.protein}g</strong></span>
+      <span class="macro-tag macro-tag--c">Glucides <strong>${est.carbs}g</strong></span>
+      <span class="macro-tag macro-tag--f">Lipides <strong>${est.fat}g</strong></span>
+    `;
+  }
+
+  /* --------------------------------------------------------------------------
+     Partage sans serveur via URL Hash (#plan=...)
+     -------------------------------------------------------------------------- */
+  async function shareCurrentPlanByUrl() {
+    if (!state.currentPlan || !state.currentPlan.selectedRecipes.length) {
+      showToast("Générez d'abord un plan avant de le partager");
+      return;
+    }
+
+    const usedCustomRecipes = state.currentPlan.selectedRecipes
+      .filter((r) => r.isCustom)
+      .map((r) => ({
+        id: r.id,
+        name: r.name,
+        category: r.category,
+        price: r.price,
+        prepTime: r.prepTime,
+        cookTime: r.cookTime,
+        calories: r.calories,
+        protein: r.protein,
+        carbs: r.carbs,
+        fat: r.fat,
+        freezable: r.freezable,
+        batchFriendly: true,
+        isCustom: true,
+        equipment: r.equipment,
+        ingredients: r.ingredients,
+        steps: r.steps
+      }));
+
+    const payload = {
+      v: 2,
+      prefs: {
+        budget: state.prefs.budget,
+        days: state.prefs.days,
+        mealsPerDay: state.prefs.mealsPerDay,
+        servings: state.prefs.servings,
+        maxTime: state.prefs.maxTime,
+        diet: state.prefs.diet,
+        skill: state.prefs.skill,
+        startTime: state.prefs.startTime,
+        calorieTargetEnabled: state.prefs.calorieTargetEnabled,
+        targetCalories: state.prefs.targetCalories,
+        pantryItems: state.prefs.pantryItems,
+        excludedItems: state.prefs.excludedItems,
+        equipment: state.prefs.equipment
+      },
+      slots: state.currentPlan.selectedRecipes.map((r) => ({ id: r.id, batches: r.batches })),
+      custom: usedCustomRecipes
+    };
+
+    const encoded = encodeSharePayload(payload);
+    const shareUrl = `${window.location.origin}${window.location.pathname}#plan=${encoded}`;
+    window.history.replaceState(null, "", `#plan=${encoded}`);
+
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      showToast("Lien de partage copié ! Envoyez-le sur WhatsApp ou par mail.");
+    } catch {
+      showToast("Lien mis à jour dans la barre d'adresse du navigateur.");
+    }
+  }
+
+  function tryRestorePlanFromUrlHash() {
+    const hash = window.location.hash || "";
+    if (!hash.startsWith("#plan=")) return false;
+
+    const encoded = hash.slice(6);
+    const payload = decodeSharePayload(encoded);
+    if (!payload || !Array.isArray(payload.slots)) return false;
+
+    if (payload.prefs && typeof payload.prefs === "object") {
+      state.prefs = { ...DEFAULT_PREFS, ...payload.prefs };
+    }
+
+    if (Array.isArray(payload.custom) && payload.custom.length > 0) {
+      const existingIds = new Set(state.customRecipes.map((r) => r.id));
+      payload.custom.forEach((cr) => {
+        if (!existingIds.has(cr.id)) {
+          state.customRecipes.push({ ...cr, isCustom: true });
+        }
+      });
+      rebuildCombinedIndex();
+    }
+
+    syncInputsFromPrefs();
+    const restoredPlan = global.BatchPlanner.rebuildPlanFromSavedSlots(
+      payload.slots,
+      state.indexedRecipes,
+      state.prefs
+    );
+
+    if (restoredPlan) {
+      applyPlanAndRender(restoredPlan);
+      showToast("Plan partagé chargé avec succès");
+      return true;
+    }
+    return false;
+  }
+
+  /* --------------------------------------------------------------------------
+     Toast & Navigation Onglets
+     -------------------------------------------------------------------------- */
+  let toastTimer = null;
+  function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.classList.add("is-visible");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 3000);
+  }
+
+  function switchTab(tabName) {
+    document.querySelectorAll(".tab-btn").forEach((btn) => {
+      const active = btn.dataset.tab === tabName;
+      btn.classList.toggle("is-active", active);
+      btn.setAttribute("aria-selected", String(active));
+    });
+
+    document.querySelectorAll(".tab-panel").forEach((panel) => {
+      panel.classList.toggle("is-active", panel.id === `panel-${tabName}`);
+    });
+  }
+
+  /* --------------------------------------------------------------------------
+     Écouteurs d'événements
+     -------------------------------------------------------------------------- */
   function bindEvents() {
-    // Tabs
-    document.querySelectorAll(".nav-tab").forEach(btn => {
+    const rangeMap = [
+      ["input-budget", "budget"],
+      ["input-days", "days"],
+      ["input-servings", "servings"],
+      ["input-max-time", "maxTime"]
+    ];
+
+    rangeMap.forEach(([elId, key]) => {
+      document.getElementById(elId).addEventListener("input", (e) => {
+        state.prefs[key] = Number(e.target.value);
+        updateConfigHints();
+        savePrefs();
+      });
+    });
+
+    document.querySelectorAll(".segmented-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const meals = Number(btn.dataset.meals);
+        state.prefs.mealsPerDay = meals;
+        document.getElementById("input-meals-per-day").value = meals;
+        document.querySelectorAll(".segmented-btn").forEach((b) =>
+          b.classList.toggle("is-active", b === btn)
+        );
+        updateConfigHints();
+        savePrefs();
+      });
+    });
+
+    ["input-diet", "input-skill", "input-start-time"].forEach((id) => {
+      document.getElementById(id).addEventListener("change", (e) => {
+        const map = {
+          "input-diet": "diet",
+          "input-skill": "skill",
+          "input-start-time": "startTime"
+        };
+        state.prefs[map[id]] = e.target.value;
+        savePrefs();
+        if (state.catalogFilter.onlyCompatible) renderAllRecipesView();
+      });
+    });
+
+    // Ciblage calorique
+    document.getElementById("toggle-calorie-target").addEventListener("change", (e) => {
+      const enabled = e.target.checked;
+      state.prefs.calorieTargetEnabled = enabled;
+      const slider = document.getElementById("input-target-calories");
+      slider.disabled = !enabled;
+      document.getElementById("calorie-target-controls").classList.toggle("is-disabled", !enabled);
+      savePrefs();
+    });
+
+    document.getElementById("input-target-calories").addEventListener("input", (e) => {
+      state.prefs.targetCalories = Number(e.target.value);
+      document.getElementById("display-target-calories").textContent = e.target.value;
+      savePrefs();
+    });
+
+    // Tags Vider mon frigo & Exclusions
+    function addTagItem(inputId, listKey) {
+      const input = document.getElementById(inputId);
+      const val = input.value.trim();
+      if (!val) return;
+      const list = state.prefs[listKey] || [];
+      if (!list.some((x) => global.BatchPlanner.normalizeText(x) === global.BatchPlanner.normalizeText(val))) {
+        list.push(val);
+        state.prefs[listKey] = list;
+        savePrefs();
+        renderTagContainers();
+        renderAllRecipesView();
+      }
+      input.value = "";
+    }
+
+    document.getElementById("btn-add-pantry").addEventListener("click", () => addTagItem("pantry-input", "pantryItems"));
+    document.getElementById("pantry-input").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        addTagItem("pantry-input", "pantryItems");
+      }
+    });
+
+    document.getElementById("btn-add-exclude").addEventListener("click", () => addTagItem("exclude-input", "excludedItems"));
+    document.getElementById("exclude-input").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        addTagItem("exclude-input", "excludedItems");
+      }
+    });
+
+    // Matériel cliquable
+    document.getElementById("equipment-grid").addEventListener("click", (e) => {
+      const card = e.target.closest(".equip-card");
+      if (!card) return;
+      const name = card.dataset.equip;
+      const set = new Set(state.prefs.equipment);
+      if (set.has(name)) set.delete(name);
+      else set.add(name);
+      state.prefs.equipment = Array.from(set);
+      savePrefs();
+      renderEquipmentCards();
+      if (state.catalogFilter.onlyCompatible) renderAllRecipesView();
+    });
+
+    document.getElementById("btn-equip-essentials").addEventListener("click", () => {
+      state.prefs.equipment = ["Four", "Plaques induction", "Micro-ondes"];
+      savePrefs();
+      renderEquipmentCards();
+      if (state.catalogFilter.onlyCompatible) renderAllRecipesView();
+      showToast("Matériel essentiel sélectionné");
+    });
+
+    document.getElementById("btn-equip-all").addEventListener("click", () => {
+      state.prefs.equipment = state.equipmentList.map((e) => e.name);
+      savePrefs();
+      renderEquipmentCards();
+      if (state.catalogFilter.onlyCompatible) renderAllRecipesView();
+      showToast("Tout le matériel sélectionné");
+    });
+
+    // Boutons Génération & Partage
+    ["btn-generate-top", "btn-generate-main"].forEach((id) => {
+      document.getElementById(id).addEventListener("click", () => {
+        if (window.location.hash) window.history.replaceState(null, "", window.location.pathname);
+        runFullGeneration(true);
+        document.getElementById("results-section").scrollIntoView({ behavior: "smooth" });
+        showToast("Plan de batch cooking optimisé généré");
+      });
+    });
+
+    document.getElementById("btn-regenerate-variant").addEventListener("click", () => {
+      state.variantSeed += 1;
+      runFullGeneration(true);
+      showToast("Nouvelle variante générée");
+    });
+
+    document.getElementById("btn-share-plan").addEventListener("click", shareCurrentPlanByUrl);
+
+    document.getElementById("btn-reset-prefs").addEventListener("click", () => {
+      state.prefs = { ...DEFAULT_PREFS, pantryItems: [], excludedItems: [] };
+      savePrefs();
+      syncInputsFromPrefs();
+      runFullGeneration(true);
+      showToast("Paramètres réinitialisés");
+    });
+
+    // Onglets & raccourcis topbar
+    document.querySelectorAll(".tab-btn").forEach((btn) => {
       btn.addEventListener("click", () => switchTab(btn.dataset.tab));
     });
 
-    // Close modals
-    document.querySelectorAll("[data-close-modal]").forEach(el => {
-      el.addEventListener("click", () => closeModal(el.dataset.closeModal));
+    document.getElementById("header-status-pill").addEventListener("click", () => {
+      switchTab("all");
+      document.getElementById("results-section").scrollIntoView({ behavior: "smooth" });
     });
 
-    // Shared plan banner
-    document.getElementById("btn-import-shared").addEventListener("click", () => {
-      if (!sharedPreviewPlan) return;
-      state.plan = sharedPreviewPlan.plan;
-      state.settings = sharedPreviewPlan.settings;
-      sharedPreviewPlan = null;
-      window.history.replaceState(null, "", window.location.pathname);
-      document.getElementById("shared-plan-banner").classList.add("hidden");
-      saveState();
-      renderAll();
-      showToast("Planning partagé importé !");
-    });
-    document.getElementById("btn-exit-shared").addEventListener("click", () => {
-      sharedPreviewPlan = null;
-      window.history.replaceState(null, "", window.location.pathname);
-      document.getElementById("shared-plan-banner").classList.add("hidden");
-      renderAll();
+    document.getElementById("btn-open-favorites").addEventListener("click", () => {
+      switchTab("favorites");
+      document.getElementById("results-section").scrollIntoView({ behavior: "smooth" });
     });
 
-    // Catalog filters
-    ["catalog-search", "catalog-category", "catalog-storage", "catalog-sort"].forEach(id => {
-      document.getElementById(id).addEventListener("input", () => renderAll());
+    // Filtres & Recherche de l'onglet "Toutes les recettes" (V2.2)
+    const allSearchInput = document.getElementById("all-search-input");
+    const clearSearchBtn = document.getElementById("btn-clear-all-search");
+
+    allSearchInput.addEventListener("input", (e) => {
+      state.catalogFilter.query = e.target.value;
+      clearSearchBtn.classList.toggle("hidden", !e.target.value.trim());
+      renderAllRecipesView();
     });
 
-    // Global click delegation
-    document.body.addEventListener("click", e => {
-      const viewBtn = e.target.closest("[data-view-recipe]");
-      if (viewBtn) {
-        showRecipeDetail(viewBtn.dataset.viewRecipe);
-        return;
-      }
-
-      const addPlanBtn = e.target.closest("[data-add-plan]");
-      if (addPlanBtn) {
-        const recId = addPlanBtn.dataset.addPlan;
-        const rec = getAllRecipesMap()[recId];
-        if (!rec) return;
-        const targetPlan = getActivePlan();
-        const existing = targetPlan.find(p => p.recipeId === recId);
-        if (existing) {
-          existing.portions += Number(rec.basePortions) || 4;
-        } else {
-          targetPlan.push({ recipeId: recId, portions: Number(rec.basePortions) || 4 });
-        }
-        saveState();
-        renderAll();
-        showToast(`+${rec.basePortions} portions de "${rec.title}" ajoutées au planning`);
-        return;
-      }
-
-      const deltaBtn = e.target.closest("[data-plan-delta]");
-      if (deltaBtn) {
-        const idx = Number(deltaBtn.dataset.planIdx);
-        const delta = Number(deltaBtn.dataset.planDelta);
-        const targetPlan = getActivePlan();
-        if (targetPlan[idx]) {
-          targetPlan[idx].portions = Math.max(1, targetPlan[idx].portions + delta);
-          saveState();
-          renderAll();
-        }
-        return;
-      }
-
-      const remPlanBtn = e.target.closest("[data-plan-remove]");
-      if (remPlanBtn) {
-        const idx = Number(remPlanBtn.dataset.planIdx || remPlanBtn.dataset.planRemove);
-        getActivePlan().splice(idx, 1);
-        saveState();
-        renderAll();
-        return;
-      }
-
-      const remFridgeBtn = e.target.closest("[data-remove-fridge]");
-      if (remFridgeBtn) {
-        delete state.fridgeStock[remFridgeBtn.dataset.removeFridge];
-        saveState();
-        renderAll();
-        return;
-      }
-
-      const quickPriceBtn = e.target.closest("[data-quick-price]");
-      if (quickPriceBtn) {
-        const ingId = quickPriceBtn.dataset.quickPrice;
-        const ing = getAllIngredientsMap()[ingId];
-        if (!ing) return;
-        const current = BatchPlanner.getEffectivePrice(ing, state.customPrices);
-        const ans = prompt(`Nouveau prix pour "${ing.name}" (€ / ${ing.priceUnit}) :
-(Laissez vide pour rétablir ${ing.defaultPrice.toFixed(2)} €)`, current.toFixed(2));
-        if (ans === null) return;
-        if (ans.trim() === "") {
-          delete state.customPrices[ingId];
-        } else {
-          const parsed = parseFloat(ans.replace(',', '.'));
-          if (!Number.isNaN(parsed) && parsed >= 0) {
-            state.customPrices[ingId] = Math.round(parsed * 100) / 100;
-          }
-        }
-        saveState();
-        renderAll();
-        showToast(`Prix mis à jour pour ${ing.name}`);
-        return;
-      }
-
-      const resetPriceBtn = e.target.closest("[data-reset-price]");
-      if (resetPriceBtn) {
-        delete state.customPrices[resetPriceBtn.dataset.resetPrice];
-        saveState();
-        renderAll();
-        showToast("Prix par défaut rétabli.");
-        return;
-      }
-
-      const remDraftIngBtn = e.target.closest("[data-remove-draft-ing]");
-      if (remDraftIngBtn) {
-        const idx = Number(remDraftIngBtn.dataset.removeDraftIng);
-        draftRecipeIngredients.splice(idx, 1);
-        renderDraftRecipeIngredients();
-      }
+    clearSearchBtn.addEventListener("click", () => {
+      state.catalogFilter.query = "";
+      allSearchInput.value = "";
+      clearSearchBtn.classList.add("hidden");
+      allSearchInput.focus();
+      renderAllRecipesView();
     });
 
-    // Shopping checkboxes
-    document.body.addEventListener("change", e => {
-      if (e.target.matches("[data-toggle-shop]")) {
-        const id = e.target.dataset.toggleShop;
-        if (e.target.checked) state.checkedShopping[id] = true;
-        else delete state.checkedShopping[id];
-        saveState();
-        renderAll();
-      }
-      if (e.target.matches("[data-price-input]")) {
-        const id = e.target.dataset.priceInput;
-        const ing = getAllIngredientsMap()[id];
-        const val = parseFloat(e.target.value.replace(',', '.'));
-        if (!Number.isNaN(val) && val >= 0) {
-          const rounded = Math.round(val * 100) / 100;
-          if (ing && Math.abs(rounded - Number(ing.defaultPrice)) < 0.001) {
-            delete state.customPrices[id];
-          } else {
-            state.customPrices[id] = rounded;
-          }
-          saveState();
-          renderAll();
-        }
-      }
+    document.getElementById("all-filter-compatible").addEventListener("change", (e) => {
+      state.catalogFilter.onlyCompatible = e.target.checked;
+      renderAllRecipesView();
     });
 
-    // Planner controls
-    ["plan-days", "plan-people", "plan-kcal-target"].forEach(id => {
-      document.getElementById(id).addEventListener("change", () => {
-        const s = getActiveSettings();
-        s.days = Math.max(1, Math.min(14, Number(document.getElementById("plan-days").value) || 5));
-        s.people = Math.max(1, Math.min(10, Number(document.getElementById("plan-people").value) || 1));
-        s.kcalTarget = Math.max(1000, Number(document.getElementById("plan-kcal-target").value) || 2200);
-        saveState();
-        renderAll();
-      });
+    document.getElementById("all-filter-freezable").addEventListener("change", (e) => {
+      state.catalogFilter.onlyFreezable = e.target.checked;
+      renderAllRecipesView();
     });
 
-    document.getElementById("btn-auto-scale").addEventListener("click", () => {
-      const scaled = BatchPlanner.autoScalePortions(
-        getActivePlan(),
-        getAllRecipesMap(),
-        getAllIngredientsMap(),
-        state.customPrices,
-        getActiveSettings()
+    document.getElementById("all-sort-select").addEventListener("change", (e) => {
+      state.catalogFilter.sortBy = e.target.value;
+      renderAllRecipesView();
+    });
+
+    document.getElementById("all-category-pills").addEventListener("click", (e) => {
+      const pill = e.target.closest(".cat-filter-pill");
+      if (!pill) return;
+      state.catalogFilter.category = pill.dataset.cat;
+      document.querySelectorAll("#all-category-pills .cat-filter-pill").forEach((p) =>
+        p.classList.toggle("is-active", p === pill)
       );
-      if (sharedPreviewPlan) sharedPreviewPlan.plan = scaled;
-      else state.plan = scaled;
-      saveState();
-      renderAll();
-      showToast("Portions ajustées à votre objectif calorique !");
+      renderAllRecipesView();
     });
 
-    document.getElementById("btn-clear-plan").addEventListener("click", () => {
-      if (sharedPreviewPlan) sharedPreviewPlan.plan = [];
-      else state.plan = [];
-      saveState();
-      renderAll();
+    // Ouverture modale recette personnelle
+    ["btn-open-custom-modal", "btn-new-recipe-tab"].forEach((id) => {
+      document.getElementById(id).addEventListener("click", openCustomRecipeModal);
     });
 
-    document.getElementById("btn-share-plan").addEventListener("click", generateShareUrl);
-
-    // Shopping & Fridge
-    document.getElementById("btn-goto-prices").addEventListener("click", () => switchTab("prices"));
-    document.getElementById("btn-toggle-fridge").addEventListener("click", () => {
-      document.getElementById("fridge-panel").classList.toggle("hidden");
-    });
-    document.getElementById("btn-add-fridge").addEventListener("click", () => {
-      const id = document.getElementById("fridge-ingredient-select").value;
-      const qty = Number(document.getElementById("fridge-qty-input").value);
-      if (!id || !(qty > 0)) return;
-      state.fridgeStock[id] = (state.fridgeStock[id] || 0) + qty;
-      document.getElementById("fridge-qty-input").value = "";
-      saveState();
-      renderAll();
-      showToast("Ingrédient ajouté au stock frigo.");
-    });
-    document.getElementById("btn-clear-fridge").addEventListener("click", () => {
-      state.fridgeStock = {};
-      saveState();
-      renderAll();
+    document.getElementById("btn-add-cr-ingredient").addEventListener("click", () => {
+      addCustomIngredientRow("", 100, "g");
+      recalculateCustomRecipePreview();
     });
 
-    // iPhone Export Modal
-    document.getElementById("btn-open-iphone-export").addEventListener("click", () => {
-      document.getElementById("iphone-feedback").textContent = "";
-      refreshIphonePreview();
-      openModal("modal-iphone");
+    document.getElementById("cr-auto-macros").addEventListener("change", (e) => {
+      document.getElementById("cr-manual-overrides").classList.toggle("hidden", e.target.checked);
+      recalculateCustomRecipePreview();
     });
-    document.querySelectorAll('input[name="iphone-format"]').forEach(r => {
-      r.addEventListener("change", refreshIphonePreview);
-    });
-    document.getElementById("iphone-include-checked").addEventListener("change", refreshIphonePreview);
 
-    document.getElementById("btn-ios-native-share").addEventListener("click", async () => {
-      const text = document.getElementById("iphone-preview-text").value;
-      const fb = document.getElementById("iphone-feedback");
-      if (navigator.share) {
-        try {
-          await navigator.share({ title: "Liste de courses Batch Malin", text });
-          fb.textContent = "✅ Liste envoyée via la feuille de partage.";
-        } catch (err) {
-          if (err.name !== "AbortError") {
-            fb.textContent = "Partage annulé ou indisponible sur ce navigateur.";
-          }
-        }
-      } else {
-        await navigator.clipboard.writeText(text);
-        fb.textContent = "📋 Partage natif indisponible sur ce navigateur PC : liste copiée dans le presse-papiers !";
+    document.getElementById("custom-recipe-form").addEventListener("input", (e) => {
+      if (
+        e.target.closest("#cr-ingredients-rows") ||
+        e.target.closest("#cr-manual-overrides")
+      ) {
+        recalculateCustomRecipePreview();
       }
     });
 
-    document.getElementById("btn-ios-copy").addEventListener("click", async () => {
-      const text = document.getElementById("iphone-preview-text").value;
-      await navigator.clipboard.writeText(text);
-      document.getElementById("iphone-feedback").textContent =
-        "✅ Copié ! Ouvrez Apple Rappels ou Notes sur iPhone et collez : chaque ligne devient une case.";
-    });
-
-    document.getElementById("btn-ios-download-txt").addEventListener("click", () => {
-      const text = document.getElementById("iphone-preview-text").value;
-      const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "liste-courses-batch-malin.txt";
-      a.click();
-      URL.revokeObjectURL(a.href);
-      document.getElementById("iphone-feedback").textContent = "✅ Fichier checklist .txt téléchargé.";
-    });
-
-    // Prices Tab
-    document.getElementById("store-name-input").addEventListener("input", e => {
-      state.storeName = e.target.value;
-      saveState();
-      document.getElementById("shopping-store-label").textContent = state.storeName.trim() || "Prix catalogue par défaut";
-    });
-    ["prices-search", "prices-aisle-filter", "prices-only-modified"].forEach(id => {
-      document.getElementById(id).addEventListener("input", () => renderPricesTab(getAllIngredientsMap()));
-    });
-    document.getElementById("btn-reset-all-prices").addEventListener("click", () => {
-      if (!Object.keys(state.customPrices || {}).length) return;
-      if (confirm("Réinitialiser tous vos prix personnalisés vers les prix par défaut ?")) {
-        state.customPrices = {};
-        saveState();
-        renderAll();
-        showToast("Tous les prix ont été réinitialisés.");
-      }
-    });
-
-    // JSON Backup Export/Import V2.3
-    document.getElementById("btn-export-json").addEventListener("click", () => {
-      const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = `batch-malin-v2.3-sauvegarde-${new Date().toISOString().slice(0, 10)}.json`;
-      a.click();
-      URL.revokeObjectURL(a.href);
-      showToast("Sauvegarde JSON exportée !");
-    });
-
-    document.getElementById("input-import-json").addEventListener("change", e => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = () => {
-        try {
-          const imported = JSON.parse(reader.result);
-          state = {
-            ...structuredClone(defaultState),
-            ...imported,
-            settings: { ...defaultState.settings, ...(imported.settings || {}) }
-          };
-          saveState();
-          populateIngredientSelects();
-          renderAll();
-          showToast("Sauvegarde restaurée avec succès !");
-        } catch {
-          showToast("Fichier JSON invalide.");
-        }
-      };
-      reader.readAsText(file);
-    });
-
-    // Custom Recipe Modal
-    document.getElementById("btn-open-recipe-modal").addEventListener("click", () => {
-      draftRecipeIngredients = [];
-      document.getElementById("form-create-recipe").reset();
-      renderDraftRecipeIngredients();
-      openModal("modal-create-recipe");
-    });
-
-    document.getElementById("btn-rec-add-ing").addEventListener("click", () => {
-      const id = document.getElementById("rec-ing-select").value;
-      const qty = Number(document.getElementById("rec-ing-qty").value);
-      if (!id || !(qty > 0)) return;
-      draftRecipeIngredients.push({ id, qty });
-      document.getElementById("rec-ing-qty").value = "";
-      renderDraftRecipeIngredients();
-    });
-
-    document.getElementById("rec-portions").addEventListener("input", renderDraftRecipeIngredients);
-
-    document.getElementById("form-create-recipe").addEventListener("submit", e => {
+    document.getElementById("custom-recipe-form").addEventListener("submit", (e) => {
       e.preventDefault();
-      if (!draftRecipeIngredients.length) {
-        showToast("Ajoutez au moins un ingrédient.");
+      const name = document.getElementById("cr-name").value.trim();
+      const ingredients = collectCustomIngredients();
+
+      if (!name) {
+        showToast("Indiquez un nom pour votre recette");
+        document.getElementById("cr-name").focus();
         return;
       }
-      const stepsRaw = document.getElementById("rec-steps").value.trim();
-      const newRec = {
-        id: `custom_rec_${Date.now()}`,
-        title: document.getElementById("rec-title").value.trim(),
-        category: document.getElementById("rec-category").value,
-        basePortions: Math.max(1, Number(document.getElementById("rec-portions").value) || 4),
-        prepTime: Math.max(0, Number(document.getElementById("rec-prep").value) || 15),
-        cookTime: Math.max(0, Number(document.getElementById("rec-cook").value) || 20),
-        fridgeDays: Math.max(1, Number(document.getElementById("rec-fridge-days").value) || 4),
-        freezerDays: Math.max(0, Number(document.getElementById("rec-freezer-days").value) || 0),
-        equipment: ["poele", "boites"],
-        ingredients: structuredClone(draftRecipeIngredients),
-        steps: stepsRaw ? stepsRaw.split("\n").map(s => s.trim()).filter(Boolean) : ["Préparer et cuire les ingrédients."]
+
+      if (!ingredients.length) {
+        showToast("Ajoutez au moins un ingrédient avec une quantité");
+        return;
+      }
+
+      const selectedEquip = Array.from(
+        document.querySelectorAll("#cr-equipment-list .cr-equip-chip.is-active")
+      ).map((btn) => btn.dataset.crEquip);
+
+      const rawSteps = document
+        .getElementById("cr-steps")
+        .value.split("
+")
+        .map((s) => s.trim())
+        .filter(Boolean);
+
+      const newRecipe = {
+        id: Date.now(),
+        name,
+        category: document.getElementById("cr-category").value,
+        price: Math.max(0.1, parseFloat(document.getElementById("cr-price").value) || 2.5),
+        prepTime: Math.max(0, parseInt(document.getElementById("cr-prep").value, 10) || 10),
+        cookTime: Math.max(0, parseInt(document.getElementById("cr-cook").value, 10) || 15),
+        calories: Math.max(10, parseInt(document.getElementById("cr-calories").value, 10) || 500),
+        protein: Math.max(0, parseInt(document.getElementById("cr-protein").value, 10) || 30),
+        carbs: Math.max(0, parseInt(document.getElementById("cr-carbs").value, 10) || 50),
+        fat: Math.max(0, parseInt(document.getElementById("cr-fat").value, 10) || 15),
+        freezable: document.getElementById("cr-freezable").checked,
+        batchFriendly: true,
+        isCustom: true,
+        equipment: selectedEquip.length ? selectedEquip : ["Plaques induction"],
+        ingredients,
+        steps: rawSteps.length
+          ? rawSteps
+          : ["Préparer et découper les ingrédients.", "Cuire selon le matériel choisi.", "Assembler et répartir en boîtes."]
       };
-      state.customRecipes.push(newRec);
-      saveState();
-      closeModal("modal-create-recipe");
-      renderAll();
-      showToast(`Recette "${newRec.title}" enregistrée !`);
+
+      state.customRecipes.push(newRecipe);
+      saveCustomRecipes();
+      runFullGeneration(true);
+      closeCustomRecipeModal();
+      switchTab("batch");
+      showToast(`Recette « ${name} » ajoutée et intégrée au planning`);
     });
 
-    // Custom Ingredient Modal
-    document.getElementById("btn-open-custom-ing-modal").addEventListener("click", () => {
-      document.getElementById("form-custom-ingredient").reset();
-      openModal("modal-custom-ingredient");
+    // Délégation globale sur les clics dynamiques
+    document.body.addEventListener("click", (e) => {
+      const remPantry = e.target.closest("[data-remove-pantry]");
+      if (remPantry) {
+        state.prefs.pantryItems.splice(Number(remPantry.dataset.removePantry), 1);
+        savePrefs();
+        renderTagContainers();
+        renderAllRecipesView();
+        return;
+      }
+
+      const remExclude = e.target.closest("[data-remove-exclude]");
+      if (remExclude) {
+        state.prefs.excludedItems.splice(Number(remExclude.dataset.removeExclude), 1);
+        savePrefs();
+        renderTagContainers();
+        renderAllRecipesView();
+        return;
+      }
+
+      if (e.target.closest("#btn-reset-catalog-filters")) {
+        state.catalogFilter = {
+          query: "",
+          category: "all",
+          onlyCompatible: false,
+          onlyFreezable: false,
+          sortBy: "default"
+        };
+        document.getElementById("all-search-input").value = "";
+        document.getElementById("btn-clear-all-search").classList.add("hidden");
+        document.getElementById("all-filter-compatible").checked = false;
+        document.getElementById("all-filter-freezable").checked = false;
+        document.getElementById("all-sort-select").value = "default";
+        document.querySelectorAll("#all-category-pills .cat-filter-pill").forEach((p) =>
+          p.classList.toggle("is-active", p.dataset.cat === "all")
+        );
+        renderAllRecipesView();
+        return;
+      }
+
+      const crEquipChip = e.target.closest("[data-cr-equip]");
+      if (crEquipChip) {
+        crEquipChip.classList.toggle("is-active");
+        return;
+      }
+
+      if (e.target.closest(".cr-remove-ing")) {
+        const rows = document.querySelectorAll("#cr-ingredients-rows .cr-ing-row");
+        if (rows.length > 1) {
+          e.target.closest(".cr-ing-row").remove();
+          recalculateCustomRecipePreview();
+        }
+        return;
+      }
+
+      const deleteCustomBtn = e.target.closest("[data-delete-custom]");
+      if (deleteCustomBtn) {
+        const id = Number(deleteCustomBtn.dataset.deleteCustom);
+        state.customRecipes = state.customRecipes.filter((r) => r.id !== id);
+        state.favorites.delete(id);
+        saveCustomRecipes();
+        saveFavorites();
+        runFullGeneration(false);
+        showToast("Recette personnelle supprimée");
+        return;
+      }
+
+      const favBtn = e.target.closest("[data-toggle-fav]");
+      if (favBtn) {
+        const id = Number(favBtn.dataset.toggleFav);
+        if (state.favorites.has(id)) {
+          state.favorites.delete(id);
+          showToast("Retiré des favoris");
+        } else {
+          state.favorites.add(id);
+          showToast("Ajouté aux favoris");
+        }
+        saveFavorites();
+        renderAllResults();
+        return;
+      }
+
+      const inspectBtn = e.target.closest("[data-inspect-recipe]");
+      if (inspectBtn) {
+        openRecipeModal(Number(inspectBtn.dataset.inspectRecipe));
+        return;
+      }
+
+      const addPlanBtn = e.target.closest("[data-add-to-plan]");
+      if (addPlanBtn) {
+        const id = Number(addPlanBtn.dataset.addToPlan);
+        const result = global.BatchPlanner.addRecipeToPlan(
+          state.currentPlan,
+          id,
+          state.indexedRecipes,
+          state.prefs
+        );
+        if (result) {
+          applyPlanAndRender(result.plan);
+          showToast(
+            result.action === "incremented"
+              ? `+1 batch ajouté pour « ${result.recipeName} »`
+              : `« ${result.recipeName} » ajoutée au menu`
+          );
+        }
+        return;
+      }
+
+      const replaceBtn = e.target.closest("[data-replace-recipe]");
+      if (replaceBtn && state.currentPlan) {
+        const id = Number(replaceBtn.dataset.replaceRecipe);
+        const updatedPlan = global.BatchPlanner.replaceRecipeInPlan(
+          state.currentPlan,
+          id,
+          state.indexedRecipes,
+          state.prefs
+        );
+        applyPlanAndRender(updatedPlan);
+        showToast("Recette remplacée en conservant la synergie");
+        return;
+      }
+
+      const shopItem = e.target.closest("[data-toggle-shop]");
+      if (shopItem) {
+        const id = shopItem.dataset.toggleShop;
+        if (state.checkedShopping.has(id)) state.checkedShopping.delete(id);
+        else state.checkedShopping.add(id);
+        saveCheckedShopping();
+        renderShoppingView(state.currentShopping);
+        return;
+      }
+
+      const stepItem = e.target.closest("[data-toggle-step]");
+      if (stepItem) {
+        const id = stepItem.dataset.toggleStep;
+        if (state.doneBatchSteps.has(id)) state.doneBatchSteps.delete(id);
+        else state.doneBatchSteps.add(id);
+        saveDoneBatchSteps();
+        renderBatchTimeline(state.currentSchedule);
+        return;
+      }
+
+      if (e.target.closest("[data-close-modal]")) closeRecipeModal();
+      if (e.target.closest("[data-close-custom-modal]")) closeCustomRecipeModal();
     });
 
-    document.getElementById("form-custom-ingredient").addEventListener("submit", e => {
-      e.preventDefault();
-      const unit = document.getElementById("ing-unit").value;
-      const price = Math.round(parseFloat(document.getElementById("ing-price").value) * 100) / 100;
-      const newIng = {
-        id: `custom_ing_${Date.now()}`,
-        name: document.getElementById("ing-name").value.trim(),
-        aisle: document.getElementById("ing-aisle").value,
-        unit,
-        priceUnit: unit === "g" ? "kg" : unit === "ml" ? "L" : "pièce",
-        unitFactor: unit === "pièce" ? 1 : 1000,
-        defaultPrice: price,
-        kcal100: Number(document.getElementById("ing-kcal").value) || 100,
-        prot100: 10,
-        carbs100: 10,
-        fat100: 5,
-        storage: "frigo"
-      };
-      state.customIngredients.push(newIng);
-      saveState();
-      populateIngredientSelects();
-      closeModal("modal-custom-ingredient");
-      renderAll();
-      showToast(`Aliment "${newIng.name}" ajouté !`);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeRecipeModal();
+        closeCustomRecipeModal();
+      }
+    });
+
+    document.getElementById("btn-copy-shopping").addEventListener("click", async () => {
+      if (!state.currentShopping) return;
+      const text = global.BatchShopping.formatShoppingListAsText(state.currentShopping);
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast("Liste de courses copiée dans le presse-papiers");
+      } catch {
+        showToast("Copie impossible sur ce navigateur");
+      }
+    });
+
+    document.getElementById("btn-print-plan").addEventListener("click", () => {
+      window.print();
     });
   }
 
-  function renderDraftRecipeIngredients() {
-    const ingredientsMap = getAllIngredientsMap();
-    const listEl = document.getElementById("rec-ing-list");
-    listEl.innerHTML = draftRecipeIngredients.map((item, idx) => {
-      const ing = ingredientsMap[item.id];
-      return `<span class="fridge-tag">${ing ? ing.name : item.id} (${item.qty}${ing ? ing.unit : ''}) <button type="button" data-remove-draft-ing="${idx}">✕</button></span>`;
-    }).join("");
+  /* --------------------------------------------------------------------------
+     Initialisation
+     -------------------------------------------------------------------------- */
+  async function init() {
+    loadLocalStorage();
+    bindEvents();
+    await loadAllData();
+    syncInputsFromPrefs();
 
-    const tempRec = {
-      basePortions: Math.max(1, Number(document.getElementById("rec-portions").value) || 4),
-      ingredients: draftRecipeIngredients
-    };
-    const m = BatchPlanner.computeRecipeMetrics(tempRec, ingredientsMap, state.customPrices);
-    document.getElementById("rec-live-metrics").textContent =
-      `Coût estimé : ${formatEuro(m.totalCost)} (${formatEuro(m.costPerPortion)} / portion) · ${m.kcalPerPortion} kcal / portion`;
+    const restoredFromUrl = tryRestorePlanFromUrlHash();
+    if (!restoredFromUrl) {
+      runFullGeneration(false);
+    }
   }
 
   document.addEventListener("DOMContentLoaded", init);
-})();
+})(window);
